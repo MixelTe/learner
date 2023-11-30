@@ -1,6 +1,11 @@
+#p-start {
+	padding-block: 1rem;
+}
+
 .logo {
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
 	font-size: 2rem;
+	margin-bottom: 1em;
 }
 
 .logo > div {
@@ -64,9 +69,10 @@
 	border-radius: 50%;
 	transition-property: top, border-radius;
 	transition-duration: 100ms;
-	transition-delay: 200ms;
+	transition-delay: 200ms, 100ms;
 }
 .groupSelection > div:hover .groupSelection-marker > :nth-child(1),
+.groupSelection input:focus-visible ~ .groupSelection-marker > :nth-child(1),
 .groupSelection input:checked ~ .groupSelection-marker > :nth-child(1) {
 	top: 0.75em;
 	transition-delay: 0ms;
@@ -82,6 +88,7 @@
 	transition: width 200ms;
 }
 .groupSelection > div:hover .groupSelection-marker > :nth-child(2),
+.groupSelection input:focus-visible ~ .groupSelection-marker > :nth-child(2),
 .groupSelection input:checked ~ .groupSelection-marker > :nth-child(2) {
 	width: 100%;
 	transition-delay: 50ms;
@@ -108,6 +115,7 @@
 	cursor: pointer;
 	padding: 0.3em 0.2em;
 	padding-left: 1em;
+	outline: none;
 }
 .groupSelection-list button::before,
 .groupSelection-list button::after {
@@ -126,9 +134,11 @@
 	opacity: 0;
 	transform: scale(0.8);
 }
+.groupSelection-list button:focus-visible::before,
 .groupSelection-list button:hover::before {
 	opacity: 0;
 }
+.groupSelection-list button:focus-visible::after,
 .groupSelection-list button:hover::after {
 	opacity: 1;
 }

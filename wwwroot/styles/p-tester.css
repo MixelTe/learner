@@ -1,0 +1,76 @@
+.tester {
+	min-width: 300px;
+	min-height: 250px;
+	max-height: 100%;
+	max-width: min(100%, 500px);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	gap: 1rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	border: 2px solid var(--c-title);
+	border-radius: 0.8rem;
+}
+
+.tester-head {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.tester-task {
+	align-self: center;
+	overflow: auto;
+	max-height: 100%;
+}
+
+.tester-input {
+	justify-self: center;
+	display: flex;
+}
+
+.tester-input button {
+	position: relative;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	padding: 0.4em 1.4em;
+	margin-left: -1px;
+	cursor: pointer;
+	outline: none;
+}
+.tester-input button:first-child {
+	border-radius: 0.3em 0 0 0.3em;
+}
+.tester-input button:last-child {
+	border-radius: 0 0.3em 0.3em 0;
+}
+
+.tester-input button::before {
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 0;
+	background-color: var(--c-title);
+	transition: width 200ms;
+}
+.tester-input button:last-child:before {
+	right: auto;
+	left: 0;
+}
+.tester-input button:focus-visible::before,
+.tester-input button:hover::before {
+	width: 0.4em;
+}
+.tester-input button:active::before {
+	width: 100%;
+}
+
+@media screen and (max-width: 550px), screen and (max-height: 550px) {
+	.tester {
+		border: none;
+		flex-grow: 1;
+		padding: 0.5rem;
+		gap: 0.5rem;
+	}
+}
