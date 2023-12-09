@@ -1,10 +1,13 @@
-.theme-common-light {
+[theme="common"] {
 	--c-back1: #f1e6d1;
 	--c-back2: #e9d6b2;
 	--c-text: black;
 	--c-title: brown;
 }
 
-.theme-common-dark {
-
+[theme="common"].dark {
+	--c-back1: #100c05;
+	--c-back2: #0c0903;
+	--c-text: #f9ebd2;
+	--c-title: #df4545;
 }

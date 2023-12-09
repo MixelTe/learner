@@ -15,13 +15,32 @@
 	<link rel="stylesheet" type="text/css" href="styles/p-start.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-tester.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa">
-	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" /> -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
 </head>
 
-<body class="theme-common-light">
+<body>
+	<div class="menu" id="menu">
+		<div>
+			<h2>Меню</h2>
+			<button>Статистика</button>
+		</div>
+		<footer>
+			<span></span>
+			<select class="material-symbols-rounded" id="themeSelect">
+				<option value="light">light_mode</option>
+				<option value="dark">dark_mode</option>
+				<option value="auto">night_sight_auto</option>
+			</select>
+		</footer>
+	</div>
 	<header>
-
+		<button class="menuBtn" id="menuBtn">
+			<div></div>
+			<div></div>
+			<div></div>
+		</button>
+		<h2 id="title"></h2>
 	</header>
 	<div class="page open" id="p-start">
 		<div class="logo">
