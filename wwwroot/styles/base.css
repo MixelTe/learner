@@ -175,6 +175,10 @@ header {
 	border-top-right-radius: 0.2em;
 }
 
+:has(#p-start.open) #btn-index {
+	display: none;
+}
+
 footer {
 	display: flex;
 	justify-content: space-between;

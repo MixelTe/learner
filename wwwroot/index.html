@@ -5,13 +5,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ЛЯРО</title>
-    <meta name="theme-color" content="#a52a2a" />
-    <link rel="apple-touch-icon" href="logo192.png" />
-    <link rel="manifest" href="manifest.json" />
+	<meta name="theme-color" content="#a52a2a" />
+	<link rel="apple-touch-icon" href="logo192.png" />
+	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="popup.css">
 	<link rel="stylesheet" type="text/css" href="styles/themes.css">
 	<link rel="stylesheet" type="text/css" href="styles/base.css">
+	<link rel="stylesheet" type="text/css" href="styles/pageSwitch.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-start.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-tester.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa">
@@ -23,6 +24,7 @@
 	<div class="menu" id="menu">
 		<div>
 			<h2>Меню</h2>
+			<button id="btn-index">На главную</button>
 			<button>Статистика</button>
 		</div>
 		<footer>
@@ -51,52 +53,22 @@
 		</div>
 		<div>
 			<h2>Разделы</h2>
-			<div class="sectionSelection">
-				<div>
-					<input type="checkbox" id="group-1">
-					<div class="sectionSelection-marker">
-						<div></div>
-						<div></div>
-						<div></div>
+			<div class="sectionSelection", id="sections">
+				<template id="template-section">
+					<div>
+						<input type="checkbox" id="group-1">
+						<div class="sectionSelection-marker">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<label for="group-1">Name</label>
+						<div class="sectionSelection-list">
+							<!-- <button>Всё</button> -->
+							<!-- <button>Тема 1</button> -->
+						</div>
 					</div>
-					<label for="group-1">Русский</label>
-					<div class="sectionSelection-list">
-						<button>Всё</button>
-						<button>Тема 1</button>
-						<button>Тема 2</button>
-						<button>Тема 3</button>
-					</div>
-				</div>
-				<div>
-					<input type="checkbox" id="group-2">
-					<div class="sectionSelection-marker">
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
-					<label for="group-2">Математика</label>
-					<div class="sectionSelection-list">
-						<button>Всё</button>
-						<button>Тема 1</button>
-						<button>Тема 2</button>
-						<button>Тема 3</button>
-					</div>
-				</div>
-				<div>
-					<input type="checkbox" id="group-3">
-					<div class="sectionSelection-marker">
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
-					<label for="group-3">Физика</label>
-					<div class="sectionSelection-list">
-						<button>Всё</button>
-						<button>Тема 1</button>
-						<button>Тема 2</button>
-						<button>Тема 3</button>
-					</div>
-				</div>
+				</template>
 			</div>
 		</div>
 	</div>
@@ -106,7 +78,8 @@
 				<div id="t-page">##/##</div>
 			</div>
 			<div class="tester-task" id="t-task">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat molestiae animi sunt rem itaque, fugiat doloribus ex eius voluptate enim nemo?
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat molestiae animi sunt rem itaque,
+				fugiat doloribus ex eius voluptate enim nemo?
 			</div>
 			<div class="tester-input" id="t-input">
 				<button>Ошибся</button>

@@ -3,6 +3,7 @@ export const get = {
 	button: getButton,
 	canvas: getCanvas,
 	input: getInput,
+	el: getEl,
 }
 export const canvas = {
 	getContext2d: getCanvasContext,
@@ -24,6 +25,9 @@ export const random = {
 	boolean: random_boolean,
 	asbOrNot: random_asbOrNot,
 }
+export const other = {
+	wait
+}
 
 
 
@@ -31,30 +35,37 @@ export const random = {
 //get
 export function getButton(id: string)
 {
-	const el = <unknown | null>document.getElementById(id);
+	const el = document.getElementById(id);
 	if (el == null) throw new Error(`${id} not found`);
 	if (el instanceof HTMLButtonElement) return el;
 	throw new Error(`${id} element not Button`);
 }
 export function getDiv(id: string)
 {
-	const el = <unknown | null>document.getElementById(id);
+	const el = document.getElementById(id);
 	if (el == null) throw new Error(`${id} not found`);
 	if (el instanceof HTMLDivElement) return el;
 	throw new Error(`${id} element not Div`);
 }
 export function getCanvas(id: string)
 {
-	const el = <unknown | null>document.getElementById(id);
+	const el = document.getElementById(id);
 	if (el == null) throw new Error(`${id} not found`);
 	if (el instanceof HTMLCanvasElement) return el;
 	throw new Error(`${id} element not Canvas`);
 }
 export function getInput(id: string)
 {
-	const el = <unknown | null>document.getElementById(id);
+	const el = document.getElementById(id);
 	if (el == null) throw new Error(`${id} not found`);
 	if (el instanceof HTMLInputElement) return el;
+	throw new Error(`${id} element not Input`);
+}
+export function getEl<T extends typeof HTMLElement>(id: string, type: T)
+{
+	const el = document.getElementById(id);
+	if (el == null) throw new Error(`${id} not found`);
+	if (el instanceof type) return el as InstanceType<T>;
 	throw new Error(`${id} element not Input`);
 }
 
@@ -322,4 +333,10 @@ export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classe
 	if (children) children.forEach(ch => el.appendChild(ch));
 
 	return el;
+}
+
+
+export async function wait(t: number)
+{
+	return new Promise(res => setTimeout(res, t));
 }

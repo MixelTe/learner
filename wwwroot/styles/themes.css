@@ -11,3 +11,17 @@
 	--c-text: #f9ebd2;
 	--c-title: #df4545;
 }
+
+[theme="blue"] {
+	--c-back1: #d1ecf1;
+	--c-back2: #a4d3db;
+	--c-text: black;
+	--c-title: #2a2ca5;
+}
+
+[theme="blue"].dark {
+	--c-back1: #050d0f;
+	--c-back2: #030b0c;
+	--c-text: #d2f3f9;
+	--c-title: #43c8df;
+}

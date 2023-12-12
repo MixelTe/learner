@@ -1,6 +1,8 @@
 export const themes = {
 	common: "common",
-};
+	blue: "blue",
+} as { [theme in Themes]: Themes }
+export type Themes = "common" | "blue";
 const select = document.getElementById("themeSelect") as HTMLSelectElement;
 select.addEventListener("change", () => setThemeScheme(select.value));
 
@@ -34,7 +36,12 @@ function setThemeScheme(theme?: string)
 	}
 }
 
-export function setTheme(theme: keyof typeof themes)
+export function setTheme(theme: Themes)
 {
 	document.body.setAttribute("theme", theme);
+}
+
+export function currentTheme()
+{
+	return document.body.getAttribute("theme") || themes.common;
 }
