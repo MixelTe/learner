@@ -1,8 +1,10 @@
 export const themes = {
 	common: "common",
 	blue: "blue",
+	green: "green",
+	orange: "orange",
 } as { [theme in Themes]: Themes }
-export type Themes = "common" | "blue";
+export type Themes = "common" | "blue" | "green" | "orange";
 const select = document.getElementById("themeSelect") as HTMLSelectElement;
 select.addEventListener("change", () => setThemeScheme(select.value));
 

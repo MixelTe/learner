@@ -10,17 +10,18 @@ const titleEl = Lib.getEl("title", HTMLHeadingElement);
 
 let curPage: Page = "main";
 let mouse = { x: 0, y: 0 };
-window.addEventListener("mousedown", e => { mouse = { x: e.clientX, y: e.clientY }; console.log(mouse) });
+window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
 
 export async function switchPage(page: Page, title = "", theme: Themes = themes.common, onSwitch: () => void = () => { })
 {
+	if (curPage == page) return;
 
 	const anim = Lib.Div("pageSwitch");
 	anim.style.left = `${mouse.x}px`;
 	anim.style.top = `${mouse.y}px`;
 	document.body.appendChild(anim);
 	await Lib.wait(1);
-	const size = Math.max(window.innerWidth, window.innerHeight) * 2;
+	const size = Math.max(window.innerWidth, window.innerHeight) * 2 * Math.SQRT2;
 	anim.style.width = `${size}px`;
 	anim.style.height = `${size}px`;
 	anim.classList.add("pageSwitchAnim")

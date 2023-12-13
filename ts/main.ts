@@ -7,7 +7,6 @@ import { initThemes, themes } from "./themes.js";
 initThemes();
 
 const menu = Lib.get.div("menu");
-let tester: Tester | null = null;
 
 Lib.addButtonListener("menuBtn", () =>
 {
@@ -15,11 +14,6 @@ Lib.addButtonListener("menuBtn", () =>
 });
 Lib.addButtonListener("btn-index", async () =>
 {
-	if (tester)
-	{
-		tester.destroy()
-		tester = null;
-	}
 	switchPage("main", "", themes.common, () =>
 	{
 		menu.classList.remove("open");
@@ -27,7 +21,7 @@ Lib.addButtonListener("btn-index", async () =>
 });
 
 initMainPage();
-
+new Tester(Sections[2].themes[0]).start();
 
 function initMainPage()
 {
@@ -47,7 +41,7 @@ function initMainPage()
 		{
 			const btn = Lib.Button([], theme.name, () =>
 			{
-				tester = new Tester(theme).start();
+				new Tester(theme).start();
 			});
 			themes.appendChild(btn);
 		}

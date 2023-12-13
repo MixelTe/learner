@@ -24,6 +24,7 @@ export const random = {
 	int: randomInt,
 	boolean: random_boolean,
 	asbOrNot: random_asbOrNot,
+	shuffle: shuffle,
 }
 export const other = {
 	wait
@@ -106,22 +107,22 @@ export function drawGridOnCanvas(ctx: CanvasRenderingContext2D, cellSize: number
 	const canvasWidth = ctx.canvas.width;
 	const canvasHeight = ctx.canvas.height;
 
-    ctx.save();
+	ctx.save();
 	ctx.strokeStyle = color;
 	ctx.lineWidth = 2;
 	ctx.beginPath();
-    for (let x = cellSize; x < canvasWidth; x += cellSize)
+	for (let x = cellSize; x < canvasWidth; x += cellSize)
 	{
 		ctx.moveTo(x, 0);
 		ctx.lineTo(x, canvasHeight);
 	}
-    for (let y = cellSize; y < canvasWidth; y += cellSize)
+	for (let y = cellSize; y < canvasWidth; y += cellSize)
 	{
 		ctx.moveTo(0, y);
 		ctx.lineTo(canvasWidth, y);
 	}
 	ctx.stroke();
-    ctx.restore();
+	ctx.restore();
 }
 export function drawMouseCoordsOnCanvas(ctx: CanvasRenderingContext2D, x: number, y: number)
 {
@@ -181,12 +182,12 @@ export function rectIntersect(rect1: IRect, rect2: IRect)
 {
 	normalizeRect(rect1);
 	normalizeRect(rect2);
-    return (
-        rect1.x + rect1.width >= rect2.x &&
-        rect2.x + rect2.width >= rect1.x &&
-        rect1.y + rect1.height >= rect2.y &&
-        rect2.y + rect2.height >= rect1.y
-    );
+	return (
+		rect1.x + rect1.width >= rect2.x &&
+		rect2.x + rect2.width >= rect1.x &&
+		rect1.y + rect1.height >= rect2.y &&
+		rect2.y + rect2.height >= rect1.y
+	);
 }
 export function normalizeRect(rect: IRect)
 {
@@ -212,7 +213,7 @@ export function random_asbOrNot(num: number)
 
 export function random_boolean()
 {
-    return Math.random() < 0.5;
+	return Math.random() < 0.5;
 }
 
 export function randomInt(max: number): number;
@@ -222,6 +223,10 @@ export function randomInt(maxmin: number, max?: number)
 	if (max != undefined)
 		return Math.floor(Math.random() * (maxmin - max)) + max;
 	return Math.floor(Math.random() * maxmin);
+}
+export function shuffle<T>(array: T[])
+{
+	return array.sort(() => 0.5 - Math.random());
 }
 
 
@@ -233,9 +238,9 @@ export function square(num: number)
 }
 export function loadScript(scriptPath: string)
 {
-    const el = document.createElement("script");
-    el.src = scriptPath;
-    document.head.appendChild(el);
+	const el = document.createElement("script");
+	el.src = scriptPath;
+	document.head.appendChild(el);
 }
 export function addButtonListener(id: string, f: (e: MouseEvent) => void)
 {
@@ -282,7 +287,8 @@ export interface IRect
 	height: number
 }
 
-export interface IPoint {
+export interface IPoint
+{
 	x: number,
 	y: number,
 }
@@ -294,6 +300,15 @@ export interface ICircle
 	r: number,
 }
 
+
+export function SetContent(parent: HTMLElement, children: HTMLElement | HTMLElement[])
+{
+	parent.innerHTML = "";
+	if (children instanceof Array)
+		children.forEach(ch => parent.appendChild(ch));
+	else
+		parent.appendChild(children);
+}
 
 export function Div(classes?: string[] | string, children?: HTMLElement[], innerText?: string)
 {

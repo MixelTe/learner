@@ -25,3 +25,31 @@
 	--c-text: #d2f3f9;
 	--c-title: #43c8df;
 }
+
+[theme="green"] {
+	--c-back1: #d1f1d9;
+	--c-back2: #a4dbb2;
+	--c-text: black;
+	--c-title: #2ba64a;
+}
+
+[theme="green"].dark {
+	--c-back1: #050f08;
+    --c-back2: #030c05;
+    --c-text: hsl(135 76% 90% / 1);
+    --c-title: #43df6a;
+}
+
+[theme="orange"] {
+    --c-back1: #f1dcd0;
+    --c-back2: #dbb7a4;
+    --c-text: black;
+    --c-title: #a6562b;
+}
+
+[theme="orange"].dark {
+	--c-back1: #0f0905;
+    --c-back2: #0c0603;
+    --c-text: #fadfd1;
+    --c-title: #df7a43;
+}
