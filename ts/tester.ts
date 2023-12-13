@@ -37,6 +37,7 @@ export class Tester
 		item.show(taskEl, inputEl, r =>
 		{
 			if (r) this.cor++;
+			Trainer.saveRes(this.theme.id, item.id, r);
 			this.next();
 		});
 		this.cur++;

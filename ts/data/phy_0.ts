@@ -6,5 +6,5 @@ export const phy_0: TestItem[] = [
 ];
 
 
-for (let i = 1; i < 30; i++)
+for (let i = 1; i < 50; i++)
 	phy_0.push(new TestItemSelfCheck(i, `Вопрос ${i}`, `Ответ ${i}`));
