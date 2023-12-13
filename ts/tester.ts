@@ -2,6 +2,7 @@ import * as Lib from "./littleLib.js";
 import { Theme } from "./data/sections.js";
 import { switchPage } from "./switchPage.js";
 import { Trainer } from "./trainer.js";
+import { confetti } from "./confetti.js";
 
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
@@ -43,16 +44,32 @@ export class Tester
 		this.cur++;
 	}
 
-	private showEnd()
+	private async showEnd()
 	{
 		pageEl.innerText = "";
 		idEl.innerText = "";
-		taskEl.innerText = `Результат: ${this.cor}/${this.items.length} (${Math.floor(this.cor / this.items.length * 100)}%)`;
-		inputEl.innerHTML = "";
+		const text = `Результат: ${this.cor}/${this.items.length} (${Math.floor(this.cor / this.items.length * 100)}%)`;
+		Lib.SetContent(taskEl, Lib.initEl("h2", [], [], text));
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
 			Lib.Button([], "Вернуться", () => switchPage("main")),
-			Lib.Button([], "Ещё раз", () => new Tester(this.theme).start()),
+			Lib.Button([], "Ещё раз", async () =>
+			{
+				await Lib.wait(150);
+				new Tester(this.theme).start();
+			}),
 		]));
+		if (this.cor == this.items.length)
+		{
+			for (let i = 0; i < 3; i++)
+			{
+				await Lib.wait(200);
+				confetti(window.innerWidth / 2, window.innerHeight / 2, 20);
+			}
+		}
+		else
+		{
+			confetti(window.innerWidth / 2, window.innerHeight / 2, 15);
+		}
 	}
 }
 

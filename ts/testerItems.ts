@@ -21,10 +21,15 @@ export class TestItemSelfCheck extends TestItem
 		const showAns = async (r: boolean, btn: HTMLButtonElement) =>
 		{
 			btn.classList.add("active");
-			await Lib.wait(100);
+			await Lib.wait(150);
 			taskEl.innerText = this.ans;
 			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
-				Lib.Button([], "Далее", () => onAnswer(r)),
+				Lib.Button([], "Далее", async btn =>
+				{
+					btn.classList.add("active");
+					await Lib.wait(100);
+					onAnswer(r)
+				}),
 			]));
 		}
 	}
