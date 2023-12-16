@@ -39,3 +39,27 @@ export interface Theme
 	color: Themes,
 	items: TestItem[],
 }
+
+checkIds()
+function checkIds()
+{
+	for (const section of Sections)
+	{
+		for (const theme of section.themes)
+		{
+			let r = true;
+			let id = 0;
+			for (const item of theme.items)
+			{
+				const c = theme.items.filter(v => v.id == item.id).length == 1;
+				if (!c)
+				{
+					r = false;
+					id = item.id;
+				}
+			}
+			if (!r)
+				console.error(`Same ids in ${theme.id}: ${id}`);
+		}
+	}
+}

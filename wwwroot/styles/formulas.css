@@ -4,7 +4,7 @@
 	align-items: center;
 	white-space: pre-wrap;
 	white-space: break-spaces;
-	font-style: italic;
+	/* font-style: italic; */
 	font-family: "Arimo", Georgia, 'Times New Roman', Times, serif;
 	padding: 0.1em;
 }

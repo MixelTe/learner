@@ -150,6 +150,7 @@ export class FormulaBuilder
 	}
 	public html()
 	{
+		this.body.title = this.text
 		return this.body.outerHTML;
 	}
 }
@@ -290,10 +291,10 @@ function Table(classes: string | string[], children: HTMLElement[] = [])
 
 function TR(classes: string | string[], children: HTMLElement[] = [])
 {
-	return initEl("table", classes, children, undefined)
+	return initEl("tr", classes, children, undefined)
 }
 
 function TD(classes: string | string[], children: HTMLElement[] = [])
 {
-	return initEl("table", classes, children, undefined)
+	return initEl("td", classes, children, undefined)
 }
