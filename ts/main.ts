@@ -20,7 +20,7 @@ Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 
 initMainPage();
 // showStats();
-// new Tester(Sections[2].themes[0]).start();
+new Tester(Sections[2].themes[0]).start();
 
 function initMainPage()
 {

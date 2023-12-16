@@ -28,6 +28,7 @@
 	align-self: center;
 	overflow: auto;
 	max-height: 100%;
+	font-size: 1.2rem;
 }
 
 .tester-input {

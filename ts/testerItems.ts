@@ -1,10 +1,11 @@
 import * as Lib from "./littleLib.js";
+import { FormulaBuilder } from "./formulasBuilder.js";
 import { TestItem } from "./tester.js";
 
 
 export class TestItemSelfCheck extends TestItem
 {
-	constructor(id: number, private task: string, private ans: string)
+	constructor(id: number, private task: string | FormulaBuilder, private ans: string | FormulaBuilder)
 	{
 		super(id);
 	}
@@ -12,7 +13,10 @@ export class TestItemSelfCheck extends TestItem
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
-		taskEl.innerText = this.task;
+		if (this.task instanceof FormulaBuilder)
+			taskEl.innerHTML = this.task.html();
+		else
+			taskEl.innerText = this.task;
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
 			Lib.Button([], "Ошибся", btn => showAns(false, btn)),
 			Lib.Button([], "Помню", btn => showAns(true, btn)),
@@ -22,7 +26,10 @@ export class TestItemSelfCheck extends TestItem
 		{
 			btn.classList.add("active");
 			await Lib.wait(150);
-			taskEl.innerText = this.ans;
+			if (this.ans instanceof FormulaBuilder)
+				taskEl.innerHTML = this.ans.html();
+			else
+				taskEl.innerText = this.ans;
 			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
 				Lib.Button([], "Далее", async btn =>
 				{
