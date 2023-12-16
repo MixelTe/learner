@@ -24,11 +24,12 @@
 }
 
 .tester-task {
-	justify-self: center;
-	align-self: center;
+	margin: auto;
 	overflow: auto;
 	max-height: 100%;
 	font-size: 1.2rem;
+	padding: 0.3em;
+	max-width: 100%;
 }
 
 .tester-input {

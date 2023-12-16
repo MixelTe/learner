@@ -1,12 +1,21 @@
 .formula {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	white-space: pre-wrap;
 	white-space: break-spaces;
-	/* font-style: italic; */
+	width: fit-content;
+	font-style: italic;
 	font-family: "Arimo", Georgia, 'Times New Roman', Times, serif;
-	padding: 0.1em;
+}
+.formula-wrap {
+	flex-wrap: wrap;
+}
+.formula-bigger {
+	font-size: 1.25em;
+}
+.formula-smaller {
+	font-size: 0.7em;
 }
 .formula-fraction {
 	display: inline-table;
@@ -14,21 +23,27 @@
 .formula-fraction tr:first-child td {
 	border-bottom: 0.1em solid currentColor
 }
+.formula-fraction td {
+	text-align: center;
+}
 .formula-letter {
 	width: 1em;
 	height: 1em;
-	/* min-width: 1em;
-	min-height: 1em; */
 }
 .formula-upper {
-	transform: translateX(-0.1em) scale(0.7) translateY(-0.3em);
+	transform: translateX(-0.05em) translateY(-0.3em);
 }
 .formula-lower {
-	transform: translateX(-0.1em) scale(0.7) translateY(0.3em);
+	transform: translateX(-0.05em) translateY(0.3em);
 }
 .formula-upper-lower {
-	transform: scale(0.7) translateY(-0.7em) translateX(-0.2em);
-	height: 1.2em;
+	transform: translateX(-0.1em);
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: baseline;
+}
+.formula-upper-lower :first-child {
+	align-self: flex-end;
 }
 .formula-sqrt {
 	position: relative;
@@ -56,9 +71,8 @@
 	content: "";
 	position: absolute;
 	top: 0;
-	right: -0.1em;
-	width: 70%;
-	min-width: 8px;
+	left: 10%;
+	width: 80%;
 	border: 1px solid currentColor;
 	border-width: 1px 0 0 0;
 }
@@ -66,7 +80,7 @@
 	content: "";
 	position: absolute;
 	top: 0;
-	right: -0.1em;
+	left: calc(90% - 0.2em);
 	width: 0.2em;
 	height: 0.2em;
 	border: 1px solid currentColor;
@@ -95,4 +109,29 @@
 }
 .formula-sum-bottom {
 	font-size: 80%;
+}
+.formula-union {
+	position: relative;
+}
+.formula-union::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0.5em;
+	border: 1px solid currentColor;
+	border-right-width: 0;
+	border-top-left-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+}
+.formula-union::after {
+	content: "";
+	position: absolute;
+	top: calc(50% - 0.3em);
+	left: -0.5em;
+	height: 0;
+	width: 0;
+	border: 0.3em solid transparent;
+	border-right-color: currentColor;
 }

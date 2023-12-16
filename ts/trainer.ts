@@ -8,11 +8,19 @@ const statisticsKey = "statistics";
 const seedKey = "trainerSeed";
 const turnKey = "trainerTurn";
 const themeKey = "trainerTheme";
+const devSelectId = -1;
+if (devSelectId >= -1) console.warn("DEV: devSelectId is enabled");
 
 export class Trainer
 {
 	public static selectTasks(theme: Theme)
 	{
+		if (devSelectId >= -1)
+		{
+			const item = devSelectId == -1 ? theme.items.at(-1) : theme.items.find(v => v.id == devSelectId)
+			return item ? [item] : [];
+		}
+
 		if (this.lastTheme != theme.id)
 		{
 			this.lastTheme = theme.id;

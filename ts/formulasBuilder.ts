@@ -78,6 +78,7 @@ export class FormulaBuilder
 			this.prevEl = Span("formula-upper", [fb.body]);
 			this.body.appendChild(this.prevEl);
 		}
+		fb.smaller();
 		if (fb.text.length == 1) this.text += "^" + fb.text;
 		else this.text += "^(" + fb.text + ")";
 		return this;
@@ -95,6 +96,7 @@ export class FormulaBuilder
 			this.prevEl = Span("formula-lower", [fb.body]);
 			this.body.appendChild(this.prevEl);
 		}
+		fb.smaller();
 		if (fb.text.length == 1) this.text += "_" + fb.text;
 		else this.text += "_(" + fb.text + ")";
 		return this;
@@ -135,7 +137,7 @@ export class FormulaBuilder
 		this.prevEl = document.createElement("br");
 		this.body.appendChild(this.prevEl);
 	}
-	public table(rows: FormulaBuilder[])
+	public table(...rows: FormulaBuilder[])
 	{
 		const f = Table("formula-table")
 		this.prevEl = f;
@@ -148,6 +150,28 @@ export class FormulaBuilder
 		return this;
 
 	}
+	public union(fb: FormulaBuilder)
+	{
+		this.prevEl = Span("formula-union", [fb.body]);
+		this.body.appendChild(this.prevEl);
+		this.text += "[" + fb.text + "]";
+		return this;
+	}
+	public bigger()
+	{
+		this.body.classList.add("formula-bigger");
+		return this;
+	}
+	public smaller()
+	{
+		this.body.classList.add("formula-smaller");
+		return this;
+	}
+	public wrap()
+	{
+		this.body.classList.add("formula-wrap");
+		return this;
+	}
 	public html()
 	{
 		this.body.title = this.text
@@ -159,12 +183,18 @@ export function FB(text?: string)
 	if (text) return new FormulaBuilder().t(text);
 	return new FormulaBuilder();
 }
+export function createFormulas(...rows: string[])
+{
+	if (rows.length == 1)
+		return createFormula(rows[0]);
+	return new FormulaBuilder().table(...rows.map(createFormula));
+}
 
 const formulaLetters = {
-	"V": { ch: "ν", dy: 0, vb: "-2 -5 4 5", d: "M -1.8 -3.5 C -1.261 -4.945 -1.066 -4.653 -0.437 -1.919 L 0 0 L 0.365 -1.806 C 0.897 -4.721 1.226 -4.945 1.781 -3.552" },
-	"p": { ch: "ρ", dy: 0, vb: "0 -5 4.5 5", d: "M 0.283 -1.392 C 0.43 -0.444 1.294 -0.065 1.628 -1.26 L 2.245 -3.983 A 1 1 0 1 1 2.287 -3.278" },
+	"v": { ch: "ν", dy: 0, vb: "-2 -5.6 4 5.6", d: "M -1.8 -3.5 C -1.261 -4.945 -0.967 -4.515 0.001 -0.201 C 0.897 -4.721 1.226 -4.945 1.781 -3.552" },
+	"r": { ch: "ρ", dy: 0, vb: "0 -5 4.5 5", d: "M 0.283 -1.392 C 0.43 -0.444 1.294 -0.065 1.628 -1.26 L 2.245 -3.983 A 1 1 0 1 1 2.287 -3.278" },
 	"m": { ch: "μ", dy: 0.1, vb: "0 -4.5 5 4.5", d: "M.256-.799C.272-.085.878.16 1.308-1.26L1.957-3.772C1.993-3.92 2.039-3.914 2.053-3.826L2.513-1.92Q2.69-1.114 2.982-1.789L3.925-3.855C4.024-4.039 4.029-3.891 4.032-3.856L4.202-1.805Q4.294-1.037 4.862-1.582" },
-	"n": { ch: "η", dy: 0, vb: "0 -5.5 3.2 5.7", d: "M 0.3 -2 C 0.913 -1.911 1.45 -0.658 1.532 -0.08 C 2.134 -0.237 2.967 -1.425 2.819 -2.613 C 2.662 -3.932 1.969 -4.873 0.773 -5.162" },
+	"n": { ch: "η", dy: 0, vb: "0 -5.5 3.2 5.7", d: "M 0.3 -2 C 0.913 -1.911 1.45 -0.658 1.532 -0.08 C 3.839 -2.681 1.969 -4.873 0.773 -5.162" },
 	"a": { ch: "ⲁ", dy: 0, vb: "-0.2 -4.5 4.4 5.1", d: "M3.5-3.7C3.5-2.3 2.3-1.3 1.3-.3.7.3-.2-.5.4-1.1 1.1-1.6 1.2-.7 1.8-.4 2.6.1 3.6 0 3.9-.4" },
 	"d": { ch: "Δ", dy: 0, vb: null, d: null },
 	"P": { ch: "π", dy: 0, vb: null, d: null },
@@ -258,7 +288,12 @@ export function createFormula(formula: string)
 		}
 		else if (ch == "*")
 		{
-			fb.t("×")
+			// fb.t("×")
+			fb.t("·")
+		}
+		else if (ch == "-")
+		{
+			fb.t("−")
 		}
 		else if (ch == "!" && formula[i + 1] == "=")
 		{

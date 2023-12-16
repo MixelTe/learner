@@ -211,3 +211,13 @@ footer option {
 	background-color: var(--c-back1);
 	color: var(--c-title);
 }
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--c-title);
+	border-radius: 3px;
+}
