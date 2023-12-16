@@ -1,8 +1,9 @@
 import { Theme } from "./data/sections.js";
-import { getOrAdd, shuffledWithSeedAndWeights } from "./functions.js";
+import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
 import * as Lib from "./littleLib.js";
 
 const Len = 15;
+const MaxHist = 5;
 const statisticsKey = "statistics";
 const seedKey = "trainerSeed";
 const turnKey = "trainerTurn";
@@ -36,7 +37,7 @@ export class Trainer
 		{
 			const hist = statsItems.find(el => el.id == v.id)?.hist_old || "";
 			if (hist.length == 0) return 1;
-			return (hist.match(/0/g)?.length || 0) / hist.length + 0.1;
+			return (1 - sumStr(hist) / hist.length) + 0.1;
 		}));
 		const items = shuffled.slice(0, Len * 2);
 		Lib.random.shuffle(items);
@@ -49,6 +50,8 @@ export class Trainer
 		const theme = getOrAdd(stats.themes, v => v.id == themeId, { id: themeId, items: [] });
 		const item = getOrAdd(theme.items, v => v.id == itemId, { id: itemId, hist: "", hist_old: "" });
 		item.hist += res ? "1" : "0";
+		if (item.hist.length > MaxHist)
+			item.hist = item.hist.slice(item.hist.length - MaxHist);
 		this.setStatistics(stats);
 	}
 
@@ -63,7 +66,18 @@ export class Trainer
 		return this.updateStatisticsData(stats);
 	}
 
-	public static setStatistics(stats: Statistics)
+	public static calcScore(theme: StatisticsTheme)
+	{
+		let score = 0
+		for (const item of theme.items)
+		{
+			if (item.hist.length != 0)
+				score += sumStr(item.hist) / item.hist.length;
+		}
+		return score / theme.items.length;
+	}
+
+	private static setStatistics(stats: Statistics)
 	{
 		localStorage.setItem(statisticsKey, JSON.stringify(stats));
 	}
@@ -77,29 +91,29 @@ export class Trainer
 	}
 
 
-	public static get seed()
+	private static get seed()
 	{
 		return parseInt(localStorage.getItem(seedKey) || "0", 10);
 	}
-	public static set seed(v: number)
+	private static set seed(v: number)
 	{
 		localStorage.setItem(seedKey, `${v}`);
 	}
 
-	public static get turn()
+	private static get turn()
 	{
 		return parseInt(localStorage.getItem(turnKey) || "0", 10);
 	}
-	public static set turn(v: number)
+	private static set turn(v: number)
 	{
 		localStorage.setItem(turnKey, `${v}`);
 	}
 
-	public static get lastTheme()
+	private static get lastTheme()
 	{
 		return localStorage.getItem(themeKey) || "";
 	}
-	public static set lastTheme(v: string)
+	private static set lastTheme(v: string)
 	{
 		localStorage.setItem(themeKey, v);
 	}

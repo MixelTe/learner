@@ -4,7 +4,7 @@
 	--c-text: black;
 	--c-title: brown;
 }
-* {
+*, ::before, ::after {
 	box-sizing: border-box;
 }
 
@@ -116,6 +116,10 @@ header {
 	opacity: 1;
 	pointer-events: all;
 }
+.menu:not(.open) button,
+.menu:not(.open) select {
+	display: none;
+}
 
 .menu > * {
 	grid-column: 2/3;
@@ -140,6 +144,7 @@ header {
 	font-size: 1.2rem;
 	border: transparent;
 	outline: none;
+	cursor: pointer;
 	--d: 0;
 	--s: 0.6em;
 }
@@ -178,6 +183,9 @@ header {
 :has(#p-start.open) #btn-index {
 	display: none;
 }
+:has(#p-stats.open) #btn-stats {
+	display: none;
+}
 
 footer {
 	display: flex;
@@ -185,6 +193,7 @@ footer {
 }
 
 footer select {
+	position: relative;
 	appearance: none;
 	padding: 0.4rem 0.6rem;
 	background-color: transparent;
@@ -192,6 +201,11 @@ footer select {
 	color: var(--c-title);
 	font-size: 2rem !important;
 	outline: none;
+	cursor: pointer;
+}
+footer select:focus-visible {
+	outline: 2px solid var(--c-title);
+	border-radius: 0.2rem;
 }
 footer option {
 	background-color: var(--c-back1);

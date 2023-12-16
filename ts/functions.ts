@@ -32,3 +32,11 @@ export function randomWithSeed(seed: number)
 		return ((t ^ t >>> 14) >>> 0) / 4294967296;
 	}
 }
+
+export function sumStr(str: string)
+{
+	let r = 0;
+	for (const ch of str)
+		r += parseInt(ch)
+	return r
+}

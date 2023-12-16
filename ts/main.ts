@@ -1,5 +1,6 @@
 import { Sections } from "./data/sections.js";
 import * as Lib from "./littleLib.js";
+import { showStats } from "./stats.js";
 import { switchPage } from "./switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
@@ -12,16 +13,14 @@ Lib.addButtonListener("menuBtn", () =>
 {
 	menu.classList.toggle("open");
 });
-Lib.addButtonListener("btn-index", async () =>
-{
-	switchPage("main", "", themes.common, () =>
-	{
-		menu.classList.remove("open");
-	});
-});
+
+function closeMenu() { menu.classList.remove("open"); }
+Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
+Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 
 initMainPage();
-new Tester(Sections[2].themes[0]).start();
+// showStats();
+// new Tester(Sections[2].themes[0]).start();
 
 function initMainPage()
 {

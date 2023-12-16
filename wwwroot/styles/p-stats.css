@@ -1,0 +1,90 @@
+.stats {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+	margin-block: 1rem;
+}
+
+.stats-item-group {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+}
+
+.stats-item input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.stats-marker {
+	width: 2rem;
+	height: 2rem;
+}
+
+.stats-marker svg {
+	width: 100%;
+	height: 100%;
+}
+
+.stats-btn {
+	background-color: transparent;
+	border: none;
+	font-size: 1.3rem;
+	padding: 0;
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5em;
+	cursor: pointer;
+	user-select: none;
+}
+
+.stats-btn-arrow {
+	display: block;
+	width: 0.6em;
+	height: 0.6em;
+	border: 0 solid var(--c-text);
+	border-bottom-width: 2px;
+	border-right-width: 2px;
+	transform: translateX(0px) rotate(-45deg);
+	transition: transform 200ms;
+}
+.stats-item input:focus-visible ~ * .stats-btn-arrow,
+.stats-btn:hover .stats-btn-arrow {
+	transform: translateX(0.25em) rotate(-45deg);
+}
+.stats-item input:checked ~ * .stats-btn-arrow {
+	transform: translateX(0) rotate(45deg);
+}
+.stats-item input:checked:focus-visible ~ * .stats-btn-arrow,
+.stats-item input:checked ~ * .stats-btn:hover .stats-btn-arrow {
+	transform: translateY(-0.25em) rotate(45deg);
+}
+
+.stats-list {
+	padding-left: 2.9rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	max-height: 0;
+	overflow: hidden;
+	transition: all 200ms;
+}
+.stats-item input:checked ~ .stats-list {
+	max-height: 10rem;
+}
+
+.stats-subitem {
+	display: flex;
+	gap: 0.4rem;
+	align-items: center;
+	font-size: 1.1rem;
+}
+
+.stats-subitem .stats-marker {
+	width: 1.8rem;
+	height: 1.8rem;
+}
