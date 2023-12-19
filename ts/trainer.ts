@@ -74,7 +74,7 @@ export class Trainer
 		return this.updateStatisticsData(stats);
 	}
 
-	public static calcScore(theme: StatisticsTheme)
+	public static calcScore(theme: StatisticsTheme, itemCount: number)
 	{
 		let score = 0
 		for (const item of theme.items)
@@ -82,7 +82,7 @@ export class Trainer
 			if (item.hist.length != 0)
 				score += sumStr(item.hist) / item.hist.length;
 		}
-		return score / theme.items.length;
+		return score / itemCount;
 	}
 
 	private static setStatistics(stats: Statistics)
