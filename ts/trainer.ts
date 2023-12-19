@@ -8,7 +8,7 @@ const statisticsKey = "statistics";
 const seedKey = "trainerSeed";
 const turnKey = "trainerTurn";
 const themeKey = "trainerTheme";
-const devSelectId = -1;
+const devSelectId: number = -1;
 if (devSelectId >= -1) console.warn("DEV: devSelectId is enabled");
 
 export class Trainer

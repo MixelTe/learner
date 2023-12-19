@@ -4,7 +4,7 @@ import { TestItem } from "./tester.js";
 
 interface HtmlBuilder
 {
-	html: () => string,
+	html: () => HTMLElement,
 }
 
 export class TestItemSelfCheck extends TestItem
@@ -20,7 +20,7 @@ export class TestItemSelfCheck extends TestItem
 		if (typeof this.task == "string")
 			taskEl.innerText = this.task;
 		else
-			taskEl.innerHTML = this.task.html();
+			Lib.SetContent(taskEl, this.task.html());
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
 			Lib.Button([], "Ошибся", btn => showAns(false, btn)),
 			Lib.Button([], "Помню", btn => showAns(true, btn)),
@@ -33,7 +33,7 @@ export class TestItemSelfCheck extends TestItem
 			if (typeof this.ans == "string")
 				taskEl.innerText = this.ans;
 			else
-				taskEl.innerHTML = this.ans.html();
+				Lib.SetContent(taskEl, this.ans.html());
 			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
 				Lib.Button([], "Далее", async btn =>
 				{

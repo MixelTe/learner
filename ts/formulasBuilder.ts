@@ -6,6 +6,7 @@ export class FormulaBuilder
 	private body = Div("formula");
 	public text = "";
 	private prevEl: HTMLElement | SVGSVGElement | null = null;
+	private centerCell = false;
 	public a(fb: FormulaBuilder)
 	{
 		this.prevEl = fb.body;
@@ -15,8 +16,21 @@ export class FormulaBuilder
 	}
 	public t(text: string)
 	{
-		this.prevEl = Span([], [], text);
-		this.body.appendChild(this.prevEl);
+		if (replaceLetters.hasOwnProperty(text))
+		{
+			this.l(replaceLetters[text]);
+			return this;
+		}
+		if (text != " " && this.prevEl?.classList.contains("formula-text"))
+		{
+			const el = this.prevEl as HTMLSpanElement;
+			el.innerText += text;
+		}
+		else
+		{
+			this.prevEl = Span("formula-text", [], text);
+			this.body.appendChild(this.prevEl);
+		}
 		this.text += text;
 		return this;
 	}
@@ -31,37 +45,38 @@ export class FormulaBuilder
 		this.text += `(${top.text})/(${bottom.text})`;
 		return this;
 	}
-	public l(letter: keyof typeof formulaLetters)
+	public l(letter: CustomLetter)
 	{
-		const letterEl = formulaLetters[letter];
-		if (!letterEl)
-		{
-			this.t(letter);
-			return this
-		}
-		if (letterEl.d && letterEl.vb)
+		if (letter.d && letter.vb)
 		{
 			const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			svg.classList.add("formula-letter")
-			svg.style.transform = `translateY(${letterEl.dy}em)`;
+			svg.style.transform = `translateY(${letter.dy}em)`;
 			const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-			path.setAttribute("d", letterEl.d);
+			path.setAttribute("d", letter.d);
 			path.setAttribute("fill", "none");
-			path.setAttribute("stroke", "black");
+			path.setAttribute("stroke", "currentColor");
 			path.setAttribute("stroke-width", "0.4");
 			path.setAttribute("stroke-linecap", "round");
-			svg.setAttribute("viewBox", letterEl.vb);
-			const w = parseFloat(letterEl.vb.split(" ")[2]);
-			const h = parseFloat(letterEl.vb.split(" ")[3]);
-			svg.style.width = `${w / h}em`;
+			svg.setAttribute("viewBox", letter.vb);
+			const w = parseFloat(letter.vb.split(" ")[2]);
+			const h = parseFloat(letter.vb.split(" ")[3]);
+			svg.style.width = `${0.9 * w / h}em`;
 			svg.appendChild(path);
-			this.prevEl = svg;
-			this.body.appendChild(svg);
-			this.text += letterEl.ch;
+
+			const letterEl = Div("formula-letter", [svg])
+			if (letter.chw > 0)
+				letterEl.style.width = `${letter.chw}em`;
+			if (letter.cha < 0)
+				letterEl.style.justifyContent = "right";
+			if (letter.cha > 0)
+				letterEl.style.justifyContent = "left";
+			this.prevEl = letterEl;
+			this.body.appendChild(letterEl);
+			this.text += letter.ch;
 		}
 		else
 		{
-			this.t(letterEl.ch);
+			this.t(letter.ch);
 		}
 		return this;
 	}
@@ -132,6 +147,13 @@ export class FormulaBuilder
 		this.text += "Σ(" + fb.text + ")";
 		return this;
 	}
+	public noItalic(fb: FormulaBuilder)
+	{
+		fb.body.classList.add("formula-noItalic");
+		this.prevEl = fb.body;
+		this.body.appendChild(this.prevEl);
+		return this;
+	}
 	public br()
 	{
 		this.prevEl = document.createElement("br");
@@ -144,11 +166,16 @@ export class FormulaBuilder
 		this.body.appendChild(f);
 		for (const el of rows)
 		{
-			f.appendChild(TR([], [TD([], [el.body])]));
+			f.appendChild(TR([], [TD(el.centerCell ? "formula-table-center" : [], [el.body])]));
 			this.text += el.text + "\n";
 		}
 		return this;
 
+	}
+	public centerInCell()
+	{
+		this.centerCell = true;
+		return this;
 	}
 	public union(fb: FormulaBuilder)
 	{
@@ -175,7 +202,7 @@ export class FormulaBuilder
 	public html()
 	{
 		this.body.title = this.text
-		return this.body.outerHTML;
+		return this.body;
 	}
 }
 export function FB(text?: string)
@@ -183,32 +210,91 @@ export function FB(text?: string)
 	if (text) return new FormulaBuilder().t(text);
 	return new FormulaBuilder();
 }
+/**
+ * ### Special characters:
+ * symbol | desc
+ * -------------------|--
+ * \|    | if first char - center cell
+ * \\    | if first char - wrap line
+ * {...} | block
+ * _     | subscript
+ * ^     | superscript
+ * &     | vector
+ * \#    | overline
+ * \\    | square root
+ * @     | no italic
+ * '     | greek char
+ *
+ * ### Greek chars:
+ * v r m n a d P l w b t s e E f O 0 T / | <
+ */
 export function createFormulas(...rows: string[])
 {
 	if (rows.length == 1)
-		return createFormula(rows[0]);
-	return new FormulaBuilder().table(...rows.map(createFormula));
+		return rows[0][0] == "\\" ? createFormula(rows[0].slice(1)).wrap() : createFormula(rows[0]);
+	return new FormulaBuilder().table(...rows.map(v =>
+		v[0] == "|" ? createFormula(v.slice(1)).centerInCell() :
+			v[0] == "\\" ? createFormula(v.slice(1)).wrap() :
+				createFormula(v)));
 }
 
-const formulaLetters = {
-	"v": { ch: "ν", dy: 0, vb: "-2 -5.6 4 5.6", d: "M -1.8 -3.5 C -1.261 -4.945 -0.967 -4.515 0.001 -0.201 C 0.897 -4.721 1.226 -4.945 1.781 -3.552" },
-	"r": { ch: "ρ", dy: 0, vb: "0 -5 4.5 5", d: "M 0.283 -1.392 C 0.43 -0.444 1.294 -0.065 1.628 -1.26 L 2.245 -3.983 A 1 1 0 1 1 2.287 -3.278" },
-	"m": { ch: "μ", dy: 0.1, vb: "0 -4.5 5 4.5", d: "M.256-.799C.272-.085.878.16 1.308-1.26L1.957-3.772C1.993-3.92 2.039-3.914 2.053-3.826L2.513-1.92Q2.69-1.114 2.982-1.789L3.925-3.855C4.024-4.039 4.029-3.891 4.032-3.856L4.202-1.805Q4.294-1.037 4.862-1.582" },
-	"n": { ch: "η", dy: 0, vb: "0 -5.5 3.2 5.7", d: "M 0.3 -2 C 0.913 -1.911 1.45 -0.658 1.532 -0.08 C 3.839 -2.681 1.969 -4.873 0.773 -5.162" },
-	"a": { ch: "ⲁ", dy: 0, vb: "-0.2 -4.5 4.4 5.1", d: "M3.5-3.7C3.5-2.3 2.3-1.3 1.3-.3.7.3-.2-.5.4-1.1 1.1-1.6 1.2-.7 1.8-.4 2.6.1 3.6 0 3.9-.4" },
-	"d": { ch: "Δ", dy: 0, vb: null, d: null },
-	"P": { ch: "π", dy: 0, vb: null, d: null },
-	"l": { ch: "λ", dy: 0, vb: null, d: null },
-	"w": { ch: "ω", dy: 0, vb: null, d: null },
-	"b": { ch: "β", dy: 0, vb: null, d: null },
-	"t": { ch: "τ", dy: 0, vb: null, d: null },
-	"s": { ch: "ϭ", dy: 0, vb: null, d: null },
-	"e": { ch: "ϵ", dy: 0, vb: null, d: null },
-	"E": { ch: "ε", dy: 0, vb: null, d: null },
-	"f": { ch: "φ", dy: 0, vb: null, d: null },
-	"O": { ch: "Ω", dy: 0, vb: null, d: null },
+interface CustomLetter
+{
+	ch: string;
+	cha: number;  // -1 - left; 0 - center; 1 - right
+	chw: number;
+	dy: number;
+	vb: string | null;
+	d: string | null;
+}
+interface CustomLetters
+{
+	[letter: string]: CustomLetter
+}
+const formulaLetters: CustomLetters = {
+	"v": { ch: "ν", cha: 1, chw: 0.5, dy: -0.1, vb: "-2.4 -5.2 4.4 5", d: "M -1.6 -3.7 C -0.9 -5.1 -0.7 -4.6 -0.6 -0.4 C 0.5 -4.6 1.1 -4.8 1.5 -3.5" },
+	"r": { ch: "ρ", cha: 1, chw: 0.6, dy: 0, vb: "0 -5 4.5 5", d: "M 0.3 -1.4 C 0.4 -0.4 1.3 -0.1 1.6 -1.3 L 2.2 -4 A 1 1 0 1 1 2.3 -3.3" },
+	"m": { ch: "μ", cha: 0, chw: 0.55, dy: 0.22, vb: "0 -4.5 5 5", d: "M 0.51 -0.96 C 0.27 -0.09 0.81 0.38 1.38 -1.22 L 2.32 -3.77 C 2.38 -3.92 2.43 -3.91 2.42 -3.83 L 2.22 -1.86 Q 2.16 -1.08 2.65 -1.78 L 3.92 -3.85 C 4.03 -4.04 4.04 -3.9 4.03 -3.86 L 3.52 -1.83 Q 3.31 -1.05 4.14 -1.8" },
+	"n": { ch: "𝜈", cha: 1, chw: 0.35, dy: -0.05, vb: "0 -5.5 3.2 5.7", d: "M 0.4 -2.06 C 1.01 -1.94 1.48 -0.66 1.05 -0.12 C 3.97 -2.56 2.22 -4.84 1.04 -5.19" },
+	"a": { ch: "α", cha: 0, chw: 0.7, dy: 0, vb: "-0.2 -4.5 4.4 5.1", d: "M3.5-3.7C3.5-2.3 2.3-1.3 1.3-.3.7.3-.2-.5.4-1.1 1.1-1.6 1.2-.7 1.8-.4 2.6.1 3.6 0 3.9-.4" },
+	"d": { ch: "Δ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"P": { ch: "π", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"l": { ch: "λ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"w": { ch: "ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"b": { ch: "β", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"t": { ch: "τ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"s": { ch: "ϭ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"e": { ch: "ϵ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"E": { ch: "ε", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"f": { ch: "φ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"O": { ch: "Ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"T": { ch: "η", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"/": { ch: "⟂", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"|": { ch: "∥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"<": { ch: "∠", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 }
 
+const replaceLetters: CustomLetters = {
+	"I": { ch: "I", cha: 0, chw: 0.25, dy: -0.1, vb: "-0.2 -4.7 3 5", d: "M 0.1 -0.1 l 1.7 0 M 0.8 -4 l 1.7 0 M 0.8 -0.1 L 1.8 -4" },
+	"l": { ch: "l", cha: 0, chw: 0.25, dy: -0.05, vb: "-0.5 -4.7 3 5", d: "M 1.8 -4 L 0.8 -0.3 C 0.67 0.16 1.21 -0.03 1.91 -0.8" },
+}
+/**
+ * ### Special characters:
+ * symbol | desc
+ * -------------------|--
+ * {...} | block
+ * _     | subscript
+ * ^     | superscript
+ * &     | vector
+ * \#    | overline
+ * \\    | square root
+ * @     | no italic
+ * '     | greek char
+ *
+ * ### Greek chars:
+ * v r m n a d P l w b t s e E f O T / | <
+ */
 export function createFormula(formula: string)
 {
 	const fb = new FormulaBuilder();
@@ -249,6 +335,7 @@ export function createFormula(formula: string)
 						else if (formula[bracketsStart - 1] == "\\") fb.sq(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "&") fb.vec(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "#") fb.hat(createFormula(inBrackets));
+						else if (formula[bracketsStart - 1] == "@") fb.noItalic(createFormula(inBrackets));
 						else fb.a(createFormula(inBrackets));
 					}
 					else
@@ -275,10 +362,14 @@ export function createFormula(formula: string)
 		{
 			if (formula[i + 1] != "{") fb.hat(FB(formula[++i]))
 		}
+		else if (ch == "@")
+		{
+			if (formula[i + 1] != "{") fb.noItalic(FB(formula[++i]))
+		}
 		else if (ch == "'")
 		{
 			if (formulaLetters.hasOwnProperty(formula[i + 1]))
-				fb.l(<any>formula[++i])
+				fb.l(formulaLetters[formula[++i]])
 			else
 				fb.t(ch)
 		}

@@ -1,15 +1,21 @@
 .formula {
 	display: inline-flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
-	white-space: pre-wrap;
-	white-space: break-spaces;
+	/* white-space: pre-wrap;
+	white-space: break-spaces; */
+	text-wrap: nowrap;
+	white-space-collapse: preserve;
 	width: fit-content;
 	font-style: italic;
 	font-family: "Arimo", Georgia, 'Times New Roman', Times, serif;
 }
+.formula-noItalic {
+	font-style: normal;
+}
 .formula-wrap {
 	flex-wrap: wrap;
+	white-space: pre-wrap;
 }
 .formula-bigger {
 	font-size: 1.25em;
@@ -27,17 +33,23 @@
 	text-align: center;
 }
 .formula-letter {
-	width: 1em;
-	height: 1em;
+	display: inline-flex;
+	height: 1lh;
+	justify-content: center;
+    align-items: center;
+}
+.formula-letter svg {
+	width: 0.9em;
+	height: 0.9em;
+	flex-shrink: 0;
 }
 .formula-upper {
-	transform: translateX(-0.05em) translateY(-0.3em);
+	transform: translateY(-0.3em);
 }
 .formula-lower {
-	transform: translateX(-0.05em) translateY(0.3em);
+	transform: translateY(0.3em);
 }
 .formula-upper-lower {
-	transform: translateX(-0.1em);
     display: grid;
     grid-template-rows: 1fr 1fr;
     align-items: baseline;
@@ -56,7 +68,7 @@
 	content: "";
 	position: absolute;
 	bottom: 0;
-	left: -0.4em;
+	left: calc(-0.4em - 1px);
 	width: 0.4em;
 	/* height: 0.3em; */
 	border: 1px solid currentColor;
@@ -66,6 +78,7 @@
 }
 .formula-vec {
 	position: relative;
+	display: inline-flex;
 }
 .formula-vec::before {
 	content: "";
@@ -75,6 +88,7 @@
 	width: 80%;
 	border: 1px solid currentColor;
 	border-width: 1px 0 0 0;
+	transform: translateX(0.1em);
 }
 .formula-vec::after {
 	content: "";
@@ -86,7 +100,7 @@
 	border: 1px solid currentColor;
 	border-width: 1px 1px 0 0;
 	transform-origin: right;
-	transform: rotate(45deg);
+	transform: translateX(0.1em) rotate(45deg);
 }
 .formula-hat {
 	position: relative;
@@ -134,4 +148,7 @@
 	width: 0;
 	border: 0.3em solid transparent;
 	border-right-color: currentColor;
+}
+.formula-table-center {
+	text-align: center;
 }

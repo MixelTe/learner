@@ -1,0 +1,72 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 355" width="300" height="355">
+	<title>phy_0-86</title>
+	<style>
+		.s0 { fill: var(--c-title) }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 4 }
+		.s2 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+		.s3 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s4 { fill: var(--c-text) }
+	</style>
+	<path id="Shape 3 copy 3" class="s0" d="m121.7 108.8l-6.3 7.7-3.3-9.5z"/>
+	<g id="Folder 1">
+		<path id="Shape 1" class="s1" d="m81 17v143"/>
+		<path id="Shape 2" class="s2" d="m81.5 97c-12.4 0-22.5-1.6-22.5-3.5 0-1.9 10.1-3.5 22.5-3.5 12.4 0 22.5 1.6 22.5 3.5 0 1.9-10.1 3.5-22.5 3.5z"/>
+		<path id="Shape 2 copy" class="s2" d="m81 102c-22.1 0-40-3.4-40-7.5 0-4.1 17.9-7.5 40-7.5 22.1 0 40 3.4 40 7.5 0 4.1-17.9 7.5-40 7.5z"/>
+		<path id="Shape 2 copy 2" class="s2" d="m81 107c-30.4 0-55-5.1-55-11.5 0-6.4 24.6-11.5 55-11.5 30.4 0 55 5.1 55 11.5 0 6.4-24.6 11.5-55 11.5z"/>
+		<path id="Shape 2 copy 3" class="s2" d="m81 113c-35.9 0-65-7.4-65-16.5 0-9.1 29.1-16.5 65-16.5 35.9 0 65 7.4 65 16.5 0 9.1-29.1 16.5-65 16.5z"/>
+		<path id="Shape 3" class="s0" d="m98.7 94.8l-6.3 7.7-3.3-9.5z"/>
+		<path id="Shape 3 copy" class="s0" d="m112.7 104.8l-6.3 7.7-3.3-9.5z"/>
+		<path id="Shape 3 copy 2" class="s0" d="m104.7 99.8l-6.3 7.7-3.3-9.5z"/>
+		<path id="Shape 1 copy" class="s1" d="m81 17v76.5"/>
+	</g>
+	<g id="Folder 2">
+		<path id="Shape 4" class="s1" d="m216 162v-33c0 0-38.4-11.3-38-48 0.4-36.7 29-50 50-50 23 0 49 19 49 49 0 36-38 49-38 49v33"/>
+		<path id="Layer 3" class="s3" d="m207 163v-20"/>
+		<path id="Layer 4" class="s4" d="m203 150l4-12 4 12z"/>
+		<path id="Layer 3 copy" class="s3" d="m247 137v20"/>
+		<path id="Layer 4 copy" class="s4" d="m251 150l-4 12-4-12z"/>
+		<path id="Layer 5" class="s2" d="m180.8 128.6c-2.4-2.2 1.1-9.9 8-17.2 6.8-7.3 14.3-11.4 16.7-9.1 2.4 2.2-1.2 10-8 17.3-6.8 7.3-14.3 11.3-16.7 9z"/>
+		<path id="Layer 5 copy" class="s2" d="m162 81.6c0-3.3 8.1-6 18.1-6 10 0 18 2.7 18 6.1 0 3.3-8.1 5.9-18 5.9-10 0-18.1-2.7-18.1-6z"/>
+		<path id="Shape 3 copy 4" class="s0" d="m186.1 113.7l-0.4 8.7-7.3-4.8z"/>
+		<path id="Shape 3 copy 5" class="s0" d="m175.7 76l-6.2 6.1-2.1-8.4z"/>
+		<path id="Shape 3 copy 6" class="s0" d="m194.5 38.8l-8.6-1.6 5.7-6.6z"/>
+		<path id="Shape 3 copy 7" class="s0" d="m233.6 28.1l-5-7.1 8.6-0.7z"/>
+		<path id="Shape 3 copy 8" class="s0" d="m270.3 48.2l2.3-8.4 6.1 6.2z"/>
+		<path id="Shape 3 copy 9" class="s0" d="m279.2 88.3l6.7-5.4 1.3 8.6z"/>
+		<path id="Shape 3 copy 10" class="s0" d="m257.5 122.2l8.6 1.4-5.5 6.7z"/>
+		<path id="Layer 5 copy 5" class="s2" d="m258 81.6c0-3.3 8.1-6 18.1-6 10 0 18 2.7 18 6.1 0 3.3-8.1 5.9-18 5.9-10 0-18.1-2.7-18.1-6z"/>
+		<path id="Layer 5 copy 2" class="s2" d="m180.4 32.7c2.3-2.3 9.9 1.5 17 8.5 7.1 7.1 10.9 14.7 8.5 17-2.3 2.4-9.9-1.4-17-8.5-7.1-7-10.9-14.6-8.5-17z"/>
+		<path id="Layer 5 copy 6" class="s2" d="m246.4 102.7c2.3-2.3 9.9 1.5 17 8.5 7.1 7.1 10.9 14.7 8.5 17-2.3 2.4-9.9-1.4-17-8.5-7.1-7-10.9-14.6-8.5-17z"/>
+		<path id="Layer 5 copy 3" class="s2" d="m227.8 49.7c-3.3 0-6.1-8-6.2-18-0.2-10 2.4-18.1 5.7-18.1 3.4-0.1 6.1 8 6.3 17.9 0.1 10-2.5 18.1-5.8 18.2z"/>
+		<path id="Layer 5 copy 4" class="s2" d="m250.8 60.6c-2.4-2.2 1.1-9.9 8-17.2 6.8-7.3 14.3-11.4 16.7-9.1 2.4 2.2-1.2 10-8 17.3-6.8 7.3-14.3 11.3-16.7 9z"/>
+	</g>
+	<g id="Folder 3">
+		<path id="Shape 5" class="s1" d="m99 339v-81c0 0 1.6-14.5 15-15 13.4-0.5 26 37 13 40-11.9 2.7-5.5-40.2 14-40 19.5 0.2 23.3 40.1 13 40-10.3-0.1-7.4-39.3 14-39 21.4 0.3 24.9 39.8 13 40-11.9 0.2-7.1-42.8 14-41 12 1 15 17 15 17v79"/>
+		<path id="Layer 3 copy 2" class="s3" d="m91 342v-20"/>
+		<path id="Layer 4 copy 2" class="s4" d="m87 329l4-12 4 12z"/>
+		<path id="Layer 3 copy 3" class="s3" d="m220 316v20"/>
+		<path id="Layer 4 copy 3" class="s4" d="m224 329l-4 12-4-12z"/>
+		<path id="Layer 6" class="s2" d="m157 325c-68.6 0-124-14.1-124-31.5 0-17.4 55.4-31.5 124-31.5 68.6 0 124 14.1 124 31.5 0 17.4-55.4 31.5-124 31.5z"/>
+		<path id="Shape 3 copy 11" class="s0" d="m163 324.9l-7.4 4.5-0.2-8.7z"/>
+		<path id="Shape 3 copy 12" class="s0" d="m163 305.9l-7.4 4.5-0.2-8.7z"/>
+		<path id="Shape 3 copy 15" class="s0" d="m190 275.5l7.4-4.5 0.2 8.7z"/>
+		<path id="Shape 3 copy 16" class="s0" d="m219.1 266.2l8.1-2.8-1.6 8.5z"/>
+		<path id="Shape 3 copy 17" class="s0" d="m219.1 243.1l6.6-5.6 1.5 8.5z"/>
+		<path id="Shape 3 copy 18" class="s0" d="m188.1 235.1l6.6-5.6 1.5 8.5z"/>
+		<path id="Shape 3 copy 13" class="s0" d="m163 203.9l-7.4 4.5-0.2-8.7z"/>
+		<path id="Shape 3 copy 14" class="s0" d="m163 184.9l-7.4 4.5-0.2-8.7z"/>
+		<path id="Layer 6 copy" class="s2" d="m157 306c-35.9 0-65-7.4-65-16.5 0-9.1 29.1-16.5 65-16.5 35.9 0 65 7.4 65 16.5 0 9.1-29.1 16.5-65 16.5z"/>
+		<path id="Layer 6 copy 2" class="s2" d="m157 247c-68.6 0-124-13.9-124-31 0-17.1 55.4-31 124-31 68.6 0 124 13.9 124 31 0 17.1-55.4 31-124 31z"/>
+		<path id="Shape 6" class="s2" d="m282 264c0 0-153.8-13.8-248 0"/>
+		<path id="Layer 7" class="s2" d="m281 247c0 0-154.2 10.4-246 0"/>
+		<path id="Layer 6 copy 3" class="s2" d="m157 237c-35.9 0-65-7.4-65-16.5 0-9.1 29.1-16.5 65-16.5 35.9 0 65 7.4 65 16.5 0 9.1-29.1 16.5-65 16.5z"/>
+		<path id="Shape 3 copy 19" class="s0" d="m116.4 233.1l8.5-2-2.6 8.3z"/>
+		<path id="Shape 3 copy 20" class="s0" d="m82.8 240.7l8.1-3.1-1.4 8.5z"/>
+		<path id="Shape 3 copy 23" class="s0" d="m28.8 245.7l8.1-3.1-1.4 8.5z"/>
+		<path id="Shape 3 copy 21" class="s0" d="m83 268.4l6.9-5.3 1.1 8.6z"/>
+		<path id="Shape 3 copy 22" class="s0" d="m30 264.4l6.9-5.3 1.1 8.6z"/>
+		<path id="Shape 5 copy" class="s1" d="m114 243c13.4-0.5 26 37 13 40"/>
+		<path id="Shape 5 copy 2" class="s1" d="m141 243c19.5 0.2 23.3 40.1 13 40"/>
+		<path id="Shape 5 copy 3" class="s1" d="m168 244c21.4 0.3 24.9 39.8 13 40"/>
+	</g>
+</svg>
