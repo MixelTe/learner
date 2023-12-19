@@ -1,0 +1,151 @@
+#p-start {
+	padding-block: 1rem;
+}
+
+.logo {
+	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
+	font-size: 2rem;
+	margin-bottom: 1em;
+}
+
+.logo > div {
+	position: relative;
+	left: calc(var(--d) * 1em);
+}
+
+.logo-letter {
+	color: var(--c-title);
+}
+
+
+.sectionSelection {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.sectionSelection > div {
+	position: relative;
+	width: 200px;
+	padding-left: 1em;
+	margin-left: 0.4em;
+}
+
+.sectionSelection input {
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.sectionSelection label {
+	font-size: 1.3rem;
+	user-select: none;
+	cursor: pointer;
+}
+
+.sectionSelection-list {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	margin-top: 0.3em;
+	max-height: 0;
+	transition: all 200ms;
+}
+.sectionSelection input:checked ~ .sectionSelection-list {
+	max-height: 10rem;
+}
+
+.sectionSelection-marker {
+	font-size: 1.3rem;
+}
+.sectionSelection-marker > :nth-child(1) {
+	position: absolute;
+	top: 0.4em;
+	left: 0.05em;
+	width: 0.55em;
+	height: 0.55em;
+	border: 2px solid var(--c-text);
+	border-radius: 50%;
+	transition-property: top, border-radius;
+	transition-duration: 100ms;
+	transition-delay: 200ms, 100ms;
+}
+.sectionSelection > div:hover .sectionSelection-marker > :nth-child(1),
+.sectionSelection input:focus-visible ~ .sectionSelection-marker > :nth-child(1),
+.sectionSelection input:checked ~ .sectionSelection-marker > :nth-child(1) {
+	top: 0.8em;
+	transition-delay: 0ms;
+	border-bottom-right-radius: 0;
+}
+.sectionSelection-marker > :nth-child(2) {
+	position: absolute;
+	top: 1.25em;
+	left: 0.4em;
+	width: 0%;
+	height: 2px;
+	background-color: var(--c-text);
+	transition: width 200ms;
+}
+.sectionSelection > div:hover .sectionSelection-marker > :nth-child(2),
+.sectionSelection input:focus-visible ~ .sectionSelection-marker > :nth-child(2),
+.sectionSelection input:checked ~ .sectionSelection-marker > :nth-child(2) {
+	width: 100%;
+	transition-delay: 50ms;
+}
+.sectionSelection-marker > :nth-child(3) {
+	position: absolute;
+	top: 1.25em;
+	left: 0.5em;
+	width: 2px;
+	height: calc(100% - 2em);
+	background-color: var(--c-text);
+	transition: height 200ms;
+}
+.sectionSelection input:checked ~ .sectionSelection-marker > :nth-child(3) {
+	height: calc(100% - 0.8em);
+}
+
+.sectionSelection-list button {
+	position: relative;
+	background-color: transparent;
+	border: none;
+	text-align: left;
+	font-size: 1rem;
+	cursor: pointer;
+	padding: 0.3em 0.2em;
+	padding-left: 1.2em;
+	outline: none;
+}
+.sectionSelection-list button::before,
+.sectionSelection-list button::after {
+	position: absolute;
+	left: 0.2em;
+	transition-property: opacity;
+	transition-duration: 100ms;
+	color: var(--c-title);
+}
+.sectionSelection-list button::before {
+	content: "§";
+	opacity: 1;
+}
+.sectionSelection-list button::after {
+	content: "▶";
+	opacity: 0;
+	transform: scale(0.8);
+}
+.sectionSelection-list button:focus-visible::before,
+.sectionSelection-list button:hover::before {
+	opacity: 0;
+}
+.sectionSelection-list button:focus-visible::after,
+.sectionSelection-list button:hover::after {
+	opacity: 1;
+}
+
+.version {
+	position: fixed;
+	right: 0.5rem;
+	bottom: 0.5rem;
+	font-size: 1rem;
+}

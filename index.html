@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ЛЯРО</title>
+	<meta name="theme-color" content="#a52a2a" />
+	<link rel="apple-touch-icon" href="logo192.png" />
+	<link rel="manifest" href="manifest.json" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" type="text/css" href="popup.css">
+	<link rel="stylesheet" type="text/css" href="styles/themes.css">
+	<link rel="stylesheet" type="text/css" href="styles/base.css">
+	<link rel="stylesheet" type="text/css" href="styles/pageSwitch.css">
+	<link rel="stylesheet" type="text/css" href="styles/confetti.css">
+	<link rel="stylesheet" type="text/css" href="styles/formulas.css">
+	<link rel="stylesheet" type="text/css" href="styles/doc.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-start.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-tester.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-stats.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+	<script src="out/main.js" type="module"></script>
+</head>
+
+<body>
+	<div class="menu" id="menu">
+		<div>
+			<h2>Меню</h2>
+			<button id="btn-index">На главную</button>
+			<button id="btn-stats">Статистика</button>
+		</div>
+		<footer>
+			<span></span>
+			<select class="material-symbols-rounded" id="themeSelect">
+				<option value="light">light_mode</option>
+				<option value="dark">dark_mode</option>
+				<option value="auto">night_sight_auto</option>
+			</select>
+		</footer>
+	</div>
+	<header>
+		<button class="menuBtn" id="menuBtn">
+			<div></div>
+			<div></div>
+			<div></div>
+		</button>
+		<h2 id="title"></h2>
+	</header>
+	<div class="page open" id="p-start">
+		<div class="logo">
+			<div style="--d: 1"><span>при</span><span class="logo-letter">Л</span>ожение</div>
+			<div style="--d: 1.8"><span>дл</span><span class="logo-letter">Я</span></div>
+			<div style="--d: -0.5"><span>повто</span><span class="logo-letter">Р</span>ения</div>
+			<div style="--d: 1.4"><span>те</span><span class="logo-letter">О</span>рии</div>
+		</div>
+		<div>
+			<h2>Разделы</h2>
+			<div class="sectionSelection" id="sections">
+				<template id="template-section">
+					<div>
+						<input type="checkbox" id="group-1">
+						<div class="sectionSelection-marker">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<label for="group-1">Name</label>
+						<div class="sectionSelection-list">
+							<!-- <button>Всё</button> -->
+							<!-- <button>Тема 1</button> -->
+						</div>
+					</div>
+				</template>
+			</div>
+		</div>
+		<div class="version">v0.5</div>
+	</div>
+	<div class="page" id="p-tester">
+		<div class="tester">
+			<div class="tester-head">
+				<div id="t-page">##/##</div>
+				<div id="t-id">####</div>
+			</div>
+			<div class="tester-task" id="t-task">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat molestiae animi sunt rem itaque,
+				fugiat doloribus ex eius voluptate enim nemo?
+			</div>
+			<div class="tester-input" id="t-input">
+
+			</div>
+		</div>
+	</div>
+	<div class="page" id="p-stats">
+		<div class="stats" id="stats">
+			<template id="template-stats-item">
+				<div class="stats-item">
+					<input type="checkbox" id="stats-1">
+					<div class="stats-item-group">
+						<div id="placeholder-marker"></div> <!-- template-stats-marker -->
+						<label class="stats-btn" for="stats-1">
+							<span>Математика</span>
+							<span class="stats-btn-arrow"></span>
+						</label>
+					</div>
+					<div class="stats-list">
+						<!-- template-stats-subitem -->
+						<!-- template-stats-subitem -->
+					</div>
+				</div>
+			</template>
+			<template id="template-stats-marker">
+				<div class="stats-marker">
+					<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="10" cy="10" r="8.5" stroke-width="0.8" fill="transparent" opacity="0.5"
+							stroke="var(--c-text)" />
+						<circle id="marker-circle-value" cx="10" cy="10" r="8.5" stroke-width="1.8" fill="transparent"
+							transform="rotate(-90 10 10)" stroke-dasharray="54 100" stroke="var(--c-title)" />
+						<text x="10" y="14" font-size="10" fill="var(--c-text)" text-anchor="middle">✔</text>
+					</svg>
+				</div>
+			</template>
+			<template id="template-stats-subitem">
+				<div class="stats-subitem">
+					<div id="placeholder-marker"></div> <!-- template-stats-marker -->
+					<div>Тема 1</div>
+				</div>
+			</template>
+		</div>
+	</div>
+</body>
+
+</html>

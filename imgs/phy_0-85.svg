@@ -1,0 +1,64 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 311 271" width="311" height="271">
+	<title>phy_0-85</title>
+	<style>
+		tspan { white-space:pre }
+		.t01 { font-size: 24px;fill: #000000; }
+		.t0 { font-size: 24px;fill: var(--c-text); }
+		.s1 { fill: #5a5aff }
+		.s2 { fill: #5a5aff;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s3 { fill: #ee5454;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s4 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s5 { fill: var(--c-text) }
+	</style>
+	<g id="Folder 1">
+		<text id="N" style="transform: matrix(1,0,0,1,167.296,131.473)" >
+			<tspan x="0" y="0" class="t0">N
+</tspan>
+		</text>
+		<text id="S" style="transform: matrix(1,0,0,1,292.885,130.061)" >
+			<tspan x="0" y="0" class="t0">S
+</tspan>
+		</text>
+		<path id="Shape 1" class="s1" d="m191 113h14v127c0 0 0 12 33 13v14h-24c0 0-23-8-23-24"/>
+		<path id="Shape 1 copy" class="s2" d="m191 113h14v127c0 0 0 12 33 13v14h-24c0 0-23-8-23-24 0-18.5 0-130 0-130z"/>
+		<path id="Shape 1 copy 2" class="s3" d="m285 113h-14v127c0 0 0 12-33 13v14h24c0 0 23-8 23-24 0-18.5 0-130 0-130z"/>
+		<path id="Layer 3" class="s4" d="m205 193h66"/>
+		<path id="Layer 4" class="s5" d="m234 189l13 4-13 4z"/>
+		<path id="Layer 3 copy" class="s4" d="m205 163h66"/>
+		<path id="Layer 4 copy" class="s5" d="m234 159l13 4-13 4z"/>
+		<path id="Layer 3 copy 2" class="s4" d="m205 132h66"/>
+		<path id="Layer 4 copy 2" class="s5" d="m234 128l13 4-13 4z"/>
+		<path id="Layer 4 copy 5" class="s5" d="m235 3l13 4-13 4z"/>
+		<path id="Layer 4 copy 4" class="s5" d="m234 49l13 4-13 4z"/>
+		<path id="Layer 4 copy 3" class="s5" d="m234 83l13 4-13 4z"/>
+		<path id="Shape 2" class="s4" d="m200 112c0 0 35.6-58.8 77 0"/>
+		<path id="Layer 5" class="s4" d="m200 112c0 0-2.8-11.4-2-20 0.8-8.6 5.1-37.8 40-39 34.9-1.2 40.9 34 41 43 0.1 9-2 18-2 18"/>
+		<path id="Layer 6" class="s4" d="m199 113c0 0-24.4-16.7-24-47 0.4-30.3 22.9-59.9 63-60 40.1-0.1 62.8 31.5 63 60 0.2 28.5-23 47-23 47"/>
+	</g>
+	<g id="Folder 2">
+		<path id="Shape 3" class="s2" d="m63 110h47v47h-47z"/>
+		<path id="Shape 3 copy" class="s3" d="m63 157h47v47h-47z"/>
+		<text id="S copy" style="transform: matrix(1,0,0,1,78.885,190.061)" >
+			<tspan x="0" y="0" class="t01">S
+</tspan>
+		</text>
+		<text id="N" style="transform: matrix(1,0,0,1,78.296,144.473)" >
+			<tspan x="0" y="0" class="t01">N
+</tspan>
+		</text>
+		<path id="Shape 4" class="s4" d="m70 205c0 0-2 24-12 25-9 0.9-15-25-15-74 0-46 3-88 16-88 13 0 13 43 13 43"/>
+		<path id="Shape 4 copy" class="s4" d="m78 204c0 0-6 40-22 40-14.2 0-30-39-30-88 0-46 6.4-99 27-99 23 0 26 53 26 53"/>
+		<path id="Shape 4 copy 2" class="s4" d="m85 205c-1 40-18 51-38 50-22-1.1-39-50-39-99 0-46 12-115 37-115 16 0 36 11 40 68"/>
+		<path id="Layer 4 copy 6" class="s5" d="m47 155l-4 13-4-13z"/>
+		<path id="Layer 4 copy 7" class="s5" d="m30 140l-4 13-4-13z"/>
+		<path id="Layer 4 copy 8" class="s5" d="m13 114l-4 13-4-13z"/>
+		<path id="Shape 4 copy 3" class="s4" d="m100 205c0 0 2 24 12 25 9 0.9 15-25 15-74 0-46-3-88-16-88-13 0-13 43-13 43"/>
+		<path id="Shape 4 copy 4" class="s4" d="m92 204c0 0 6 40 22 40 14.2 0 30-39 30-88 0-46-6.4-99-27-99-23 0-26 53-26 53"/>
+		<path id="Shape 4 copy 5" class="s4" d="m85 205c1 40 18 51 38 50 22-1.1 39-50 39-99 0-46-12-115-37-115-16 0-36 11-40 68"/>
+		<path id="Layer 4 copy 9" class="s5" d="m123 155l4 13 4-13z"/>
+		<path id="Layer 4 copy 10" class="s5" d="m140 140l4 13 4-13z"/>
+		<path id="Layer 4 copy 11" class="s5" d="m157 114l4 13 4-13z"/>
+	</g>
+	<text id="" style="transform: matrix(1,0,0,1,317,104)" >
+	</text>
+</svg>

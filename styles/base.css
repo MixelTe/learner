@@ -1,0 +1,223 @@
+:root {
+	--c-back1: white;
+	--c-back2: white;
+	--c-text: black;
+	--c-title: brown;
+}
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "PT Sans", Arial, Helvetica, sans-serif;
+	height: 100dvh;
+	min-width: 320px;
+	margin: 0;
+	background: linear-gradient(45deg, var(--c-back1), var(--c-back2));
+	color: var(--c-text);
+	display: grid;
+	grid-template-rows: 2.5rem 1fr;
+}
+
+h1, h2 {
+	margin: 0;
+	color: var(--c-title);
+	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
+}
+
+button {
+	color: currentColor;
+}
+
+.page {
+	display: none;
+	align-items: center;
+	flex-direction: column;
+	gap: 1rem;
+	overflow: auto;
+	margin-block: auto;
+	max-height: 100%;
+	box-sizing: border-box;
+}
+.page.open {
+	display: flex;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.menuBtn {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 3rem;
+	height: 3rem;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	z-index: 20;
+}
+
+.menuBtn:hover > div,
+.menuBtn:focus-visible > div {
+	--d: 30%;
+}
+
+.menuBtn > div {
+	--n: 1;
+	--d: 0%;
+	position: absolute;
+	top: calc(var(--d) / 2 + (100% - var(--d)) / 4 * var(--n) - 0.35rem / 2);
+	left: 15%;
+	width: 70%;
+	height: 0.25rem;
+	border-radius: 0.2rem;
+	background-color: var(--c-title);
+	transition-property: transform, top;
+	transition-duration: 200ms;
+	transform-origin: 0;
+}
+.menuBtn > div:nth-child(2) {
+	--n: 2;
+}
+.menuBtn > div:nth-child(3) {
+	--n: 3;
+}
+.menu.open ~ * .menuBtn > div:nth-child(1) {
+	transform: rotate(45deg);
+}
+.menu.open ~ * .menuBtn > div:nth-child(2) {
+	transform: scale(0);
+}
+.menu.open ~ * .menuBtn > div:nth-child(3) {
+	transform: rotate(-45deg);
+}
+
+.menu {
+	position: fixed;
+	inset: 0;
+	background: linear-gradient(-45deg, var(--c-back1), var(--c-back2));
+	display: grid;
+	grid-template-columns: 1fr minmax(300px, 500px) 1fr;
+	grid-template-rows: 1fr auto;
+	padding: 1rem;
+	opacity: 0;
+	z-index: -1;
+	pointer-events: none;
+	transition: opacity 350ms, z-index 0s 350ms;
+}
+.menu.open {
+	transition: opacity 350ms, z-index 0s 0s;
+	z-index: 10;
+	opacity: 1;
+	pointer-events: all;
+}
+.menu:not(.open) button,
+.menu:not(.open) select {
+	display: none;
+}
+
+.menu > * {
+	grid-column: 2/3;
+}
+
+.menu > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.menu h2 {
+	margin-bottom: 1rem;
+}
+
+.menu button {
+	position: relative;
+	background-color: transparent;
+	padding: 0.5em 1em;
+	font-size: 1.2rem;
+	border: transparent;
+	outline: none;
+	cursor: pointer;
+	--d: 0;
+	--s: 0.6em;
+}
+.menu button:hover,
+.menu button:focus-visible {
+	--s: 1em;
+}
+.menu button:active {
+	--d: 0.15em;
+}
+.menu button::before,
+.menu button::after {
+	content: "";
+	position: absolute;
+	width: var(--s);
+	height: var(--s);
+	border: 2px solid currentColor;
+	transition-property: top, left, right, bottom, width, height;
+	transition-duration: 150ms;
+}
+.menu button::before {
+	bottom: var(--d);
+	left: var(--d);
+	border-top-width: 0;
+	border-right-width: 0;
+	border-bottom-left-radius: 0.2em;
+}
+.menu button::after {
+	top: var(--d);
+	right: var(--d);
+	border-bottom-width: 0;
+	border-left-width: 0;
+	border-top-right-radius: 0.2em;
+}
+
+:has(#p-start.open) #btn-index {
+	display: none;
+}
+:has(#p-stats.open) #btn-stats {
+	display: none;
+}
+
+footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+footer select {
+	position: relative;
+	appearance: none;
+	padding: 0.4rem 0.6rem;
+	background-color: transparent;
+	border: none;
+	color: var(--c-title);
+	font-size: 2rem !important;
+	outline: none;
+	cursor: pointer;
+}
+footer select:focus-visible {
+	outline: 2px solid var(--c-title);
+	border-radius: 0.2rem;
+}
+footer option {
+	background-color: var(--c-back1);
+	color: var(--c-title);
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--c-title);
+	border-radius: 3px;
+}
