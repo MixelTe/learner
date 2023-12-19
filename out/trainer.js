@@ -57,13 +57,13 @@ export class Trainer {
             stats.themes = [];
         return this.updateStatisticsData(stats);
     }
-    static calcScore(theme) {
+    static calcScore(theme, itemCount) {
         let score = 0;
         for (const item of theme.items) {
             if (item.hist.length != 0)
                 score += sumStr(item.hist) / item.hist.length;
         }
-        return score / theme.items.length;
+        return score / itemCount;
     }
     static setStatistics(stats) {
         localStorage.setItem(statisticsKey, JSON.stringify(stats));

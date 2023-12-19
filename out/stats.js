@@ -29,7 +29,7 @@ export function showStats(onSwitch = () => { }) {
             const title = subitem.querySelector(".stats-subitem :nth-child(2)");
             title.innerText = theme.name;
             const markerPlaceholder = subitem.querySelector("#placeholder-marker");
-            const itemScore = stats ? Trainer.calcScore(stats) : 0;
+            const itemScore = stats ? Trainer.calcScore(stats, theme.items.length) : 0;
             score += itemScore;
             markerPlaceholder.replaceWith(createMarker(itemScore));
             listEl.appendChild(subitem);
