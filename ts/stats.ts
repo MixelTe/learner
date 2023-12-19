@@ -48,7 +48,8 @@ export function showStats(onSwitch: () => void = () => { })
 
 		markerPlaceholder.replaceWith(createMarker(score / section.themes.length));
 
-		statsEl.appendChild(item);
+		if (section.themes.length > 0)
+			statsEl.appendChild(item);
 	}
 }
 

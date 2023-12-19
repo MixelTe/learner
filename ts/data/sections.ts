@@ -6,15 +6,15 @@ export const Sections: Section[] = [
 	{
 		name: "Русский",
 		themes: [
-			{ id: "ru_0", name: "Тема 1", color: themes.blue, items: [] },
-			{ id: "ru_1", name: "Тема 2", color: themes.blue, items: [] },
+			// { id: "ru_0", name: "Тема 1", color: themes.blue, items: [] },
+			// { id: "ru_1", name: "Тема 2", color: themes.blue, items: [] },
 		],
 	},
 	{
 		name: "Математика",
 		themes: [
-			{ id: "math_0", name: "Тема 1", color: themes.green, items: [] },
-			{ id: "math_1", name: "Тема 2", color: themes.green, items: [] },
+				// { id: "math_0", name: "Тема 1", color: themes.green, items: [] },
+				// { id: "math_1", name: "Тема 2", color: themes.green, items: [] },
 		],
 	},
 	{

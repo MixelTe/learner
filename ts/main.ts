@@ -20,7 +20,8 @@ Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 
 initMainPage();
 // showStats();
-new Tester(Sections[2].themes[0]).start();
+// new Tester(Sections[2].themes[0]).start();
+// anim on page load
 
 function initMainPage()
 {
@@ -38,11 +39,14 @@ function initMainPage()
 		const themes = section.querySelector(".sectionSelection-list")!;
 		for (const theme of s.themes)
 		{
-			const btn = Lib.Button([], theme.name, () =>
+			themes.appendChild(Lib.Button([], theme.name, () =>
 			{
 				new Tester(theme).start();
-			});
-			themes.appendChild(btn);
+			}));
+		}
+		if (s.themes.length == 0)
+		{
+			themes.appendChild(Lib.Button([], "В разработке"));
 		}
 		sections.appendChild(section);
 	}
