@@ -8,6 +8,8 @@ export type Themes = "common" | "blue" | "green" | "orange";
 const select = document.getElementById("themeSelect") as HTMLSelectElement;
 select.addEventListener("change", () => setThemeScheme(select.value));
 
+const themeKey = "learner-theme";
+
 window.matchMedia("(prefers-color-scheme: dark)")
 	.addEventListener("change", () => setThemeScheme());
 
@@ -19,8 +21,8 @@ export function initThemes()
 
 function setThemeScheme(theme?: string)
 {
-	theme = theme || localStorage.getItem("theme") || "auto";
-	localStorage.setItem("theme", theme);
+	theme = theme || localStorage.getItem(themeKey) || "auto";
+	localStorage.setItem(themeKey, theme);
 	select.value = theme;
 
 	if (theme == "auto")
