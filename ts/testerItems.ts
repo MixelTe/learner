@@ -21,27 +21,30 @@ export class TestItemSelfCheck extends TestItem
 			taskEl.innerText = this.task;
 		else
 			Lib.SetContent(taskEl, this.task.html());
-		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
-			Lib.Button([], "Ошибся", btn => showAns(false, btn)),
-			Lib.Button([], "Помню", btn => showAns(true, btn)),
-		]));
 
-		const showAns = async (r: boolean, btn: HTMLButtonElement) =>
-		{
-			btn.classList.add("active");
-			await Lib.wait(150);
-			if (typeof this.ans == "string")
-				taskEl.innerText = this.ans;
-			else
-				Lib.SetContent(taskEl, this.ans.html());
-			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
-				Lib.Button([], "Далее", async btn =>
+		Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
+			Lib.Button([], "Ответ", async btn =>
+			{
+				btn.classList.add("active");
+				await Lib.wait(150);
+
+				if (typeof this.ans == "string")
+					taskEl.innerText = this.ans;
+				else
+					Lib.SetContent(taskEl, this.ans.html());
+
+				Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
+					Lib.Button([], "Ошибся", btn => answer(false, btn)),
+					Lib.Button([], "Помню", btn => answer(true, btn)),
+				]));
+
+				async function answer(r: boolean, btn: HTMLButtonElement)
 				{
 					btn.classList.add("active");
 					await Lib.wait(100);
-					onAnswer(r)
-				}),
-			]));
-		}
+					onAnswer(r);
+				}
+			}),
+		]));
 	}
 }
