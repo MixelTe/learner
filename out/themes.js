@@ -6,6 +6,7 @@ export const themes = {
 };
 const select = document.getElementById("themeSelect");
 select.addEventListener("change", () => setThemeScheme(select.value));
+const themeKey = "learner-theme";
 window.matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", () => setThemeScheme());
 export function initThemes() {
@@ -13,8 +14,8 @@ export function initThemes() {
     setThemeScheme();
 }
 function setThemeScheme(theme) {
-    theme = theme || localStorage.getItem("theme") || "auto";
-    localStorage.setItem("theme", theme);
+    theme = theme || localStorage.getItem(themeKey) || "auto";
+    localStorage.setItem(themeKey, theme);
     select.value = theme;
     if (theme == "auto") {
         const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;

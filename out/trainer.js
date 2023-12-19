@@ -2,10 +2,10 @@ import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
 import * as Lib from "./littleLib.js";
 const Len = 15;
 const MaxHist = 5;
-const statisticsKey = "statistics";
-const seedKey = "trainerSeed";
-const turnKey = "trainerTurn";
-const themeKey = "trainerTheme";
+const statisticsKey = "learner-statistics";
+const seedKey = "learner-trainerSeed";
+const turnKey = "learner-trainerTurn";
+const themeKey = "learner-trainerTheme";
 const devSelectId = -2;
 if (devSelectId >= -1)
     console.warn("DEV: devSelectId is enabled");
