@@ -67,7 +67,7 @@ export const phy_0 = [
     new TestItemSelfCheck(62, DBc("Уравнение теплового баланса"), createFormulas("Q_1 + Q_2 + Q_3 + ... = 0")),
     new TestItemSelfCheck(63, DBc("Закон Кулона"), createFormulas("|F = k {|q_1| * |q_2|}/{'Er^2}", "|k = {1}/{4'P'E_0}", "\\k - коэффициент пропорциональности", "\\'E - диэлектрическая проницаемость среды", "\\'E_0 - электрическая постоянная")),
     new TestItemSelfCheck(64, DBc("Напряжённость электрического поля"), createFormulas("&E = {&F}/{q} [В/м] [Н/Кл]")),
-    new TestItemSelfCheck(65, DBc("Поле точечного заряда"), createFormulas("E = k {|q|}/{r^2} [В/м] [Н/Кл]", "k - коэффициент пропорциональности")),
+    new TestItemSelfCheck(65, DBc("Поле точечного заряда"), createFormulas("|E = k {|q|}/{r^2} [В/м] [Н/Кл]", "k - коэффициент пропорциональности")),
     new TestItemSelfCheck(66, DBc("Направление на схеме от/на себя"), createFormulas("@ⓧ - от нас", "@⊙ - к нам")),
     new TestItemSelfCheck(67, DBc("Работа по перемещению электрического заряда"), createFormulas("|A = -q'd'f = qU = -'dW", "\\'f - потенциал электростатического поля")),
     new TestItemSelfCheck(68, DBc("Потенциальная электростатическая энергия"), createFormulas("|W_p = q'f = qEd", "\\'f - потенциал электростатического поля", "\\E - напряжённость электрического поля", "d - расстояние до заряда")),
@@ -116,5 +116,7 @@ export const phy_0 = [
     new TestItemSelfCheck(111, DBc("Абсолютный показатель преломления"), createFormulas("n_{абс} = {c}/{'v}")),
     new TestItemSelfCheck(112, DBc("Относительный показатель преломления"), createFormulas("n_{отн} = {n_2}/{n_1} = {'v_1}/{'v_2}")),
     new TestItemSelfCheck(113, DBc("Предельный угол полного внутреннего отражения"), DBc().formula(createFormulas("@{sin}'a_{пр} = {1}/{n_{отн}} = {n_2}/{n_1}")).svg("phy_0-113.svg")),
+    new TestItemSelfCheck(114, DBc("Тормозной путь и время торможения"), createFormulas("|l = {m'v_0^2}/{2F_{тр}}", "|t = {m'v_0}/{F_{тр}}", "_{Нет в кодификаторе}")),
+    new TestItemSelfCheck(115, DBc("Работа через кинетическую энергию"), createFormulas("A = 'dE_к [Дж]")),
     // new TestItemSelfCheck(1, DBc(""), createFormulas("")),
 ];

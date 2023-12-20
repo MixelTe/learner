@@ -25,6 +25,22 @@
 </head>
 
 <body>
+	<style>
+		#beforeload {
+			position: fixed;
+			inset: 0;
+			z-index: 1000;
+			transition: opacity 500ms;
+		}
+	</style>
+	<div id="beforeload"></div>
+	<script>
+		{
+			const theme = localStorage.getItem("learner-theme") || "auto";
+			const dark = theme == "dark" || (theme == "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+			document.getElementById("beforeload").style.backgroundColor = dark ? "#100c05" : "#f1e6d1";
+		}
+	</script>
 	<div class="menu" id="menu">
 		<div>
 			<h2>Меню</h2>
@@ -48,7 +64,7 @@
 		</button>
 		<h2 id="title"></h2>
 	</header>
-	<div class="page open" id="p-start">
+	<div class="page open vanished" id="p-start">
 		<div class="logo">
 			<div style="--d: 1"><span>при</span><span class="logo-letter">Л</span>ожение</div>
 			<div style="--d: 1.8"><span>дл</span><span class="logo-letter">Я</span></div>
@@ -75,7 +91,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.5.3</div>
+		<div class="version">v0.6</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">

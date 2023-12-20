@@ -1,9 +1,15 @@
 import * as Lib from "./littleLib.js";
-import { currentTheme, setTheme, themes } from "./themes.js";
+import { currentTheme, setTheme, setThemeColors, themes } from "./themes.js";
 const pages = {
     main: Lib.get.div("p-start"),
     tester: Lib.get.div("p-tester"),
     stats: Lib.get.div("p-stats"),
+};
+const themeColors = {
+    common: { light: "#a52a2a", dark: "#df4545" },
+    blue: { light: "#2a2ca5", dark: "#43c8df" },
+    green: { light: "#2ba64a", dark: "#43df6a" },
+    orange: { light: "#a6562b", dark: "#df7a43" },
 };
 const titleEl = Lib.getEl("title", HTMLHeadingElement);
 let curPage = "main";
@@ -19,6 +25,7 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
         pages[curPage].classList.remove("open");
         curPage = page;
         titleEl.innerText = title;
+        setThemeColors(themeColors[theme]);
         pages[curPage].classList.add("open");
         onSwitch();
         if (currentTheme() != theme)
