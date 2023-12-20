@@ -21,9 +21,9 @@ Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 initMainPage();
 // showStats();
 // new Tester(Sections[2].themes[0]).start();
-// anim on page load
 
-function initMainPage()
+
+async function initMainPage()
 {
 	const sections = Lib.get.div("sections");
 	const sectionTemplate = Lib.getEl("template-section", HTMLTemplateElement);
@@ -49,5 +49,16 @@ function initMainPage()
 			themes.appendChild(Lib.Button([], "В разработке"));
 		}
 		sections.appendChild(section);
+	}
+
+	await Lib.wait(100);
+	Lib.get.div("p-start").classList.remove("vanished");
+
+	const beforeload = document.getElementById("beforeload");
+	if (beforeload)
+	{
+		beforeload.style.opacity = "0";
+		await Lib.wait(500);
+		document.body.removeChild(beforeload);
 	}
 }

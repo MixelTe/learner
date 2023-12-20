@@ -130,9 +130,11 @@
 	opacity: 1;
 }
 .sectionSelection-list button::after {
-	content: "▶";
+	content: "";
+	border: 0.5em solid transparent;
+	border-left-color: var(--c-title);
 	opacity: 0;
-	transform: scale(0.8);
+	transform: translateX(0.1em) scaleY(0.7);
 }
 .sectionSelection-list button:focus-visible::before,
 .sectionSelection-list button:hover::before {
@@ -148,4 +150,39 @@
 	right: 0.5rem;
 	bottom: 0.5rem;
 	font-size: 1rem;
+}
+
+
+.logo > * {
+	transition-property: transform, opacity;
+	transition-duration: 750ms, 500ms;
+}
+.logo > :nth-child(1) {	transition-delay: 400ms; }
+.logo > :nth-child(2) {	transition-delay: 550ms; }
+.logo > :nth-child(3) {	transition-delay: 700ms; }
+.logo > :nth-child(4) {	transition-delay: 850ms; }
+#p-start > :nth-child(2) {
+	transition-property: transform, opacity;
+	transition-duration: 750ms;
+	transition-delay: 1000ms;
+}
+
+.vanished .logo > * {
+	opacity: 0;
+}
+.vanished .logo > :nth-child(1) {
+	transform: translateX(-2em);
+}
+.vanished .logo > :nth-child(2) {
+	transform: translateX(2em);
+}
+.vanished .logo > :nth-child(3) {
+	transform: translateX(-2em);
+}
+.vanished .logo > :nth-child(4) {
+	transform: translateX(2em);
+}
+.vanished > :nth-child(2) {
+	opacity: 0;
+	transform: translateY(-1em);
 }
