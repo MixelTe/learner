@@ -1,5 +1,6 @@
 #p-start {
 	padding-block: 1rem;
+	overflow-x: hidden;
 }
 
 .logo {
