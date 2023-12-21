@@ -26,7 +26,7 @@ export class TestItemSelfCheck extends TestItem
 			Lib.Button([], "Ответ", async btn =>
 			{
 				btn.classList.add("active");
-				await Lib.wait(150);
+				await Lib.wait(200);
 
 				if (typeof this.ans == "string")
 					taskEl.innerText = this.ans;
@@ -41,7 +41,7 @@ export class TestItemSelfCheck extends TestItem
 				async function answer(r: boolean, btn: HTMLButtonElement)
 				{
 					btn.classList.add("active");
-					await Lib.wait(100);
+					await Lib.wait(200);
 					onAnswer(r);
 				}
 			}),

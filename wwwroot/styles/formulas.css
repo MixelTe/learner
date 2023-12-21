@@ -114,12 +114,13 @@
 	min-width: 8px;
 	border: 1px solid currentColor;
 	border-width: 1px 0 0 0;
+	transform: translateX(0.1em);
 }
 .formula-sum {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	transform: translateY(0.2em);
+	transform: translateY(0.15em);
 }
 .formula-sum-bottom {
 	font-size: 80%;

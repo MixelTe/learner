@@ -52,9 +52,10 @@ export class Tester
 		Lib.SetContent(taskEl, Lib.initEl("h2", [], [], text));
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
 			Lib.Button([], "Вернуться", () => switchPage("main")),
-			Lib.Button([], "Ещё раз", async () =>
+			Lib.Button([], "Ещё раз", async btn =>
 			{
-				await Lib.wait(150);
+				btn.classList.add("active");
+				await Lib.wait(200);
 				new Tester(this.theme).start();
 			}),
 		]));

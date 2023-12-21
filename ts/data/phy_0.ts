@@ -111,7 +111,7 @@ export const phy_0: TestItem[] = [
 	new TestItemSelfCheck(104, DBc("Закон сохранения энергии в идеальном колебательном контуре"), createFormulas("{CU^2}/{2} + {LI^2}/{2} = {CU^2_{max}}/{2} = {LI^2_{max}}/{2} = @{const}")),
 	new TestItemSelfCheck(105, DBc("Условие резонанса в электрической цепи"), createFormulas("'w = 'w_0 = {1}/{\\{LC}}")),
 	new TestItemSelfCheck(106, DBc("Точечный источник"), DBc("Источник, размеры которого оказываются во много раз меньше чем радиус его действия. Пример: звёзды, свеча")),
-	new TestItemSelfCheck(107, "Скорость света в вакууме", createFormulas("3 * 10^8 м/с")),
+	new TestItemSelfCheck(107, DBc("Скорость света в вакууме"), createFormulas("3 * 10^8 м/с")),
 	new TestItemSelfCheck(108, DBc("Закон отражения"), DB().formula(createFormulas("\\Угол падения равен углу отражения", "|'<'a = '<'b")).svg("phy_0-108.svg", false, true)),
 	new TestItemSelfCheck(109, DBc("Закон преломления"), DBc().formula(createFormulas("{@{sin}'a}/{@{sin}'b} = {'v_1}/{'v_2} = n")).svg("phy_0-109.svg")),
 	new TestItemSelfCheck(110, DBc("Соотношение частот и соотношение длин волн при переходе монохроматического света через границу раздела двух оптических сред"), createFormulas("'n_1 = 'n_2", "n_1'l_1 = n_2'l_2")),
