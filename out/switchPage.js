@@ -4,6 +4,8 @@ const pages = {
     main: Lib.get.div("p-start"),
     tester: Lib.get.div("p-tester"),
     stats: Lib.get.div("p-stats"),
+    qlists: Lib.get.div("p-qlists"),
+    qlist: Lib.get.div("p-qlist"),
 };
 const themeColors = {
     common: { light: "#a52a2a", dark: "#df4545" },
@@ -12,19 +14,21 @@ const themeColors = {
     orange: { light: "#a6562b", dark: "#df7a43" },
 };
 const titleEl = Lib.getEl("title", HTMLHeadingElement);
+const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 let curPage = "main";
 let mouse = { x: 0, y: 0 };
 window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
 const instant = false;
 if (instant)
     console.warn("DEV: instant is enabled");
-export async function switchPage(page, title = "", theme = themes.common, onSwitch = () => { }) {
+export async function switchPage(page, title = "", theme = themes.common, onSwitch = () => { }, subtitle = "") {
     if (curPage == page)
         return;
     if (instant) {
         pages[curPage].classList.remove("open");
         curPage = page;
         titleEl.innerText = title;
+        subtitleEl.innerText = subtitle;
         setThemeColors(themeColors[theme]);
         pages[curPage].classList.add("open");
         onSwitch();
@@ -45,6 +49,7 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
     pages[curPage].classList.remove("open");
     curPage = page;
     titleEl.innerText = title;
+    subtitleEl.innerText = subtitle;
     pages[curPage].classList.add("open");
     onSwitch();
     if (currentTheme() != theme) {

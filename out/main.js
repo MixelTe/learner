@@ -1,5 +1,6 @@
 import { Sections } from "./data/sections.js";
 import * as Lib from "./littleLib.js";
+import { showQlist } from "./qlist.js";
 import { showStats } from "./stats.js";
 import { switchPage } from "./switchPage.js";
 import { Tester } from "./tester.js";
@@ -12,8 +13,10 @@ Lib.addButtonListener("menuBtn", () => {
 function closeMenu() { menu.classList.remove("open"); }
 Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
 Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
+Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
 initMainPage();
 // showStats();
+// showQlist();
 // new Tester(Sections[2].themes[0]).start();
 async function initMainPage() {
     const sections = Lib.get.div("sections");

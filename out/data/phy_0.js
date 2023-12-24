@@ -1,4 +1,4 @@
-import { DB, DBc } from "../docBuilder.js";
+import { DBF, DBc } from "../docBuilder.js";
 import { FB, createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 export const phy_0 = [
@@ -63,7 +63,7 @@ export const phy_0 = [
     new TestItemSelfCheck(58, DBc("Первый закон термодинамики"), createFormulas("Q = 'dU + A", "Адиабата: 'dU = -A, Q=0")),
     new TestItemSelfCheck(59, DBc("КПД тепловых машин"), createFormulas("'T = {A_{за цикл}}/{Q_{нагр}} = {Q_{нагр} - |Q_{хол}|}/{Q_{нагр}} = 1 - {|Q_{хол}|}/{Q_{нагр}}")),
     new TestItemSelfCheck(60, DBc("Максимальное значение КПД"), createFormulas("max 'T = 'T_{Карно} = {T_{нагр} - T_{хол}}/{T_{нагр}} = 1 - {T_{хол}}/{T_{нагр}}")),
-    new TestItemSelfCheck(61, DBc("Цикл Карно"), DBc().svg("phy_0-61.svg", true)),
+    new TestItemSelfCheck(61, DBc("Цикл Карно"), DBc().svg("phy_0-61.svg", DBF.wm100)),
     new TestItemSelfCheck(62, DBc("Уравнение теплового баланса"), createFormulas("Q_1 + Q_2 + Q_3 + ... = 0")),
     new TestItemSelfCheck(63, DBc("Закон Кулона"), createFormulas("|F = k {|q_1| * |q_2|}/{'Er^2}", "|k = {1}/{4'P'E_0}", "\\k - коэффициент пропорциональности", "\\'E - диэлектрическая проницаемость среды", "\\'E_0 - электрическая постоянная")),
     new TestItemSelfCheck(64, DBc("Напряжённость электрического поля"), createFormulas("&E = {&F}/{q} [В/м] [Н/Кл]")),
@@ -87,8 +87,8 @@ export const phy_0 = [
     new TestItemSelfCheck(82, DBc("Работа электрического тока"), createFormulas("A = IUt [Дж]")),
     new TestItemSelfCheck(83, DBc("Закон Джоуля-Ленца"), createFormulas("Q = I^2Rt")),
     new TestItemSelfCheck(84, DBc("Мощность электрического тока"), createFormulas("P = {A}/{t} = I^2R = {U^2}/{R} = IU [Вт]")),
-    new TestItemSelfCheck(85, DBc("Магнитные поля полосового и подковообразного постоянных магнитов"), DBc().svg("phy_0-85.svg")),
-    new TestItemSelfCheck(86, DBc("Линий индукции магнитного поля прямого проводника, кольцевого проводника, катушки с током "), DBc().svg("phy_0-86.svg", true)),
+    new TestItemSelfCheck(85, DBc("Магнитные поля полосового и подковообразного постоянных магнитов"), DBc().svg("phy_0-85.svg", DBF.wm100)),
+    new TestItemSelfCheck(86, DBc("Линий индукции магнитного поля прямого проводника, кольцевого проводника, катушки с током "), DBc().svg("phy_0-86.svg", DBF.wm100)),
     new TestItemSelfCheck(87, DBc("Правило правого буравчика"), DBc("Если поступательные движения буравчика совпадают с направление тока в проводнике, то направление вращения его рукоятки укажет направление линий магнитной индукции вокруг проводника.")),
     new TestItemSelfCheck(88, DBc("Сила Ампера"), createFormulas("|F_А = IBl @{sin}'a", "\\'a - угол между направлением проводника и вектором &B")),
     new TestItemSelfCheck(89, DBc("Правило левой руки для силы Ампера"), DBc("Ладонь левой руки надо расположить так, чтобы линии магнитной индукции входили в неё, а четыре вытянутых пальца были направлены по направлению тока в проводнике, то отставленный большой палец укажет направление силы Ампера.")),
@@ -109,13 +109,13 @@ export const phy_0 = [
     new TestItemSelfCheck(104, DBc("Закон сохранения энергии в идеальном колебательном контуре"), createFormulas("{CU^2}/{2} + {LI^2}/{2} = {CU^2_{max}}/{2} = {LI^2_{max}}/{2} = @{const}")),
     new TestItemSelfCheck(105, DBc("Условие резонанса в электрической цепи"), createFormulas("'w = 'w_0 = {1}/{\\{LC}}")),
     new TestItemSelfCheck(106, DBc("Точечный источник"), DBc("Источник, размеры которого оказываются во много раз меньше чем радиус его действия. Пример: звёзды, свеча")),
-    new TestItemSelfCheck(107, "Скорость света в вакууме", createFormulas("3 * 10^8 м/с")),
-    new TestItemSelfCheck(108, DBc("Закон отражения"), DB().formula(createFormulas("\\Угол падения равен углу отражения", "|'<'a = '<'b")).svg("phy_0-108.svg", false, true)),
-    new TestItemSelfCheck(109, DBc("Закон преломления"), DBc().formula(createFormulas("{@{sin}'a}/{@{sin}'b} = {'v_1}/{'v_2} = n")).svg("phy_0-109.svg")),
+    new TestItemSelfCheck(107, DBc("Скорость света в вакууме"), createFormulas("3 * 10^8 м/с")),
+    new TestItemSelfCheck(108, DBc("Закон отражения"), DBc().formula(createFormulas("\\Угол падения равен углу отражения", "|'<'a = '<'b")).svg("phy_0-108.svg", DBF.wm100)),
+    new TestItemSelfCheck(109, DBc("Закон преломления"), DBc().formula(createFormulas("{@{sin}'a}/{@{sin}'b} = {'v_1}/{'v_2} = n")).svg("phy_0-109.svg", DBF.wm100)),
     new TestItemSelfCheck(110, DBc("Соотношение частот и соотношение длин волн при переходе монохроматического света через границу раздела двух оптических сред"), createFormulas("'n_1 = 'n_2", "n_1'l_1 = n_2'l_2")),
     new TestItemSelfCheck(111, DBc("Абсолютный показатель преломления"), createFormulas("n_{абс} = {c}/{'v}")),
     new TestItemSelfCheck(112, DBc("Относительный показатель преломления"), createFormulas("n_{отн} = {n_2}/{n_1} = {'v_1}/{'v_2}")),
-    new TestItemSelfCheck(113, DBc("Предельный угол полного внутреннего отражения"), DBc().formula(createFormulas("@{sin}'a_{пр} = {1}/{n_{отн}} = {n_2}/{n_1}")).svg("phy_0-113.svg")),
+    new TestItemSelfCheck(113, DBc("Предельный угол полного внутреннего отражения"), DBc().formula(createFormulas("@{sin}'a_{пр} = {1}/{n_{отн}} = {n_2}/{n_1}")).svg("phy_0-113.svg", DBF.wm100)),
     new TestItemSelfCheck(114, DBc("Тормозной путь и время торможения"), createFormulas("|l = {m'v_0^2}/{2F_{тр}}", "|t = {m'v_0}/{F_{тр}}", "_{Нет в кодификаторе}")),
     new TestItemSelfCheck(115, DBc("Работа через кинетическую энергию"), createFormulas("A = 'dE_к [Дж]")),
     // new TestItemSelfCheck(1, DBc(""), createFormulas("")),

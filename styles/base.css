@@ -19,14 +19,15 @@ body {
 	grid-template-rows: 2.5rem 1fr;
 }
 
-h1, h2 {
+h1, h2, h3 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
 }
 
 button {
-	color: currentColor;
+	color: inherit;
+	font: inherit;
 }
 
 .page {
@@ -37,6 +38,7 @@ button {
 	overflow: auto;
 	margin-block: auto;
 	max-height: 100%;
+	max-width: 100%;
 	box-sizing: border-box;
 }
 .page.open {
@@ -44,9 +46,15 @@ button {
 }
 
 header {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+#subtitle {
+	position: absolute;
+    top: 0;
+    font-size: 0.7rem;
 }
 
 .menuBtn {
@@ -133,6 +141,13 @@ header {
 	gap: 1rem;
 }
 
+.menu > div > div {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
+}
+
 .menu h2 {
 	margin-bottom: 1rem;
 }
@@ -184,6 +199,9 @@ header {
 	display: none;
 }
 :has(#p-stats.open) #btn-stats {
+	display: none;
+}
+:has(#p-qlists.open) #btn-qlist {
 	display: none;
 }
 

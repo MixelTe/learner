@@ -1,6 +1,10 @@
 .popup {
-	--popup-back: #fff7e5;
-	--popup-border: lightgreen;
+	--popup-back: var(--c-back1);
+	--popup-border: var(--c-title);
+	--popup-border-width: 0.3rem;
+	--popup-border-radius: 1rem;
+	--popup-closeBtn-radius: var(--popup-border-radius);
+	--transition-duration: 250ms;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -11,6 +15,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: background-color var(--transition-duration);
+}
+.popup.popup-hidden {
+	background-color: rgba(0, 0, 0, 0);
 }
 .popup-block {
 	--popup-margin: 1rem;
@@ -18,13 +26,19 @@
 	display: flex;
     flex-direction: column;
 	background-color: var(--popup-back);
-	border: 0.5em solid var(--popup-border);
-	border-radius: 1em;
+	border: var(--popup-border-width) solid var(--popup-border);
+	border-radius: var(--popup-border-radius);
 	font-size: 1.2rem;
 	min-width: 15em;
     min-height: 8em;
 	max-height: 100vh;
 	box-shadow: 0.5em 1em 1em -1em black;
+	transition-property: opacity, transform;
+	transition-duration: var(--transition-duration);
+}
+.popup-hidden .popup-block {
+	transform: scale(0.9) translateY(3rem);
+	opacity: 0;
 }
 
 .popup-header {
@@ -39,22 +53,47 @@
 }
 .popup-close {
 	position: absolute;
-	right: -0.4em;
-	top: -0.4em;
+	right: calc(-1 * var(--popup-border-width) + 1px);
+	top: calc(-1 * var(--popup-border-width) + 1px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--popup-border);
 	border: none;
-	border-radius: 0 1em 0 1em;
+	border-radius: 0 var(--popup-border-radius) 0 var(--popup-closeBtn-radius);
 	width: 1.7em;
 	height: 1.7em;
 	outline: none;
 	font-size: inherit;
+	cursor: pointer;
 }
 .popup-close:hover,
-.popup-close:focus {
+.popup-close:focus-visible {
 	color: tomato;
+}
+.popup-close::before,
+.popup-close::after {
+	content: "";
+	position: absolute;
+	background-color: currentColor;
+	width: 0.7em;
+	height: 0.1em;
+	border-radius: 0.1em;
+	transition: transform 200ms;
+}
+.popup-close::before {
+	transform: rotate(45deg);
+}
+.popup-close::after {
+	transform: rotate(-45deg);
+}
+.popup-close:hover::before,
+.popup-close:focus-visible::before {
+	transform: rotate(-45deg);
+}
+.popup-close:hover::after,
+.popup-close:focus-visible::after {
+	transform: rotate(45deg);
 }
 
 .popup-content {
@@ -84,7 +123,10 @@
 	display: flex;
 	justify-content: space-evenly;
 	background-color: var(--popup-border);
-	margin: 1em -1px -0.2em -1px;
+	margin-top: 1em;
+	border-radius: calc(var(--popup-border-radius) - var(--popup-border-width));
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 .popup-footer-reverse {
 	flex-direction: row-reverse;

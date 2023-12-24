@@ -9,7 +9,7 @@
 	<link rel="apple-touch-icon" href="logo192.png" />
 	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="popup.css">
+	<link rel="stylesheet" type="text/css" href="styles/popup.css">
 	<link rel="stylesheet" type="text/css" href="styles/themes.css">
 	<link rel="stylesheet" type="text/css" href="styles/base.css">
 	<link rel="stylesheet" type="text/css" href="styles/pageSwitch.css">
@@ -19,6 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/p-start.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-tester.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-stats.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-qlists.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
@@ -44,8 +45,11 @@
 	<div class="menu" id="menu">
 		<div>
 			<h2>Меню</h2>
-			<button id="btn-index">На главную</button>
-			<button id="btn-stats">Статистика</button>
+			<div>
+				<button id="btn-index">На главную</button>
+				<button id="btn-stats">Статистика</button>
+				<button id="btn-qlist">Вопросы</button>
+			</div>
 		</div>
 		<footer>
 			<span></span>
@@ -63,6 +67,7 @@
 			<div></div>
 		</button>
 		<h2 id="title"></h2>
+		<h3 id="subtitle"></h3>
 	</header>
 	<div class="page open vanished" id="p-start">
 		<div class="logo">
@@ -91,7 +96,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.6.1</div>
+		<div class="version">v0.7</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -143,6 +148,26 @@
 					<div>Тема 1</div>
 				</div>
 			</template>
+		</div>
+	</div>
+	<div class="page" id="p-qlists">
+		<template id="template-qlists">
+			<div class="qlists">
+				<input type="checkbox" id="qlists-1">
+				<label class="qlists-btn" for="qlists-1">
+					<div class="qlist-arrow"></div>
+					<span>Математика</span>
+					<div class="qlist-count">127</div>
+				</label>
+				<div class="qlists-list">
+					<!-- <button><span>Тема 1</span><span>43</span></button> -->
+				</div>
+			</div>
+		</template>
+		<div id="qlists"></div>
+	</div>
+	<div class="page" id="p-qlist">
+		<div id="qlist">
 		</div>
 	</div>
 </body>

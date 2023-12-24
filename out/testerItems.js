@@ -8,6 +8,16 @@ export class TestItemSelfCheck extends TestItem {
         this.task = task;
         this.ans = ans;
     }
+    getQuestion() {
+        if (typeof this.task == "string")
+            return this.task;
+        return this.task.html(true);
+    }
+    getAnswer() {
+        if (typeof this.ans == "string")
+            return this.ans;
+        return this.ans.html(true);
+    }
     async show(taskEl, inputEl, onAnswer) {
         if (typeof this.task == "string")
             taskEl.innerText = this.task;
@@ -16,7 +26,7 @@ export class TestItemSelfCheck extends TestItem {
         Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
             Lib.Button([], "Ответ", async (btn) => {
                 btn.classList.add("active");
-                await Lib.wait(150);
+                await Lib.wait(200);
                 if (typeof this.ans == "string")
                     taskEl.innerText = this.ans;
                 else
@@ -27,7 +37,7 @@ export class TestItemSelfCheck extends TestItem {
                 ]));
                 async function answer(r, btn) {
                     btn.classList.add("active");
-                    await Lib.wait(100);
+                    await Lib.wait(200);
                     onAnswer(r);
                 }
             }),

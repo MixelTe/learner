@@ -23,15 +23,15 @@ export class Popup {
     onCancel = [];
     body = Div("popup");
     titleEl = Div("popup-title");
-    cancelBtnEl = Button([], "Cancel", this.close.bind(this, false));
-    okBtnEl = Button([], "OK", this.close.bind(this, true));
-    closeBtnEl = Button("popup-close", "x", this.close.bind(this, false));
+    cancelBtnEl = Button([], "Отмена", this.close.bind(this, false));
+    okBtnEl = Button([], "ОК", this.close.bind(this, true));
+    closeBtnEl = Button("popup-close", "", this.close.bind(this, false));
     footer = Div("popup-footer", [this.cancelBtnEl, this.okBtnEl]);
     focusEl = "ok";
     resolve = null;
     onKeyUp = () => { };
     openPopup() {
-        this.body = Div("popup");
+        this.body = Div(["popup", "popup-hidden"]);
         this.body.appendChild(Div("popup-block", [
             Div("popup-header", [
                 this.titleEl,
@@ -50,10 +50,12 @@ export class Popup {
         };
         window.addEventListener("keyup", this.onKeyUp);
         document.body.appendChild(this.body);
+        setTimeout(() => this.body.classList.remove("popup-hidden"), 1);
         this.setFocus();
     }
     close(confirmed) {
-        document.body.removeChild(this.body);
+        this.body.classList.add("popup-hidden");
+        setTimeout(() => document.body.removeChild(this.body), 250);
         window.removeEventListener("keyup", this.onKeyUp);
         this.fireEvent(confirmed ? "ok" : "cancel");
         this.fireEvent("close", confirmed);

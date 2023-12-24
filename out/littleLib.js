@@ -228,35 +228,47 @@ export function downloadFile(filename, text) {
 }
 export function SetContent(parent, children) {
     parent.innerHTML = "";
+    AppendContent(parent, children);
+}
+export function AppendContent(parent, children) {
     if (children instanceof Array)
-        children.forEach(ch => parent.appendChild(ch));
+        children.forEach(ch => parent.append(ch));
     else
-        parent.appendChild(children);
+        parent.append(children);
 }
-export function Div(classes, children, innerText) {
-    return initEl("div", classes, children, innerText);
+export function Div(classes, children) {
+    return initEl("div", classes, children);
 }
-export function Span(classes, children, innerText) {
-    return initEl("span", classes, children, innerText);
+export function Span(classes, children) {
+    return initEl("span", classes, children);
 }
-export function H1(classes, children, innerText) {
-    return initEl("h1", classes, children, innerText);
+export function H1(classes, children) {
+    return initEl("h1", classes, children);
+}
+export function Table(classes, children) {
+    return initEl("table", classes, children);
+}
+export function TR(classes, children) {
+    return initEl("tr", classes, children);
+}
+export function TD(classes, children) {
+    return initEl("td", classes, children);
 }
 export function Input(classes, type, placeholder) {
-    const input = initEl("input", classes, undefined, undefined);
+    const input = initEl("input", classes, undefined);
     if (type)
         input.type = type;
     if (placeholder)
         input.placeholder = placeholder;
     return input;
 }
-export function Button(classes, innerText, clickListener) {
-    const button = initEl("button", classes, undefined, innerText);
+export function Button(classes, children, clickListener) {
+    const button = initEl("button", classes, children);
     if (clickListener)
         button.addEventListener("click", clickListener.bind(button, button));
     return button;
 }
-export function initEl(tagName, classes, children, innerText) {
+export function initEl(tagName, classes, children) {
     const el = document.createElement(tagName);
     if (classes) {
         if (typeof classes == "string")
@@ -264,10 +276,12 @@ export function initEl(tagName, classes, children, innerText) {
         else
             classes.forEach(cs => cs && el.classList.add(cs));
     }
-    if (innerText)
-        el.innerText = innerText;
-    if (children)
-        children.forEach(ch => el.appendChild(ch));
+    if (children) {
+        if (children instanceof Array)
+            children.forEach(ch => el.append(ch));
+        else
+            el.append(children);
+    }
     return el;
 }
 export async function wait(t) {

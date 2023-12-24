@@ -50,11 +50,12 @@
 	margin-left: -1px;
 	cursor: pointer;
 	outline: none;
+	user-select: none;
 }
 .tester-input-one button {
 	border-radius: 0.3em;
 	box-shadow: 0 0 0 var(--c-title);
-	transition: box-shadow 200ms;
+	transition: box-shadow 300ms;
 }
 .tester-input-two button:first-child {
 	border-radius: 0.3em 0 0 0.3em;
@@ -92,7 +93,7 @@
 }
 .tester-input-one button.active,
 .tester-input-one button:active {
-	box-shadow: 0 0 2px 3px var(--c-title);
+	box-shadow: 0 0 3px 6px var(--c-title);
 }
 
 @media screen and (max-width: 550px), screen and (max-height: 550px) {

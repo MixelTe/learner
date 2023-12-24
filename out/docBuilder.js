@@ -1,6 +1,15 @@
-import { Div, Span, initEl } from "./littleLib.js";
+import { Button, Div, SetContent, Span, initEl } from "./littleLib.js";
+import { Popup } from "./popup.js";
+export var DBF;
+(function (DBF) {
+    DBF[DBF["none"] = 0] = "none";
+    DBF[DBF["w100"] = 1] = "w100";
+    DBF[DBF["wm100"] = 2] = "wm100";
+    DBF[DBF["center"] = 4] = "center";
+})(DBF || (DBF = {}));
 export class DocBuilder {
     body = Div("doc");
+    images = [];
     center() {
         this.body.classList.add("doc-center");
         return this;
@@ -8,9 +17,9 @@ export class DocBuilder {
     text(...text) {
         if (text.length != 0) {
             if (text.length == 1)
-                this.body.appendChild(Span([], [], text[0]));
+                this.body.appendChild(Span([], text[0]));
             else
-                text.forEach(t => this.body.appendChild(Div([], [], t)));
+                text.forEach(t => this.body.appendChild(Div([], t)));
         }
         return this;
     }
@@ -22,9 +31,13 @@ export class DocBuilder {
         this.body.appendChild(formula.html());
         return this;
     }
-    svg(url, w100 = false, center = false) {
-        const svgContainer = Div(["doc-svg", "doc-svg-loading", w100 && "doc-svg-w100", center && "doc-svg-center"]);
-        this.body.appendChild(svgContainer);
+    svg(url, flags = DBF.none) {
+        const { w100, wm100, center } = unpackFlags(flags);
+        const img = Div("doc-img");
+        const svgContainer = Div(["doc-svg-container", "doc-svg-loading", w100 && "doc-svg-w100", wm100 && "doc-svg-wm100", center && "doc-svg-center"]);
+        this.images.push({ el: img, image: svgContainer });
+        img.appendChild(svgContainer);
+        this.body.appendChild(img);
         fetch("imgs/" + url)
             .then(v => v.text())
             .then(v => {
@@ -33,9 +46,30 @@ export class DocBuilder {
         });
         return this;
     }
-    html() {
+    html(imagesInPopup = false) {
+        this.updateImagesInPopup(imagesInPopup);
         return this.body;
     }
+    updateImagesInPopup(imagesInPopup) {
+        for (const image of this.images) {
+            if (imagesInPopup)
+                SetContent(image.el, Button("doc-img-btn", "Картинка", () => {
+                    const popup = new Popup();
+                    popup.content = image.image;
+                    popup.cancelBtn = false;
+                    popup.okBtn = false;
+                    popup.open();
+                }));
+            else
+                SetContent(image.el, image.image);
+        }
+    }
+}
+function unpackFlags(flags) {
+    const w100 = (flags & DBF.w100) == DBF.w100;
+    const wm100 = (flags & DBF.wm100) == DBF.wm100;
+    const center = (flags & DBF.center) == DBF.center;
+    return { w100, wm100, center };
 }
 export function DB(text = "", center = false) {
     return new DocBuilder().text(text);
