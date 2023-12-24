@@ -1,4 +1,4 @@
-import { Div, Span, initEl } from "./littleLib.js";
+import { Div, Span, Table, TR, TD } from "./littleLib.js";
 
 
 export class FormulaBuilder
@@ -28,7 +28,7 @@ export class FormulaBuilder
 		}
 		else
 		{
-			this.prevEl = Span("formula-text", [], text);
+			this.prevEl = Span("formula-text", text);
 			this.body.appendChild(this.prevEl);
 		}
 		this.text += text;
@@ -142,7 +142,7 @@ export class FormulaBuilder
 	public sum(fb: FormulaBuilder)
 	{
 		const bottom = Span("formula-sum-bottom", [fb.body]);
-		this.prevEl = Span("formula-sum", [Span([], [], "Σ"), bottom]);
+		this.prevEl = Span("formula-sum", [Span([], "Σ"), bottom]);
 		this.body.appendChild(this.prevEl);
 		this.text += "Σ(" + fb.text + ")";
 		return this;
@@ -407,20 +407,4 @@ export function createFormula(formula: string)
 		}
 	}
 	return fb;
-}
-
-
-function Table(classes: string | string[], children: HTMLElement[] = [])
-{
-	return initEl("table", classes, children, undefined)
-}
-
-function TR(classes: string | string[], children: HTMLElement[] = [])
-{
-	return initEl("tr", classes, children, undefined)
-}
-
-function TD(classes: string | string[], children: HTMLElement[] = [])
-{
-	return initEl("td", classes, children, undefined)
 }

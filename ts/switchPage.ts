@@ -1,11 +1,13 @@
 import * as Lib from "./littleLib.js";
 import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "./themes.js";
 
-export type Page = "main" | "tester" | "stats";
+export type Page = "main" | "tester" | "stats" | "qlists" | "qlist";
 const pages = {
 	main: Lib.get.div("p-start"),
 	tester: Lib.get.div("p-tester"),
 	stats: Lib.get.div("p-stats"),
+	qlists: Lib.get.div("p-qlists"),
+	qlist: Lib.get.div("p-qlist"),
 } as { [key in Page]: HTMLDivElement }
 const themeColors = {
 	common: { light: "#a52a2a", dark: "#df4545" },

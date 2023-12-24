@@ -26,7 +26,8 @@ h1, h2 {
 }
 
 button {
-	color: currentColor;
+	color: inherit;
+	font: inherit;
 }
 
 .page {
@@ -37,6 +38,7 @@ button {
 	overflow: auto;
 	margin-block: auto;
 	max-height: 100%;
+	max-width: 100%;
 	box-sizing: border-box;
 }
 .page.open {
@@ -133,6 +135,13 @@ header {
 	gap: 1rem;
 }
 
+.menu > div > div {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
+}
+
 .menu h2 {
 	margin-bottom: 1rem;
 }
@@ -184,6 +193,9 @@ header {
 	display: none;
 }
 :has(#p-stats.open) #btn-stats {
+	display: none;
+}
+:has(#p-qlists.open) #btn-qlist {
 	display: none;
 }
 

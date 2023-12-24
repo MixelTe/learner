@@ -301,44 +301,61 @@ export interface ICircle
 }
 
 
-export function SetContent(parent: HTMLElement, children: HTMLElement | HTMLElement[])
+export function SetContent(parent: HTMLElement, children: ElChildren)
 {
 	parent.innerHTML = "";
+	AppendContent(parent, children);
+}
+export function AppendContent(parent: HTMLElement, children: ElChildren)
+{
 	if (children instanceof Array)
-		children.forEach(ch => parent.appendChild(ch));
+		children.forEach(ch => parent.append(ch));
 	else
-		parent.appendChild(children);
+		parent.append(children);
 }
 
-export function Div(classes?: ElClasses, children?: Node[], innerText?: string)
+export function Div(classes?: ElClasses, children?: ElChildren)
 {
-	return initEl("div", classes, children, innerText);
+	return initEl("div", classes, children);
 }
-export function Span(classes?: ElClasses, children?: Node[], innerText?: string)
+export function Span(classes?: ElClasses, children?: ElChildren)
 {
-	return initEl("span", classes, children, innerText);
+	return initEl("span", classes, children);
 }
-export function H1(classes?: ElClasses, children?: Node[], innerText?: string)
+export function H1(classes?: ElClasses, children?: ElChildren)
 {
-	return initEl("h1", classes, children, innerText);
+	return initEl("h1", classes, children);
+}
+export function Table(classes?: ElClasses, children?: ElChildren)
+{
+	return initEl("table", classes, children);
+}
+export function TR(classes?: ElClasses, children?: ElChildren)
+{
+	return initEl("tr", classes, children);
+}
+export function TD(classes?: ElClasses, children?: ElChildren)
+{
+	return initEl("td", classes, children);
 }
 export function Input(classes?: ElClasses, type?: string, placeholder?: string)
 {
-	const input = initEl("input", classes, undefined, undefined);
+	const input = initEl("input", classes, undefined);
 	if (type) input.type = type;
 	if (placeholder) input.placeholder = placeholder;
 	return input;
 }
-export function Button(classes?: ElClasses, innerText?: string, clickListener?: (btn: HTMLButtonElement) => void)
+export function Button(classes?: ElClasses, children?: ElChildren, clickListener?: (btn: HTMLButtonElement) => void)
 {
-	const button = initEl("button", classes, undefined, innerText);
+	const button = initEl("button", classes, children);
 	if (clickListener) button.addEventListener("click", clickListener.bind(button, button));
 	return button;
 }
 
 type ElClass = string | undefined | null | false;
-type ElClasses = ElClass[] | ElClass;
-export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classes?: ElClasses, children?: Node[], innerText?: string)
+export type ElClasses = ElClass[] | ElClass;
+export type ElChildren = Node | string | (Node | string)[];
+export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classes?: ElClasses, children?: ElChildren)
 {
 	const el = document.createElement(tagName);
 	if (classes)
@@ -346,8 +363,13 @@ export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classe
 		if (typeof classes == "string") el.classList.add(classes);
 		else classes.forEach(cs => cs && el.classList.add(cs));
 	}
-	if (innerText) el.innerText = innerText;
-	if (children) children.forEach(ch => el.appendChild(ch));
+	if (children)
+	{
+		if (children instanceof Array)
+			children.forEach(ch => el.append(ch));
+		else
+			el.append(children);
+	}
 
 	return el;
 }

@@ -49,7 +49,7 @@ export class Tester
 		pageEl.innerText = "";
 		idEl.innerText = "";
 		const text = `Результат: ${this.cor}/${this.items.length} (${Math.floor(this.cor / this.items.length * 100)}%)`;
-		Lib.SetContent(taskEl, Lib.initEl("h2", [], [], text));
+		Lib.SetContent(taskEl, Lib.initEl("h2", [], text));
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
 			Lib.Button([], "Вернуться", () => switchPage("main")),
 			Lib.Button([], "Ещё раз", async btn =>
@@ -79,4 +79,7 @@ export abstract class TestItem
 	constructor(public id: number) { }
 
 	public abstract show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void): void;
+
+	public abstract getQuestion(): Node | string;
+	public abstract getAnswer(): Node | string;
 }

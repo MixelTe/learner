@@ -4,7 +4,7 @@ import { TestItem } from "./tester.js";
 
 interface HtmlBuilder
 {
-	html: () => HTMLElement,
+	html: (imagesInPopup?: boolean) => HTMLElement,
 }
 
 export class TestItemSelfCheck extends TestItem
@@ -14,6 +14,19 @@ export class TestItemSelfCheck extends TestItem
 		super(id);
 	}
 
+	public getQuestion(): string | Node
+	{
+		if (typeof this.task == "string")
+			return this.task;
+		return this.task.html(true);
+	}
+
+	public getAnswer(): string | Node
+	{
+		if (typeof this.ans == "string")
+			return this.ans;
+		return this.ans.html(true);
+	}
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{

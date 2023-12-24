@@ -1,0 +1,227 @@
+#p-qlists {
+	padding-block: 1rem;
+}
+
+#qlists {
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	gap: 1rem;
+}
+
+.qlists {
+	font-size: 1.3rem;
+}
+.qlists input {
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.qlists-btn {
+	display: flex;
+	align-items: center;
+	gap: 1.4rem;
+	cursor: pointer;
+}
+
+.qlists-btn span {
+	flex-grow: 1;
+}
+
+.qlist-arrow {
+	position: relative;
+	display: block;
+	width: 0.6em;
+	height: 0.6em;
+	border: 2px solid var(--c-text);
+	border-radius: 3px;
+	transform: translateX(0.25em) rotate(-45deg);
+	transition: transform 200ms;
+}
+.qlist-arrow::after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 50%;
+	height: 50%;
+	top: 25%;
+	left: 25%;
+	background-color: var(--c-title);
+	border-radius: 50%;
+	transform: rotate(45deg) scale(0);
+	transition: transform 200ms;
+}
+.qlists input:focus-visible ~ * .qlist-arrow,
+.qlists-btn:hover .qlist-arrow {
+	transform: translateX(0) rotate(-45deg);
+}
+.qlists input:checked ~ * .qlist-arrow {
+	transform: translateX(0) rotate(45deg);
+}
+.qlists input:checked ~ * .qlist-arrow::after {
+	transform: rotate(45deg) scale(1);
+}
+.qlists input:checked:focus-visible ~ * .qlist-arrow,
+.qlists input:checked ~ * .qlists-btn:hover .qlist-arrow {
+	transform: translateY(-0.25em) rotate(45deg);
+}
+
+.qlist-count {
+	position: relative;
+	font-size: 0.9rem;
+}
+.qlists-list button :nth-child(2)::before,
+.qlist-count::before {
+	content: "";
+	position: absolute;
+	inset: -0.05em -0.1em;
+	background-color: var(--c-title);
+	border-radius: 0.2em;
+	opacity: 0.2;
+	z-index: -1;
+	filter: blur(4px);
+}
+
+.qlists-list {
+	display: flex;
+	flex-direction: column;
+	padding-left: 1.8rem;
+	padding-right: 1rem;
+	max-height: 0;
+	overflow: hidden;
+	transition: all 200ms;
+}
+.qlists input:checked ~ .qlists-list {
+	max-height: 10rem;
+}
+
+.qlists-list button {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	background-color: transparent;
+	border: none;
+	text-align: left;
+	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 0.3em 0.4em;
+	padding-left: 1.2em;
+	outline: none;
+}
+.qlists-list button::before,
+.qlists-list button::after {
+	position: absolute;
+	left: 0.2em;
+	transition-property: opacity;
+	transition-duration: 100ms;
+	color: var(--c-title);
+}
+.qlists-list button::before {
+	content: "§";
+	opacity: 1;
+}
+.qlists-list button::after {
+	content: "";
+	border: 0.4em solid transparent;
+	border-top-color: var(--c-title);
+	border-bottom-color: var(--c-title);
+	opacity: 0;
+	transform: translate(-0.15em, 0.25em) scaleX(0.6);
+}
+.qlists-list button:focus-visible::before,
+.qlists-list button:hover::before {
+	opacity: 0;
+}
+.qlists-list button:focus-visible::after,
+.qlists-list button:hover::after {
+	opacity: 1;
+}
+
+.qlists-list button :nth-child(2) {
+	position: relative;
+	font-size: 0.9rem;
+}
+
+
+#p-qlist {
+	padding-block: 2rem;
+	margin-inline: auto;
+}
+#p-qlist.open {
+	display: block;
+}
+
+#qlist {
+	display: grid;
+	grid-template-columns: 4fr 6fr;
+	max-width: 700px;
+}
+
+#qlist > div {
+	position: relative;
+	display: flex;
+	padding: 1rem 0.4rem;
+	border-bottom: 1px solid var(--c-title);
+	overflow-x: auto;
+	font-size: 1.1rem;
+}
+#qlist > div:nth-child(2n) {
+	margin-right: 0.2rem;
+}
+#qlist > div:nth-last-child(2),
+#qlist > div:nth-last-child(1) {
+	border: none;
+}
+
+.qlist-id {
+	position: absolute;
+	top: 0.1rem;
+	left: 3.2rem;
+	font-size: 0.55rem;
+	opacity: 0.6;
+}
+
+.qlist-marker {
+	position: absolute;
+	left: 0.1rem;
+	top: 0.3rem;
+	display: flex;
+	gap: 0.15rem;
+}
+.qlist-marker > * {
+	display: block;
+	width: 0.35rem;
+	height: 0.35rem;
+	border-radius: 50%;
+}
+.qlist-marker-1 {
+	background-color: #17ab17;
+}
+.qlist-marker-0 {
+	background-color: #e93313;
+}
+.qlist-marker-u {
+	background-color: #8f8d8d;
+}
+
+.qlist-cell {
+	margin: auto;
+}
+
+@media screen and (max-width: 450px) {
+	#qlist {
+		grid-template-columns: 1fr;
+	}
+	#qlist > div:nth-child(2n - 1) {
+		border: none;
+	}
+	.qlist-id {
+		left: 0.2rem;
+	}
+	.qlist-marker {
+		left: auto;
+		right: 0.1rem;
+	}
+}

@@ -112,7 +112,7 @@
 	background-color: transparent;
 	border: none;
 	text-align: left;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	cursor: pointer;
 	padding: 0.3em 0.2em;
 	padding-left: 1.2em;
@@ -135,7 +135,7 @@
 	border: 0.5em solid transparent;
 	border-left-color: var(--c-title);
 	opacity: 0;
-	transform: translateX(0.1em) scaleY(0.7);
+	transform: translate(0.1em, 0.2em) scaleY(0.7);
 }
 .sectionSelection-list button:focus-visible::before,
 .sectionSelection-list button:hover::before {
