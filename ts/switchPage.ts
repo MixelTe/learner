@@ -16,6 +16,7 @@ const themeColors = {
 	orange: { light: "#a6562b", dark: "#df7a43" },
 } as { [theme in Themes]: ThemeColors }
 const titleEl = Lib.getEl("title", HTMLHeadingElement);
+const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 
 let curPage: Page = "main";
 let mouse = { x: 0, y: 0 };
@@ -23,7 +24,7 @@ window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY }
 const instant = false;
 if (instant) console.warn("DEV: instant is enabled");
 
-export async function switchPage(page: Page, title = "", theme: Themes = themes.common, onSwitch: () => void = () => { })
+export async function switchPage(page: Page, title = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "")
 {
 	if (curPage == page) return;
 
@@ -32,6 +33,7 @@ export async function switchPage(page: Page, title = "", theme: Themes = themes.
 		pages[curPage].classList.remove("open");
 		curPage = page;
 		titleEl.innerText = title;
+		subtitleEl.innerText = subtitle;
 		setThemeColors(themeColors[theme]);
 		pages[curPage].classList.add("open");
 		onSwitch();
@@ -53,6 +55,7 @@ export async function switchPage(page: Page, title = "", theme: Themes = themes.
 	pages[curPage].classList.remove("open");
 	curPage = page;
 	titleEl.innerText = title;
+	subtitleEl.innerText = subtitle;
 	pages[curPage].classList.add("open");
 	onSwitch();
 	if (currentTheme() != theme)

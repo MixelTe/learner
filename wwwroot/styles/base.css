@@ -19,7 +19,7 @@ body {
 	grid-template-rows: 2.5rem 1fr;
 }
 
-h1, h2 {
+h1, h2, h3 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
@@ -46,9 +46,15 @@ button {
 }
 
 header {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+#subtitle {
+	position: absolute;
+    top: 0;
+    font-size: 0.7rem;
 }
 
 .menuBtn {

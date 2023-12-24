@@ -35,7 +35,7 @@ export function showQlist(onSwitch: () => void = () => { })
 				Lib.Span([], `${theme.items.length}`),
 			], () =>
 			{
-				showItemQs(theme);
+				showItemQs(section.name, theme);
 			}));
 		}
 		if (section.themes.length == 0)
@@ -49,9 +49,9 @@ export function showQlist(onSwitch: () => void = () => { })
 	}
 }
 
-function showItemQs(theme: Theme)
+function showItemQs(sectionName: string, theme: Theme)
 {
-	switchPage("qlist", theme.name, theme.color);
+	switchPage("qlist", theme.name, theme.color, () => { }, sectionName);
 	qlistEl.innerHTML = "";
 	const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);
 	for (const item of theme.items)
