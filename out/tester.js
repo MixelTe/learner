@@ -1,5 +1,5 @@
 import * as Lib from "./littleLib.js";
-import { switchPage } from "./switchPage.js";
+import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
 const pageEl = Lib.get.div("t-page");

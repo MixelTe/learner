@@ -1,11 +1,9 @@
+import { DayStatistics } from "./dayStatistics.js";
 import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
+import { Keys } from "./keys.js";
 import * as Lib from "./littleLib.js";
 const Len = 15;
 const MaxHist = 5;
-const statisticsKey = "learner-statistics";
-const seedKey = "learner-trainerSeed";
-const turnKey = "learner-trainerTurn";
-const themeKey = "learner-trainerTheme";
 const devSelectId = -2;
 if (devSelectId >= -1)
     console.warn("DEV: devSelectId is enabled");
@@ -48,9 +46,10 @@ export class Trainer {
         if (item.hist.length > MaxHist)
             item.hist = item.hist.slice(item.hist.length - MaxHist);
         this.setStatistics(stats);
+        DayStatistics.addOneToday();
     }
     static getStatistics() {
-        const stats = JSON.parse(localStorage.getItem(statisticsKey) || "{}");
+        const stats = JSON.parse(localStorage.getItem(Keys.statistics) || "{}");
         if (stats.v == undefined)
             stats.v = 1;
         if (stats.themes == undefined)
@@ -66,7 +65,7 @@ export class Trainer {
         return score / itemCount;
     }
     static setStatistics(stats) {
-        localStorage.setItem(statisticsKey, JSON.stringify(stats));
+        localStorage.setItem(Keys.statistics, JSON.stringify(stats));
     }
     static updateStatisticsData(stats) {
         if (stats.v == 1)
@@ -74,21 +73,21 @@ export class Trainer {
         return { v: 1, themes: [] };
     }
     static get seed() {
-        return parseInt(localStorage.getItem(seedKey) || "0", 10);
+        return parseInt(localStorage.getItem(Keys.trainerSeed) || "0", 10);
     }
     static set seed(v) {
-        localStorage.setItem(seedKey, `${v}`);
+        localStorage.setItem(Keys.trainerSeed, `${v}`);
     }
     static get turn() {
-        return parseInt(localStorage.getItem(turnKey) || "0", 10);
+        return parseInt(localStorage.getItem(Keys.trainerTurn) || "0", 10);
     }
     static set turn(v) {
-        localStorage.setItem(turnKey, `${v}`);
+        localStorage.setItem(Keys.trainerTurn, `${v}`);
     }
     static get lastTheme() {
-        return localStorage.getItem(themeKey) || "";
+        return localStorage.getItem(Keys.trainerTheme) || "";
     }
     static set lastTheme(v) {
-        localStorage.setItem(themeKey, v);
+        localStorage.setItem(Keys.trainerTheme, v);
     }
 }

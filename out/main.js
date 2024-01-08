@@ -1,8 +1,9 @@
 import { Sections } from "./data/sections.js";
+import { showDayStats } from "./pages/dayStats.js";
 import * as Lib from "./littleLib.js";
-import { showQlist } from "./qlist.js";
-import { showStats } from "./stats.js";
-import { switchPage } from "./switchPage.js";
+import { showQlist } from "./pages/qlist.js";
+import { showStats } from "./pages/stats.js";
+import { switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
 initThemes();
@@ -14,9 +15,11 @@ function closeMenu() { menu.classList.remove("open"); }
 Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
 Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
+Lib.addButtonListener("btn-dayStats", () => showDayStats(closeMenu));
 initMainPage();
 // showStats();
 // showQlist();
+// showDayStats();
 // new Tester(Sections[2].themes[0]).start();
 async function initMainPage() {
     const sections = Lib.get.div("sections");

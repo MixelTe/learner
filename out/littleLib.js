@@ -284,6 +284,15 @@ export function initEl(tagName, classes, children) {
     }
     return el;
 }
+export function createSvgEl(qualifiedName, parent) {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", qualifiedName);
+    if (parent)
+        parent.appendChild(el);
+    return el;
+}
 export async function wait(t) {
     return new Promise(res => setTimeout(res, t));
+}
+export function lerp(v1, v2, t) {
+    return (v2 - v1) * t + v1;
 }

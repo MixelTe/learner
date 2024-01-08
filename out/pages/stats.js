@@ -1,14 +1,14 @@
-import { Sections } from "./data/sections.js";
-import * as Lib from "./littleLib.js";
+import { Sections } from "../data/sections.js";
+import * as Lib from "../littleLib.js";
 import { switchPage } from "./switchPage.js";
-import { themes } from "./themes.js";
-import { Trainer } from "./trainer.js";
+import { themes } from "../themes.js";
+import { Trainer } from "../trainer.js";
 const itemTemplate = Lib.getEl("template-stats-item", HTMLTemplateElement);
 const markerTemplate = Lib.getEl("template-stats-marker", HTMLTemplateElement);
 const subitemTemplate = Lib.getEl("template-stats-subitem", HTMLTemplateElement);
 const statsEl = Lib.get.div("stats");
 export function showStats(onSwitch = () => { }) {
-    switchPage("stats", "Статистика", themes.common, onSwitch);
+    switchPage("stats", "Прогресс", themes.common, onSwitch);
     statsEl.innerHTML = "";
     const allStats = Trainer.getStatistics();
     for (let i = 0; i < Sections.length; i++) {

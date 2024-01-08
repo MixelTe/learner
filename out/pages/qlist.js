@@ -1,8 +1,8 @@
-import { Sections } from "./data/sections.js";
-import * as Lib from "./littleLib.js";
+import { Sections } from "../data/sections.js";
+import * as Lib from "../littleLib.js";
 import { switchPage } from "./switchPage.js";
-import { themes } from "./themes.js";
-import { Trainer } from "./trainer.js";
+import { themes } from "../themes.js";
+import { Trainer } from "../trainer.js";
 const qlistsTemplate = Lib.getEl("template-qlists", HTMLTemplateElement);
 const qlistsEl = Lib.get.div("qlists");
 const qlistEl = Lib.get.div("qlist");
