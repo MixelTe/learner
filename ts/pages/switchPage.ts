@@ -1,5 +1,5 @@
-import * as Lib from "./littleLib.js";
-import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "./themes.js";
+import * as Lib from "../littleLib.js";
+import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
 
 export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats";
 const pages = {

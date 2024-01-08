@@ -1,8 +1,8 @@
-import { Sections } from "./data/sections.js";
-import * as Lib from "./littleLib.js";
+import { Sections } from "../data/sections.js";
+import * as Lib from "../littleLib.js";
 import { switchPage } from "./switchPage.js";
-import { themes } from "./themes.js";
-import { Trainer } from "./trainer.js";
+import { themes } from "../themes.js";
+import { Trainer } from "../trainer.js";
 
 
 const itemTemplate = Lib.getEl("template-stats-item", HTMLTemplateElement);

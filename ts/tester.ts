@@ -1,6 +1,6 @@
 import * as Lib from "./littleLib.js";
 import { Theme } from "./data/sections.js";
-import { switchPage } from "./switchPage.js";
+import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
 

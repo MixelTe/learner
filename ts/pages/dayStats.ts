@@ -1,8 +1,8 @@
-import { DayStatistics } from "./dayStatistics.js";
-import { getMonthEndDate } from "./functions.js";
-import * as Lib from "./littleLib.js";
+import { DayStatistics } from "../dayStatistics.js";
+import { getMonthEndDate } from "../functions.js";
+import * as Lib from "../littleLib.js";
 import { switchPage } from "./switchPage.js";
-import { themes } from "./themes.js";
+import { themes } from "../themes.js";
 
 const scale = Lib.get.el("dayStats-scale", HTMLSpanElement);
 const scale_min = Lib.get.el("dayStats-scale_min", HTMLSpanElement);

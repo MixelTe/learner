@@ -1,9 +1,9 @@
 import { Sections } from "./data/sections.js";
-import { showDayStats } from "./dayStats.js";
+import { showDayStats } from "./pages/dayStats.js";
 import * as Lib from "./littleLib.js";
-import { showQlist } from "./qlist.js";
-import { showStats } from "./stats.js";
-import { switchPage } from "./switchPage.js";
+import { showQlist } from "./pages/qlist.js";
+import { showStats } from "./pages/stats.js";
+import { switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
 
