@@ -20,6 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/p-tester.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-stats.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-qlists.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-dayStats.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
@@ -47,8 +48,9 @@
 			<h2>Меню</h2>
 			<div>
 				<button id="btn-index">На главную</button>
-				<button id="btn-stats">Статистика</button>
+				<button id="btn-stats">Прогресс</button>
 				<button id="btn-qlist">Вопросы</button>
+				<button id="btn-dayStats">Статистика</button>
 			</div>
 		</div>
 		<footer>
@@ -96,7 +98,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.7.1</div>
+		<div class="version">v0.8</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -169,6 +171,26 @@
 	<div class="page" id="p-qlist">
 		<div id="qlist">
 		</div>
+	</div>
+	<div class="page" id="p-dayStats">
+		<div class="dayStats-days">
+			<h3>Дней подряд</h3>
+			<div class="dayStats-days-num">
+				<h4>Сейчас</h4>
+				<div id="dayStats-current">0</div>
+			</div>
+			<div class="dayStats-days-num dayStats-days-num_gold">
+				<h4>Лучший</h4>
+				<div id="dayStats-longest">12</div>
+			</div>
+		</div>
+		<div class="dayStats-scale">
+			<h3>По дням</h3>
+			<span id="dayStats-scale_min">0</span>
+			<div></div>
+			<span id="dayStats-scale">0</span>
+		</div>
+		<div id="dayStats-days"></div>
 	</div>
 </body>
 

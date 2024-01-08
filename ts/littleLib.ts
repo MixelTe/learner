@@ -374,8 +374,21 @@ export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classe
 	return el;
 }
 
+export function createSvgEl<K extends keyof SVGElementTagNameMap>(qualifiedName: K, parent?: Node): SVGElementTagNameMap[K]
+{
+	const el = document.createElementNS("http://www.w3.org/2000/svg", qualifiedName);
+	if (parent)
+		parent.appendChild(el);
+	return el;
+}
+
 
 export async function wait(t: number)
 {
 	return new Promise(res => setTimeout(res, t));
+}
+
+export function lerp(v1: number, v2: number, t: number)
+{
+	return (v2 - v1) * t + v1;
 }

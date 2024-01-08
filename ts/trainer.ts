@@ -1,4 +1,5 @@
 import { Theme } from "./data/sections.js";
+import { DayStatistics } from "./dayStatistics.js";
 import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
 import * as Lib from "./littleLib.js";
 
@@ -61,6 +62,7 @@ export class Trainer
 		if (item.hist.length > MaxHist)
 			item.hist = item.hist.slice(item.hist.length - MaxHist);
 		this.setStatistics(stats);
+		DayStatistics.addOneToday();
 	}
 
 	public static getStatistics(): Statistics

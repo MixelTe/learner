@@ -40,3 +40,15 @@ export function sumStr(str: string)
 		r += parseInt(ch)
 	return r
 }
+
+export function getMonthEndDate(year: number, month: number)
+{
+	const m = new Date(year, month, 1).getMonth();
+	if (new Date(year, month, 31).getMonth() == m)
+		return 31
+	if (new Date(year, month, 30).getMonth() == m)
+		return 30
+	if (new Date(year, month, 29).getMonth() == m)
+		return 29
+	return 28
+}

@@ -19,7 +19,7 @@ body {
 	grid-template-rows: 2.5rem 1fr;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
@@ -202,6 +202,9 @@ header {
 	display: none;
 }
 :has(#p-qlists.open) #btn-qlist {
+	display: none;
+}
+:has(#p-dayStats.open) #btn-dayStats {
 	display: none;
 }
 

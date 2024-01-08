@@ -1,4 +1,5 @@
 import { Sections } from "./data/sections.js";
+import { showDayStats } from "./dayStats.js";
 import * as Lib from "./littleLib.js";
 import { showQlist } from "./qlist.js";
 import { showStats } from "./stats.js";
@@ -19,10 +20,12 @@ function closeMenu() { menu.classList.remove("open"); }
 Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
 Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
+Lib.addButtonListener("btn-dayStats", () => showDayStats(closeMenu));
 
 initMainPage();
 // showStats();
 // showQlist();
+// showDayStats();
 // new Tester(Sections[2].themes[0]).start();
 
 

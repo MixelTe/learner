@@ -12,7 +12,7 @@ const statsEl = Lib.get.div("stats");
 
 export function showStats(onSwitch: () => void = () => { })
 {
-	switchPage("stats", "Статистика", themes.common, onSwitch);
+	switchPage("stats", "Прогресс", themes.common, onSwitch);
 	statsEl.innerHTML = ""
 	const allStats = Trainer.getStatistics();
 	for (let i = 0; i < Sections.length; i++)
