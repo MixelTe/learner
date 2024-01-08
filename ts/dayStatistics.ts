@@ -1,7 +1,5 @@
 import { getMonthEndDate, getOrAdd } from "./functions.js";
-
-const statisticKey = "learner-statistics_days";
-const longestKey = "learner-statistics_days_longest";
+import { Keys } from "./keys.js";
 
 export class DayStatistics
 {
@@ -27,22 +25,22 @@ export class DayStatistics
 
 	public static getStats(): DayStatisticsMonth[]
 	{
-		return JSON.parse(localStorage.getItem(statisticKey) || "[]");
+		return JSON.parse(localStorage.getItem(Keys.dayStatistic) || "[]");
 	}
 
 	private static setStats(stats: DayStatisticsMonth[])
 	{
-		localStorage.setItem(statisticKey, JSON.stringify(stats));
+		localStorage.setItem(Keys.dayStatistic, JSON.stringify(stats));
 	}
 
 	public static getLongest(): number
 	{
-		return JSON.parse(localStorage.getItem(longestKey) || "0");
+		return JSON.parse(localStorage.getItem(Keys.dayLongest) || "0");
 	}
 
 	private static setLongest(v: number)
 	{
-		localStorage.setItem(longestKey, JSON.stringify(v));
+		localStorage.setItem(Keys.dayLongest, JSON.stringify(v));
 	}
 
 	public static getCurrent(stats: DayStatisticsMonth[])

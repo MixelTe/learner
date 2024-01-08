@@ -1,14 +1,11 @@
 import { Theme } from "./data/sections.js";
 import { DayStatistics } from "./dayStatistics.js";
 import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
+import { Keys } from "./keys.js";
 import * as Lib from "./littleLib.js";
 
 const Len = 15;
 const MaxHist = 5;
-const statisticsKey = "learner-statistics";
-const seedKey = "learner-trainerSeed";
-const turnKey = "learner-trainerTurn";
-const themeKey = "learner-trainerTheme";
 const devSelectId: number = -2;
 if (devSelectId >= -1) console.warn("DEV: devSelectId is enabled");
 
@@ -67,7 +64,7 @@ export class Trainer
 
 	public static getStatistics(): Statistics
 	{
-		const stats = JSON.parse(localStorage.getItem(statisticsKey) || "{}") as Statistics;
+		const stats = JSON.parse(localStorage.getItem(Keys.statistics) || "{}") as Statistics;
 		if (stats.v == undefined)
 			stats.v = 1
 		if (stats.themes == undefined)
@@ -89,7 +86,7 @@ export class Trainer
 
 	private static setStatistics(stats: Statistics)
 	{
-		localStorage.setItem(statisticsKey, JSON.stringify(stats));
+		localStorage.setItem(Keys.statistics, JSON.stringify(stats));
 	}
 
 	private static updateStatisticsData(stats: Statistics): Statistics
@@ -103,29 +100,29 @@ export class Trainer
 
 	private static get seed()
 	{
-		return parseInt(localStorage.getItem(seedKey) || "0", 10);
+		return parseInt(localStorage.getItem(Keys.trainerSeed) || "0", 10);
 	}
 	private static set seed(v: number)
 	{
-		localStorage.setItem(seedKey, `${v}`);
+		localStorage.setItem(Keys.trainerSeed, `${v}`);
 	}
 
 	private static get turn()
 	{
-		return parseInt(localStorage.getItem(turnKey) || "0", 10);
+		return parseInt(localStorage.getItem(Keys.trainerTurn) || "0", 10);
 	}
 	private static set turn(v: number)
 	{
-		localStorage.setItem(turnKey, `${v}`);
+		localStorage.setItem(Keys.trainerTurn, `${v}`);
 	}
 
 	private static get lastTheme()
 	{
-		return localStorage.getItem(themeKey) || "";
+		return localStorage.getItem(Keys.trainerTheme) || "";
 	}
 	private static set lastTheme(v: string)
 	{
-		localStorage.setItem(themeKey, v);
+		localStorage.setItem(Keys.trainerTheme, v);
 	}
 
 }

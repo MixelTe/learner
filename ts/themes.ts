@@ -1,3 +1,5 @@
+import { Keys } from "./keys.js";
+
 export const themes = {
 	common: "common",
 	blue: "blue",
@@ -12,7 +14,6 @@ select.addEventListener("change", () => setThemeScheme(select.value));
 const themeMetaColor = document.querySelector('meta[name="theme-color"]');
 let themeColors: ThemeColors = { light: "#a52a2a", dark: "#df4545" };
 
-const themeKey = "learner-theme";
 
 window.matchMedia("(prefers-color-scheme: dark)")
 	.addEventListener("change", () => setThemeScheme());
@@ -25,8 +26,8 @@ export function initThemes()
 
 function setThemeScheme(theme?: string)
 {
-	theme = theme || localStorage.getItem(themeKey) || "auto";
-	localStorage.setItem(themeKey, theme);
+	theme = theme || localStorage.getItem(Keys.theme) || "auto";
+	localStorage.setItem(Keys.theme, theme);
 	select.value = theme;
 
 	if (theme == "auto")
