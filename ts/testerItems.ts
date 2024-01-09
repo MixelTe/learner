@@ -139,3 +139,53 @@ export class TestItemStress extends TestItem
 		}
 	}
 }
+
+
+export class TestItemParonyms extends TestItem
+{
+	constructor(id: number, private paronyms: string[], private desc: string[] = [])
+	{
+		super(id);
+		this.paronyms = paronyms.map(v => Lib.capitalize(v.toLocaleLowerCase()))
+	}
+
+	public getQuestion(): string | Node
+	{
+		return this.paronyms.join(" - ");
+	}
+
+	public getAnswer(): string | Node
+	{
+		return Lib.Div("tester-paronyms", [
+			Lib.Div([], this.paronyms.join(" - ")),
+			...this.desc.map((v, i) => Lib.Div([], this.paronyms[i] + " - " + v))
+		]);
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		Lib.SetContent(taskEl, Lib.random.choose(this.paronyms));
+
+		Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
+			Lib.Button([], "Ответ", async btn =>
+			{
+				btn.classList.add("active");
+				await Lib.wait(200);
+
+				Lib.SetContent(taskEl, this.getAnswer());
+
+				Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
+					Lib.Button([], "Ошибся", btn => answer(false, btn)),
+					Lib.Button([], "Помню", btn => answer(true, btn)),
+				]));
+
+				async function answer(r: boolean, btn: HTMLButtonElement)
+				{
+					btn.classList.add("active");
+					await Lib.wait(200);
+					onAnswer(r);
+				}
+			}),
+		]));
+	}
+}

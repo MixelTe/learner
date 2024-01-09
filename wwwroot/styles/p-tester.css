@@ -138,3 +138,14 @@
 .tester-charSelect-wrong {
 	color: tomato;
 }
+
+.tester-paronyms > * {
+	margin-top: 0.5rem;
+}
+.tester-paronyms > :nth-child(1) {
+	text-align: center;
+	margin-top: 0;
+}
+.tester-paronyms > :nth-child(2) {
+	margin-top: 0.8rem;
+}
