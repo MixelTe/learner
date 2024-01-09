@@ -8,8 +8,8 @@ export const Sections: Section[] = [
 	{
 		name: "Русский",
 		themes: [
-			{ id: "ru_0", name: "№4 Ударения", color: themes.blue, items: ru_0 },
-			{ id: "ru_1", name: "№5 Паронимы", color: themes.blue, items: ru_1 },
+			{ id: "ru_0", name: "№4 Ударения", color: themes.blue, items: ru_0, onlyAnswerInQList: true },
+			{ id: "ru_1", name: "№5 Паронимы", color: themes.blue, items: ru_1, onlyAnswerInQList: true },
 		],
 	},
 	{
@@ -40,6 +40,7 @@ export interface Theme
 	name: string,
 	color: Themes,
 	items: TestItem[],
+	onlyAnswerInQList?: true,
 }
 
 checkIds()

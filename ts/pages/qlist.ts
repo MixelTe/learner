@@ -53,6 +53,7 @@ function showItemQs(sectionName: string, theme: Theme)
 {
 	switchPage("qlist", theme.name, theme.color, () => { }, sectionName);
 	qlistEl.innerHTML = "";
+	qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
 	const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);
 	for (const item of theme.items)
 	{
