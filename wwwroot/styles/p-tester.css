@@ -104,3 +104,33 @@
 		gap: 0.5rem;
 	}
 }
+
+.tester-charSelect {
+	display: flex;
+	align-items: center;
+	font-size: 1.5rem;
+}
+.tester-charSelect button {
+	display: flex;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	border-radius: 0.2rem;
+	padding: 0.1rem 0.4rem;
+	margin: 0 0.2rem;
+	cursor: pointer;
+	transition-property: padding, margin, border;
+	transition-duration: 150ms;
+}
+.tester-charSelect_selected button {
+	padding: 0px;
+	margin: 0px;
+	border: 0px solid transparent;
+	cursor: text;
+}
+.tester-charSelect-correct {
+	color: #00cf00;
+	text-transform: uppercase;
+}
+.tester-charSelect-wrong {
+	color: tomato;
+}

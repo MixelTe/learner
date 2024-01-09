@@ -61,3 +61,76 @@ export class TestItemSelfCheck extends TestItem
 		]));
 	}
 }
+
+export class TestItemStress extends TestItem
+{
+	private static Vowels = "аяуюоеёэиы";
+	/**
+	 * @param task слово с выделенной ударной гласной
+	 */
+	constructor(id: number, private task: string)
+	{
+		super(id);
+		if (!task.match(/[АЯУЮОЕЁЭИЫ]/))
+			console.error(`TestItemStress[${id}] word dont have stress: ${task}`);
+	}
+
+	public getQuestion(): string | Node
+	{
+		return this.task.toLowerCase();
+	}
+
+	public getAnswer(): string | Node
+	{
+		return this.task;
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		inputEl.innerHTML = "";
+		const els = this.task.split("").map((ch, i) =>
+		{
+			const chl = ch.toLocaleLowerCase();
+			if (TestItemStress.Vowels.includes(chl))
+			{
+				return Lib.Button([], chl, () =>
+				{
+					showAnsw(i);
+				});
+			}
+			return Lib.Span([], chl);
+		});
+		const wordEl = Lib.Div("tester-charSelect", els);
+		Lib.SetContent(taskEl, wordEl);
+
+		const showAnsw = (I: number) =>
+		{
+			wordEl.classList.add("tester-charSelect_selected");
+			let wrong = false;
+			for (let i = 0; i < els.length; i++)
+			{
+				const el = els[i];
+				const ch = this.task[i]
+				const chl = ch.toLocaleLowerCase();
+				const correct = ch != chl && TestItemStress.Vowels.includes(chl);
+				if (correct)
+					el.classList.add("tester-charSelect-correct");
+				else if (i == I)
+				{
+					el.classList.add("tester-charSelect-wrong");
+					wrong = true;
+				}
+
+				if (el instanceof HTMLButtonElement)
+					el.disabled = true;
+			}
+			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
+				Lib.Button([], "Далее", async btn =>
+				{
+					btn.classList.add("active");
+					onAnswer(!wrong);
+				}),
+			]));
+		}
+	}
+}
