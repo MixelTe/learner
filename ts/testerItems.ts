@@ -68,7 +68,7 @@ export class TestItemStress extends TestItem
 	/**
 	 * @param task слово с выделенной ударной гласной
 	 */
-	constructor(id: number, private task: string)
+	constructor(id: number, private task: string, private desc = "")
 	{
 		super(id);
 		if (!task.match(/[АЯУЮОЕЁЭИЫ]/))
@@ -77,7 +77,7 @@ export class TestItemStress extends TestItem
 
 	public getQuestion(): string | Node
 	{
-		return this.task.toLowerCase();
+		return this.task.toLowerCase() + " " + this.desc;
 	}
 
 	public getAnswer(): string | Node
@@ -93,13 +93,16 @@ export class TestItemStress extends TestItem
 			const chl = ch.toLocaleLowerCase();
 			if (TestItemStress.Vowels.includes(chl))
 			{
-				return Lib.Button([], chl, () =>
+				return Lib.Button([], chl == "ё" ? "e" : chl, () =>
 				{
 					showAnsw(i);
 				});
 			}
 			return Lib.Span([], chl);
 		});
+		if (this.desc.length > 0)
+			els.push(Lib.Span("tester-charSelect-desc", this.desc));
+
 		const wordEl = Lib.Div("tester-charSelect", els);
 		Lib.SetContent(taskEl, wordEl);
 
@@ -107,12 +110,14 @@ export class TestItemStress extends TestItem
 		{
 			wordEl.classList.add("tester-charSelect_selected");
 			let wrong = false;
-			for (let i = 0; i < els.length; i++)
+			for (let i = 0; i < this.task.length; i++)
 			{
 				const el = els[i];
 				const ch = this.task[i]
 				const chl = ch.toLocaleLowerCase();
 				const correct = ch != chl && TestItemStress.Vowels.includes(chl);
+				if (chl == "ё")
+					el.innerText = chl;
 				if (correct)
 					el.classList.add("tester-charSelect-correct");
 				else if (i == I)

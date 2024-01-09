@@ -110,6 +110,10 @@
 	align-items: center;
 	font-size: 1.5rem;
 }
+.tester-charSelect-desc {
+	font-size: 1.2rem;
+	margin-left: 0.6rem;
+}
 .tester-charSelect button {
 	display: flex;
 	background-color: transparent;
