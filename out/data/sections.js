@@ -1,11 +1,13 @@
 import { themes } from "../themes.js";
 import { phy_0 } from "./phy_0.js";
+import { ru_0 } from "./ru_0.js";
+import { ru_1 } from "./ru_1.js";
 export const Sections = [
     {
         name: "Русский",
         themes: [
-        // { id: "ru_0", name: "Тема 1", color: themes.blue, items: [] },
-        // { id: "ru_1", name: "Тема 2", color: themes.blue, items: [] },
+            { id: "ru_0", name: "№4 Ударения", color: themes.blue, items: ru_0, onlyAnswerInQList: true },
+            { id: "ru_1", name: "№5 Паронимы", color: themes.blue, items: ru_1, onlyAnswerInQList: true },
         ],
     },
     {

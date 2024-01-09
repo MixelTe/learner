@@ -148,6 +148,8 @@
 #p-qlist {
 	padding-block: 2rem;
 	margin-inline: auto;
+	width: 100%;
+    max-width: 700px;
 }
 #p-qlist.open {
 	display: block;
@@ -156,7 +158,7 @@
 #qlist {
 	display: grid;
 	grid-template-columns: 4fr 6fr;
-	max-width: 700px;
+	min-width: 300px;
 }
 
 #qlist > div {
@@ -224,4 +226,18 @@
 		left: auto;
 		right: 0.1rem;
 	}
+}
+
+#qlist.qlist_single {
+	grid-template-columns: 1fr;
+}
+#qlist.qlist_single > div:nth-child(2n - 1) {
+	border: none;
+	padding-bottom: 0;
+}
+#qlist.qlist_single > div:nth-child(2n) {
+	padding-top: 0;
+}
+#qlist.qlist_single > div:nth-child(2n - 1) .qlist-cell {
+	display: none;
 }

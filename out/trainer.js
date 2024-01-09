@@ -4,13 +4,20 @@ import { Keys } from "./keys.js";
 import * as Lib from "./littleLib.js";
 const Len = 15;
 const MaxHist = 5;
-const devSelectId = -2;
-if (devSelectId >= -1)
+const devSelectId = -3; // -1 - last; -2 - all in same order; -3 - normal
+if (devSelectId >= -2)
     console.warn("DEV: devSelectId is enabled");
 export class Trainer {
     static selectTasks(theme) {
-        if (devSelectId >= -1) {
-            const item = devSelectId == -1 ? theme.items.at(-1) : theme.items.find(v => v.id == devSelectId);
+        if (devSelectId == -1) {
+            const item = theme.items.at(-1);
+            return item ? [item] : [];
+        }
+        else if (devSelectId == -2) {
+            return theme.items;
+        }
+        else if (devSelectId >= 0) {
+            const item = theme.items.find(v => v.id == devSelectId);
             return item ? [item] : [];
         }
         if (this.lastTheme != theme.id) {

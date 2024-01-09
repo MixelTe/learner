@@ -39,6 +39,7 @@ export function showQlist(onSwitch = () => { }) {
 function showItemQs(sectionName, theme) {
     switchPage("qlist", theme.name, theme.color, () => { }, sectionName);
     qlistEl.innerHTML = "";
+    qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
     const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);
     for (const item of theme.items) {
         const stat = stats?.items?.find?.(v => v.id == item.id)?.hist || "";

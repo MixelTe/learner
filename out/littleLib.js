@@ -25,6 +25,7 @@ export const random = {
     boolean: random_boolean,
     asbOrNot: random_asbOrNot,
     shuffle: shuffle,
+    choose: chooseRandom,
 };
 export const other = {
     wait
@@ -188,6 +189,9 @@ export function randomInt(maxmin, max) {
 }
 export function shuffle(array) {
     return array.sort(() => 0.5 - Math.random());
+}
+export function chooseRandom(array) {
+    return array[randomInt(array.length)];
 }
 //other
 export function square(num) {
