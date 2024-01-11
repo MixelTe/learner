@@ -87,7 +87,10 @@ export class TestItemStress extends TestItem
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
-		inputEl.innerHTML = "";
+		const inputBtn = Lib.Button([], "Далее");
+		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+		Lib.SetContent(inputEl, inputDiv);
+
 		const els = this.task.split("").map((ch, i) =>
 		{
 			const chl = ch.toLocaleLowerCase();
@@ -129,13 +132,13 @@ export class TestItemStress extends TestItem
 				if (el instanceof HTMLButtonElement)
 					el.disabled = true;
 			}
-			Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
-				Lib.Button([], "Далее", async btn =>
-				{
-					btn.classList.add("active");
-					onAnswer(!wrong);
-				}),
-			]));
+
+			inputDiv.classList.remove("tester-input-one_hidden")
+			inputBtn.addEventListener("click", async () =>
+			{
+				inputBtn.classList.add("active");
+				onAnswer(!wrong);
+			});
 		}
 	}
 }
@@ -188,5 +191,95 @@ export class TestItemParonyms extends TestItem
 				}
 			}),
 		]));
+	}
+}
+
+
+export class TestItemWordChoice extends TestItem
+{
+	private beforeTask = "";
+	private afterTask = "";
+	private choices: string[] = [];
+	private rightChoiceI = -1;
+	/**
+	 * @param task "Sky are [red|+blue|green], roses are red."
+	 *
+	 * "4 [/+|+-|*|//] 1 = 3"
+	 */
+	constructor(id: number, private task: string)
+	{
+		super(id);
+		const start = task.indexOf("[")
+		const end = task.indexOf("]")
+		if (start < 0 || end < 0)
+		{
+			console.error(`TestItemWordChoice[${id}] task dont have choices: ${task}`);
+			return;
+		}
+		this.beforeTask = task.slice(0, start);
+		this.choices = task.slice(start + 1, end).split("|");
+		this.afterTask = task.slice(end + 1);
+		for (let i = 0; i < this.choices.length; i++)
+		{
+			const choice0 = this.choices[i][0]
+			if (choice0 == "+")
+				this.rightChoiceI = i;
+			if (choice0 == "/" || choice0 == "+")
+				this.choices[i] = this.choices[i].slice(1);
+			this.choices[i] = this.choices[i].trim();
+		}
+	}
+
+	public getQuestion(): string | Node
+	{
+		return this.beforeTask + "[" + this.choices.join(" | ") + "]" + this.afterTask;
+	}
+
+	public getAnswer(): string | Node
+	{
+		return this.beforeTask + this.choices[this.rightChoiceI] + this.afterTask;
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		const inputBtn = Lib.Button([], "Далее");
+		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+		Lib.SetContent(inputEl, inputDiv);
+
+		const btns = this.choices.map((v, i) => Lib.Button([], v, () => showAns(i)));
+		const choicesEl = Lib.Div("tester-wordChoice-choices", btns);
+		const el = Lib.Div("tester-wordChoice", [
+			Lib.Div("tester-wordChoice-text", this.beforeTask),
+			choicesEl,
+			Lib.Div("tester-wordChoice-text", this.afterTask),
+		])
+		Lib.SetContent(taskEl, el);
+
+		const showAns = (I: number) =>
+		{
+			if (I < this.rightChoiceI)
+				el.classList.add("tester-wordChoice-bottom")
+			if (I > this.rightChoiceI)
+				el.classList.add("tester-wordChoice-top")
+
+			for (let i = 0; i < btns.length; i++)
+			{
+				const btn = btns[i];
+				btn.disabled = true;
+				if (i == this.rightChoiceI)
+					btn.classList.add("tester-wordChoice-correct")
+				else if (i == I)
+					btn.classList.add("tester-wordChoice-wrong")
+				else
+					btn.classList.add("tester-wordChoice-hide")
+			}
+
+			inputDiv.classList.remove("tester-input-one_hidden")
+			inputBtn.addEventListener("click", async () =>
+			{
+				inputBtn.classList.add("active");
+				onAnswer(I == this.rightChoiceI);
+			});
+		}
 	}
 }

@@ -38,6 +38,15 @@
 	justify-self: center;
 }
 
+.tester-input-one {
+	transition: max-height 300ms;
+	max-height: 5em;
+	overflow: clip;
+	overflow-clip-margin: 10px;
+}
+.tester-input-one_hidden {
+	max-height: 0;
+}
 
 .tester-input-two {
 	display: flex;
@@ -57,13 +66,18 @@
 .tester-input-one button {
 	border-radius: 0.3em;
 	box-shadow: 0 0 0 var(--c-title);
-	transition: box-shadow 300ms;
+	transition: box-shadow 300ms, opacity 300ms;
 }
 .tester-input-two button:first-child {
 	border-radius: 0.3em 0 0 0.3em;
 }
 .tester-input-two button:last-child {
 	border-radius: 0 0.3em 0.3em 0;
+}
+
+.tester-input-one_hidden button {
+	opacity: 0;
+	pointer-events: none;
 }
 
 .tester-input-two button::before {
@@ -98,7 +112,8 @@
 	box-shadow: 0 0 3px 6px var(--c-title);
 }
 
-@media screen and (max-width: 550px), screen and (max-height: 550px) {
+@media screen and (max-width: 550px),
+screen and (max-height: 550px) {
 	.tester {
 		border: none;
 		flex-grow: 1;
@@ -149,10 +164,80 @@
 	margin-top: 0;
 }
 .tester-paronyms > :nth-child(2) {
-    display: block;
-    margin-inline: auto;
-    height: 1px;
-    width: 3rem;
-    background-color: var(--c-title);
-    opacity: 0.5;
+	display: block;
+	margin-inline: auto;
+	height: 1px;
+	width: 3rem;
+	background-color: var(--c-title);
+	opacity: 0.5;
+}
+
+.tester-wordChoice {
+	display: flex;
+	align-items: center;
+}
+
+.tester-wordChoice-text {
+	transition: transform 150ms;
+}
+.tester-wordChoice-top > .tester-wordChoice-text {
+	transform: translateY(-0.8em);
+}
+.tester-wordChoice-bottom > .tester-wordChoice-text {
+	transform: translateY(0.7em);
+}
+
+.tester-wordChoice-choices {
+	display: flex;
+	flex-direction: column;
+}
+
+.tester-wordChoice-choices button {
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	padding: 0.1rem 0.4rem;
+	margin: 0 0.2rem;
+	margin-bottom: -1px;
+	max-height: 2em;
+	max-width: 20em;
+	cursor: pointer;
+	transition-property: padding, margin, border, max-height, max-width;
+	transition-duration: 150ms;
+}
+.tester-wordChoice-choices button:first-child {
+	border-top-left-radius: 0.2rem;
+	border-top-right-radius: 0.2rem;
+}
+.tester-wordChoice-choices button:last-child {
+	border-bottom-left-radius: 0.2rem;
+	border-bottom-right-radius: 0.2rem;
+}
+
+.tester-wordChoice-choices .tester-wordChoice-correct {
+	color: #00cf00;
+	border: 0px solid transparent;
+	margin: 0;
+	padding: 0 0.1rem;
+}
+.tester-wordChoice-top .tester-wordChoice-correct {
+	border-bottom: 1px solid var(--c-title);
+}
+.tester-wordChoice-bottom .tester-wordChoice-correct {
+	border-top: 1px solid var(--c-title);
+}
+
+.tester-wordChoice-choices .tester-wordChoice-wrong {
+	color: tomato;
+	border: 0px solid transparent;
+	margin: 0;
+	padding: 0 0.1rem;
+}
+
+.tester-wordChoice-choices .tester-wordChoice-hide {
+	max-height: 0;
+	max-width: 0;
+	overflow: hidden;
+	border: 0px solid transparent;
+	margin: 0;
+	padding: 0px;
 }
