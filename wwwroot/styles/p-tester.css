@@ -10,6 +10,8 @@
 	box-sizing: border-box;
 	border: 2px solid var(--c-title);
 	border-radius: 0.8rem;
+	transition-property: width, height;
+	transition-duration: 200ms;
 }
 
 .tester-head {
@@ -147,5 +149,10 @@
 	margin-top: 0;
 }
 .tester-paronyms > :nth-child(2) {
-	margin-top: 0.8rem;
+    display: block;
+    margin-inline: auto;
+    height: 1px;
+    width: 3rem;
+    background-color: var(--c-title);
+    opacity: 0.5;
 }

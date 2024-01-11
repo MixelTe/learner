@@ -158,6 +158,7 @@ export class TestItemParonyms extends TestItem
 	{
 		return Lib.Div("tester-paronyms", [
 			Lib.Div([], this.paronyms.join(" - ")),
+			this.desc.length > 0 ? Lib.Div() : "",
 			...this.desc.map((v, i) => Lib.Div([], this.paronyms[i] + " - " + v))
 		]);
 	}
