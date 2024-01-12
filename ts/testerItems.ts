@@ -204,7 +204,7 @@ export class TestItemWordChoice extends TestItem
 	/**
 	 * @param task "Sky are [red|+blue|green], roses are red."
 	 *
-	 * "4 [/+|+-|*|//] 1 = 3"
+	 * "4 [ +|+-|*|/] 1 = 3"
 	 */
 	constructor(id: number, private task: string)
 	{
@@ -223,9 +223,10 @@ export class TestItemWordChoice extends TestItem
 		{
 			const choice0 = this.choices[i][0]
 			if (choice0 == "+")
+			{
 				this.rightChoiceI = i;
-			if (choice0 == "/" || choice0 == "+")
 				this.choices[i] = this.choices[i].slice(1);
+			}
 			this.choices[i] = this.choices[i].trim();
 		}
 		if (this.rightChoiceI < 0)
@@ -269,7 +270,11 @@ export class TestItemWordChoice extends TestItem
 				const btn = btns[i];
 				btn.disabled = true;
 				if (i == this.rightChoiceI)
+				{
 					btn.classList.add("tester-wordChoice-correct")
+					if (btn.innerText == "")
+						btn.classList.add("tester-wordChoice-correct_empty")
+				}
 				else if (i == I)
 				{
 					btn.classList.add("tester-wordChoice-wrong")

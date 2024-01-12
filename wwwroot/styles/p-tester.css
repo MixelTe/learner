@@ -222,6 +222,10 @@ screen and (max-height: 550px) {
 	cursor: text;
 	user-select: text;
 }
+.tester-wordChoice-choices .tester-wordChoice-correct_empty {
+	background-color: #00d10033;
+	width: 0.5em;
+}
 .tester-wordChoice-top .tester-wordChoice-correct {
 	border-bottom: 1px solid var(--c-title);
 }
