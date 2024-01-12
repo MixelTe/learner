@@ -181,7 +181,7 @@ screen and (max-height: 550px) {
 	transition: transform 150ms;
 }
 .tester-wordChoice-top > .tester-wordChoice-text {
-	transform: translateY(-0.8em);
+	transform: translateY(-0.7em);
 }
 .tester-wordChoice-bottom > .tester-wordChoice-text {
 	transform: translateY(0.7em);
@@ -198,6 +198,7 @@ screen and (max-height: 550px) {
 	padding: 0.1rem 0.4rem;
 	margin: 0 0.2rem;
 	margin-bottom: -1px;
+	height: 1.4em;
 	max-height: 2em;
 	max-width: 20em;
 	cursor: pointer;
@@ -218,6 +219,8 @@ screen and (max-height: 550px) {
 	border: 0px solid transparent;
 	margin: 0;
 	padding: 0 0.1rem;
+	cursor: text;
+	user-select: text;
 }
 .tester-wordChoice-top .tester-wordChoice-correct {
 	border-bottom: 1px solid var(--c-title);
@@ -231,6 +234,11 @@ screen and (max-height: 550px) {
 	border: 0px solid transparent;
 	margin: 0;
 	padding: 0 0.1rem;
+	cursor: text;
+	user-select: text;
+}
+.tester-wordChoice-choices .tester-wordChoice-wrong_empty {
+	background-color: rgba(255, 99, 71, 0.075);
 }
 
 .tester-wordChoice-choices .tester-wordChoice-hide {

@@ -228,6 +228,8 @@ export class TestItemWordChoice extends TestItem
 				this.choices[i] = this.choices[i].slice(1);
 			this.choices[i] = this.choices[i].trim();
 		}
+		if (this.rightChoiceI < 0)
+			console.error(`TestItemWordChoice[${id}] task dont have right choice: ${task}`);
 	}
 
 	public getQuestion(): string | Node
@@ -269,7 +271,11 @@ export class TestItemWordChoice extends TestItem
 				if (i == this.rightChoiceI)
 					btn.classList.add("tester-wordChoice-correct")
 				else if (i == I)
+				{
 					btn.classList.add("tester-wordChoice-wrong")
+					if (btn.innerText == "")
+						btn.classList.add("tester-wordChoice-wrong_empty")
+				}
 				else
 					btn.classList.add("tester-wordChoice-hide")
 			}
