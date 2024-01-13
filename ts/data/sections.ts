@@ -6,6 +6,7 @@ import { ru_4 } from "./ru_4.js"
 import { ru_5 } from "./ru_5.js"
 import { ru_6 } from "./ru_6.js"
 import { ru_7 } from "./ru_7.js"
+import { ru_8 } from "./ru_8.js"
 
 export const Sections: Section[] = [
 	{
@@ -16,6 +17,7 @@ export const Sections: Section[] = [
 			{ id: "ru_5", name: "№5 Паронимы", color: themes.blue, items: ru_5, onlyAnswerInQList: true },
 			{ id: "ru_6", name: "№6 Лексические нормы", color: themes.blue, items: ru_6 },
 			{ id: "ru_7", name: "№7 Формы слова", color: themes.blue, items: ru_7, onlyAnswerInQList: true },
+			{ id: "ru_8", name: "№8 Грамматические нормы", color: themes.blue, items: ru_8, onlyAnswerInQList: true },
 		],
 	},
 	{

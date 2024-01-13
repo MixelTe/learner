@@ -39,6 +39,37 @@ export class DocBuilder
 		return this;
 	}
 
+	public textColored(color: string, ...text: string[])
+	{
+		if (text.length != 0)
+		{
+			if (text.length == 1)
+			{
+				const el = Span([], text[0]);
+				el.style.color = color;
+				this.body.appendChild(el);
+			}
+			else
+				text.forEach(t =>
+				{
+					const el = Div([], t);
+					el.style.color = color;
+					this.body.appendChild(el);
+				});
+		}
+		return this;
+	}
+
+	public textErr(...text: string[])
+	{
+		return this.textColored("tomato", ...text);
+	}
+
+	public textCor(...text: string[])
+	{
+		return this.textColored("#02a102", ...text);
+	}
+
 	public ul(...lis: (string | DocBuilder)[])
 	{
 		this.body.appendChild(initEl("ul", [],
