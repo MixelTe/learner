@@ -1,7 +1,7 @@
 import { TestItem } from "../tester.js";
 import { TestItemWordChoice } from "../testerItems.js";
 
-export const ru_2: TestItem[] = [
+export const ru_7: TestItem[] = [
 	new TestItemWordChoice(1, "любимые ПРОФЕССОР[+А|Ы]"),
 	new TestItemWordChoice(2, "в ДВУХ[+СТАХ|СОТ] метрах"),
 	new TestItemWordChoice(3, "в [+ИХ|ИХНЕМ] отчте"),
