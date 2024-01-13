@@ -149,7 +149,7 @@ screen and (max-height: 550px) {
 	cursor: text;
 }
 .tester-charSelect-correct {
-	color: #00cf00;
+	color: #02a102;
 	text-transform: uppercase;
 }
 .tester-charSelect-wrong {
@@ -215,7 +215,7 @@ screen and (max-height: 550px) {
 }
 
 .tester-wordChoice-choices .tester-wordChoice-correct {
-	color: #00cf00;
+	color: #02a102;
 	border: 0px solid transparent;
 	margin: 0;
 	padding: 0 0.1rem;
@@ -297,7 +297,7 @@ screen and (max-height: 550px) {
 	user-select: text;
 }
 .tester-input-many .tester-input-many-correct {
-	border-color: #00cf00;
+	border-color: #02a102;
 }
 .tester-input-many .tester-input-many-wrong {
 	border-color: tomato;
@@ -354,7 +354,7 @@ screen and (max-height: 550px) {
 }
 
 .tester-chooseWord-correct {
-	color: #00cf00;
+	color: #02a102;
 }
 
 .tester-chooseWord-wrong {

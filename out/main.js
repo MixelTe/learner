@@ -20,7 +20,7 @@ initMainPage();
 // showStats();
 // showQlist();
 // showDayStats();
-// new Tester(Sections[0].themes[3]).start();
+// new Tester(Sections[0].themes[5]).start();
 async function initMainPage() {
     const sections = Lib.get.div("sections");
     const sectionTemplate = Lib.getEl("template-section", HTMLTemplateElement);
@@ -33,8 +33,10 @@ async function initMainPage() {
         label.innerText = s.name;
         label.htmlFor = input.id;
         const themes = section.querySelector(".sectionSelection-list");
+        themes.style.setProperty("--max-height", `${s.themes.length * 3 + 2}rem`);
         for (const theme of s.themes) {
             themes.appendChild(Lib.Button([], theme.name, () => {
+                input.checked = false;
                 new Tester(theme).start();
             }));
         }

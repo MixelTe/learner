@@ -28,7 +28,7 @@
 
 .sectionSelection > div {
 	position: relative;
-	width: 200px;
+	width: 256px;
 	padding-left: 1em;
 	margin-left: 0.4em;
 }
@@ -54,7 +54,7 @@
 	transition: all 200ms;
 }
 .sectionSelection input:checked ~ .sectionSelection-list {
-	max-height: 10rem;
+	max-height: var(--max-height, 10rem);
 }
 
 .sectionSelection-marker {
