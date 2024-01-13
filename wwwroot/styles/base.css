@@ -19,7 +19,7 @@ body {
 	grid-template-rows: 2.5rem 1fr;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;

@@ -157,6 +157,7 @@ export class TestItemStress extends TestItem
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
 		const inputBtn = Lib.Button([], "Далее");
+		inputBtn.disabled = true;
 		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
 		Lib.SetContent(inputEl, inputDiv);
 
@@ -203,6 +204,7 @@ export class TestItemStress extends TestItem
 			}
 
 			inputDiv.classList.remove("tester-input-one_hidden")
+			inputBtn.disabled = false;
 			inputBtn.addEventListener("click", async () =>
 			{
 				inputBtn.classList.add("active");
@@ -316,6 +318,7 @@ export class TestItemWordChoice extends TestItem
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
 		const inputBtn = Lib.Button([], "Далее");
+		inputBtn.disabled = true;
 		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
 		Lib.SetContent(inputEl, inputDiv);
 
@@ -356,11 +359,79 @@ export class TestItemWordChoice extends TestItem
 			}
 
 			inputDiv.classList.remove("tester-input-one_hidden")
+			inputBtn.disabled = false;
 			inputBtn.addEventListener("click", async () =>
 			{
 				inputBtn.classList.add("active");
 				onAnswer(I == this.rightChoiceI);
 			});
 		}
+	}
+}
+
+export class TestItemChooseWord extends TestItem
+{
+	private parts: string[] = [];
+	private words: string[] = [];
+	private answerI: number[] = [];
+	constructor(id: number, task: string, ans: string)
+	{
+		super(id);
+		this.parts = task.split(" ");
+		this.words = this.parts.map(part => part.replace(/[^а-яА-Я ёЁ]/g, '').trim().toLowerCase());
+		this.answerI = ans.split("|").map(word =>
+		{
+			const i = this.words.indexOf(word.trim().toLowerCase())
+			if (i < 0)
+				console.error(`TestItemChooseWord[${id}] choice does not exist: ${word}`);
+			return i;
+		});
+		if (this.answerI.length == 0)
+			console.error(`TestItemChooseWord[${id}] task dont have right choice: ${task}`);
+	}
+
+	public getQuestion(): string | Node
+	{
+		return this.parts.join(" ");
+	}
+
+	public getAnswer(): string | Node
+	{
+		return this.answerI.map(i => this.words[i]).join("|");
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		const inputBtn = Lib.Button([], "Далее");
+		inputBtn.disabled = true;
+		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+		Lib.SetContent(inputEl, inputDiv);
+
+		const btns = this.parts.map((part, I) => Lib.Button([], part, () =>
+		{
+			task.classList.add("tester-chooseWord_normal");
+			for (let i = 0; i < this.parts.length; i++)
+			{
+				const btn = btns[i];
+				btn.disabled = true;
+				if (this.answerI.includes(i))
+					btn.classList.add("tester-chooseWord-correct")
+				else if (i == I)
+					btn.classList.add("tester-chooseWord-wrong")
+			}
+
+			inputDiv.classList.remove("tester-input-one_hidden")
+			inputBtn.disabled = false;
+			inputBtn.addEventListener("click", async () =>
+			{
+				inputBtn.classList.add("active");
+				onAnswer(this.answerI.includes(I));
+			});
+		}));
+		const task = Lib.Div("tester-chooseWord", btns);
+		Lib.SetContent(taskEl, [
+			Lib.initEl("h5", [], "Исправьте лексическую ошибку, исключив лишнее слово"),
+			task,
+		]);
 	}
 }

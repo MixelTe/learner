@@ -302,3 +302,61 @@ screen and (max-height: 550px) {
 .tester-input-many .tester-input-many-wrong {
 	border-color: tomato;
 }
+
+.tester-chooseWord {
+	margin-top: 0.5rem;
+}
+
+.tester-chooseWord button {
+	position: relative;
+	flex-grow: 1;
+	margin: 1px;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	padding: 0.05em 0.3em;
+	border-radius: 0.2rem;
+	cursor: pointer;
+	user-select: none;
+	transition-property: padding, margin, border;
+	transition-duration: 150ms;
+}
+
+.tester-chooseWord_normal button {
+	padding: 0px;
+	border: 0px solid transparent;
+	margin: 0.1em;
+	cursor: text;
+	user-select: text;
+}
+
+.tester-chooseWord button::before,
+.tester-chooseWord button::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 0;
+	height: 1px;
+	background-color: var(--c-text);
+	transition: width 300ms 300ms;
+	opacity: 0.5;
+}
+.tester-chooseWord button::before {
+	left: 0;
+	transform: rotate(8deg);
+}
+.tester-chooseWord button::after {
+	right: 0;
+	transform: rotate(-8deg);
+}
+.tester-chooseWord .tester-chooseWord-correct::before,
+.tester-chooseWord .tester-chooseWord-correct::after {
+	width: 100%;
+}
+
+.tester-chooseWord-correct {
+	color: #00cf00;
+}
+
+.tester-chooseWord-wrong {
+	color: tomato;
+}
