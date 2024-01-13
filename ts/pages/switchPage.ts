@@ -22,7 +22,7 @@ const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 let curPage: Page = "main";
 let mouse = { x: 0, y: 0 };
 window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
-const instant = false;
+const instant = true;
 if (instant) console.warn("DEV: instant is enabled");
 
 export async function switchPage(page: Page, title = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "")
