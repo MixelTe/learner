@@ -51,6 +51,9 @@ header {
 	align-items: center;
 	justify-content: center;
 }
+#title {
+	text-align: center;
+}
 #subtitle {
 	position: absolute;
     top: 0;
