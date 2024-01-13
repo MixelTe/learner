@@ -14,6 +14,10 @@ export class DocBuilder {
         this.body.classList.add("doc-center");
         return this;
     }
+    title(text) {
+        this.body.appendChild(initEl("h3", [], text));
+        return this;
+    }
     text(...text) {
         if (text.length != 0) {
             if (text.length == 1)
@@ -21,6 +25,10 @@ export class DocBuilder {
             else
                 text.forEach(t => this.body.appendChild(Div([], t)));
         }
+        return this;
+    }
+    ul(...lis) {
+        this.body.appendChild(initEl("ul", [], lis.map(li => initEl("li", [], li instanceof DocBuilder ? li.html() : li))));
         return this;
     }
     br() {

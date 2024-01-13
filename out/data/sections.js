@@ -1,15 +1,19 @@
 import { themes } from "../themes.js";
 import { phy_0 } from "./phy_0.js";
-import { ru_0 } from "./ru_0.js";
-import { ru_1 } from "./ru_1.js";
-import { ru_2 } from "./ru_2.js";
+import { ru_3 } from "./ru_3.js";
+import { ru_4 } from "./ru_4.js";
+import { ru_5 } from "./ru_5.js";
+import { ru_6 } from "./ru_6.js";
+import { ru_7 } from "./ru_7.js";
 export const Sections = [
     {
         name: "Русский",
         themes: [
-            { id: "ru_0", name: "№4 Ударения", color: themes.blue, items: ru_0, onlyAnswerInQList: true },
-            { id: "ru_1", name: "№5 Паронимы", color: themes.blue, items: ru_1, onlyAnswerInQList: true },
-            { id: "ru_2", name: "№7 Формы слова", color: themes.blue, items: ru_2, onlyAnswerInQList: true },
+            { id: "ru_3", name: "№3 Стили речи", color: themes.blue, items: ru_3 },
+            { id: "ru_4", name: "№4 Ударения", color: themes.blue, items: ru_4, onlyAnswerInQList: true },
+            { id: "ru_5", name: "№5 Паронимы", color: themes.blue, items: ru_5, onlyAnswerInQList: true },
+            { id: "ru_6", name: "№6 Лексические нормы", color: themes.blue, items: ru_6 },
+            { id: "ru_7", name: "№7 Формы слова", color: themes.blue, items: ru_7, onlyAnswerInQList: true },
         ],
     },
     {

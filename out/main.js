@@ -20,7 +20,7 @@ initMainPage();
 // showStats();
 // showQlist();
 // showDayStats();
-// new Tester(Sections[0].themes[2]).start();
+new Tester(Sections[0].themes[3]).start();
 async function initMainPage() {
     const sections = Lib.get.div("sections");
     const sectionTemplate = Lib.getEl("template-section", HTMLTemplateElement);

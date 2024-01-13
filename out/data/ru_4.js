@@ -1,5 +1,5 @@
 import { TestItemStress } from "../testerItems.js";
-export const ru_0 = [
+export const ru_4 = [
     new TestItemStress(0, "аэропОрты"),
     new TestItemStress(1, "бАнты"),
     new TestItemStress(2, "бОроду"),

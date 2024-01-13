@@ -44,6 +44,63 @@ export class TestItemSelfCheck extends TestItem {
         ]));
     }
 }
+export class TestItemChoice extends TestItem {
+    task;
+    choices;
+    answerI = -1;
+    constructor(id, task, choices, shuffle = true) {
+        super(id);
+        this.task = task;
+        this.choices = choices;
+        if (shuffle)
+            Lib.shuffle(choices);
+        for (let i = 0; i < choices.length; i++) {
+            if (choices[i][0] == "+") {
+                this.answerI = i;
+                choices[i] = choices[i].slice(1);
+            }
+            choices[i] = choices[i].trim();
+        }
+        if (this.answerI < 0)
+            console.error(`TestItemChoice[${id}] task dont have right choice:`, this.getQuestion(), choices);
+    }
+    getQuestion() {
+        if (typeof this.task == "string")
+            return this.task;
+        return this.task.html(true);
+    }
+    getAnswer() {
+        return this.choices[this.answerI];
+    }
+    async show(taskEl, inputEl, onAnswer) {
+        if (typeof this.task == "string")
+            taskEl.innerText = this.task;
+        else
+            Lib.SetContent(taskEl, this.task.html());
+        let right = false;
+        const btns = this.choices.map((v, I) => Lib.Button([], v, async () => {
+            right = I == this.answerI;
+            for (let i = 0; i < this.choices.length; i++) {
+                const btn = btns[i];
+                btn.disabled = true;
+                if (i == this.answerI)
+                    btn.classList.add("tester-input-many-correct");
+                else if (i == I)
+                    btn.classList.add("tester-input-many-wrong");
+                else
+                    btn.classList.add("tester-input-many-hidden");
+            }
+            btnNext.disabled = false;
+            btnNext.classList.remove("tester-input-many-hidden");
+        }));
+        const btnNext = Lib.Button("tester-input-many-hidden", "Далее", () => {
+            onAnswer(right);
+        });
+        btnNext.disabled = true;
+        btns.push(btnNext);
+        Lib.SetContent(inputEl, Lib.Div("tester-input-many", btns));
+    }
+}
 export class TestItemStress extends TestItem {
     task;
     desc;
@@ -66,6 +123,7 @@ export class TestItemStress extends TestItem {
     }
     async show(taskEl, inputEl, onAnswer) {
         const inputBtn = Lib.Button([], "Далее");
+        inputBtn.disabled = true;
         const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
         Lib.SetContent(inputEl, inputDiv);
         const els = this.task.split("").map((ch, i) => {
@@ -101,6 +159,7 @@ export class TestItemStress extends TestItem {
                     el.disabled = true;
             }
             inputDiv.classList.remove("tester-input-one_hidden");
+            inputBtn.disabled = false;
             inputBtn.addEventListener("click", async () => {
                 inputBtn.classList.add("active");
                 onAnswer(!wrong);
@@ -190,6 +249,7 @@ export class TestItemWordChoice extends TestItem {
     }
     async show(taskEl, inputEl, onAnswer) {
         const inputBtn = Lib.Button([], "Далее");
+        inputBtn.disabled = true;
         const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
         Lib.SetContent(inputEl, inputDiv);
         const btns = this.choices.map((v, i) => Lib.Button([], v, () => showAns(i)));
@@ -222,10 +282,63 @@ export class TestItemWordChoice extends TestItem {
                     btn.classList.add("tester-wordChoice-hide");
             }
             inputDiv.classList.remove("tester-input-one_hidden");
+            inputBtn.disabled = false;
             inputBtn.addEventListener("click", async () => {
                 inputBtn.classList.add("active");
                 onAnswer(I == this.rightChoiceI);
             });
         };
+    }
+}
+export class TestItemChooseWord extends TestItem {
+    parts = [];
+    words = [];
+    answerI = [];
+    constructor(id, task, ans) {
+        super(id);
+        this.parts = task.split(" ");
+        this.words = this.parts.map(part => part.replace(/[^а-яА-Я ёЁ]/g, '').trim().toLowerCase());
+        this.answerI = ans.split("|").map(word => {
+            const i = this.words.indexOf(word.trim().toLowerCase());
+            if (i < 0)
+                console.error(`TestItemChooseWord[${id}] choice does not exist: ${word}`);
+            return i;
+        });
+        if (this.answerI.length == 0)
+            console.error(`TestItemChooseWord[${id}] task dont have right choice: ${task}`);
+    }
+    getQuestion() {
+        return this.parts.join(" ");
+    }
+    getAnswer() {
+        return this.answerI.map(i => this.words[i]).join("|");
+    }
+    async show(taskEl, inputEl, onAnswer) {
+        const inputBtn = Lib.Button([], "Далее");
+        inputBtn.disabled = true;
+        const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+        Lib.SetContent(inputEl, inputDiv);
+        const btns = this.parts.map((part, I) => Lib.Button([], part, () => {
+            task.classList.add("tester-chooseWord_normal");
+            for (let i = 0; i < this.parts.length; i++) {
+                const btn = btns[i];
+                btn.disabled = true;
+                if (this.answerI.includes(i))
+                    btn.classList.add("tester-chooseWord-correct");
+                else if (i == I)
+                    btn.classList.add("tester-chooseWord-wrong");
+            }
+            inputDiv.classList.remove("tester-input-one_hidden");
+            inputBtn.disabled = false;
+            inputBtn.addEventListener("click", async () => {
+                inputBtn.classList.add("active");
+                onAnswer(this.answerI.includes(I));
+            });
+        }));
+        const task = Lib.Div("tester-chooseWord", btns);
+        Lib.SetContent(taskEl, [
+            Lib.initEl("h5", [], "Исправьте лексическую ошибку, исключив лишнее слово"),
+            task,
+        ]);
     }
 }
