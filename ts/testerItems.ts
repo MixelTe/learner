@@ -62,6 +62,75 @@ export class TestItemSelfCheck extends TestItem
 	}
 }
 
+export class TestItemChoice extends TestItem
+{
+	private answerI = -1;
+	constructor(id: number, private task: string | HtmlBuilder, private choices: string[], shuffle = true)
+	{
+		super(id);
+		if (shuffle) Lib.shuffle(choices);
+		for (let i = 0; i < choices.length; i++)
+		{
+			if (choices[i][0] == "+")
+			{
+				this.answerI = i;
+				choices[i] = choices[i].slice(1);
+			}
+			choices[i] = choices[i].trim();
+		}
+		if (this.answerI < 0)
+			console.error(`TestItemChoice[${id}] task dont have right choice:`, this.getQuestion(), choices);
+	}
+
+	public getQuestion(): string | Node
+	{
+		if (typeof this.task == "string")
+			return this.task;
+		return this.task.html(true);
+	}
+
+	public getAnswer(): string | Node
+	{
+		return this.choices[this.answerI];
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		if (typeof this.task == "string")
+			taskEl.innerText = this.task;
+		else
+			Lib.SetContent(taskEl, this.task.html());
+
+		let right = false;
+
+		const btns = this.choices.map((v, I) => Lib.Button([], v, async () =>
+		{
+			right = I == this.answerI;
+			for (let i = 0; i < this.choices.length; i++)
+			{
+				const btn = btns[i];
+				btn.disabled = true;
+				if (i == this.answerI)
+					btn.classList.add("tester-input-many-correct")
+				else if (i == I)
+					btn.classList.add("tester-input-many-wrong")
+				else
+					btn.classList.add("tester-input-many-hidden")
+			}
+			btnNext.disabled = false;
+			btnNext.classList.remove("tester-input-many-hidden");
+		}));
+		const btnNext = Lib.Button("tester-input-many-hidden", "Далее", () =>
+		{
+			onAnswer(right);
+		})
+		btnNext.disabled = true;
+		btns.push(btnNext);
+
+		Lib.SetContent(inputEl, Lib.Div("tester-input-many", btns));
+	}
+}
+
 export class TestItemStress extends TestItem
 {
 	private static Vowels = "аяуюоеёэиы";

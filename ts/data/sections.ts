@@ -1,6 +1,7 @@
 import { TestItem } from "../tester.js"
 import { Themes, themes } from "../themes.js"
 import { phy_0 } from "./phy_0.js"
+import { ru_3 } from "./ru_3.js"
 import { ru_4 } from "./ru_4.js"
 import { ru_5 } from "./ru_5.js"
 import { ru_7 } from "./ru_7.js"
@@ -9,6 +10,7 @@ export const Sections: Section[] = [
 	{
 		name: "Русский",
 		themes: [
+			{ id: "ru_3", name: "№3 Стили речи", color: themes.blue, items: ru_3 },
 			{ id: "ru_4", name: "№4 Ударения", color: themes.blue, items: ru_4, onlyAnswerInQList: true },
 			{ id: "ru_5", name: "№5 Паронимы", color: themes.blue, items: ru_5, onlyAnswerInQList: true },
 			{ id: "ru_7", name: "№7 Формы слова", color: themes.blue, items: ru_7, onlyAnswerInQList: true },
@@ -17,8 +19,8 @@ export const Sections: Section[] = [
 	{
 		name: "Математика",
 		themes: [
-				// { id: "math_0", name: "Тема 1", color: themes.green, items: [] },
-				// { id: "math_1", name: "Тема 2", color: themes.green, items: [] },
+			// { id: "math_0", name: "Тема 1", color: themes.green, items: [] },
+			// { id: "math_1", name: "Тема 2", color: themes.green, items: [] },
 		],
 	},
 	{

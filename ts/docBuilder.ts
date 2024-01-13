@@ -1,5 +1,5 @@
 import { FormulaBuilder } from "./formulasBuilder.js";
-import { Button, Div, SetContent, Span, initEl } from "./littleLib.js";
+import { Button, Div, H1, SetContent, Span, initEl } from "./littleLib.js";
 import { Popup } from "./popup.js";
 
 export enum DBF
@@ -21,6 +21,12 @@ export class DocBuilder
 		return this;
 	}
 
+	public title(text: string)
+	{
+		this.body.appendChild(initEl("h3", [], text));
+		return this;
+	}
+
 	public text(...text: string[])
 	{
 		if (text.length != 0)
@@ -30,6 +36,14 @@ export class DocBuilder
 			else
 				text.forEach(t => this.body.appendChild(Div([], t)));
 		}
+		return this;
+	}
+
+	public ul(...lis: (string | DocBuilder)[])
+	{
+		this.body.appendChild(initEl("ul", [],
+			lis.map(li => initEl("li", [], li instanceof DocBuilder ? li.html() : li)))
+		);
 		return this;
 	}
 

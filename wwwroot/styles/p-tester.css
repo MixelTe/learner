@@ -253,3 +253,52 @@ screen and (max-height: 550px) {
 	margin: 0;
 	padding: 0px;
 }
+
+.tester-input-many {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.tester-input-many button {
+	flex-grow: 1;
+	max-width: 50rem;
+	max-height: 4rem;
+	margin: 1px;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	padding: 0.4em 1.4em;
+	border-radius: 0.2rem;
+	cursor: pointer;
+	user-select: none;
+	transition-property: padding, margin, border, max-height, max-width;
+	transition-duration: 150ms;
+}
+.tester-input-many button:last-child {
+	flex-basis: 100%;
+	margin-top: 4px;
+}
+.tester-input-many .tester-input-many-hidden {
+	max-height: 0;
+	max-width: 0;
+	overflow: hidden;
+	border: 0px solid transparent;
+	margin: 0;
+	padding: 0px;
+}
+.tester-input-many .tester-input-many-hidden:last-child {
+	max-width: 50rem;
+}
+.tester-input-many .tester-input-many-correct,
+.tester-input-many .tester-input-many-wrong {
+	cursor: text;
+	user-select: text;
+}
+.tester-input-many .tester-input-many-correct {
+	border-color: #00cf00;
+}
+.tester-input-many .tester-input-many-wrong {
+	border-color: tomato;
+}
