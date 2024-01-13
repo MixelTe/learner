@@ -65,7 +65,9 @@ export class TestItemStress extends TestItem {
         return this.task;
     }
     async show(taskEl, inputEl, onAnswer) {
-        inputEl.innerHTML = "";
+        const inputBtn = Lib.Button([], "Далее");
+        const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+        Lib.SetContent(inputEl, inputDiv);
         const els = this.task.split("").map((ch, i) => {
             const chl = ch.toLocaleLowerCase();
             if (TestItemStress.Vowels.includes(chl)) {
@@ -98,12 +100,11 @@ export class TestItemStress extends TestItem {
                 if (el instanceof HTMLButtonElement)
                     el.disabled = true;
             }
-            Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
-                Lib.Button([], "Далее", async (btn) => {
-                    btn.classList.add("active");
-                    onAnswer(!wrong);
-                }),
-            ]));
+            inputDiv.classList.remove("tester-input-one_hidden");
+            inputBtn.addEventListener("click", async () => {
+                inputBtn.classList.add("active");
+                onAnswer(!wrong);
+            });
         };
     }
 }
@@ -144,5 +145,87 @@ export class TestItemParonyms extends TestItem {
                 }
             }),
         ]));
+    }
+}
+export class TestItemWordChoice extends TestItem {
+    task;
+    beforeTask = "";
+    afterTask = "";
+    choices = [];
+    rightChoiceI = -1;
+    /**
+     * @param task "Sky are [red|+blue|green], roses are red."
+     *
+     * "4 [ +|+-|*|/] 1 = 3"
+     */
+    constructor(id, task) {
+        super(id);
+        this.task = task;
+        const start = task.indexOf("[");
+        const end = task.indexOf("]");
+        if (start < 0 || end < 0) {
+            console.error(`TestItemWordChoice[${id}] task dont have choices: ${task}`);
+            return;
+        }
+        this.beforeTask = task.slice(0, start);
+        this.choices = task.slice(start + 1, end).split("|");
+        Lib.random.shuffle(this.choices);
+        this.afterTask = task.slice(end + 1);
+        for (let i = 0; i < this.choices.length; i++) {
+            const choice0 = this.choices[i][0];
+            if (choice0 == "+") {
+                this.rightChoiceI = i;
+                this.choices[i] = this.choices[i].slice(1);
+            }
+            this.choices[i] = this.choices[i].trim();
+        }
+        if (this.rightChoiceI < 0)
+            console.error(`TestItemWordChoice[${id}] task dont have right choice: ${task}`);
+    }
+    getQuestion() {
+        return this.beforeTask + "[" + this.choices.join(" | ") + "]" + this.afterTask;
+    }
+    getAnswer() {
+        return this.beforeTask + this.choices[this.rightChoiceI] + this.afterTask;
+    }
+    async show(taskEl, inputEl, onAnswer) {
+        const inputBtn = Lib.Button([], "Далее");
+        const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
+        Lib.SetContent(inputEl, inputDiv);
+        const btns = this.choices.map((v, i) => Lib.Button([], v, () => showAns(i)));
+        const choicesEl = Lib.Div("tester-wordChoice-choices", btns);
+        const el = Lib.Div("tester-wordChoice", [
+            Lib.Div("tester-wordChoice-text", this.beforeTask),
+            choicesEl,
+            Lib.Div("tester-wordChoice-text", this.afterTask),
+        ]);
+        Lib.SetContent(taskEl, el);
+        const showAns = (I) => {
+            if (I < this.rightChoiceI)
+                el.classList.add("tester-wordChoice-bottom");
+            if (I > this.rightChoiceI)
+                el.classList.add("tester-wordChoice-top");
+            for (let i = 0; i < btns.length; i++) {
+                const btn = btns[i];
+                btn.disabled = true;
+                if (i == this.rightChoiceI) {
+                    btn.classList.add("tester-wordChoice-correct");
+                    if (btn.innerText == "")
+                        btn.classList.add("tester-wordChoice-correct_empty");
+                }
+                else if (i == I) {
+                    btn.classList.add("tester-wordChoice-wrong");
+                    if (btn.innerText == "")
+                        btn.classList.add("tester-wordChoice-wrong_empty");
+                }
+                else
+                    btn.classList.add("tester-wordChoice-hide");
+            }
+            inputDiv.classList.remove("tester-input-one_hidden");
+            inputBtn.addEventListener("click", async () => {
+                inputBtn.classList.add("active");
+                onAnswer(I == this.rightChoiceI);
+            });
+        };
     }
 }
