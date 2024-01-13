@@ -218,6 +218,7 @@ export class TestItemWordChoice extends TestItem
 		}
 		this.beforeTask = task.slice(0, start);
 		this.choices = task.slice(start + 1, end).split("|");
+		Lib.random.shuffle(this.choices);
 		this.afterTask = task.slice(end + 1);
 		for (let i = 0; i < this.choices.length; i++)
 		{
