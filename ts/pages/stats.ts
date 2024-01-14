@@ -29,6 +29,7 @@ export function showStats(onSwitch: () => void = () => { })
 		const markerPlaceholder = item.querySelector("#placeholder-marker") as HTMLDivElement;
 
 		const listEl = item.querySelector(".stats-list")!;
+		(listEl as HTMLElement).style.setProperty("--max-height", `${section.themes.length * 3 + 2}rem`);
 		let score = 0;
 		for (const theme of section.themes)
 		{
