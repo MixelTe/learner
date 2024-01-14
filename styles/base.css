@@ -73,8 +73,7 @@ header {
 	z-index: 20;
 }
 
-.menuBtn:hover > div,
-.menuBtn:focus-visible > div {
+.menuBtn:hover > div {
 	--d: 30%;
 }
 
