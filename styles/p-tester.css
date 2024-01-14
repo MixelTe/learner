@@ -12,6 +12,7 @@
 	border-radius: 0.8rem;
 	transition-property: width, height;
 	transition-duration: 200ms;
+	margin-block: 2px;
 }
 
 .tester-head {
