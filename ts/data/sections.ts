@@ -21,7 +21,7 @@ export const Sections: Section[] = [
 			// { id: "ru_9", name: "№9 Правописание корней", color: themes.blue, items: ru_9 },
 			// { id: "ru_10", name: "№10 Правописание приставок", color: themes.blue, items: ru_10 },
 			// { id: "ru_11", name: "№11 Правописание суффиксов", color: themes.blue, items: ru_11 },
-			// { id: "ru_12", name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: [] },
+			// { id: "ru_12", name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: ru_12 },
 			// { id: "ru_13", name: "№13 Правописание НЕ и НИ", color: themes.blue, items: ru_13 },
 			// { id: "ru_14", name: "№14 Слитное, дефисное, раздельное написание слов", color: themes.blue, items: ru_14 },
 			// { id: "ru_15", name: "№15 Н и НН в суффиксах", color: themes.blue, items: ru_15 },
