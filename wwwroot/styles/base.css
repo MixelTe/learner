@@ -120,6 +120,7 @@ header {
 	z-index: -1;
 	pointer-events: none;
 	transition: opacity 350ms, z-index 0s 350ms;
+	transition-timing-function: ease-in-out;
 }
 .menu.open {
 	transition: opacity 350ms, z-index 0s 0s;

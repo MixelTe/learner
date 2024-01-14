@@ -3,7 +3,7 @@ import { showDayStats } from "./pages/dayStats.js";
 import * as Lib from "./littleLib.js";
 import { showQlist } from "./pages/qlist.js";
 import { showStats } from "./pages/stats.js";
-import { switchPage } from "./pages/switchPage.js";
+import { curSessionKey, switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
 
@@ -11,12 +11,34 @@ initThemes();
 
 const menu = Lib.get.div("menu");
 
+let menuOpen = false;
 Lib.addButtonListener("menuBtn", () =>
 {
-	menu.classList.toggle("open");
+	if (menuOpen)
+	{
+		closeMenu();
+		history.back();
+	}
+	else
+		openMenu();
+});
+window.addEventListener("popstate", e =>
+{
+	if (menuOpen)
+		closeMenu()
 });
 
-function closeMenu() { menu.classList.remove("open"); }
+function openMenu()
+{
+	menuOpen = true;
+	menu.classList.add("open");
+	history.pushState({ ...history.state, back: true }, "");
+}
+function closeMenu()
+{
+	menuOpen = false;
+	menu.classList.remove("open");
+}
 Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
 Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
@@ -31,6 +53,8 @@ initMainPage();
 
 async function initMainPage()
 {
+	history.pushState({ page: "main", title: "", theme: themes.common, curSessionKey }, "");
+
 	const sections = Lib.get.div("sections");
 	const sectionTemplate = Lib.getEl("template-section", HTMLTemplateElement);
 	for (let i = 0; i < Sections.length; i++)
