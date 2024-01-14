@@ -93,7 +93,7 @@
 	transition: all 200ms;
 }
 .qlists input:checked ~ .qlists-list {
-	max-height: 10rem;
+	max-height: var(--max-height, 10rem);
 }
 
 .qlists-list button {

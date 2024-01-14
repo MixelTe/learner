@@ -19,6 +19,7 @@ export function showQlist(onSwitch = () => { }) {
         const labelText = item.querySelector("label span");
         labelText.innerText = section.name;
         const themes = item.querySelector(".qlists-list");
+        themes.style.setProperty("--max-height", `${section.themes.length * 3 + 2}rem`);
         let c = 0;
         for (const theme of section.themes) {
             c += theme.items.length;

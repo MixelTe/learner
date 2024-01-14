@@ -22,6 +22,7 @@ export function showStats(onSwitch = () => { }) {
         labelText.innerText = section.name;
         const markerPlaceholder = item.querySelector("#placeholder-marker");
         const listEl = item.querySelector(".stats-list");
+        listEl.style.setProperty("--max-height", `${section.themes.length * 3 + 2}rem`);
         let score = 0;
         for (const theme of section.themes) {
             const stats = allStats.themes.find(v => v.id == theme.id);
