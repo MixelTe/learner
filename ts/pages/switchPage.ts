@@ -61,6 +61,7 @@ export async function switchPage(page: Page, title = "", theme: Themes = themes.
 	onSwitch();
 	if (currentTheme() != theme)
 	{
+		setThemeColors(themeColors[theme]);
 		setTheme(theme);
 		await Lib.wait(300);
 	}
