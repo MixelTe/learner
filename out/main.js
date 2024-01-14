@@ -55,7 +55,7 @@ async function initMainPage() {
         themes.style.setProperty("--max-height", `${s.themes.length * 3 + 2}rem`);
         for (const theme of s.themes) {
             themes.appendChild(Lib.Button([], theme.name, () => {
-                input.checked = false;
+                sections.querySelectorAll("input").forEach(inp => inp.checked = false);
                 new Tester(theme).start();
             }));
         }
