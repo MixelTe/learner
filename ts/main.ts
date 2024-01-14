@@ -72,7 +72,7 @@ async function initMainPage()
 		{
 			themes.appendChild(Lib.Button([], theme.name, () =>
 			{
-				input.checked = false;
+				sections.querySelectorAll("input").forEach(inp => inp.checked = false);
 				new Tester(theme).start();
 			}));
 		}
