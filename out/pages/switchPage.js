@@ -22,7 +22,7 @@ window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY }
 const instant = false;
 if (instant)
     console.warn("DEV: instant is enabled");
-export async function switchPage(page, title = "", theme = themes.common, onSwitch = () => { }, subtitle = "") {
+export async function switchPage(page, title = "", theme = themes.common, onSwitch = () => { }, subtitle = "", dontPushState = false) {
     if (curPage == page)
         return;
     if (instant) {
@@ -41,7 +41,7 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
     anim.style.left = `${mouse.x}px`;
     anim.style.top = `${mouse.y}px`;
     document.body.appendChild(anim);
-    await Lib.wait(1);
+    await Lib.wait(50);
     const size = Math.max(window.innerWidth, window.innerHeight) * 2 * Math.SQRT2;
     anim.style.width = `${size}px`;
     anim.style.height = `${size}px`;
@@ -53,6 +53,12 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
     subtitleEl.innerText = subtitle;
     pages[curPage].classList.add("open");
     onSwitch();
+    if (!dontPushState)
+        if (history.state?.back)
+            history.replaceState({ page, title, theme, curSessionKey }, "");
+        else
+            history.pushState({ page, title, theme, curSessionKey }, "");
+    document.title = title == "" ? "ЛЯРО" : "ЛЯРО | " + title;
     if (currentTheme() != theme) {
         setThemeColors(themeColors[theme]);
         setTheme(theme);
@@ -62,3 +68,19 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
     await Lib.wait(400);
     document.body.removeChild(anim);
 }
+export const curSessionKey = Lib.randomInt(10000);
+window.addEventListener("popstate", e => {
+    const state = e.state;
+    if (state) {
+        const page = state.page;
+        const title = state.title;
+        const theme = state.theme;
+        const back = state.back;
+        const sessionKey = state.curSessionKey;
+        if (curSessionKey != sessionKey)
+            return;
+        if (!back && Object.keys(pages).includes(page)) {
+            switchPage(page, title, theme, undefined, undefined, true);
+        }
+    }
+});
