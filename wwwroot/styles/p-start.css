@@ -45,16 +45,19 @@
 	cursor: pointer;
 }
 
+.sectionSelection-list_container {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 200ms;
+}
+.sectionSelection input:checked ~ .sectionSelection-list_container {
+	grid-template-rows: 1fr;
+}
 .sectionSelection-list {
 	display: flex;
 	flex-direction: column;
-	overflow: hidden;
 	margin-top: 0.3em;
-	max-height: 0;
-	transition: all 200ms;
-}
-.sectionSelection input:checked ~ .sectionSelection-list {
-	max-height: var(--max-height, 10rem);
+	overflow: hidden;
 }
 
 .sectionSelection-marker {

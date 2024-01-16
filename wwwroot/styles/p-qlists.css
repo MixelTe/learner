@@ -83,17 +83,20 @@
 	filter: blur(4px);
 }
 
+.qlists-list_container {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 200ms;
+}
+.qlists input:checked ~ .qlists-list_container {
+	grid-template-rows: 1fr;
+}
 .qlists-list {
 	display: flex;
 	flex-direction: column;
 	padding-left: 1.8rem;
 	padding-right: 1rem;
-	max-height: 0;
 	overflow: hidden;
-	transition: all 200ms;
-}
-.qlists input:checked ~ .qlists-list {
-	max-height: var(--max-height, 10rem);
 }
 
 .qlists-list button {
