@@ -78,7 +78,6 @@ export const ru_3 = [
     new TestItemSelfCheck(31, DBc().title("Средства на уровне лексики").text("Разговорный стиль"), DBc().ul(...q.leks.rasgov)),
     new TestItemSelfCheck(32, DBc().title("Средства на уровне морфологии").text("Научный стиль"), DBc().ul(...q.morph.nauch)),
     new TestItemSelfCheck(33, DBc().title("Средства на уровне морфологии").text("Официально-деловой стиль"), DBc().ul(...q.morph.offdel)),
-    new TestItemSelfCheck(34, DBc().title("Средства на уровне морфологии").text("Художественный стиль"), DBc().text(q.morph.hudozh)),
     new TestItemSelfCheck(35, DBc().title("Средства на уровне морфологии").text("Разговорный стиль"), DBc().ul(...q.morph.rasgov)),
     new TestItemSelfCheck(36, DBc().title("Средства на уровне синтаксиса").text("Научный стиль"), DBc().ul(...q.sint.nauch)),
     new TestItemSelfCheck(37, DBc().title("Средства на уровне синтаксиса").text("Официально-деловой стиль"), DBc().ul(...q.sint.offdel)),
