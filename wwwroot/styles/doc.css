@@ -93,3 +93,14 @@
 		width: 10%;
 	}
 }
+
+.doc hr {
+	width: min(50%, 4rem);
+	border: 1px solid var(--c-title);
+	opacity: 0.5;
+	margin-block: 0.5em;
+}
+
+.doc .br {
+	margin-block: 0.5em;
+}

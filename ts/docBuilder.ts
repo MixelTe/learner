@@ -80,7 +80,13 @@ export class DocBuilder
 
 	public br()
 	{
-		this.body.append(initEl("br"))
+		this.body.append(initEl("div", "br"))
+		return this;
+	}
+
+	public hr()
+	{
+		this.body.append(initEl("hr"))
 		return this;
 	}
 
