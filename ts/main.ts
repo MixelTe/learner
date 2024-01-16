@@ -48,7 +48,7 @@ initMainPage();
 // showStats();
 // showQlist();
 // showDayStats();
-// new Tester(Sections[0].themes[5]).start();
+// new Tester(Sections[0].themes[7]).start();
 
 
 async function initMainPage()

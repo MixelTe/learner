@@ -7,6 +7,8 @@ import { ru_5 } from "./ru_5.js"
 import { ru_6 } from "./ru_6.js"
 import { ru_7 } from "./ru_7.js"
 import { ru_8 } from "./ru_8.js"
+import { ru_9_1 } from "./ru_9_1.js"
+import { ru_9_2 } from "./ru_9_2.js"
 
 export const Sections: Section[] = [
 	{
@@ -18,7 +20,8 @@ export const Sections: Section[] = [
 			{ id: "ru_6", name: "№6 Лексические нормы", color: themes.blue, items: ru_6 },
 			{ id: "ru_7", name: "№7 Формы слова", color: themes.blue, items: ru_7, onlyAnswerInQList: true },
 			{ id: "ru_8", name: "№8 Грамматические нормы", color: themes.blue, items: ru_8 },
-			// { id: "ru_9", name: "№9 Правописание корней", color: themes.blue, items: ru_9 },
+			{ id: "ru_9_1", name: "№9 Чередующиеся корни", color: themes.blue, items: ru_9_1 },
+			{ id: "ru_9_2", name: "№9 Словарные слова", color: themes.blue, items: ru_9_2, onlyAnswerInQList: true },
 			// { id: "ru_10", name: "№10 Правописание приставок", color: themes.blue, items: ru_10 },
 			// { id: "ru_11", name: "№11 Правописание суффиксов", color: themes.blue, items: ru_11 },
 			// { id: "ru_12", name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: ru_12 },
