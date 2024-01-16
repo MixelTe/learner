@@ -116,7 +116,7 @@ export const ru_4: TestItem[] = [
 	new TestItemStress(111, "лилА"),
 	new TestItemStress(112, "лилАсь"),
 	new TestItemStress(113, "навралА"),
-	new TestItemStress(114, "наделИт"),
+	new TestItemStress(114, "наделИт", "(полномочиями)"),
 	new TestItemStress(115, "надорвалАсь"),
 	new TestItemStress(116, "назвалАсь"),
 	new TestItemStress(117, "накренИтся"),
