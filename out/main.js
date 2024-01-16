@@ -52,7 +52,6 @@ async function initMainPage() {
         label.innerText = s.name;
         label.htmlFor = input.id;
         const themes = section.querySelector(".sectionSelection-list");
-        themes.style.setProperty("--max-height", `${s.themes.length * 3 + 2}rem`);
         for (const theme of s.themes) {
             themes.appendChild(Lib.Button([], theme.name, () => {
                 sections.querySelectorAll("input").forEach(inp => inp.checked = false);

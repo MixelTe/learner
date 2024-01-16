@@ -64,17 +64,21 @@
 	transform: translateY(-0.25em) rotate(45deg);
 }
 
+.stats-list_container {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 200ms;
+}
+.stats-item input:checked ~ .stats-list_container {
+	grid-template-rows: 1fr;
+}
+
 .stats-list {
 	padding-left: 2.9rem;
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
-	max-height: 0;
 	overflow: hidden;
-	transition: all 200ms;
-}
-.stats-item input:checked ~ .stats-list {
-	max-height: var(--max-height, 10rem);
 }
 
 .stats-subitem {
