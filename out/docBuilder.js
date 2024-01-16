@@ -54,7 +54,11 @@ export class DocBuilder {
         return this;
     }
     br() {
-        this.body.append(initEl("br"));
+        this.body.append(initEl("div", "br"));
+        return this;
+    }
+    hr() {
+        this.body.append(initEl("hr"));
         return this;
     }
     formula(formula) {
