@@ -108,6 +108,6 @@ function unpackFlags(flags) {
 export function DB(text = "", center = false) {
     return new DocBuilder().text(text);
 }
-export function DBc(text = "") {
-    return DB(text, true).center();
+export function DBc(...text) {
+    return DB("", true).center().text(...text);
 }
