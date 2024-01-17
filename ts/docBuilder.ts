@@ -159,7 +159,7 @@ export function DB(text = "", center = false)
 	return new DocBuilder().text(text);
 }
 
-export function DBc(text = "")
+export function DBc(...text: string[])
 {
-	return DB(text, true).center();
+	return DB("", true).center().text(...text);
 }

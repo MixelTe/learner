@@ -1,6 +1,9 @@
 import { TestItem } from "../tester.js"
 import { Themes, themes } from "../themes.js"
 import { phy_0 } from "./phy_0.js"
+import { ru_10 } from "./ru_10.js"
+import { ru_11 } from "./ru_11.js"
+import { ru_12 } from "./ru_12.js"
 import { ru_3 } from "./ru_3.js"
 import { ru_4 } from "./ru_4.js"
 import { ru_5 } from "./ru_5.js"
@@ -22,9 +25,9 @@ export const Sections: Section[] = [
 			{ id: "ru_8", name: "№8 Грамматические нормы", color: themes.blue, items: ru_8 },
 			{ id: "ru_9_1", name: "№9 Чередующиеся корни", color: themes.blue, items: ru_9_1 },
 			{ id: "ru_9_2", name: "№9 Словарные слова", color: themes.blue, items: ru_9_2, onlyAnswerInQList: true },
-			// { id: "ru_10", name: "№10 Правописание приставок", color: themes.blue, items: ru_10 },
-			// { id: "ru_11", name: "№11 Правописание суффиксов", color: themes.blue, items: ru_11 },
-			// { id: "ru_12", name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: ru_12 },
+			{ id: "ru_10", name: "№10 Правописание приставок", color: themes.blue, items: ru_10 },
+			{ id: "ru_11", name: "№11 Правописание суффиксов", color: themes.blue, items: ru_11 },
+			{ id: "ru_12", name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: ru_12 },
 			// { id: "ru_13", name: "№13 Правописание НЕ и НИ", color: themes.blue, items: ru_13 },
 			// { id: "ru_14", name: "№14 Слитное, дефисное, раздельное написание слов", color: themes.blue, items: ru_14 },
 			// { id: "ru_15", name: "№15 Н и НН в суффиксах", color: themes.blue, items: ru_15 },
