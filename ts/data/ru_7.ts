@@ -34,7 +34,7 @@ export const ru_7: TestItem[] = [
 	new TestItemWordChoice(30, "с [+ДВУМЯСТАМИ|ДВУМСТАМИ] бойцами"),
 	new TestItemWordChoice(31, "новых ДЖИНС[|+ОВ]"),
 	new TestItemWordChoice(32, "[ЖГЁТ|+ЖЖЁТ] костер"),
-	new TestItemWordChoice(33, "пачка МАКАРО[+Н|ОВ]"),
+	new TestItemWordChoice(33, "пачка МАКАРОН[+|ОВ]"),
 	new TestItemWordChoice(34, "килограмм ПОМИДОР[+ОВ|]"),
 	new TestItemWordChoice(35, "опытные БУХГАЛТЕР[+Ы|А]"),
 	new TestItemWordChoice(36, "пара ТУФ[+ЕЛЬ|ЛЕЙ]"),
