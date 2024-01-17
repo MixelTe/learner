@@ -56,7 +56,6 @@ export const ru_3 = [
     new TestItemChoice(9, DBc().title("Средства на уровне лексики").ul(...q.leks.rasgov), ans.rasgov(), false),
     new TestItemChoice(10, DBc().title("Средства на уровне морфологии").ul(...q.morph.nauch), ans.nauch(), false),
     new TestItemChoice(11, DBc().title("Средства на уровне морфологии").ul(...q.morph.offdel), ans.offdel(), false),
-    new TestItemChoice(12, DBc().title("Средства на уровне морфологии").text(q.morph.hudozh), ans.hudozh(), false),
     new TestItemChoice(13, DBc().title("Средства на уровне морфологии").ul(...q.morph.rasgov), ans.rasgov(), false),
     new TestItemChoice(14, DBc().title("Средства на уровне синтаксиса").ul(...q.sint.nauch), ans.nauch(), false),
     new TestItemChoice(15, DBc().title("Средства на уровне синтаксиса").ul(...q.sint.offdel), ans.offdel(), false),
