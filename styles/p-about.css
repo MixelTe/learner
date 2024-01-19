@@ -1,0 +1,136 @@
+#p-about {
+	padding: 0.5rem;
+	overflow-x: hidden;
+}
+
+#p-about > h3 {
+	text-align: center;
+}
+
+.aboutAuthor {
+	position: relative;
+	border: 2px solid var(--c-title);
+	display: flex;
+	padding: 1rem;
+	margin-block: 3rem;
+	gap: 1rem;
+	align-items: center;
+}
+
+.aboutAuthor-corners > * {
+	--s: 2rem;
+	position: absolute;
+	border: 2px solid var(--c-title);
+	width: var(--s);
+	height: var(--s);
+	border-radius: 1rem;
+}
+.aboutAuthor-corners > :nth-child(1) {
+	top: calc(var(--s) * -1);
+	left: calc(var(--s) * -1);
+	border-bottom-right-radius: 0;
+}
+.aboutAuthor-corners > :nth-child(2) {
+	top: calc(var(--s) * -1);
+	right: calc(var(--s) * -1);
+	border-bottom-left-radius: 0;
+}
+.aboutAuthor-corners > :nth-child(3) {
+	bottom: calc(var(--s) * -1);
+	left: calc(var(--s) * -1);
+	border-top-right-radius: 0;
+}
+.aboutAuthor-corners > :nth-child(4) {
+	bottom: calc(var(--s) * -1);
+	right: calc(var(--s) * -1);
+	border-top-left-radius: 0;
+}
+
+.aboutAuthor h4 {
+	position: absolute;
+	top: -1.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.aboutAuthor-avatar {
+	width: 6rem;
+	height: 6rem;
+	border-radius: 0.5rem;
+}
+
+.aboutAuthor .aboutAuthor-body {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.aboutAuthor span {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.aboutAuthor a {
+	display: flex;
+	text-decoration: none;
+}
+
+.aboutAuthor a img {
+	width: 2rem;
+	height: 2rem;
+}
+
+
+.aboutGroup {
+	position: relative;
+	display: flex;
+	text-decoration: none;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.aboutGroup-img {
+	display: flex;
+	border-radius: 0.5rem;
+	border: 2px solid var(--c-title);
+}
+.aboutGroup-img img {
+	width: 64px;
+	height: 64px;
+	border-radius: calc(0.5rem - 2px);
+	filter: contrast(1.1);
+}
+
+.aboutGroup h4 {
+	display: flex;
+	flex-direction: column;
+}
+
+.aboutAuthor-tg {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 50%;
+	left: -1.2rem;
+	transform: translateY(-50%);
+}
+.aboutAuthor-tg img {
+	width: 2rem;
+	height: 2rem;
+}
+
+.aboutAuthor-tg::before {
+	position: absolute;
+	content: "";
+	width: calc(2rem + 4px);
+	height: calc(2rem + 4px);
+	background-color: var(--c-title);
+	z-index: -1;
+	border-radius: 50%;
+	clip-path: polygon(60% 0, 100% 0%, 100% 100%, 60% 100%);
+}
+
+.aboutP {
+	max-width: 350px;
+}

@@ -2,6 +2,7 @@ import * as Lib from "./littleLib.js";
 import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
+import { metrika_event } from "./metrika.js";
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
 const taskEl = Lib.get.div("t-task");
@@ -15,9 +16,10 @@ export class Tester {
         this.theme = theme;
     }
     start() {
-        switchPage("tester", this.theme.name, this.theme.color);
+        switchPage({ page: "tester", title: "tester/" + this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
         this.items = Trainer.selectTasks(this.theme);
         this.next();
+        metrika_event("tester_start");
     }
     next() {
         if (this.cur >= this.items.length) {
@@ -57,6 +59,7 @@ export class Tester {
         else {
             confetti(window.innerWidth / 2, window.innerHeight / 2, 15);
         }
+        metrika_event("tester_done");
     }
 }
 export class TestItem {

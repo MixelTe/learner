@@ -1,4 +1,5 @@
 import * as Lib from "../littleLib.js";
+import { metrika_pageSwitch } from "../metrika.js";
 import { currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
 const pages = {
     main: Lib.get.div("p-start"),
@@ -7,6 +8,7 @@ const pages = {
     qlists: Lib.get.div("p-qlists"),
     qlist: Lib.get.div("p-qlist"),
     dayStats: Lib.get.div("p-dayStats"),
+    about: Lib.get.div("p-about"),
 };
 const themeColors = {
     common: { light: "#a52a2a", dark: "#df4545" },
@@ -17,14 +19,21 @@ const themeColors = {
 const titleEl = Lib.getEl("title", HTMLHeadingElement);
 const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 let curPage = "main";
+let prevPage = "main";
 let mouse = { x: 0, y: 0 };
 window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
 const instant = false;
 if (instant)
     console.warn("DEV: instant is enabled");
 export async function switchPage(page, title = "", theme = themes.common, onSwitch = () => { }, subtitle = "", dontPushState = false) {
+    const pageTitle = typeof page == "string" ? page : page.title;
+    page = typeof page == "string" ? page : page.page;
     if (curPage == page)
         return;
+    const documentTitle = typeof title == "string" ? (title == "" ? "ЛЯРО" : "ЛЯРО | " + title) : "ЛЯРО" + title.title;
+    title = typeof title == "string" ? title : title.display;
+    metrika_pageSwitch(prevPage, pageTitle, documentTitle);
+    prevPage = pageTitle;
     if (instant) {
         pages[curPage].classList.remove("open");
         curPage = page;
@@ -33,6 +42,7 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
         setThemeColors(themeColors[theme]);
         pages[curPage].classList.add("open");
         onSwitch();
+        document.title = documentTitle;
         if (currentTheme() != theme)
             setTheme(theme);
         return;
@@ -58,7 +68,7 @@ export async function switchPage(page, title = "", theme = themes.common, onSwit
             history.replaceState({ page, title, theme, curSessionKey }, "");
         else
             history.pushState({ page, title, theme, curSessionKey }, "");
-    document.title = title == "" ? "ЛЯРО" : "ЛЯРО | " + title;
+    document.title = documentTitle;
     if (currentTheme() != theme) {
         setThemeColors(themeColors[theme]);
         setTheme(theme);

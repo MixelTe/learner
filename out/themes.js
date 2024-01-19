@@ -1,4 +1,5 @@
 import { Keys } from "./keys.js";
+import { metrika_setParams } from "./metrika.js";
 export const themes = {
     common: "common",
     blue: "blue",
@@ -6,7 +7,10 @@ export const themes = {
     orange: "orange",
 };
 const select = document.getElementById("themeSelect");
-select.addEventListener("change", () => setThemeScheme(select.value));
+select.addEventListener("change", () => {
+    setThemeScheme(select.value);
+    metrika_setParams();
+});
 const themeMetaColor = document.querySelector('meta[name="theme-color"]');
 let themeColors = { light: "#a52a2a", dark: "#df4545" };
 window.matchMedia("(prefers-color-scheme: dark)")
