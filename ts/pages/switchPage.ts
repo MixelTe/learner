@@ -1,7 +1,7 @@
 import * as Lib from "../littleLib.js";
 import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
 
-export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats";
+export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats" | "about";
 const pages = {
 	main: Lib.get.div("p-start"),
 	tester: Lib.get.div("p-tester"),
@@ -9,6 +9,7 @@ const pages = {
 	qlists: Lib.get.div("p-qlists"),
 	qlist: Lib.get.div("p-qlist"),
 	dayStats: Lib.get.div("p-dayStats"),
+	about: Lib.get.div("p-about"),
 } as { [key in Page]: HTMLDivElement }
 const themeColors = {
 	common: { light: "#a52a2a", dark: "#df4545" },

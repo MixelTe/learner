@@ -6,10 +6,12 @@ import { showStats } from "./pages/stats.js";
 import { curSessionKey, switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
+import { showAbout } from "./pages/about.js";
 
 initThemes();
 
 const menu = Lib.get.div("menu");
+const btnAbout = Lib.get.button("btn-about");
 
 let menuOpen = false;
 Lib.addButtonListener("menuBtn", () =>
@@ -33,6 +35,10 @@ function openMenu()
 	menuOpen = true;
 	menu.classList.add("open");
 	history.pushState({ ...history.state, back: true }, "");
+
+	const icons = Array.from(btnAbout.children) as HTMLElement[];
+	icons.forEach(icon => icon.style.display = "none");
+	Lib.random.choose(icons).style.display = "block";
 }
 function closeMenu()
 {
@@ -43,12 +49,14 @@ Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, c
 Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
 Lib.addButtonListener("btn-dayStats", () => showDayStats(closeMenu));
+Lib.addButtonListener("btn-about", () => showAbout(closeMenu));
 
 initMainPage();
 // showStats();
 // showQlist();
 // showDayStats();
-// new Tester(Sections[0].themes[10]).start();
+// showAbout();
+// new Tester(Sections[0].themes[11]).start();
 
 
 async function initMainPage()

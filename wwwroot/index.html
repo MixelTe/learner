@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/p-stats.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-qlists.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-dayStats.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-about.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
@@ -46,7 +47,7 @@
 	<div class="menu" id="menu">
 		<div>
 			<h2>Меню</h2>
-			<div>
+			<div class="menuBtns">
 				<button id="btn-index">На главную</button>
 				<button id="btn-stats">Прогресс</button>
 				<button id="btn-qlist">Вопросы</button>
@@ -54,7 +55,15 @@
 			</div>
 		</div>
 		<footer>
-			<span></span>
+			<button class="material-symbols-rounded" id="btn-about">
+				<span>favorite</span>
+				<span>star</span>
+				<span>heart_plus</span>
+				<span>thumb_up</span>
+				<span>handshake</span>
+				<span>sentiment_very_satisfied</span>
+				<span>emoji_food_beverage</span>
+			</button>
 			<select class="material-symbols-rounded" id="themeSelect">
 				<option value="light">light_mode</option>
 				<option value="dark">dark_mode</option>
@@ -100,7 +109,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.17</div>
+		<div class="version">v0.18</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -197,6 +206,50 @@
 			<span id="dayStats-scale">0</span>
 		</div>
 		<div id="dayStats-days"></div>
+	</div>
+	<div class="page" id="p-about">
+		<h2>ЛЯРО</h2>
+		<h3>Приложение для повторения теории</h3>
+		<div class="aboutAuthor">
+			<h4>Автор:</h4>
+			<div class="aboutAuthor-corners">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<img class="aboutAuthor-avatar" src="./imgs/vertic.jpg" alt="Avatar">
+			<div class="aboutAuthor-body">
+				<h3>Mixel Te</h3>
+				<span>
+					<a href="https://github.com/MixelTe" target="_blank">
+						<img class="hideOnDark" src="./imgs/github_black.svg" alt="github">
+						<img class="hideOnLight" src="./imgs/github_white.svg" alt="github">
+					</a>
+					<a href="https://t.me/MixelTe" target="_blank"><img src="imgs/telegram.png" alt="telegram"></a>
+					<a href="https://vk.com/mixel_te" target="_blank"><img src="imgs/vk.png" alt="vk"></a>
+				</span>
+			</div>
+		</div>
+		<a class="aboutGroup" href="https://t.me/+8k32-Y1AvzgxZTAy" target="_blank">
+			<div class="aboutGroup-img">
+				<img src="imgs/mixelDev.png" alt="Avatar">
+			</div>
+			<div>
+				<h4>
+					<span>Другие</span>
+					<span>проекты</span>
+					<span>автора</span>
+				</h4>
+				<div class="aboutAuthor-tg">
+					<img src="imgs/telegram.png" alt="telegram">
+				</div>
+			</div>
+		</a>
+		<p class="aboutP">
+			Если вы обнаружили ошибку в задании и хотите о ней сообщить, укажите номер задания, отображаемый в правом
+			верхнем углу задания.
+		</p>
 	</div>
 </body>
 

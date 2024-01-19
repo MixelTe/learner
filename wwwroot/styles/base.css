@@ -156,7 +156,7 @@ header {
 	margin-bottom: 1rem;
 }
 
-.menu button {
+.menuBtns button {
 	position: relative;
 	background-color: transparent;
 	padding: 0.5em 1em;
@@ -167,15 +167,15 @@ header {
 	--d: 0;
 	--s: 0.6em;
 }
-.menu button:hover,
-.menu button:focus-visible {
+.menuBtns button:hover,
+.menuBtns button:focus-visible {
 	--s: 1em;
 }
-.menu button:active {
+.menuBtns button:active {
 	--d: 0.15em;
 }
-.menu button::before,
-.menu button::after {
+.menuBtns button::before,
+.menuBtns button::after {
 	content: "";
 	position: absolute;
 	width: var(--s);
@@ -184,14 +184,14 @@ header {
 	transition-property: top, left, right, bottom, width, height;
 	transition-duration: 150ms;
 }
-.menu button::before {
+.menuBtns button::before {
 	bottom: var(--d);
 	left: var(--d);
 	border-top-width: 0;
 	border-right-width: 0;
 	border-bottom-left-radius: 0.2em;
 }
-.menu button::after {
+.menuBtns button::after {
 	top: var(--d);
 	right: var(--d);
 	border-bottom-width: 0;
@@ -211,6 +211,9 @@ header {
 :has(#p-dayStats.open) #btn-dayStats {
 	display: none;
 }
+:has(#p-about.open) #btn-about {
+	opacity: 0;
+}
 
 footer {
 	display: flex;
@@ -223,6 +226,7 @@ footer select {
 	padding: 0.4rem 0.6rem;
 	background-color: transparent;
 	border: none;
+	border-radius: 0.2rem;
 	color: var(--c-title);
 	font-size: 2rem !important;
 	outline: none;
@@ -230,11 +234,27 @@ footer select {
 }
 footer select:focus-visible {
 	outline: 2px solid var(--c-title);
-	border-radius: 0.2rem;
 }
 footer option {
 	background-color: var(--c-back1);
 	color: var(--c-title);
+}
+
+#btn-about {
+	background: transparent;
+	border-radius: 0.2rem;
+    border: none;
+    color: var(--c-title);
+	padding: 0;
+	width: 3rem;
+	cursor: pointer;
+	outline: none;
+}
+#btn-about > * {
+	font-size: 2rem;
+}
+#btn-about:focus-visible {
+	outline: 2px solid var(--c-title);
 }
 
 
@@ -246,3 +266,12 @@ footer option {
 	background-color: var(--c-title);
 	border-radius: 3px;
 }
+
+.dark .hideOnDark {
+	display: none;
+}
+
+body:not(.dark) .hideOnLight {
+	display: none;
+}
+
