@@ -7,6 +7,7 @@
 }
 .doc ul {
 	text-align: left;
+	margin-block: 0.5rem;
 }
 
 .doc-img {
