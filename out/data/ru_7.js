@@ -372,7 +372,7 @@ export const ru_7 = [
     new TestItemWordChoice(370, "группа БАРЫШ[+ЕНЬ|НЕЙ]"),
     new TestItemWordChoice(371, "группа БОЯРЫШ[+ЕНЬ|НЕЙ]"),
     new TestItemWordChoice(372, "полк ГУСАР[+|ОВ]"),
-    new TestItemWordChoice(373, "больших ЧИСЕЛ[+|ОВ]"),
+    new TestItemWordChoice(373, "больших ЧИС[+ЕЛ|ЛОВ]"),
     new TestItemWordChoice(374, "опытных ПОДМАСТЕР[+ЬЕВ|ИЙ]"),
     new TestItemWordChoice(375, "много КЕГ[+ЛЕЙ|ЕЛЬ]"),
     new TestItemWordChoice(376, "тёплых ВАЛЕН[+ОК|КОВ]"),
@@ -394,4 +394,5 @@ export const ru_7 = [
     new TestItemWordChoice(392, "вкусных ЧЕРЕШ[+ЕН|НЕЙ]"),
     new TestItemWordChoice(393, "быстрых САЛАЗ[+ОК|КОВ]"),
     new TestItemWordChoice(394, "красивых БРЕЛ[+ОКОВ|КОВ]"),
+    new TestItemWordChoice(395, "[СОХНУЛ|+СОХ] на ветру"),
 ];
