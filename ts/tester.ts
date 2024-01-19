@@ -3,6 +3,7 @@ import { Theme } from "./data/sections.js";
 import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
+import { metrika_event } from "./metrika.js";
 
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
@@ -19,9 +20,10 @@ export class Tester
 
 	public start()
 	{
-		switchPage("tester", this.theme.name, this.theme.color);
+		switchPage({ page: "tester", title: "tester/" + this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
 		this.items = Trainer.selectTasks(this.theme);
 		this.next();
+		metrika_event("tester_start");
 	}
 
 	private next()
@@ -71,6 +73,7 @@ export class Tester
 		{
 			confetti(window.innerWidth / 2, window.innerHeight / 2, 15);
 		}
+		metrika_event("tester_done");
 	}
 }
 

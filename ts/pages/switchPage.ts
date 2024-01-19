@@ -1,4 +1,5 @@
 import * as Lib from "../littleLib.js";
+import { metrika_pageSwitch } from "../metrika.js";
 import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
 
 export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats" | "about";
@@ -21,14 +22,23 @@ const titleEl = Lib.getEl("title", HTMLHeadingElement);
 const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 
 let curPage: Page = "main";
+let prevPage: string = "main";
 let mouse = { x: 0, y: 0 };
 window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
 const instant = false;
 if (instant) console.warn("DEV: instant is enabled");
 
-export async function switchPage(page: Page, title = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "", dontPushState = false)
+export async function switchPage(page: Page | { page: Page, title: string }, title: string | { display: string, title: string } = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "", dontPushState = false)
 {
+	const pageTitle = typeof page == "string" ? page : page.title;
+	page = typeof page == "string" ? page : page.page;
 	if (curPage == page) return;
+
+	const documentTitle = typeof title == "string" ? (title == "" ? "ЛЯРО" : "ЛЯРО | " + title) : "ЛЯРО" + title.title;
+	title = typeof title == "string" ? title : title.display;
+
+	metrika_pageSwitch(prevPage, pageTitle, documentTitle)
+	prevPage = pageTitle;
 
 	if (instant)
 	{
@@ -39,6 +49,7 @@ export async function switchPage(page: Page, title = "", theme: Themes = themes.
 		setThemeColors(themeColors[theme]);
 		pages[curPage].classList.add("open");
 		onSwitch();
+		document.title = documentTitle;
 		if (currentTheme() != theme)
 			setTheme(theme);
 		return;
@@ -65,7 +76,7 @@ export async function switchPage(page: Page, title = "", theme: Themes = themes.
 			history.replaceState({ page, title, theme, curSessionKey }, "");
 		else
 			history.pushState({ page, title, theme, curSessionKey }, "");
-	document.title = title == "" ? "ЛЯРО" : "ЛЯРО | " + title;
+	document.title = documentTitle;
 	if (currentTheme() != theme)
 	{
 		setThemeColors(themeColors[theme]);

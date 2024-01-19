@@ -3,7 +3,6 @@ import { switchPage } from "./switchPage.js";
 
 export function showAbout(onSwitch: () => void = () => { })
 {
-	switchPage("about", "", themes.common, onSwitch);
+	switchPage("about", { title: " | About", display: "" }, themes.common, onSwitch);
 
-	
 }
