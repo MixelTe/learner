@@ -21,19 +21,23 @@ const code = 96188813;
 
 export function metrika_pageSwitch(prevPage: string, page: string, title: string)
 {
-	ym(code, "hit", "#" + page, {
-		params: {
-			title,
-			referer: "#" + prevPage,
-		}
-	});
+	saveCall(() =>
+		ym(code, "hit", "#" + page, {
+			params: {
+				title,
+				referer: "#" + prevPage,
+			}
+		})
+	);
 }
 
 type MetrikaEvents = "tester_done" | "tester_start";
 
 export function metrika_event(event: MetrikaEvents)
 {
-	ym(code, "reachGoal", event)
+	saveCall(() =>
+		ym(code, "reachGoal", event)
+	)
 }
 
 export function metrika_setParams()
@@ -41,9 +45,17 @@ export function metrika_setParams()
 	const theme = localStorage.getItem(Keys.theme) || "auto";
 	const dark = theme != "auto" ? theme == "dark" : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-	ym(code, "userParams", {
-		darkTheme: dark,
-		defaultTheme: theme == "auto",
-		longestDays: DayStatistics.getLongest(),
-	});
+	saveCall(() =>
+		ym(code, "userParams", {
+			darkTheme: dark,
+			defaultTheme: theme == "auto",
+			longestDays: DayStatistics.getLongest(),
+		})
+	);
+}
+
+function saveCall(f: () => void)
+{
+	try { f(); }
+	catch (e) { console.error(e); }
 }
