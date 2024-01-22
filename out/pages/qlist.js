@@ -6,6 +6,7 @@ import { Trainer } from "../trainer.js";
 const qlistsTemplate = Lib.getEl("template-qlists", HTMLTemplateElement);
 const qlistsEl = Lib.get.div("qlists");
 const qlistEl = Lib.get.div("qlist");
+const qlistPage = Lib.get.div("p-qlist");
 export function showQlist(onSwitch = () => { }) {
     switchPage("qlists", "Вопросы", themes.common, onSwitch);
     qlistsEl.innerHTML = "";
@@ -37,7 +38,7 @@ export function showQlist(onSwitch = () => { }) {
     }
 }
 function showItemQs(sectionName, theme) {
-    switchPage("qlist", theme.name, theme.color, () => { }, sectionName);
+    switchPage("qlist", theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
     qlistEl.innerHTML = "";
     qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
     const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);

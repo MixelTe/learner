@@ -31,6 +31,7 @@ export class TestItemSelfCheck extends TestItem {
                     taskEl.innerText = this.ans;
                 else
                     Lib.SetContent(taskEl, this.ans.html());
+                taskEl.appendChild(Lib.Button(["tester-backBtn", "material-symbols-rounded"], "arrow_back", () => this.show(taskEl, inputEl, onAnswer)));
                 Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
                     Lib.Button([], "Ошибся", btn => answer(false, btn)),
                     Lib.Button([], "Помню", btn => answer(true, btn)),
