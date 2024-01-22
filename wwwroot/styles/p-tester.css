@@ -1,4 +1,5 @@
 .tester {
+	position: relative;
 	min-width: min(400px, 100%);
 	min-height: 250px;
 	max-height: 100%;
@@ -121,6 +122,19 @@ screen and (max-height: 550px) {
 		padding: 0.5rem;
 		gap: 0.5rem;
 	}
+}
+
+.tester-backBtn {
+	position: absolute;
+    top: 0rem;
+	left: 50%;
+    width: 4rem;
+    height: 3rem;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .tester-charSelect {
