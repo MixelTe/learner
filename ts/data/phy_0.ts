@@ -55,7 +55,7 @@ export const phy_0: TestItem[] = [
 	new TestItemSelfCheck(48, DBc("Закон Бойля-Мариотта"), createFormulas("pV = @{const}", "При T = @{const}", "изотерма")),
 	new TestItemSelfCheck(49, DBc("Закон Гей-Люссака"), createFormulas("{p}/{T} = @{const}", "При V = @{const}", "изохора")),
 	new TestItemSelfCheck(50, DBc("Закон Шарля"), createFormulas("{V}/{T} = @{const}", "При p = @{const}", "изобара")),
-	new TestItemSelfCheck(51, DBc("Давление насыщенного пара"), createFormulas("p = nkT")),
+	new TestItemSelfCheck(51, DBc("Давление насыщенного пара"), createFormulas("p = nkT", "n - концентрация молекул")),
 	new TestItemSelfCheck(52, DBc("Относительная влажность воздуха"), createFormulas("'f = {p_{пара}}/{p_{насыщ. пара}} = {'r_{пара}}/{'r_{насыщ. пара}}")),
 	new TestItemSelfCheck(53, DBc("Количество теплоты при нагреве"), createFormulas("|Q = cm'dT", "\\c - удельная теплоёмкость вещества")),
 	new TestItemSelfCheck(54, DBc("Количество теплоты при парообразовании"), createFormulas("|Q = Lm", "\\L - удельная теплота парообразования")),
