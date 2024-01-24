@@ -45,7 +45,7 @@ initMainPage();
 // showQlist();
 // showDayStats();
 // showAbout();
-// new Tester(Sections[0].themes[11]).start();
+// new Tester(Sections[0].themes[12]).start();
 async function initMainPage() {
     history.pushState({ page: "main", title: "", theme: themes.common, curSessionKey }, "");
     const sections = Lib.get.div("sections");
