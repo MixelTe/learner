@@ -1,6 +1,6 @@
 import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
-import { TestItemSelfCheck, TestItemWordChoice } from "../testerItems.js";
+import { TestItemSelfCheck } from "../testerItems.js";
 
 export const ru_15: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Н/НН в прилагательных, образованных от существительных"), DBc()
