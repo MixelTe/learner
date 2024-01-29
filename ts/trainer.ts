@@ -6,7 +6,7 @@ import * as Lib from "./littleLib.js";
 
 const Len = 15;
 const MaxHist = 5;
-const devSelectId: number = -1; // -1 - last; -2 - all in same order; -3 - normal
+const devSelectId: number = -3; // -1 - last; -2 - all in same order; -3 - normal
 if (devSelectId >= -2) console.warn("DEV: devSelectId is enabled");
 
 export class Trainer
