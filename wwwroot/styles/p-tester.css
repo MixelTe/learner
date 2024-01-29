@@ -205,6 +205,7 @@ screen and (max-height: 550px) {
 .tester-wordChoice-choices {
 	display: flex;
 	flex-direction: column;
+	margin-inline: 0.1em;
 }
 
 .tester-wordChoice-choices button {
