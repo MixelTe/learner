@@ -50,7 +50,7 @@ export function showQlist(onSwitch: () => void = () => { })
 	}
 }
 
-function showItemQs(sectionName: string, theme: Theme)
+export function showItemQs(sectionName: string, theme: Theme)
 {
 	switchPage("qlist", theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
 	qlistEl.innerHTML = "";

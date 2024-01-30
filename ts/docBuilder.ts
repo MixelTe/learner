@@ -120,6 +120,15 @@ export class DocBuilder
 		return this.body;
 	}
 
+	public copy()
+	{
+		const db = new DocBuilder();
+		db.body = this.body.cloneNode(true) as HTMLDivElement;
+		if (this.images.length > 0)
+			throw new Error(`cant copy DocBuilder with images`);
+		return db;
+	}
+
 	private updateImagesInPopup(imagesInPopup: boolean)
 	{
 		for (const image of this.images)

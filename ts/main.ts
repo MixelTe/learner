@@ -1,7 +1,7 @@
 import { Sections } from "./data/sections.js";
 import { showDayStats } from "./pages/dayStats.js";
 import * as Lib from "./littleLib.js";
-import { showQlist } from "./pages/qlist.js";
+import { showItemQs, showQlist } from "./pages/qlist.js";
 import { showStats } from "./pages/stats.js";
 import { curSessionKey, switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
@@ -54,9 +54,10 @@ Lib.addButtonListener("btn-about", () => showAbout(closeMenu));
 initMainPage();
 // showStats();
 // showQlist();
+// showItemQs("", Sections[0].themes[15]);
 // showDayStats();
 // showAbout();
-// new Tester(Sections[0].themes[14]).start();
+// new Tester(Sections[0].themes[15]).start();
 
 
 async function initMainPage()
