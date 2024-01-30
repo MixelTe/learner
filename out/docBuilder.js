@@ -84,6 +84,13 @@ export class DocBuilder {
         this.updateImagesInPopup(imagesInPopup);
         return this.body;
     }
+    copy() {
+        const db = new DocBuilder();
+        db.body = this.body.cloneNode(true);
+        if (this.images.length > 0)
+            throw new Error(`cant copy DocBuilder with images`);
+        return db;
+    }
     updateImagesInPopup(imagesInPopup) {
         for (const image of this.images) {
             if (imagesInPopup)

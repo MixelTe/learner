@@ -48,11 +48,13 @@ export class TestItemSelfCheck extends TestItem {
 export class TestItemChoice extends TestItem {
     task;
     choices;
+    expl;
     answerI = -1;
-    constructor(id, task, choices, shuffle = true) {
+    constructor(id, task, choices, shuffle = true, expl) {
         super(id);
         this.task = task;
         this.choices = choices;
+        this.expl = expl;
         if (shuffle)
             Lib.shuffle(choices);
         for (let i = 0; i < choices.length; i++) {
@@ -78,6 +80,13 @@ export class TestItemChoice extends TestItem {
             taskEl.innerText = this.task;
         else
             Lib.SetContent(taskEl, this.task.html());
+        const expl = Lib.Div(["tester-collapsible", "tester-collapsible_collapsed"]);
+        taskEl.appendChild(expl);
+        if (this.expl)
+            if (typeof this.expl == "string")
+                expl.appendChild(Lib.Span([], this.expl));
+            else
+                expl.appendChild(this.expl.html());
         let right = false;
         const btns = this.choices.map((v, I) => Lib.Button([], v, async () => {
             right = I == this.answerI;
@@ -93,6 +102,7 @@ export class TestItemChoice extends TestItem {
             }
             btnNext.disabled = false;
             btnNext.classList.remove("tester-input-many-hidden");
+            expl.classList.remove("tester-collapsible_collapsed");
         }));
         const btnNext = Lib.Button("tester-input-many-hidden", "Далее", () => {
             onAnswer(right);

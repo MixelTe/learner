@@ -376,3 +376,19 @@ screen and (max-height: 550px) {
 .tester-chooseWord-wrong {
 	color: tomato;
 }
+
+
+.tester-collapsible {
+	display: grid;
+	grid-template-rows: 1fr;
+	margin-top: 1rem;
+	transition-property: grid-template-rows, margin;
+	transition-duration: 150ms;
+}
+.tester-collapsible_collapsed  {
+	margin-top: 0;
+	grid-template-rows: 0fr;
+}
+.tester-collapsible > * {
+	overflow: hidden;
+}

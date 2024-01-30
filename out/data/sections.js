@@ -7,6 +7,7 @@ import { ru_13 } from "./ru_13.js";
 import { ru_14 } from "./ru_14.js";
 import { ru_15 } from "./ru_15.js";
 import { ru_16 } from "./ru_16.js";
+import { ru_26 } from "./ru_26.js";
 import { ru_3 } from "./ru_3.js";
 import { ru_4 } from "./ru_4.js";
 import { ru_5 } from "./ru_5.js";
@@ -34,7 +35,7 @@ export const Sections = [
             { id: "ru_14", name: "№14 Слитно, дефис или раздельно", color: themes.blue, items: ru_14 },
             { id: "ru_15", name: "№15 Н и НН в суффиксах", color: themes.blue, items: ru_15 },
             { id: "ru_16", name: "№16-20 Пунктуация", color: themes.blue, items: ru_16 },
-            // { id: "ru_26", name: "№26 Cредства выразительности", color: themes.blue, items: ru_21 },
+            { id: "ru_26", name: "№26 Cредства выразительности", color: themes.blue, items: ru_26 },
         ],
     },
     {

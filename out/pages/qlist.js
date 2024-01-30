@@ -37,7 +37,7 @@ export function showQlist(onSwitch = () => { }) {
         qlistsEl.appendChild(item);
     }
 }
-function showItemQs(sectionName, theme) {
+export function showItemQs(sectionName, theme) {
     switchPage("qlist", theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
     qlistEl.innerHTML = "";
     qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
