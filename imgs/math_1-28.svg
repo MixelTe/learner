@@ -1,0 +1,59 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 229" width="297" height="229">
+	<title>math_1-28</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-title);stroke-linejoin: round;stroke-width: 2;stroke-dasharray: 8,4 }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+		.s3 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 1.5 }
+		.t4 { font-size: 20px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 5" class="s0" d="m153.5 82.5l-69.2-74.1"/>
+	<path id="Shape 1" class="s0" d="m62.2 82.7l22.2-73.9"/>
+	<path id="Layer 1" class="s1" d="m267.2 204h-241.6l36.4-122h91.2z"/>
+	<path id="Layer 3" class="s1" d="m62 83l205 121"/>
+	<path id="Layer 4" class="s1" d="m153.3 82.4l-127.3 121.2"/>
+	<path id="Layer 6" class="s2" d="m84.9 10.2l61.4 193.7"/>
+	<path id="Layer 3" class="s3" d="m80 77v9"/>
+	<path id="Layer 3 copy" class="s3" d="m84 77v9"/>
+	<path id="Layer 3 copy 2" class="s3" d="m127 77v9"/>
+	<path id="Layer 3 copy 3" class="s3" d="m131 77v9"/>
+	<path id="Layer 3 copy 4" class="s3" d="m79 199v9"/>
+	<path id="Layer 3 copy 5" class="s3" d="m83 199v9"/>
+	<path id="Layer 3 copy 6" class="s3" d="m87 199v9"/>
+	<path id="Layer 3 copy 7" class="s3" d="m194 199v9"/>
+	<path id="Layer 3 copy 8" class="s3" d="m198 199v9"/>
+	<path id="Layer 3 copy 9" class="s3" d="m202 199v9"/>
+	<text id="A" style="transform: matrix(1,0,0,1,7.749,216.296)" >
+		<tspan x="0" y="0" class="t4">A
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(1,0,0,1,41.749,81.296)" >
+		<tspan x="0" y="0" class="t4">B
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(1,0,0,1,163.749,81.296)" >
+		<tspan x="0" y="0" class="t4">C
+</tspan>
+	</text>
+	<text id="D" style="transform: matrix(1,0,0,1,272.749,218.296)" >
+		<tspan x="0" y="0" class="t4">D
+</tspan>
+	</text>
+	<text id="O" style="transform: matrix(1,0,0,1,104.749,146.296)" >
+		<tspan x="0" y="0" class="t4">O
+</tspan>
+	</text>
+	<text id="E" style="transform: matrix(1,0,0,1,109.749,77.296)" >
+		<tspan x="0" y="0" class="t4">E
+</tspan>
+	</text>
+	<text id="K" style="transform: matrix(1,0,0,1,59.749,20.296)" >
+		<tspan x="0" y="0" class="t4">K
+</tspan>
+	</text>
+	<text id="M" style="transform: matrix(1,0,0,1,144.749,223.296)" >
+		<tspan x="0" y="0" class="t4">M
+</tspan>
+	</text>
+</svg>

@@ -116,6 +116,22 @@
 	border-width: 1px 0 0 0;
 	transform: translateX(0.1em);
 }
+.formula-arc {
+	position: relative;
+}
+.formula-arc::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 90%;
+	aspect-ratio: 1.8;
+	min-width: 8px;
+	border: 1px solid currentColor;
+	border-width: 0 0 1px 0;
+	border-radius: 50%;
+	transform: translateX(0.1em) translateY(-100%);
+}
 .formula-sum {
 	display: flex;
 	flex-direction: column;

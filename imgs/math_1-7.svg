@@ -1,0 +1,22 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 195 59" width="195" height="59">
+	<title>math_1-7</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 1.5 }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.t2 { font-size: 20px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 3" class="s0" d="m58 20c0 0-11.2 11.9 3 18"/>
+	<path id="Layer 3 copy" class="s0" d="m132 38c0 0 11.2-11.9-3-18"/>
+	<path id="Layer 1" class="s1" d="m7.2 7.2l179.1 44.7"/>
+	<path id="Layer 2" class="s1" d="m6.8 51.1l180.3-45.2"/>
+	<text id="α" style="transform: matrix(1,0,0,1,33.065,34)" >
+		<tspan x="0" y="0" class="t2">α
+</tspan>
+	</text>
+	<text id="β
+" style="transform: matrix(1,0,0,1,147.065,35)" >
+		<tspan x="0" y="0" class="t2">β
+</tspan>
+	</text>
+</svg>

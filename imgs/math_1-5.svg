@@ -1,0 +1,62 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 281 254" width="281" height="254">
+	<title>math_1-5</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 2 }
+		.s1 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 2;stroke-dasharray: 12,8 }
+		.t2 { font-size: 20px;fill: var(--c-text); }
+		.t3 { font-size: 14px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 1" class="s0" d="m192 235h-172v-172l66-38h169v169z"/>
+	<path id="Layer 2" class="s0" d="m21 63h171v171l63-209-62.6 38"/>
+	<path id="Layer 3" class="s1" d="m256 194h-170v-168l107 207"/>
+	<path id="Layer 4" class="s1" d="m20.4 234.5l65.7-41.2"/>
+	<text id="A" style="transform: matrix(1,0,0,1,7,247)" >
+		<tspan x="0" y="0" class="t2">A
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(1,0,0,1,89,191)" >
+		<tspan x="0" y="0" class="t2">B
+</tspan>
+	</text>
+	<text id="D" style="transform: matrix(1,0,0,1,197,247)" >
+		<tspan x="0" y="0" class="t2">D
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(1,0,0,1,260,191)" >
+		<tspan x="0" y="0" class="t2">C
+</tspan>
+	</text>
+	<text id="A copy" style="transform: matrix(1,0,0,1,6,58)" >
+		<tspan x="0" y="0" class="t2">A
+</tspan>
+	</text>
+	<text id="B copy" style="transform: matrix(1,0,0,1,86,21)" >
+		<tspan x="0" y="0" class="t2">B
+</tspan>
+	</text>
+	<text id="D copy" style="transform: matrix(1,0,0,1,179,57)" >
+		<tspan x="0" y="0" class="t2">D
+</tspan>
+	</text>
+	<text id="C copy" style="transform: matrix(1,0,0,1,255,21)" >
+		<tspan x="0" y="0" class="t2">C
+</tspan>
+	</text>
+	<text id="1" style="transform: matrix(1,0,0,1,265,23)" >
+		<tspan x="0" y="0" class="t3">1
+</tspan>
+	</text>
+	<text id="1 copy" style="transform: matrix(1,0,0,1,96,22)" >
+		<tspan x="0" y="0" class="t3">1
+</tspan>
+	</text>
+	<text id="1 copy 2" style="transform: matrix(1,0,0,1,191,58)" >
+		<tspan x="0" y="0" class="t3">1
+</tspan>
+	</text>
+	<text id="1 copy 3" style="transform: matrix(1,0,0,1,17,59)" >
+		<tspan x="0" y="0" class="t3">1
+</tspan>
+	</text>
+</svg>

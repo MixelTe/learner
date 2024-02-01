@@ -65,7 +65,7 @@ export class DocBuilder {
         this.body.appendChild(formula.html());
         return this;
     }
-    svg(url, flags = DBF.none) {
+    svg(url, flags = DBF.center) {
         const { w100, wm100, center } = unpackFlags(flags);
         const img = Div("doc-img");
         const svgContainer = Div(["doc-svg-container", "doc-svg-loading", w100 && "doc-svg-w100", wm100 && "doc-svg-wm100", center && "doc-svg-center"]);

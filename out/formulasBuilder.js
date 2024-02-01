@@ -136,6 +136,16 @@ export class FormulaBuilder {
         fb.body.classList.add("formula-noItalic");
         this.prevEl = fb.body;
         this.body.appendChild(this.prevEl);
+        this.text += fb.text;
+        return this;
+    }
+    arc(fb) {
+        this.prevEl = Span("formula-arc", [fb.body]);
+        this.body.appendChild(this.prevEl);
+        if (fb.text.length == 1)
+            this.text += "◡" + fb.text;
+        else
+            this.text += "◡(" + fb.text + ")";
         return this;
     }
     br() {
@@ -196,11 +206,25 @@ export function FB(text) {
  * &     | vector
  * \#    | overline
  * \\    | square root
- * @     | no italic
+ * \@     | no italic
  * '     | greek char
+ * u{}   | arc
  *
  * ### Greek chars:
- * v r m n a d P l w b t s e E f O 0 T / | <
+ * v r m n a d P l w b t s e E f O T
+ * ### Special chars:
+ * ch| s
+ * --|--
+ * 0 | °
+ * / | ⟂
+ * \| | ∥
+ * < | ∠
+ * u | ∪
+ * i | ∩
+ * ~ | ≈
+ * in | ∈
+ * ar | ⇒
+ * ab | ⇔
  */
 export function createFormulas(...rows) {
     if (rows.length == 1)
@@ -226,11 +250,17 @@ const formulaLetters = {
     "E": { ch: "ε", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "f": { ch: "φ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "O": { ch: "Ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
-    "0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "T": { ch: "η", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "/": { ch: "⟂", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "|": { ch: "∥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "<": { ch: "∠", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "u": { ch: "∪", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "i": { ch: "∩", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "~": { ch: "≈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "in": { ch: "∈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "ar": { ch: "⇒", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "ab": { ch: "⇔", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 };
 const replaceLetters = {
     "I": { ch: "I", cha: 0, chw: 0.25, dy: -0.1, vb: "-0.2 -4.7 3 5", d: "M 0.1 -0.1 l 1.7 0 M 0.8 -4 l 1.7 0 M 0.8 -0.1 L 1.8 -4" },
@@ -246,11 +276,25 @@ const replaceLetters = {
  * &     | vector
  * \#    | overline
  * \\    | square root
- * @     | no italic
+ * \@     | no italic
  * '     | greek char
+ * u{}   | arc
  *
  * ### Greek chars:
- * v r m n a d P l w b t s e E f O T / | <
+ * v r m n a d P l w b t s e E f O T
+ * ### Special chars:
+ * ch| s
+ * --|--
+ * 0 | °
+ * / | ⟂
+ * \| | ∥
+ * < | ∠
+ * u | ∪
+ * i | ∩
+ * ~ | ≈
+ * in | ∈
+ * ar | ⇒
+ * ab | ⇔
  */
 export function createFormula(formula) {
     const fb = new FormulaBuilder();
@@ -291,6 +335,8 @@ export function createFormula(formula) {
                             fb.hat(createFormula(inBrackets));
                         else if (formula[bracketsStart - 1] == "@")
                             fb.noItalic(createFormula(inBrackets));
+                        else if (formula[bracketsStart - 1] == "u")
+                            fb.arc(createFormula(inBrackets));
                         else
                             fb.a(createFormula(inBrackets));
                     }
@@ -322,9 +368,20 @@ export function createFormula(formula) {
             if (formula[i + 1] != "{")
                 fb.noItalic(FB(formula[++i]));
         }
+        else if (ch == "u" && formula[i + 1] == "{") {
+            // use u as marker
+        }
         else if (ch == "'") {
-            if (formulaLetters.hasOwnProperty(formula[i + 1]))
-                fb.l(formulaLetters[formula[++i]]);
+            const next2 = formula[i + 1] + formula[i + 2];
+            if (formulaLetters.hasOwnProperty(next2)) {
+                fb.noItalic(FB().l(formulaLetters[next2]));
+                i += 2;
+            }
+            else if (formulaLetters.hasOwnProperty(formula[i + 1]))
+                if (["|", "/", "<", "i", "u"].includes(formula[i + 1]))
+                    fb.noItalic(FB().l(formulaLetters[formula[++i]]));
+                else
+                    fb.l(formulaLetters[formula[++i]]);
             else
                 fb.t(ch);
         }
