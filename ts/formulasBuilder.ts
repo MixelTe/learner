@@ -152,6 +152,15 @@ export class FormulaBuilder
 		fb.body.classList.add("formula-noItalic");
 		this.prevEl = fb.body;
 		this.body.appendChild(this.prevEl);
+		this.text += fb.text;
+		return this;
+	}
+	public arc(fb: FormulaBuilder)
+	{
+		this.prevEl = Span("formula-arc", [fb.body]);
+		this.body.appendChild(this.prevEl);
+		if (fb.text.length == 1) this.text += "◡" + fb.text;
+		else this.text += "◡(" + fb.text + ")";
 		return this;
 	}
 	public br()
@@ -222,11 +231,25 @@ export function FB(text?: string)
  * &     | vector
  * \#    | overline
  * \\    | square root
- * @     | no italic
+ * \@     | no italic
  * '     | greek char
+ * u{}   | arc
  *
  * ### Greek chars:
- * v r m n a d P l w b t s e E f O 0 T / | <
+ * v r m n a d P l w b t s e E f O T
+ * ### Special chars:
+ * ch| s
+ * --|--
+ * 0 | °
+ * / | ⟂
+ * \| | ∥
+ * < | ∠
+ * u | ∪
+ * i | ∩
+ * ~ | ≈
+ * in | ∈
+ * ar | ⇒
+ * ab | ⇔
  */
 export function createFormulas(...rows: string[])
 {
@@ -268,11 +291,17 @@ const formulaLetters: CustomLetters = {
 	"E": { ch: "ε", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"f": { ch: "φ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"O": { ch: "Ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
-	"0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"T": { ch: "η", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"/": { ch: "⟂", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"|": { ch: "∥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"<": { ch: "∠", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"u": { ch: "∪", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"i": { ch: "∩", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"~": { ch: "≈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"in": { ch: "∈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"ar": { ch: "⇒", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"ab": { ch: "⇔", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 }
 
 const replaceLetters: CustomLetters = {
@@ -289,11 +318,25 @@ const replaceLetters: CustomLetters = {
  * &     | vector
  * \#    | overline
  * \\    | square root
- * @     | no italic
+ * \@     | no italic
  * '     | greek char
+ * u{}   | arc
  *
  * ### Greek chars:
- * v r m n a d P l w b t s e E f O T / | <
+ * v r m n a d P l w b t s e E f O T
+ * ### Special chars:
+ * ch| s
+ * --|--
+ * 0 | °
+ * / | ⟂
+ * \| | ∥
+ * < | ∠
+ * u | ∪
+ * i | ∩
+ * ~ | ≈
+ * in | ∈
+ * ar | ⇒
+ * ab | ⇔
  */
 export function createFormula(formula: string)
 {
@@ -336,6 +379,7 @@ export function createFormula(formula: string)
 						else if (formula[bracketsStart - 1] == "&") fb.vec(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "#") fb.hat(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "@") fb.noItalic(createFormula(inBrackets));
+						else if (formula[bracketsStart - 1] == "u") fb.arc(createFormula(inBrackets));
 						else fb.a(createFormula(inBrackets));
 					}
 					else
@@ -366,10 +410,23 @@ export function createFormula(formula: string)
 		{
 			if (formula[i + 1] != "{") fb.noItalic(FB(formula[++i]))
 		}
+		else if (ch == "u" && formula[i + 1] == "{")
+		{
+			// use u as marker
+		}
 		else if (ch == "'")
 		{
-			if (formulaLetters.hasOwnProperty(formula[i + 1]))
-				fb.l(formulaLetters[formula[++i]])
+			const next2 = formula[i + 1] + formula[i + 2];
+			if (formulaLetters.hasOwnProperty(next2))
+			{
+				fb.noItalic(FB().l(formulaLetters[next2]));
+				i += 2;
+			}
+			else if (formulaLetters.hasOwnProperty(formula[i + 1]))
+				if (["|", "/", "<", "i", "u"].includes(formula[i + 1]))
+					fb.noItalic(FB().l(formulaLetters[formula[++i]]))
+				else
+					fb.l(formulaLetters[formula[++i]])
 			else
 				fb.t(ch)
 		}

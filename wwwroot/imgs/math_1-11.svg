@@ -1,0 +1,33 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 146" width="242" height="146">
+	<title>math_1-11</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 1.5 }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.t2 { font-size: 20px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 2" class="s0" d="m130 118c0 0-2.2-9.4 7-14"/>
+	<path id="Shape 1" class="s0" d="m168 118c0 0-6.3-23.3-31.2-13.8"/>
+	<path id="Shape 1 copy" class="s0" d="m174.6 117.8c0 0-9.5-33.4-42.1-18.1"/>
+	<path id="Layer 1" class="s1" d="m228 118h-201.6l32.8-91.8 91.2 91.6"/>
+	<text id="A" style="transform: matrix(1,0,0,1,147,136)" >
+		<tspan x="0" y="0" class="t2">A
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(1,0,0,1,8,135)" >
+		<tspan x="0" y="0" class="t2">B
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(1,0,0,1,46,22)" >
+		<tspan x="0" y="0" class="t2">C
+</tspan>
+	</text>
+	<text id="α" style="transform: matrix(1,0,0,1,110,113)" >
+		<tspan x="0" y="0" class="t2">α
+</tspan>
+	</text>
+	<text id="φ" style="transform: matrix(1,0,0,1,175,108)" >
+		<tspan x="0" y="0" class="t2">φ
+</tspan>
+	</text>
+</svg>

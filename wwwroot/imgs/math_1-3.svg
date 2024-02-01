@@ -1,0 +1,39 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 186 188" width="186" height="188">
+	<title>math_1-3</title>
+	<style>
+		tspan { white-space:pre }
+		.t0 { font-size: 24px;fill: var(--c-text); }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: var(--c-text) }
+		.s3 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 2 }
+		.s4 { fill: var(--c-title) }
+		.t5 { font-size: 24px;fill: var(--c-title); }
+	</style>
+	<text id="O copy" style="transform: matrix(.634,0,0,.634,108.366,84.407)" >
+		<tspan x="0" y="0" class="t0">O
+</tspan>
+	</text>
+	<path id="Layer 2" class="s1" d="m99 169c-44.8 0-81-36.2-81-81 0-44.8 36.2-81 81-81 44.8 0 81 36.2 81 81 0 44.8-36.2 81-81 81z"/>
+	<path id="Shape 1" class="s2" d="m99 91c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<path id="Layer 3" class="s3" d="m149.2 4.6l-136.6 162.9 160.8 1.2"/>
+	<path id="Shape 1 copy" class="s4" d="m13 171c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<path id="Shape 1 copy 2" class="s4" d="m37 142c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<path id="Shape 1 copy 3" class="s4" d="m98 172c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<path id="Shape 1 copy 4" class="s4" d="m139 20c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<text id="c" style="transform: matrix(.634,0,0,.634,67.366,81.407)" >
+		<tspan x="0" y="0" class="t5">c</tspan><tspan  y="0" class="t5">
+</tspan>
+	</text>
+	<text id="b" style="transform: matrix(.634,0,0,.634,12.366,148.407)" >
+		<tspan x="0" y="0" class="t5">b
+</tspan>
+	</text>
+	<text id="a" style="transform: matrix(.634,0,0,.634,41.366,180.407)" >
+		<tspan x="0" y="0" class="t5">a
+</tspan>
+	</text>
+	<text id="c copy 2" style="transform: matrix(.634,0,0,.634,67.366,81.407)" >
+		<tspan x="0" y="0" class="t5">c</tspan><tspan  y="0" class="t5">
+</tspan>
+	</text>
+</svg>

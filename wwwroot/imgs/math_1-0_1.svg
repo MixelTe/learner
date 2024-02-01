@@ -1,0 +1,19 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 176" width="174" height="176">
+	<title>math_1-0_1</title>
+	<style>
+		tspan { white-space:pre }
+		.t0 { font-size: 24px;fill: var(--c-text); }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 2 }
+		.s3 { fill: none;stroke: var(--c-title);stroke-linejoin: round;stroke-width: 2 }
+		.s4 { fill: var(--c-text) }
+	</style>
+	<text id="O" style="transform: matrix(.634,0,0,.634,92.366,82.407)" >
+		<tspan x="0" y="0" class="t0">O
+</tspan>
+	</text>
+	<path id="Layer 2" class="s1" d="m87 169c-44.8 0-81-36.2-81-81 0-44.8 36.2-81 81-81 44.8 0 81 36.2 81 81 0 44.8-36.2 81-81 81z"/>
+	<path id="Layer 3" class="s2" d="m42.7 27l8.8 5.1 5.7-8.9"/>
+	<path id="Shape 2" class="s3" d="m6.3 88h161.5l-120-70.7z"/>
+	<path id="Shape 1" class="s4" d="m87 91c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+</svg>

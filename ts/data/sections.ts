@@ -1,5 +1,8 @@
 import { TestItem } from "../tester.js"
 import { Themes, themes } from "../themes.js"
+import { math_0 } from "./math_0.js"
+import { math_1 } from "./math_1.js"
+import { math_2 } from "./math_2.js"
 import { phy_0 } from "./phy_0.js"
 import { ru_10 } from "./ru_10.js"
 import { ru_11 } from "./ru_11.js"
@@ -43,8 +46,9 @@ export const Sections: Section[] = [
 	{
 		name: "Математика",
 		themes: [
-			// { id: "math_0", name: "Тема 1", color: themes.green, items: [] },
-			// { id: "math_1", name: "Тема 2", color: themes.green, items: [] },
+			{ id: "math_0", name: "Площади и объёмы", color: themes.green, items: math_0 },
+			{ id: "math_1", name: "Свойства фигур", color: themes.green, items: math_1 },
+			{ id: "math_2", name: "Стереометрия", color: themes.green, items: math_2 },
 		],
 	},
 	{

@@ -1,0 +1,48 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 176" width="174" height="176">
+	<title>math_1-36</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s1 { fill: none;stroke: var(--c-title);stroke-linejoin: round;stroke-width: 2 }
+		.s2 { fill: var(--c-text) }
+		.t3 { font-size: 24px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 2" class="s0" d="m87 169c-44.8 0-81-36.2-81-81 0-44.8 36.2-81 81-81 44.8 0 81 36.2 81 81 0 44.8-36.2 81-81 81z"/>
+	<path id="Layer 3" class="s1" d="m15 125l143.2-0.1-111.6-106.8z"/>
+	<path id="Layer 4" class="s1" d="m16 125l71-37"/>
+	<path id="Shape 2" class="s1" d="m48 19l39 69"/>
+	<path id="Shape 3" class="s1" d="m160 125l-73-37"/>
+	<path id="Shape 1" class="s2" d="m87 91c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<text id="A" style="transform: matrix(.634,0,0,.634,3.366,135.407)" >
+		<tspan x="0" y="0" class="t3">A
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(.634,0,0,.634,28.366,16.407)" >
+		<tspan x="0" y="0" class="t3">B
+</tspan>
+	</text>
+	<text id="O" style="transform: matrix(.634,0,0,.634,86.366,80.407)" >
+		<tspan x="0" y="0" class="t3">O
+</tspan>
+	</text>
+	<text id="R" style="transform: matrix(.634,0,0,.634,68.366,113.407)" >
+		<tspan x="0" y="0" class="t3">R
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(.634,0,0,.634,162.366,136.407)" >
+		<tspan x="0" y="0" class="t3">C
+</tspan>
+	</text>
+	<text id="c" style="transform: matrix(.634,0,0,.634,19.366,73.407)" >
+		<tspan x="0" y="0" class="t3">c
+</tspan>
+	</text>
+	<text id="b" style="transform: matrix(.634,0,0,.634,82.366,140.407)" >
+		<tspan x="0" y="0" class="t3">b
+</tspan>
+	</text>
+	<text id="a" style="transform: matrix(.634,0,0,.634,106.366,66.407)" >
+		<tspan x="0" y="0" class="t3">a
+</tspan>
+	</text>
+</svg>

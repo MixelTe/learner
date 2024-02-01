@@ -1,0 +1,37 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174 176" width="174" height="176">
+	<title>math_1-34</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s1 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { opacity: .8;fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+		.t3 { font-size: 24px;fill: var(--c-text); }
+		.t4 { font-size: 24px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 5" class="s0" d="m101 67c0 0 10 5.5 1.4 18.3"/>
+	<path id="Shape 1" class="s1" d="m11 117l139-79"/>
+	<path id="Layer 3" class="s1" d="m18 45l147 70"/>
+	<path id="Layer 2" class="s0" d="m87 169c-44.8 0-81-36.2-81-81 0-44.8 36.2-81 81-81 44.8 0 81 36.2 81 81 0 44.8-36.2 81-81 81z"/>
+	<path id="Layer 4" class="s2" d="m18 45.5c0 0-20.8 25.8-7.5 71.1"/>
+	<path id="Layer 4 copy" class="s2" d="m150.6 37.5c0 0 28.1 29.3 13.3 77.3"/>
+	<text id="A" style="transform: matrix(.634,0,0,.634,3.366,135.407)" >
+		<tspan x="0" y="0" class="t3">A
+</tspan>
+	</text>
+	<text id="D" style="transform: matrix(.634,0,0,.634,3.366,41.407)" >
+		<tspan x="0" y="0" class="t3">D
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(.634,0,0,.634,156.366,37.407)" >
+		<tspan x="0" y="0" class="t3">B
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(.634,0,0,.634,162.366,136.407)" >
+		<tspan x="0" y="0" class="t3">C
+</tspan>
+	</text>
+	<text id="φ" style="transform: matrix(.634,0,0,.634,112.366,78.407)" >
+		<tspan x="0" y="0" class="t4">φ</tspan><tspan  y="0" class="t4">
+</tspan>
+	</text>
+</svg>

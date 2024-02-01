@@ -96,7 +96,7 @@ export class DocBuilder
 		return this;
 	}
 
-	public svg(url: string, flags = DBF.none)
+	public svg(url: string, flags = DBF.center)
 	{
 		const { w100, wm100, center } = unpackFlags(flags);
 		const img = Div("doc-img");
