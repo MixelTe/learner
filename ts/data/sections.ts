@@ -3,6 +3,7 @@ import { Themes, themes } from "../themes.js"
 import { math_0 } from "./math_0.js"
 import { math_1 } from "./math_1.js"
 import { math_2 } from "./math_2.js"
+import { math_3 } from "./math_3.js"
 import { phy_0 } from "./phy_0.js"
 import { ru_10 } from "./ru_10.js"
 import { ru_11 } from "./ru_11.js"
@@ -49,6 +50,7 @@ export const Sections: Section[] = [
 			{ id: "math_0", name: "Площади и объёмы", color: themes.green, items: math_0 },
 			{ id: "math_1", name: "Свойства фигур", color: themes.green, items: math_1 },
 			{ id: "math_2", name: "Стереометрия", color: themes.green, items: math_2 },
+			{ id: "math_3", name: "Алгебра", color: themes.green, items: math_3 },
 		],
 	},
 	{

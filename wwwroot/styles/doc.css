@@ -5,6 +5,7 @@
 .doc-center {
 	text-align: center;
 }
+.doc ol,
 .doc ul {
 	text-align: left;
 	margin-block: 0.5rem;

@@ -78,6 +78,14 @@ export class DocBuilder
 		return this;
 	}
 
+	public ol(...lis: (string | DocBuilder)[])
+	{
+		this.body.appendChild(initEl("ol", [],
+			lis.map(li => initEl("li", [], li instanceof DocBuilder ? li.html() : li)))
+		);
+		return this;
+	}
+
 	public br()
 	{
 		this.body.append(initEl("div", "br"))

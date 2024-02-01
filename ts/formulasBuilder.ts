@@ -14,9 +14,9 @@ export class FormulaBuilder
 		this.text += fb.text;
 		return this;
 	}
-	public t(text: string)
+	public t(text: string, replace = true)
 	{
-		if (replaceLetters.hasOwnProperty(text))
+		if (replace && replaceLetters.hasOwnProperty(text))
 		{
 			this.l(replaceLetters[text]);
 			return this;
@@ -246,7 +246,11 @@ export function FB(text?: string)
  * < | ∠
  * u | ∪
  * i | ∩
+ * + | ±
  * ~ | ≈
+ * = | ≠
+ * ge | ≥
+ * le | ≤
  * in | ∈
  * ar | ⇒
  * ab | ⇔
@@ -298,7 +302,11 @@ const formulaLetters: CustomLetters = {
 	"<": { ch: "∠", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"u": { ch: "∪", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"i": { ch: "∩", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"+": { ch: "±", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"~": { ch: "≈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"=": { ch: "≠", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"ge": { ch: "≥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"le": { ch: "≤", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"in": { ch: "∈", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"ar": { ch: "⇒", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"ab": { ch: "⇔", cha: 0, chw: 0, dy: 0, vb: null, d: null },
@@ -333,7 +341,11 @@ const replaceLetters: CustomLetters = {
  * < | ∠
  * u | ∪
  * i | ∩
+ * + | ±
  * ~ | ≈
+ * = | ≠
+ * ge | ≥
+ * le | ≤
  * in | ∈
  * ar | ⇒
  * ab | ⇔
@@ -408,7 +420,7 @@ export function createFormula(formula: string)
 		}
 		else if (ch == "@")
 		{
-			if (formula[i + 1] != "{") fb.noItalic(FB(formula[++i]))
+			if (formula[i + 1] != "{") fb.noItalic(FB().t(formula[++i], false))
 		}
 		else if (ch == "u" && formula[i + 1] == "{")
 		{
