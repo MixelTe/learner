@@ -53,6 +53,10 @@ export class DocBuilder {
         this.body.appendChild(initEl("ul", [], lis.map(li => initEl("li", [], li instanceof DocBuilder ? li.html() : li))));
         return this;
     }
+    ol(...lis) {
+        this.body.appendChild(initEl("ol", [], lis.map(li => initEl("li", [], li instanceof DocBuilder ? li.html() : li))));
+        return this;
+    }
     br() {
         this.body.append(initEl("div", "br"));
         return this;

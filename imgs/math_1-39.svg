@@ -1,0 +1,33 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 144" width="167" height="144">
+	<title>math_1-39</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 2 }
+		.t1 { font-size: 24px;fill: var(--c-text); }
+	</style>
+	<path id="Layer 3" class="s0" d="m15 125l143.2-0.1-111.6-106.8z"/>
+	<text id="A" style="transform: matrix(.634,0,0,.634,3.366,135.407)" >
+		<tspan x="0" y="0" class="t1">A
+</tspan>
+	</text>
+	<text id="B" style="transform: matrix(.634,0,0,.634,28.366,16.407)" >
+		<tspan x="0" y="0" class="t1">B
+</tspan>
+	</text>
+	<text id="C" style="transform: matrix(.634,0,0,.634,156.366,117.407)" >
+		<tspan x="0" y="0" class="t1">C
+</tspan>
+	</text>
+	<text id="c" style="transform: matrix(.634,0,0,.634,19.366,73.407)" >
+		<tspan x="0" y="0" class="t1">c
+</tspan>
+	</text>
+	<text id="b" style="transform: matrix(.634,0,0,.634,82.366,140.407)" >
+		<tspan x="0" y="0" class="t1">b
+</tspan>
+	</text>
+	<text id="a" style="transform: matrix(.634,0,0,.634,106.366,66.407)" >
+		<tspan x="0" y="0" class="t1">a
+</tspan>
+	</text>
+</svg>
