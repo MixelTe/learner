@@ -21,7 +21,7 @@ export const phy_0 = [
     new TestItemSelfCheck(16, DBc("Давление"), createFormulas("p = {F}/{S} [Па]")),
     new TestItemSelfCheck(17, DBc("Момент силы"), createFormulas("M = Fl")),
     new TestItemSelfCheck(18, DBc("Центр масс системы материальных точек"), createFormulas("&r_{ц.с.} = {m_1&r_1 + m_2&r_2 + ...}/{m_1 + m_2 + ...}")),
-    new TestItemSelfCheck(19, DBc("Условие равновесия тела"), FB().union(createFormulas("M_1 + M_2 + ... = 0", "&F_1 + &F_2 + ... = 0"))),
+    new TestItemSelfCheck(19, DBc("Условие равновесия тела"), FB().system(createFormulas("M_1 + M_2 + ... = 0", "&F_1 + &F_2 + ... = 0"))),
     new TestItemSelfCheck(20, DBc("Давление жидкости"), createFormulas("p = 'r_жgh [Па]")),
     new TestItemSelfCheck(21, DBc("Закон Архимеда"), createFormulas("F_{Арх} = 'r_жgV_т")),
     new TestItemSelfCheck(22, DBc("Импульс"), createFormulas("&p = m&{'v} [{кг*м}/{с}]")),
