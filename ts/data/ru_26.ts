@@ -56,6 +56,11 @@ const data: { [group: string]: { [word: string]: { id: number, q: string | DocBu
 		"Заимствованные слова": { id: 43, q: "Слова, пришедшие в русский язык из других языков" },
 		"Фразеологизмы": { id: 44, q: DBc("Устойчивые словосочетания", "Авгиевы конюшни, белая ворона, бить баклуши") },
 	},
+	"Фонетическое средство": {
+		"Аллитерация": { id: 45, q: DBc("Стилистический прием, при котором повторяются согласные").br().text("Шла Саша по шоссе и сосала сушку").br().text("Нева вздувалась и ревела,", "Котлом клокоча и клубясь") },
+		"Ассонанс": { id: 46, q: DBc("Повтор одинаковых или похожих гласных звуков").br().text("У наших ушки на макушке,", "Чуть утро осветило пушки", "И леса синие верхушки -", "Французы тут как тут.") },
+		"Звукоподражание": { id: 47, q: "" },
+	},
 }
 
 export const ru_26: TestItem[] = [];
@@ -78,14 +83,14 @@ for (const groupTitle in data)
 	}
 }
 
-for (const groupTitle in data)
-{
-	const groups = Object.keys(data);
-	groups[groups.indexOf(groupTitle)] = "+" + groupTitle;
-	const group = data[groupTitle];
-	for (const word in group)
-	{
-		const { id, q } = group[word];
-		ru_26.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
-	}
-}
+// for (const groupTitle in data)
+// {
+// 	const groups = Object.keys(data);
+// 	groups[groups.indexOf(groupTitle)] = "+" + groupTitle;
+// 	const group = data[groupTitle];
+// 	for (const word in group)
+// 	{
+// 		const { id, q } = group[word];
+// 		ru_26.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
+// 	}
+// }
