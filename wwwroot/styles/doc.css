@@ -104,5 +104,6 @@
 }
 
 .doc .br {
-	margin-block: 0.5em;
+	margin-block: 0.45em;
+	height: 0.1em;
 }

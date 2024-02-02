@@ -4,9 +4,11 @@
 	text-wrap: nowrap;
 	white-space-collapse: preserve;
 	width: fit-content;
-	font-style: italic;
 	font-family: "Arimo", Georgia, 'Times New Roman', Times, serif;
 	vertical-align: middle;
+}
+.formula-italic {
+	font-style: italic;
 }
 .formula-noItalic {
 	font-style: normal;
@@ -139,6 +141,31 @@
 .formula-sum-bottom {
 	font-size: 80%;
 }
+.formula-system {
+	position: relative;
+}
+.formula-system::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0.5em;
+	border: 1px solid currentColor;
+	border-right-width: 0;
+	border-top-left-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+}
+.formula-system::after {
+	content: "";
+	position: absolute;
+	top: calc(50% - 0.3em);
+	left: -0.5em;
+	height: 0;
+	width: 0;
+	border: 0.3em solid transparent;
+	border-right-color: currentColor;
+}
 .formula-union {
 	position: relative;
 }
@@ -151,18 +178,6 @@
 	width: 0.5em;
 	border: 1px solid currentColor;
 	border-right-width: 0;
-	border-top-left-radius: 0.2em;
-	border-bottom-left-radius: 0.2em;
-}
-.formula-union::after {
-	content: "";
-	position: absolute;
-	top: calc(50% - 0.3em);
-	left: -0.5em;
-	height: 0;
-	width: 0;
-	border: 0.3em solid transparent;
-	border-right-color: currentColor;
 }
 .formula-table-center {
 	text-align: center;

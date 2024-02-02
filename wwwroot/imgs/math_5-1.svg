@@ -1,0 +1,97 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 246 256" width="246" height="256">
+	<title>math_5-1</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: none;stroke: var(--c-text);stroke-linejoin: round;stroke-width: 1.5 }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: var(--c-text) }
+		.s3 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+		.t4 { font-size: 20px;fill: var(--c-text);font-weight: 400; }
+		.t5 { font-size: 20px;fill: var(--c-title);font-weight: 400; }
+		.s6 { fill: none;stroke: var(--c-text);stroke-miterlimit:100 }
+	</style>
+	<path id="Shape 9" class="s0" d="m117 131c0 0 12.1 0.5 7 14"/>
+	<path id="Shape 1" class="s1" d="m108.7 234c-48.8 0-88.2-39.4-88.2-88.3 0-48.8 39.4-88.2 88.2-88.2 48.9 0 88.3 39.4 88.3 88.2 0 48.9-39.4 88.3-88.3 88.3z"/>
+	<path id="Shape 6" class="s2" d="m3 145.3v-2h224v-4l15 5-15 5v-4z"/>
+	<path id="Shape 7" class="s2" d="m108.8 253h-2v-235h-4l5-15 5 15h-4z"/>
+	<path id="Shape 10" class="s3" d="m108 144.2h52.8v-69.5"/>
+	<text id="y" style="transform: matrix(1,0,0,1,90,2)" >
+		<tspan x="0" y="15.2" class="t4">y
+</tspan>
+	</text>
+	<path id="Shape 11" class="s1" d="m108 145l98.7-133.5"/>
+	<path id="Shape 12" class="s1" d="m198 213.3v-208.3"/>
+	<path id="Shape 12 copy" class="s3" d="m198 143.8v-119.7"/>
+	<path id="Shape 13" class="s1" d="m31.7 58h155.3"/>
+	<path id="Shape 13 copy" class="s3" d="m108 58h64.7"/>
+	<text id="0" style="transform: matrix(1,0,0,1,89,150)" >
+		<tspan x="0" y="15.2" class="t4">0
+</tspan>
+	</text>
+	<text id="α" style="transform: matrix(1,0,0,1,127,122)" >
+		<tspan x="0" y="15.2" class="t4">α
+</tspan>
+	</text>
+	<text id="sinα" style="transform: matrix(1,0,0,1,163,112)" >
+		<tspan x="0" y="15.2" class="t5">s</tspan><tspan  y="15.2" class="t5">i</tspan><tspan  y="15.2" class="t5">n</tspan><tspan  y="15.2" class="t5">α
+</tspan>
+	</text>
+	<text id="tgα" style="transform: matrix(1,0,0,1,203,82)" >
+		<tspan x="0" y="15.2" class="t5">t</tspan><tspan  y="15.2" class="t5">g</tspan><tspan  y="15.2" class="t5">α
+</tspan>
+	</text>
+	<text id="ctgα" style="transform: matrix(1,0,0,1,119,34)" >
+		<tspan x="0" y="15.2" class="t5">c</tspan><tspan  y="15.2" class="t5">t</tspan><tspan  y="15.2" class="t5">g</tspan><tspan  y="15.2" class="t5">α
+</tspan>
+	</text>
+	<text id="x" style="transform: matrix(1,0,0,1,229,151)" >
+		<tspan x="0" y="15.2" class="t4">x
+</tspan>
+	</text>
+	<text id="1" style="transform: matrix(1,0,0,1,203,149)" >
+		<tspan x="0" y="15.2" class="t4">1
+</tspan>
+	</text>
+	<text id="0π;2π" style="transform: matrix(1,0,0,1,170,165)" >
+		<tspan x="0" y="15.2" class="t4">0</tspan><tspan  y="15.2" class="t4">π</tspan><tspan  y="15.2" class="t4">;</tspan><tspan  y="15.2" class="t4">2</tspan><tspan  y="15.2" class="t4">π
+</tspan>
+	</text>
+	<text id="π" style="transform: matrix(1,0,0,1,72,15)" >
+		<tspan x="0" y="15.2" class="t4">π</tspan><tspan  y="15.2" class="t4">
+</tspan>
+	</text>
+	<text id="π copy" style="transform: matrix(1,0,0,1,25,124)" >
+		<tspan x="0" y="15.2" class="t4">π</tspan><tspan  y="15.2" class="t4">
+</tspan>
+	</text>
+	<text id="2" style="transform: matrix(1,0,0,1,73,38)" >
+		<tspan x="0" y="15.2" class="t4">2
+</tspan>
+	</text>
+	<path id="Shape 14" class="s6" d="m70 35h17"/>
+	<text id="3π" style="transform: matrix(1,0,0,1,82,189)" >
+		<tspan x="0" y="15.2" class="t4">3</tspan><tspan  y="15.2" class="t4">π</tspan><tspan  y="15.2" class="t4">
+</tspan>
+	</text>
+	<text id="2 copy" style="transform: matrix(1,0,0,1,88,212)" >
+		<tspan x="0" y="15.2" class="t4">2
+</tspan>
+	</text>
+	<path id="Shape 14 copy" class="s6" d="m83.7 209h21.3"/>
+	<text id="1 copy" style="transform: matrix(1,0,0,1,91,39)" >
+		<tspan x="0" y="15.2" class="t4">1
+</tspan>
+	</text>
+	<text id="-1" style="transform: matrix(1,0,0,1,84,237)" >
+		<tspan x="0" y="15.2" class="t4">-</tspan><tspan  y="15.2" class="t4">1
+</tspan>
+	</text>
+	<text id="-1 copy" style="transform: matrix(1,0,0,1,0,126)" >
+		<tspan x="0" y="15.2" class="t4">-</tspan><tspan  y="15.2" class="t4">1
+</tspan>
+	</text>
+	<text id="cosα" style="transform: matrix(1,0,0,1,113,148)" >
+		<tspan x="0" y="15.2" class="t5">c</tspan><tspan  y="15.2" class="t5">o</tspan><tspan  y="15.2" class="t5">s</tspan><tspan  y="15.2" class="t5">α
+</tspan>
+	</text>
+</svg>
