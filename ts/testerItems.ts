@@ -391,7 +391,7 @@ export class TestItemChooseWord extends TestItem
 	private parts: string[] = [];
 	private words: string[] = [];
 	private answerI: number[] = [];
-	constructor(id: number, task: string, ans: string)
+	constructor(id: number, task: string, ans: string, private title: string)
 	{
 		super(id);
 		this.parts = task.split(" ");
@@ -447,7 +447,7 @@ export class TestItemChooseWord extends TestItem
 		}));
 		const task = Lib.Div("tester-chooseWord", btns);
 		Lib.SetContent(taskEl, [
-			Lib.initEl("h5", [], "Исправьте лексическую ошибку, исключив лишнее слово"),
+			Lib.initEl("h5", [], this.title),
 			task,
 		]);
 	}
