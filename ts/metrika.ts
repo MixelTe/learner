@@ -56,6 +56,11 @@ export function metrika_setParams()
 
 function saveCall(f: () => void)
 {
+	if (!Object.hasOwn(window, "ym"))
+	{
+		console.error("metrika is undefined");
+		return;
+	}
 	try { f(); }
 	catch (e) { console.error(e); }
 }

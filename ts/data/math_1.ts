@@ -3,7 +3,7 @@ import { createFormulas } from "../formulasBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const math_1: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Вписанные в окружность углы"), DBc().svg("math_1-0.svg").ul("Вписанный угол равен половине градусной меры дуги, на которую опирается", "Вписанные углы, опирающиеся на одну и ту же дугу, равны").svg("math_1-0_1.svg").text("Вписанный угол, опирающийся на диаметр - прямой")),
 	new TestItemSelfCheck(1, DBc("Центральный угол окружности"), DBc().svg("math_1-1.svg").text("Центральный угол равен градусной мере дуги, на которую опирается")),
 	new TestItemSelfCheck(2, DBc("Касательная к окружности"), DBc().svg("math_1-2.svg").ul("Касательная перпендикулярна к радиусу, проведенному в точку касания", "Отрезки касательных к окружности, проведенных из одной точки, равны")),

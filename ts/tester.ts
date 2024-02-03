@@ -19,12 +19,21 @@ export class Tester
 
 	constructor(private theme: Theme) { }
 
-	public start()
+	public async start()
 	{
 		switchPage({ page: "tester", title: "tester/" + this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
-		this.items = Trainer.selectTasks(this.theme);
+		this.loading();
+		this.items = await Trainer.selectTasks(this.theme);
 		this.next();
 		metrika_event("tester_start");
+	}
+
+	private loading()
+	{
+		pageEl.innerText = "";
+		idEl.innerText = "";
+		inputEl.innerHTML = "";
+		Lib.SetContent(taskEl, Lib.Div("loading", "Загрузка заданий"));
 	}
 
 	private next()

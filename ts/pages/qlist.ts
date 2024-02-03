@@ -30,10 +30,10 @@ export function showQlist(onSwitch: () => void = () => { })
 		let c = 0;
 		for (const theme of section.themes)
 		{
-			c += theme.items.length;
+			c += theme.count;
 			themes.appendChild(Lib.Button([], [
 				Lib.Span([], theme.name),
-				Lib.Span([], `${theme.items.length}`),
+				Lib.Span([], `${theme.count}`),
 			], () =>
 			{
 				showItemQs(section.name, theme);
@@ -50,13 +50,15 @@ export function showQlist(onSwitch: () => void = () => { })
 	}
 }
 
-export function showItemQs(sectionName: string, theme: Theme)
+export async function showItemQs(sectionName: string, theme: Theme)
 {
 	switchPage("qlist", theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
-	qlistEl.innerHTML = "";
+	Lib.SetContent(qlistEl, Lib.Div("loading", "Загрузка заданий"));
 	qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
 	const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);
-	for (const item of theme.items)
+	const items = await theme.items();
+	qlistEl.innerHTML = "";
+	for (const item of items)
 	{
 		const stat = stats?.items?.find?.(v => v.id == item.id)?.hist || "";
 		const marker = createMarker(stat);

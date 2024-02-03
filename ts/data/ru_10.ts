@@ -2,7 +2,7 @@ import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const ru_10: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Неизменяемые"), DBc("о, у, до, по, про, пра, на, за, над, под, от, об, в, вы, пред, пере, с, дез, контр, транс, пост, суб, супер, пан")),
 	new TestItemSelfCheck(1, DBc("Приставки на –З, -С"), DBc("Перед звонкой согласной З", "Перед глухим С")),
 	new TestItemSelfCheck(2, DBc("ПРЕ/ПРИ"), DBc()

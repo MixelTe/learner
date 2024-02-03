@@ -8,7 +8,7 @@ function df(f: string)
 	return DBc("Производная от:").br().formula(createFormulas(f))
 }
 
-export const math_4: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Геометрический смысл производной"), DBc()
 		.svg("math_4-0.svg")
 		.text("Производная функции ").formula(createFormulas("f(x)")).text(" в точке ").formula(createFormulas("x_0")).text(" равна угловому коэффициенту касательной, проведенной к графику функции в точке")

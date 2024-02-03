@@ -7,7 +7,7 @@ const v2 = (a: string) => DBc().text("Зависит от ударения").hr(
 const v3 = (...a: string[]) => DBc().text("Зависит от последней согласной корня").hr().text(...a);
 const v4 = () => DBc().text("Зависит от значения").hr();
 
-export const ru_9_1: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("бер/бир"), v1().text("бир(а) - собИрАть", "бер - собЕрет")),
 	new TestItemSelfCheck(1, DBc("дер/дир"), v1().text("дир(а) - обдИрАть", "дер - обдЕрет")),
 	new TestItemSelfCheck(2, DBc("мер/мир"), v1().text("мир(а) - замИрАть", "мер - замЕреть").br().text("Только в значении 'мёртвый, неподвижный'", "В значении 'мирный' - всегда -мир-")),

@@ -39,7 +39,7 @@ export function showStats(onSwitch: () => void = () => { })
 			title.innerText = theme.name;
 
 			const markerPlaceholder = subitem.querySelector("#placeholder-marker") as HTMLDivElement;
-			const itemScore = stats ? Trainer.calcScore(stats, theme.items.length) : 0;
+			const itemScore = stats ? Trainer.calcScore(stats, theme.count) : 0;
 			score += itemScore;
 			markerPlaceholder.replaceWith(createMarker(itemScore));
 

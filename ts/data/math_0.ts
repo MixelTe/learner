@@ -3,7 +3,7 @@ import { createFormulas } from "../formulasBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const math_0: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Площадь квадрата"), createFormulas("S = a^2")),
 	new TestItemSelfCheck(1, DBc("Площадь прямоугольника"), createFormulas("S = a*b")),
 	new TestItemSelfCheck(2, DBc("Площадь треугольника"), createFormulas("S = {a*h}/{2}")),

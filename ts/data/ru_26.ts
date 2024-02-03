@@ -2,7 +2,7 @@ import { DBc, DocBuilder } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemChoice, TestItemSelfCheck } from "../testerItems.js";
 
-const data: { [group: string]: { [word: string]: { id: number, q: string | DocBuilder | null } } } = {
+const _data: { [group: string]: { [word: string]: { id: number, q: string | DocBuilder | null } } } = {
 	"Троп": {
 		"Эпитет": { id: 0, q: "Красочное определение (с переносным смыслом)" },
 		"Гипербола": { id: 1, q: "Преувеличение" },
@@ -63,11 +63,11 @@ const data: { [group: string]: { [word: string]: { id: number, q: string | DocBu
 	},
 }
 
-export const ru_26: TestItem[] = [];
+export const data: TestItem[] = [];
 
-for (const groupTitle in data)
+for (const groupTitle in _data)
 {
-	const group = data[groupTitle];
+	const group = _data[groupTitle];
 	for (const word in group)
 	{
 		let { id, q } = group[word];
@@ -78,7 +78,7 @@ for (const groupTitle in data)
 			else
 				q = q.copy();
 			q.hr().text(groupTitle);
-			ru_26.push(new TestItemSelfCheck(id, word, q));
+			data.push(new TestItemSelfCheck(id, word, q));
 		}
 	}
 }
@@ -91,6 +91,6 @@ for (const groupTitle in data)
 // 	for (const word in group)
 // 	{
 // 		const { id, q } = group[word];
-// 		ru_26.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
+// 		data.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
 // 	}
 // }

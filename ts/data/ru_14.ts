@@ -2,7 +2,7 @@ import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck, TestItemWordChoice } from "../testerItems.js";
 
-export const ru_14: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Пол-, полу"), DBc()
 		.title("Через дефиз")
 		.text("Если слово начинается с:")

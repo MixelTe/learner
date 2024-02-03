@@ -2,7 +2,7 @@ import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const ru_11: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("ОВА,ЕВА / ЫВА,ИВА"), DBc("Если в 1 л. ед ч. настоящего или будущего простого времени глагол оканчивается на")
 		.ul("ую/юю, то -ова-, -ева-", "ываю/иваю, то -ыва-, -ива-")
 		.ul("заведовать - заведую, исповедовать - исповедую", "откладывать - откладываю, рассматривать - рассматриваю")

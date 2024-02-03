@@ -3,7 +3,7 @@ import { createFormulas } from "../formulasBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const math_3: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, createFormulas("a^2 - b^2 = ?"), createFormulas("a^2 - b^2 = (a - b)(a + b)")),
 	new TestItemSelfCheck(1, createFormulas("(a + b)^2 = ?"), createFormulas("(a + b)^2 = a^2 + b^2 + 2ab")),
 	new TestItemSelfCheck(2, createFormulas("(a - b)^2 = ?"), createFormulas("(a - b)^2 = a^2 + b^2 - 2ab")),

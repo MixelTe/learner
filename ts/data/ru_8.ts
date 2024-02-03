@@ -2,7 +2,7 @@ import { DB, DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const ru_8: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Несогласованное приложение"),
 		DB("Несогласованное приложение стоит в именительном падеже независимо от того, в каком падеже определяемое слово")
 			.ul(

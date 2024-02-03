@@ -1,7 +1,7 @@
 import { TestItem } from "../tester.js";
 import { TestItemParonyms } from "../testerItems.js";
 
-export const ru_5: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemParonyms(0, ["Абонемент", "абонент"], ["право пользования чем-либо в течение определённого срока", "владелец абонемента"]),
 	new TestItemParonyms(1, ["Авторитарный", "авторитетный"], ["основанный на беспрекословном подчинении власти, диктатуре", "пользующийся авторитетом"]),
 	new TestItemParonyms(2, ["Адресант", "адресат"], ["отправитель", "получатель"]),

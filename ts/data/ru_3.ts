@@ -48,7 +48,7 @@ const q = {
 	}
 }
 
-export const ru_3: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemChoice(0, DBc().title("Задача стиля").text(q.task.nauch), ans.nauch(), false),
 	new TestItemChoice(1, DBc().title("Задача стиля").text(q.task.offdel), ans.offdel(), false),
 	new TestItemChoice(2, DBc().title("Задача стиля").text(q.task.public), ans.public(), false),

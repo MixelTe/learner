@@ -1,7 +1,7 @@
 import { TestItem } from "../tester.js";
 import { TestItemStress } from "../testerItems.js";
 
-export const ru_4: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemStress(0, "аэропОрты"),
 	new TestItemStress(1, "бАнты"),
 	new TestItemStress(2, "бОроду"),

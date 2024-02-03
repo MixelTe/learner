@@ -11,20 +11,21 @@ if (devSelectId >= -2) console.warn("DEV: devSelectId is enabled");
 
 export class Trainer
 {
-	public static selectTasks(theme: Theme)
+	public static async selectTasks(theme: Theme)
 	{
+		const items = await theme.items();
 		if (devSelectId == -1)
 		{
-			const item = theme.items.at(-1)
+			const item = items.at(-1)
 			return item ? [item] : [];
 		}
 		else if (devSelectId == -2)
 		{
-			return theme.items;
+			return items;
 		}
 		else if (devSelectId >= 0)
 		{
-			const item = theme.items.find(v => v.id == devSelectId)
+			const item = items.find(v => v.id == devSelectId)
 			return item ? [item] : [];
 		}
 
@@ -48,15 +49,15 @@ export class Trainer
 			this.setStatistics(stats);
 		}
 
-		const shuffled = shuffledWithSeedAndWeights(theme.items, this.seed, theme.items.map(v =>
+		const shuffled = shuffledWithSeedAndWeights(items, this.seed, items.map(v =>
 		{
 			const hist = statsItems.find(el => el.id == v.id)?.hist_old || "";
 			if (hist.length == 0) return 1;
 			return (1 - sumStr(hist) / hist.length) + 0.1;
 		}));
-		const items = shuffled.slice(0, Len * 2);
-		Lib.random.shuffle(items);
-		return items.slice(0, Len);
+		const selected_items = shuffled.slice(0, Len * 2);
+		Lib.random.shuffle(selected_items);
+		return selected_items.slice(0, Len);
 	}
 
 	public static saveRes(themeId: string, itemId: number, res: boolean)

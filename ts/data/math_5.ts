@@ -3,7 +3,7 @@ import { FB, createFormulas } from "../formulasBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const math_5: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("sin, cos, tg, ctg в прямоугольном треугольнике"),
 		DBc().svg("math_5-0.svg").formula(createFormulas("@{sin}'<A = {a}/{c}", "@{cos}'<A = {b}/{c}", "@{tg}'<A = {a}/{b}", "@{ctg}'<A = {b}/{a}"))
 	),
@@ -21,7 +21,7 @@ export const math_5: TestItem[] = [
 	new TestItemSelfCheck(4, DBc("Решение уравнения").br().formula(createFormulas("@{tg}x = a")), createFormulas("x = @{arctg}a + 'Pk, k 'in 'Z")),
 	new TestItemSelfCheck(5, DBc("Решение уравнения").br().formula(createFormulas("@{ctg}x = a")), createFormulas("x = @{arcctg}a + 'Pk, k 'in 'Z")),
 	new TestItemSelfCheck(6, DBc("Основное тригонометрическое тождество"), createFormulas("@{sin}^2x + @{cos}^2x = 1")),
-	new TestItemSelfCheck(7, createFormulas("@{tg}x = ?","@{ctg}x = ?"), createFormulas("@{tg}x = {@{sin}x}/{@{cos}x}", "@{ctg}x = {@{cos}x}/{@{sin}x}")),
+	new TestItemSelfCheck(7, createFormulas("@{tg}x = ?", "@{ctg}x = ?"), createFormulas("@{tg}x = {@{sin}x}/{@{cos}x}", "@{ctg}x = {@{cos}x}/{@{sin}x}")),
 	new TestItemSelfCheck(8, createFormulas("@{sin('a + 'b) = ?}"), createFormulas("@{sin('a + 'b) = sin'acos'b + cos'asin'b}")),
 	new TestItemSelfCheck(9, createFormulas("@{sin('a - 'b) = ?}"), createFormulas("@{sin('a - 'b) = sin'acos'b - cos'asin'b}")),
 	new TestItemSelfCheck(10, createFormulas("@{cos('a + 'b) = ?}"), createFormulas("@{cos('a + 'b) = cos'acos'b - sin'asin'b}")),

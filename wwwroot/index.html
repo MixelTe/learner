@@ -39,11 +39,9 @@
 	</style>
 	<div id="beforeload"></div>
 	<script>
-		let darkThemeOnOpen = false;
 		{
 			const theme = localStorage.getItem("learner-theme") || "auto";
 			const dark = theme == "dark" || (theme == "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-			darkThemeOnOpen = dark;
 			document.getElementById("beforeload").style.backgroundColor = dark ? "#100c05" : "#f1e6d1";
 		}
 	</script>
@@ -110,7 +108,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.31</div>
+		<div class="version">v0.32</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -291,7 +289,7 @@
 	</div>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript">
-		// return;
+		return;
 		(function (m, e, t, r, i, k, a)
 		{
 			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
@@ -301,16 +299,10 @@
 		})
 			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-		const theme = localStorage.getItem("learner-theme") || "auto";
 		ym(96188813, "init", {
 			defer: true,
 			trackLinks: true,
 			accurateTrackBounce: true,
-			userParams: {
-				darkTheme: darkThemeOnOpen,
-				autoTheme: theme == "auto",
-				longestDays: JSON.parse(localStorage.getItem("learner-dayLongest") || "0")
-			}
 		});
 	</script>
 	<noscript>

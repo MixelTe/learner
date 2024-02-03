@@ -2,7 +2,7 @@ import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const ru_12: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Спряжение глагола"), DBc()
 		.title("1 спряжение").ul("Глаголы на -АТЬ, -ЕТЬ, -УТЬ, -ОТЬ, -ТИ, -ЧЬ, -ЯТЬ", "+ брить, стелить, зиждиться")
 		.title("2 спряжение").ul("Глаголы на -ИТЬ", "+ смотреть, обидеть, слышать, видеть, ненавидеть, гнать, дышать, держать, вертеть, зависеть, терпеть")

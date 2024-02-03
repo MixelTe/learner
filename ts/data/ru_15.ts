@@ -2,7 +2,7 @@ import { DBc } from "../docBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
 
-export const ru_15: TestItem[] = [
+export const data: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Н/НН в прилагательных, образованных от существительных"), DBc()
 		.text("НН, если корень заканчивается на Н", "соН -> соННый").br()
 		.text("АН, ЯН, ИН - одна Н", "ОНН, ЕНН - две Н", "Травяной, каменный").br()

@@ -261,3 +261,29 @@ body:not(.dark) .hideOnLight {
 	display: none;
 }
 
+.loading {
+	position: relative;
+}
+.loading::after {
+	content: "";
+	position: absolute;
+	bottom: -0.1em;
+	left: 0;
+	width: 1em;
+	height: 2px;
+	background-color: var(--c-text);
+	animation: anim-loading 500ms ease-in-out alternate infinite;
+}
+@keyframes anim-loading {
+	0% {
+		left: 0;
+		width: 10%;
+	}
+	50% {
+		width: 30%;
+	}
+	100% {
+		left: 90%;
+		width: 10%;
+	}
+}
