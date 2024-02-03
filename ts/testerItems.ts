@@ -447,3 +447,128 @@ export class TestItemChooseWord extends TestItem
 		]);
 	}
 }
+
+export class TestItemMultipleWordChoice extends TestItem
+{
+	private parts: { s: string, a: string, q: boolean, r: boolean, selected?: boolean }[] = [];
+	constructor(id: number, task: string, private title: string)
+	{
+		super(id);
+		let w = "";
+		let s = "";
+		let q = false;
+		let r = false;
+		for (let i = 0; i < task.length; i++)
+		{
+			const ch = task[i];
+			if (ch == "[")
+			{
+				this.parts.push({ s: w, a: w, q, r });
+				w = "";
+				s = "";
+				q = true;
+				r = false;
+				if (task[i + 1] == "+")
+				{
+					i++;
+					r = true;
+				}
+			}
+			else if (q && ch == "|")
+			{
+				s = w;
+				w = "";
+			}
+			else if (ch == "]")
+			{
+				if (s == "") s = w;
+				this.parts.push({ s, a: w, q, r });
+				w = "";
+				s = "";
+				q = false;
+				r = false;
+			}
+			else
+			{
+				w += ch;
+			}
+		}
+		this.parts.push({ s: w, a: w, q, r });
+	}
+
+	public getQuestion(): string | Node
+	{
+		return this.parts.map(v => v.s).join("");
+	}
+
+	public getAnswer(): string | Node
+	{
+		return this.parts.filter(v => v.r).map(v => v.s).join("");
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		this.parts.forEach(v => v.selected = false);
+		let done = false;
+		const els = this.parts.map((part, I) => !part.q ?
+			Lib.Span([], part.s) :
+			Lib.Button([], part.s, btn =>
+			{
+				if (done) return;
+				const selected = !this.parts[I].selected;
+				this.parts[I].selected = selected;
+				btn.classList.toggle("tester-multipleWordChoice-btn_selected", selected);
+				Lib.SetContent(selectedEl, this.parts.filter(v => v.selected).map(v => Lib.Span([], v.s)))
+			}));
+
+		const answ = Lib.Div(["tester-collapsible", "tester-collapsible_noMargin", "tester-collapsible_collapsed"], Lib.Span([], "Ответ: " + this.getAnswer()));
+
+		const task = Lib.Div("tester-multipleWordChoice", els);
+		const selectedEl = Lib.Span("tester-multipleWordChoice-selected");
+		Lib.SetContent(taskEl, [
+			Lib.initEl("h5", [], this.title),
+			task,
+			Lib.Div([], [
+				Lib.Span([], "Выбрано: "),
+				selectedEl,
+			]),
+			answ,
+		]);
+
+		Lib.SetContent(inputEl, Lib.Div("tester-input-one", Lib.Button([], "Ответить", btn =>
+		{
+			answ.classList.remove("tester-collapsible_collapsed");
+			this.parts.filter(v => v.selected).forEach((v, i) => selectedEl.children[i].classList.add("tester-multipleWordChoice-selected_" + (v.r ? "correct" : "wrong")));
+			done = true;
+			let correct = true;
+			for (let i = 0; i < els.length; i++)
+			{
+				const el = els[i];
+				const part = this.parts[i];
+				if (!part.q) continue;
+				el.innerText = part.a;
+				if (part.r)
+					el.classList.add("tester-multipleWordChoice-btn_correct")
+				else
+					if (part.selected)
+						el.classList.add("tester-multipleWordChoice-btn_wrong")
+					else
+						el.classList.add("tester-multipleWordChoice-btn_hidden")
+
+				correct = correct && (part.r && !!part.selected || !part.r && !part.selected);
+			}
+
+			btn.innerText = "Далее";
+			btn.classList.add("active")
+			const nbtn = btn.cloneNode(true) as HTMLButtonElement;
+			btn.replaceWith(nbtn);
+			setTimeout(() => nbtn.classList.remove("active"), 1);
+			nbtn.addEventListener("click", async () =>
+			{
+				nbtn.classList.add("active");
+				await Lib.wait(150);
+				onAnswer(correct);
+			});
+		})));
+	}
+}

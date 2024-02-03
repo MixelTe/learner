@@ -16,6 +16,7 @@ import { ru_13 } from "./ru_13.js"
 import { ru_14 } from "./ru_14.js"
 import { ru_15 } from "./ru_15.js"
 import { ru_16 } from "./ru_16.js"
+import { ru_16p } from "./ru_16p.js"
 import { ru_26 } from "./ru_26.js"
 import { ru_3 } from "./ru_3.js"
 import { ru_4 } from "./ru_4.js"
@@ -50,7 +51,7 @@ export const Sections: Section[] = [
 			{ id: "ru_15", name: "№15 Н и НН в суффиксах", color: themes.blue, items: ru_15 },
 			// { id: "ru_15p", name: "№15 Практика", color: themes.blue, items: ru_15p, onlyAnswerInQList: true },
 			{ id: "ru_16", name: "№16-20 Пунктуация", color: themes.blue, items: ru_16 },
-			// { id: "ru_16p", name: "№16-20 Практика", color: themes.blue, items: ru_16p, onlyAnswerInQList: true },
+			// { id: "ru_16p", name: "№17-20 Практика", color: themes.blue, items: ru_16p },
 			{ id: "ru_26", name: "№26 Cредства выразительности", color: themes.blue, items: ru_26 },
 		],
 	},
