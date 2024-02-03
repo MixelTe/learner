@@ -1,5 +1,5 @@
 import { Keys } from "./keys.js";
-import { metrika_setParams } from "./metrika.js";
+import { setThemeInputValue } from "./pages/settings.js";
 
 export const themes = {
 	common: "common",
@@ -9,12 +9,7 @@ export const themes = {
 } as { [theme in Themes]: Themes }
 export type Themes = "common" | "blue" | "green" | "orange";
 export type ThemeColors = { light: string, dark: string };
-const select = document.getElementById("themeSelect") as HTMLSelectElement;
-select.addEventListener("change", () =>
-{
-	setThemeScheme(select.value);
-	metrika_setParams();
-});
+
 
 const themeMetaColor = document.querySelector('meta[name="theme-color"]');
 let themeColors: ThemeColors = { light: "#a52a2a", dark: "#df4545" };
@@ -29,11 +24,11 @@ export function initThemes()
 	setThemeScheme();
 }
 
-function setThemeScheme(theme?: string)
+export function setThemeScheme(theme?: string)
 {
 	theme = theme || localStorage.getItem(Keys.theme) || "auto";
 	localStorage.setItem(Keys.theme, theme);
-	select.value = theme;
+	setThemeInputValue(theme);
 
 	if (theme == "auto")
 	{

@@ -1,8 +1,9 @@
 import * as Lib from "../littleLib.js";
 import { metrika_pageSwitch } from "../metrika.js";
 import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
+import { isAnimDisabled } from "./settings.js";
 
-export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats" | "about";
+export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats" | "about" | "settings";
 const pages = {
 	main: Lib.get.div("p-start"),
 	tester: Lib.get.div("p-tester"),
@@ -11,6 +12,7 @@ const pages = {
 	qlist: Lib.get.div("p-qlist"),
 	dayStats: Lib.get.div("p-dayStats"),
 	about: Lib.get.div("p-about"),
+	settings: Lib.get.div("p-settings"),
 } as { [key in Page]: HTMLDivElement }
 const themeColors = {
 	common: { light: "#a52a2a", dark: "#df4545" },
@@ -40,7 +42,7 @@ export async function switchPage(page: Page | { page: Page, title: string }, tit
 	metrika_pageSwitch(prevPage, pageTitle, documentTitle)
 	prevPage = pageTitle;
 
-	if (instant)
+	if (instant || isAnimDisabled())
 	{
 		pages[curPage].classList.remove("open");
 		curPage = page;
@@ -49,6 +51,11 @@ export async function switchPage(page: Page | { page: Page, title: string }, tit
 		setThemeColors(themeColors[theme]);
 		pages[curPage].classList.add("open");
 		onSwitch();
+		if (!dontPushState)
+			if (history.state?.back)
+				history.replaceState({ page, title, theme, curSessionKey }, "");
+			else
+				history.pushState({ page, title, theme, curSessionKey }, "");
 		document.title = documentTitle;
 		if (currentTheme() != theme)
 			setTheme(theme);

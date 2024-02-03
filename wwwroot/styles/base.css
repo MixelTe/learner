@@ -8,6 +8,10 @@
 	box-sizing: border-box;
 }
 
+html {
+	overflow: hidden;
+}
+
 body {
 	font-family: "PT Sans", Arial, Helvetica, sans-serif;
 	height: 100dvh;
@@ -23,6 +27,12 @@ h1, h2, h3, h4, h5 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
+}
+
+[disableanim="1"] *::before,
+[disableanim="1"] *::after,
+[disableanim="1"] * {
+	transition: none !important;
 }
 
 button {
@@ -128,10 +138,6 @@ header {
 	opacity: 1;
 	pointer-events: all;
 }
-.menu:not(.open) button,
-.menu:not(.open) select {
-	display: none;
-}
 
 .menu > * {
 	grid-column: 2/3;
@@ -220,27 +226,7 @@ footer {
 	justify-content: space-between;
 }
 
-footer select {
-	position: relative;
-	appearance: none;
-	padding: 0.4rem 0.6rem;
-	background-color: transparent;
-	border: none;
-	border-radius: 0.2rem;
-	color: var(--c-title);
-	font-size: 2rem !important;
-	outline: none;
-	cursor: pointer;
-}
-footer select:focus-visible {
-	outline: 2px solid var(--c-title);
-}
-footer option {
-	background-color: var(--c-back1);
-	color: var(--c-title);
-}
-
-#btn-about {
+footer button {
 	background: transparent;
 	border-radius: 0.2rem;
     border: none;
@@ -250,10 +236,10 @@ footer option {
 	cursor: pointer;
 	outline: none;
 }
-#btn-about > * {
+footer button > * {
 	font-size: 2rem;
 }
-#btn-about:focus-visible {
+footer button:focus-visible {
 	outline: 2px solid var(--c-title);
 }
 

@@ -1,4 +1,5 @@
 import * as Lib from "./littleLib.js";
+import { isAnimDisabled } from "./pages/settings.js";
 import { TestItem } from "./tester.js";
 
 
@@ -39,7 +40,8 @@ export class TestItemSelfCheck extends TestItem
 			Lib.Button([], "Ответ", async btn =>
 			{
 				btn.classList.add("active");
-				await Lib.wait(200);
+				if (!isAnimDisabled())
+					await Lib.wait(200);
 
 				if (typeof this.ans == "string")
 					taskEl.innerText = this.ans;
@@ -57,7 +59,8 @@ export class TestItemSelfCheck extends TestItem
 				async function answer(r: boolean, btn: HTMLButtonElement)
 				{
 					btn.classList.add("active");
-					await Lib.wait(200);
+					if (!isAnimDisabled())
+						await Lib.wait(200);
 					onAnswer(r);
 				}
 			}),
@@ -257,7 +260,8 @@ export class TestItemParonyms extends TestItem
 			Lib.Button([], "Ответ", async btn =>
 			{
 				btn.classList.add("active");
-				await Lib.wait(200);
+				if (!isAnimDisabled())
+					await Lib.wait(200);
 
 				Lib.SetContent(taskEl, this.getAnswer());
 
@@ -269,7 +273,8 @@ export class TestItemParonyms extends TestItem
 				async function answer(r: boolean, btn: HTMLButtonElement)
 				{
 					btn.classList.add("active");
-					await Lib.wait(200);
+					if (!isAnimDisabled())
+						await Lib.wait(200);
 					onAnswer(r);
 				}
 			}),
@@ -566,7 +571,8 @@ export class TestItemMultipleWordChoice extends TestItem
 			nbtn.addEventListener("click", async () =>
 			{
 				nbtn.classList.add("active");
-				await Lib.wait(150);
+				if (!isAnimDisabled())
+					await Lib.wait(150);
 				onAnswer(correct);
 			});
 		})));

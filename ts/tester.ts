@@ -4,6 +4,7 @@ import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
 import { metrika_event } from "./metrika.js";
+import { isAnimDisabled } from "./pages/settings.js";
 
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
@@ -57,7 +58,8 @@ export class Tester
 			Lib.Button([], "Ещё раз", async btn =>
 			{
 				btn.classList.add("active");
-				await Lib.wait(200);
+				if (!isAnimDisabled())
+					await Lib.wait(200);
 				new Tester(this.theme).start();
 			}),
 		]));
@@ -65,7 +67,8 @@ export class Tester
 		{
 			for (let i = 0; i < 3; i++)
 			{
-				await Lib.wait(200);
+				if (!isAnimDisabled())
+					await Lib.wait(200);
 				confetti(window.innerWidth / 2, window.innerHeight / 2, 20);
 			}
 		}

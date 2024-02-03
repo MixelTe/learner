@@ -6,6 +6,9 @@ const keys = [
 	"trainerTheme",
 	"dayStatistic",
 	"dayLongest",
+	"animDisable",
+	"customTheme",
+	"customColors",
 ] as const
 
 export const Keys = {} as { [key in (typeof keys)[number]]: string };
