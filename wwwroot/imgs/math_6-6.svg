@@ -1,0 +1,38 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154 90" width="154" height="90">
+	<title>math_6-6</title>
+	<style>
+		tspan { white-space:pre }
+		.t0 { font-size: 20px;fill: var(--c-text); }
+		.s1 { fill: var(--c-text) }
+		.s2 { fill: none;stroke: var(--c-text);stroke-miterlimit:100 }
+		.s3 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s4 { fill: var(--c-title) }
+	</style>
+	<text id="b" style="transform: matrix(1,0,0,1,71,87)" >
+		<tspan x="0" y="0" class="t0">b
+</tspan>
+	</text>
+	<path id="Shape 9 copy" class="s1" d="m71.8 70.4v-1h9.7v-2.5l3 3-3 3v-2.5z"/>
+	<text id="a" style="transform: matrix(1,0,0,1,63,21)" >
+		<tspan x="0" y="0" class="t0">a</tspan><tspan  y="0" class="t0">
+</tspan>
+	</text>
+	<text id="φ" style="transform: matrix(1,0,0,1,79,51)" >
+		<tspan x="0" y="0" class="t0">φ
+</tspan>
+	</text>
+	<text id="l" style="transform: matrix(1,0,0,1,129,29)" >
+		<tspan x="0" y="0" class="t0">l
+</tspan>
+	</text>
+	<text id="m" style="transform: matrix(1,0,0,1,127,80)" >
+		<tspan x="0" y="0" class="t0">m
+</tspan>
+	</text>
+	<path id="Shape 8" class="s2" d="m66 45c0 0 18.7-0.1 7 16"/>
+	<path id="Shape 9 copy 2" class="s1" d="m63.8 4.4v-1h9.7v-2.5l3 3-3 3v-2.5z"/>
+	<path id="Shape 1" class="s3" d="m14 76l114.1-67.4"/>
+	<path id="Shape 2" class="s3" d="m5 61h143"/>
+	<path id="Shape 7" class="s4" d="m60.7 49.1l-1-1.7 26.9-15.5-2-3.5 15.5-3.1-10.5 11.8-2-3.5z"/>
+	<path id="Shape 7 copy" class="s4" d="m57.8 62.2v-2h31v-4l15 5-15 5v-4z"/>
+</svg>

@@ -5,8 +5,8 @@ import { TestItemSelfCheck } from "../testerItems.js";
 
 export const phy_0: TestItem[] = [
 	new TestItemSelfCheck(0, DBc("Перемещение через радиус-вектор"), createFormulas("'d&r = &r_2 - &r_1")),
-	new TestItemSelfCheck(1, DBc("Скорость имея ур-е перемещения"), createFormulas("'v(t) = S'(t)")),
-	new TestItemSelfCheck(2, DBc("Ускорение имея ур-е перемещения или скорости"), createFormulas("a(t) = 'v'(t) = S''(t)")),
+	new TestItemSelfCheck(1, DBc("Скорость имея ур-е перемещения"), createFormulas("'v(t) = S''(t)")),
+	new TestItemSelfCheck(2, DBc("Ускорение имея ур-е перемещения или скорости"), createFormulas("a(t) = 'v ''(t) = S''''(t)")),
 	new TestItemSelfCheck(3, DBc("Равномерное движение"), createFormulas("x(t) = x_0 + 'v_{0x}t")),
 	new TestItemSelfCheck(4, DBc("Равноускоренное движение"), createFormulas("x(t) = x_0 + 'v_{0x}t + {a_xt^2}/{2}", "x(t) = {'v^2_x - 'v^2_{0x}}/{2a_x}", "x(t) = {'v_x + 'v_{0x}}/{2}t")),
 	new TestItemSelfCheck(5, DBc("Движение тела, брошенного под углом"), createFormulas("x(t) = x_0 + 'v_0cos'a * t", "y(t) = y_0 + 'v_0sin'a * t - {gt^2}/{2}")),
@@ -35,7 +35,7 @@ export const phy_0: TestItem[] = [
 	new TestItemSelfCheck(28, DBc("Потенциальная энергия поднятого тела"), createFormulas("E_п = mgh [Дж]")),
 	new TestItemSelfCheck(29, DBc("Потенциальная энергия деформированного тела"), createFormulas("E_п = {kx^2}/{2} [Дж]")),
 	new TestItemSelfCheck(30, DBc("Закон сохранения полной механической энергии"), createFormulas("E_{мех} = E_к + E_п", "'dE_{мех} = 0")),
-	new TestItemSelfCheck(31, DBc("Гармонические колебания"), createFormulas("x(t) = Asin('wt + 'f_0)", "'v_x(t) = x'(t)", "a_x(t) = 'v_x'(t) = x''(t) = -'w^2x(t)", "A - амплитуда")),
+	new TestItemSelfCheck(31, DBc("Гармонические колебания"), createFormulas("x(t) = Asin('wt + 'f_0)", "'v_x(t) = x''(t)", "a_x(t) = 'v_x''(t) = x''''(t) = -'w^2x(t)", "A - амплитуда")),
 	new TestItemSelfCheck(32, DBc("Связь амплитуды колебаний с амплитудами колебаний её скорости и ускорения"), createFormulas("'v_{max} = 'wA", "a_{max} = 'w^2A")),
 	new TestItemSelfCheck(33, DBc("Период и частота колебаний"), createFormulas("T = {2'P}/{'w} = {1}/{'n}")),
 	new TestItemSelfCheck(34, DBc("Период математического маятника"), createFormulas("T = 2'P\\{{l}/{g}}")),
@@ -105,7 +105,7 @@ export const phy_0: TestItem[] = [
 	new TestItemSelfCheck(97, DBc("ЭДС самоиндукции"), createFormulas("'E_{is} = -L{'dI}/{'dt} = -LI'(t)")),
 	new TestItemSelfCheck(98, DBc("Энергия магнитного поля катушки с током"), createFormulas("W_L = {LI^2}/{2}")),
 	new TestItemSelfCheck(99, DBc("Колебательный контур"), DBc("Система, состоящая из конденсатора и катушки индуктивности.")),
-	new TestItemSelfCheck(100, DBc("Заряд и сила тока в колебательном контуре"), createFormulas("q(t) = q_{max}@{sin}('wt + 'f_0)", "I(t) = q'(t) = 'wq_{max}@{cos}('wt + 'f_0) = I_{max}@{cos}('wt + 'f_0)")),
+	new TestItemSelfCheck(100, DBc("Заряд и сила тока в колебательном контуре"), createFormulas("q(t) = q_{max}@{sin}('wt + 'f_0)", "I(t) = q''(t) = 'wq_{max}@{cos}('wt + 'f_0) = I_{max}@{cos}('wt + 'f_0)")),
 	new TestItemSelfCheck(101, DBc("Формула Томсона"), createFormulas("T = 2'P\\{LC}")),
 	new TestItemSelfCheck(102, DBc("Частота в колебательном контуре"), createFormulas("'w = {2'P}/{T} = {1}/{\\{LC}}")),
 	new TestItemSelfCheck(103, DBc("Связь амплитуды заряда конденсатора с амплитудой силы тока при свободных электромагнитных колебаниях в идеальном колебательном контуре"), createFormulas("q_{max} = {I_{max}}/{'w}")),

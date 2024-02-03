@@ -1,0 +1,40 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 239 147" width="239" height="147">
+	<title>math_7-5</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { fill: var(--c-text) }
+		.s1 { fill: none;stroke: var(--c-text);stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5;stroke-dasharray: 0,3 }
+		.s2 { fill: var(--c-title) }
+		.t3 { font-size: 20px;fill: var(--c-text); }
+		.s4 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 2 }
+	</style>
+	<path id="Shape 6" class="s0" d="m1 84.3v-2h221v-4l15 5-15 5v-4z"/>
+	<path id="Shape 7" class="s0" d="m167.8 143h-2v-126h-4l5-15 5 15h-4z"/>
+	<path id="Shape 10" class="s1" d="m98 85v40h68"/>
+	<path id="Shape 9" class="s2" d="m98 128c-1.7 0-3-1.3-3-3 0-1.7 1.3-3 3-3 1.7 0 3 1.3 3 3 0 1.7-1.3 3-3 3z"/>
+	<text id="y" style="transform: matrix(1,0,0,1,146,4)" >
+		<tspan x="0" y="15.2" class="t3">y
+</tspan>
+	</text>
+	<text id="a" style="transform: matrix(1,0,0,1,92,61)" >
+		<tspan x="0" y="15.2" class="t3">a
+</tspan>
+	</text>
+	<text id="b" style="transform: matrix(1,0,0,1,170,116)" >
+		<tspan x="0" y="15.2" class="t3">b
+</tspan>
+	</text>
+	<path id="Shape 8" class="s4" d="m6 126c0-49.8 40.2-90 90-90 49.8 0 90 40.2 90 90"/>
+	<text id="0" style="transform: matrix(1,0,0,1,150,88)" >
+		<tspan x="0" y="15.2" class="t3">0
+</tspan>
+	</text>
+	<text id="-R" style="transform: matrix(1,0,0,1,172,179)" >
+		<tspan x="0" y="15.2" class="t3">-</tspan><tspan  y="15.2" class="t3">R
+</tspan>
+	</text>
+	<text id="x" style="transform: matrix(1,0,0,1,223,88)" >
+		<tspan x="0" y="15.2" class="t3">x
+</tspan>
+	</text>
+</svg>
