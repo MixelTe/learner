@@ -307,11 +307,13 @@ export class TestItemWordChoice extends TestItem {
     }
 }
 export class TestItemChooseWord extends TestItem {
+    title;
     parts = [];
     words = [];
     answerI = [];
-    constructor(id, task, ans) {
+    constructor(id, task, ans, title) {
         super(id);
+        this.title = title;
         this.parts = task.split(" ");
         this.words = this.parts.map(part => part.replace(/[^а-яА-Я ёЁ]/g, '').trim().toLowerCase());
         this.answerI = ans.split("|").map(word => {
@@ -353,7 +355,7 @@ export class TestItemChooseWord extends TestItem {
         }));
         const task = Lib.Div("tester-chooseWord", btns);
         Lib.SetContent(taskEl, [
-            Lib.initEl("h5", [], "Исправьте лексическую ошибку, исключив лишнее слово"),
+            Lib.initEl("h5", [], this.title),
             task,
         ]);
     }

@@ -124,7 +124,7 @@
 	justify-content: space-evenly;
 	background-color: var(--popup-border);
 	margin-top: 1em;
-	border-radius: calc(var(--popup-border-radius) - var(--popup-border-width));
+	border-radius: calc(var(--popup-border-radius) - var(--popup-border-width) - 1px);
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }

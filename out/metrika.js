@@ -18,6 +18,8 @@ export function metrika_setParams() {
     saveCall(() => ym(code, "userParams", {
         darkTheme: dark,
         defaultTheme: theme == "auto",
+        customTheme: localStorage.getItem(Keys.customTheme) == "1",
+        disableAnim: localStorage.getItem(Keys.animDisable) == "1",
         longestDays: DayStatistics.getLongest(),
     }));
 }

@@ -6,6 +6,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ЛЯРО</title>
 	<meta name="theme-color" content="#a52a2a" />
+	<meta property="og:title" content="ЛЯРО" />
+	<meta property="og:description" content="Приложение для повторения теории" />
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://mixelte.github.io/learner/">
+	<meta property="og:image" content="https://raw.githubusercontent.com/MixelTe/learner/master/wwwroot/imgs/logo.png" />
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="800">
+	<meta name="twitter:site" content="https://mixelte.github.io/learner/">
+	<meta name="twitter:title" content="ЛЯРО">
+	<meta name="twitter:description" content="Приложение для повторения теории">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image:src" content="https://raw.githubusercontent.com/MixelTe/learner/master/wwwroot/imgs/logo.png">
 	<link rel="apple-touch-icon" href="logo192.png" />
 	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
@@ -108,7 +121,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.32</div>
+		<div class="version">v0.34</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -250,15 +263,15 @@
 		<div class="settings-theme" id="settings-theme">
 			<span>Тема:</span>
 			<label>
-				<input type="radio" id="settings-theme-light">
+				<input type="radio" name="settings-theme" id="settings-theme-light">
 				<span class="material-symbols-rounded">light_mode</span>
 			</label>
 			<label>
-				<input type="radio" id="settings-theme-dark">
+				<input type="radio" name="settings-theme" id="settings-theme-dark">
 				<span class="material-symbols-rounded">dark_mode</span>
 			</label>
 			<label>
-				<input type="radio" id="settings-theme-auto">
+				<input type="radio" name="settings-theme" id="settings-theme-auto">
 				<span class="material-symbols-rounded">night_sight_auto</span>
 			</label>
 		</div>
@@ -286,10 +299,30 @@
 				</div>
 			</div>
 		</div>
+		<div class="settings-data">
+			<input type="checkbox" id="settings-data-collapse">
+			<label for="settings-data-collapse">
+				<span>Данные</span>
+				<div></div>
+			</label>
+			<div>
+				<div>
+					<p>Прогресс сохраняется только на вашем устройстве. Вы можете вручную перенести ваши данные:</p>
+					<div>
+						<button id="settings-export">Экспорт</button>
+						<button id="settings-import">Импорт</button>
+					</div>
+					<p>Вы можете сбросить данные:</p>
+					<div>
+						<button id="settings-reset">Сбросить</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript">
-		return;
+		// return;
 		(function (m, e, t, r, i, k, a)
 		{
 			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
