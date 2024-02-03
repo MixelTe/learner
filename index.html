@@ -22,6 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="styles/p-qlists.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-dayStats.css">
 	<link rel="stylesheet" type="text/css" href="styles/p-about.css">
+	<link rel="stylesheet" type="text/css" href="styles/p-settings.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
@@ -38,11 +39,9 @@
 	</style>
 	<div id="beforeload"></div>
 	<script>
-		let darkThemeOnOpen = false;
 		{
 			const theme = localStorage.getItem("learner-theme") || "auto";
 			const dark = theme == "dark" || (theme == "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-			darkThemeOnOpen = dark;
 			document.getElementById("beforeload").style.backgroundColor = dark ? "#100c05" : "#f1e6d1";
 		}
 	</script>
@@ -66,11 +65,9 @@
 				<span>sentiment_very_satisfied</span>
 				<span>emoji_food_beverage</span>
 			</button>
-			<select class="material-symbols-rounded" id="themeSelect">
-				<option value="light">light_mode</option>
-				<option value="dark">dark_mode</option>
-				<option value="auto">night_sight_auto</option>
-			</select>
+			<button class="material-symbols-rounded" id="btn-settings">
+				<span>settings</span>
+			</button>
 		</footer>
 	</div>
 	<header>
@@ -111,7 +108,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v0.30</div>
+		<div class="version">v0.32</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -248,14 +245,51 @@
 				</div>
 			</div>
 		</a>
-		<p class="aboutP">
-			Если вы обнаружили ошибку в задании и хотите о ней сообщить, укажите номер задания, отображаемый в правом
-			верхнем углу задания.
-		</p>
+	</div>
+	<div class="page" id="p-settings">
+		<div class="settings-theme" id="settings-theme">
+			<span>Тема:</span>
+			<label>
+				<input type="radio" id="settings-theme-light">
+				<span class="material-symbols-rounded">light_mode</span>
+			</label>
+			<label>
+				<input type="radio" id="settings-theme-dark">
+				<span class="material-symbols-rounded">dark_mode</span>
+			</label>
+			<label>
+				<input type="radio" id="settings-theme-auto">
+				<span class="material-symbols-rounded">night_sight_auto</span>
+			</label>
+		</div>
+		<label class="checkbox">
+			<input type="checkbox" id="settings-anim">
+			<span class="checkbox-mark"></span>
+			<span>Анимации</span>
+		</label>
+		<div class="settings-customTheme">
+			<label class="checkbox">
+				<input type="checkbox" id="settings-customTheme">
+				<span class="checkbox-mark"></span>
+				<span>Своя тема</span>
+			</label>
+			<div class="settings-customTheme-inputs" id="settings-customTheme-inputs">
+				<div>
+					<span>Фон 1</span>
+					<input type="color" id="settings-color-back1">
+					<span>Фон 2</span>
+					<input type="color" id="settings-color-back2">
+					<span>Текст 1</span>
+					<input type="color" id="settings-color-text">
+					<span>Текст 2</span>
+					<input type="color" id="settings-color-title">
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript">
-		// return;
+		return;
 		(function (m, e, t, r, i, k, a)
 		{
 			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
@@ -265,16 +299,10 @@
 		})
 			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-		const theme = localStorage.getItem("learner-theme") || "auto";
 		ym(96188813, "init", {
 			defer: true,
 			trackLinks: true,
 			accurateTrackBounce: true,
-			userParams: {
-				darkTheme: darkThemeOnOpen,
-				autoTheme: theme == "auto",
-				longestDays: JSON.parse(localStorage.getItem("learner-dayLongest") || "0")
-			}
 		});
 	</script>
 	<noscript>

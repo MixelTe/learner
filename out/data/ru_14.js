@@ -1,6 +1,6 @@
 import { DBc } from "../docBuilder.js";
 import { TestItemSelfCheck, TestItemWordChoice } from "../testerItems.js";
-export const ru_14 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Пол-, полу"), DBc()
         .title("Через дефиз")
         .text("Если слово начинается с:")

@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_2 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Признак параллельности прямой и плоскости"), DBc("Прямая параллельна плоскости, если она параллельна какой либо прямой, лежащей в плоскости")),
     new TestItemSelfCheck(1, DBc("Угол между прямой и плоскостью"), DBc("Угол между прямой и плоскостью - это угол между прямой и её проекцией на плоскость")),
     new TestItemSelfCheck(2, DBc("Перпендикулярность прямой и плоскости"), DBc("Прямая перпендикулярна плоскости, если она перпендикулярна двум пересекающимся прямым, лежащим в этой плоскости.")),

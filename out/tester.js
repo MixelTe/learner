@@ -3,6 +3,7 @@ import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
 import { metrika_event } from "./metrika.js";
+import { isAnimDisabled } from "./pages/settings.js";
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
 const taskEl = Lib.get.div("t-task");
@@ -15,11 +16,18 @@ export class Tester {
     constructor(theme) {
         this.theme = theme;
     }
-    start() {
+    async start() {
         switchPage({ page: "tester", title: "tester/" + this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
-        this.items = Trainer.selectTasks(this.theme);
+        this.loading();
+        this.items = await Trainer.selectTasks(this.theme);
         this.next();
         metrika_event("tester_start");
+    }
+    loading() {
+        pageEl.innerText = "";
+        idEl.innerText = "";
+        inputEl.innerHTML = "";
+        Lib.SetContent(taskEl, Lib.Div("loading", "Загрузка заданий"));
     }
     next() {
         if (this.cur >= this.items.length) {
@@ -46,13 +54,15 @@ export class Tester {
             Lib.Button([], "Вернуться", () => switchPage("main")),
             Lib.Button([], "Ещё раз", async (btn) => {
                 btn.classList.add("active");
-                await Lib.wait(200);
+                if (!isAnimDisabled())
+                    await Lib.wait(200);
                 new Tester(this.theme).start();
             }),
         ]));
         if (this.cor == this.items.length) {
             for (let i = 0; i < 3; i++) {
-                await Lib.wait(200);
+                if (!isAnimDisabled())
+                    await Lib.wait(200);
                 confetti(window.innerWidth / 2, window.innerHeight / 2, 20);
             }
         }

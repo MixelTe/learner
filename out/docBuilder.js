@@ -10,6 +10,7 @@ export var DBF;
 export class DocBuilder {
     body = Div("doc");
     images = [];
+    loadImages = [];
     center() {
         this.body.classList.add("doc-center");
         return this;
@@ -72,20 +73,22 @@ export class DocBuilder {
     svg(url, flags = DBF.center) {
         const { w100, wm100, center } = unpackFlags(flags);
         const img = Div("doc-img");
-        const svgContainer = Div(["doc-svg-container", "doc-svg-loading", w100 && "doc-svg-w100", wm100 && "doc-svg-wm100", center && "doc-svg-center"]);
+        const svgContainer = Div(["doc-svg-container", "loading", w100 && "doc-svg-w100", wm100 && "doc-svg-wm100", center && "doc-svg-center"], "Загрузка изображения");
         this.images.push({ el: img, image: svgContainer });
         img.appendChild(svgContainer);
         this.body.appendChild(img);
-        fetch("imgs/" + url)
+        this.loadImages.push(() => fetch("imgs/" + url)
             .then(v => v.text())
             .then(v => {
             svgContainer.innerHTML = v;
-            svgContainer.classList.remove("doc-svg-loading");
-        });
+            svgContainer.classList.remove("loading");
+        }));
         return this;
     }
     html(imagesInPopup = false) {
         this.updateImagesInPopup(imagesInPopup);
+        this.loadImages.forEach(load => load());
+        this.loadImages = [];
         return this.body;
     }
     copy() {

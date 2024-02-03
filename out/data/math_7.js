@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_7 = [
+export const data = [
     new TestItemSelfCheck(0, createFormulas("x^2 + y^2 = c^2"), DBc().svg("math_7-0.svg").formula(createFormulas("x^2 + y^2 = R^2")).text("", "Окружность с центром в начале координат и радиусом |R|")),
     new TestItemSelfCheck(1, createFormulas("(x - a)^2 + (y - b)^2 = c^2"), DBc().svg("math_7-1.svg").formula(createFormulas("(x - a)^2 + (y - b)^2 = R^2")).text("", "Окружность с центром в в точке (a;b) и радиусом |R|")),
     new TestItemSelfCheck(2, createFormulas("(x - a)^2 + (y - b)^2 'le c^2"), DBc().svg("math_7-2.svg").formula(createFormulas("(x - a)^2 + (y - b)^2 'le R^2")).text("", "Круг с центром в в точке (a;b) и радиусом |R|")),

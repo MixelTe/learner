@@ -1,16 +1,11 @@
 import { Keys } from "./keys.js";
-import { metrika_setParams } from "./metrika.js";
+import { setThemeInputValue } from "./pages/settings.js";
 export const themes = {
     common: "common",
     blue: "blue",
     green: "green",
     orange: "orange",
 };
-const select = document.getElementById("themeSelect");
-select.addEventListener("change", () => {
-    setThemeScheme(select.value);
-    metrika_setParams();
-});
 const themeMetaColor = document.querySelector('meta[name="theme-color"]');
 let themeColors = { light: "#a52a2a", dark: "#df4545" };
 window.matchMedia("(prefers-color-scheme: dark)")
@@ -19,10 +14,10 @@ export function initThemes() {
     setTheme("common");
     setThemeScheme();
 }
-function setThemeScheme(theme) {
+export function setThemeScheme(theme) {
     theme = theme || localStorage.getItem(Keys.theme) || "auto";
     localStorage.setItem(Keys.theme, theme);
-    select.value = theme;
+    setThemeInputValue(theme);
     if (theme == "auto") {
         const dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         themeMetaColor?.setAttribute("content", dark ? themeColors.dark : themeColors.light);

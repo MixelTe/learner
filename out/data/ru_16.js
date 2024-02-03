@@ -1,6 +1,6 @@
 import { DBc } from "../docBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const ru_16 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Запятые между однородными членами"), DBc()
         .text("Не ставятся если:")
         .ul("Есть союзы: и, да(=и), либо, или", "Два нераспространённых определения")

@@ -1,6 +1,6 @@
 import { DBc } from "../docBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-const data = {
+const _data = {
     "Троп": {
         "Эпитет": { id: 0, q: "Красочное определение (с переносным смыслом)" },
         "Гипербола": { id: 1, q: "Преувеличение" },
@@ -60,9 +60,9 @@ const data = {
         "Звукоподражание": { id: 47, q: "" },
     },
 };
-export const ru_26 = [];
-for (const groupTitle in data) {
-    const group = data[groupTitle];
+export const data = [];
+for (const groupTitle in _data) {
+    const group = _data[groupTitle];
     for (const word in group) {
         let { id, q } = group[word];
         if (q) {
@@ -71,7 +71,7 @@ for (const groupTitle in data) {
             else
                 q = q.copy();
             q.hr().text(groupTitle);
-            ru_26.push(new TestItemSelfCheck(id, word, q));
+            data.push(new TestItemSelfCheck(id, word, q));
         }
     }
 }
@@ -83,6 +83,6 @@ for (const groupTitle in data) {
 // 	for (const word in group)
 // 	{
 // 		const { id, q } = group[word];
-// 		ru_26.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
+// 		data.push(new TestItemChoice(id + 100, DBc(word), groups.slice(), false, q || undefined));
 // 	}
 // }

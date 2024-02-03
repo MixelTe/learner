@@ -1,0 +1,100 @@
+#p-settings {
+	font-size: 1.2rem;
+}
+
+.settings-theme {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: opacity 250ms;
+}
+.settings-theme_dim {
+	opacity: 0.3;
+}
+
+.settings-theme label span {
+	font-size: 1.5rem;
+	width: 2.2rem;
+	height: 2.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.4rem;
+	user-select: none;
+	cursor: pointer;
+}
+
+.settings-theme input {
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.settings-theme input:checked ~ span {
+	border: 2px solid var(--c-title);
+}
+
+.checkbox {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	user-select: none;
+	cursor: pointer;
+}
+
+.checkbox input {
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.checkbox-mark {
+	position: relative;
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid var(--c-title);
+	border-radius: 0.2rem;
+}
+.checkbox-mark::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: var(--c-title);
+	border-radius: 0.1rem;
+	transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+	transition: transform 250ms;
+}
+.checkbox input:checked ~ .checkbox-mark::before {
+	transform: translate(-50%, -50%) rotate(45deg) scale(1);
+}
+
+#settings-anim ~ .checkbox-mark::before {
+	transition: none;
+}
+#settings-anim:checked ~ .checkbox-mark::before {
+	transition: transform 250ms !important;
+}
+
+.settings-customTheme {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.settings-customTheme-inputs {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 250ms;
+}
+.settings-customTheme-inputs_open {
+	grid-template-rows: 1fr;
+}
+.settings-customTheme-inputs > * {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	overflow: hidden;
+	gap: 0.4rem;
+}

@@ -6,6 +6,9 @@ const keys = [
     "trainerTheme",
     "dayStatistic",
     "dayLongest",
+    "animDisable",
+    "customTheme",
+    "customColors",
 ];
 export const Keys = {};
 for (const key of keys)

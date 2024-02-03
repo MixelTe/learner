@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_6 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Координаты вектора на плоскости"), DBc().svg("math_6-0.svg").formula(createFormulas("&{AB} '{x_B - x_A; y_B - y_A'}"))),
     new TestItemSelfCheck(1, DBc("Длина вектора"), createFormulas("@|&a@| = \\{x_a^2 + y_a^2 + z_a^2}")),
     new TestItemSelfCheck(2, DBc("Сложение векторов на плоскости"), DBc().title("Правило параллелограмма").svg("math_6-2_0.svg").title("Правило треугольника").svg("math_6-2_1.svg")),

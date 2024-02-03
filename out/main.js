@@ -7,6 +7,7 @@ import { curSessionKey, switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
 import { showAbout } from "./pages/about.js";
+import { isAnimDisabled, showSettings } from "./pages/settings.js";
 initThemes();
 const menu = Lib.get.div("menu");
 const btnAbout = Lib.get.button("btn-about");
@@ -40,13 +41,15 @@ Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
 Lib.addButtonListener("btn-dayStats", () => showDayStats(closeMenu));
 Lib.addButtonListener("btn-about", () => showAbout(closeMenu));
+Lib.addButtonListener("btn-settings", () => showSettings(closeMenu));
 initMainPage();
 // showStats();
 // showQlist();
 // showItemQs("", Sections[0].themes[15]);
 // showDayStats();
 // showAbout();
-// new Tester(Sections[2].themes[0]).start();
+// showSettings();
+// new Tester(Sections[0].themes[15]).start();
 async function initMainPage() {
     history.pushState({ page: "main", title: "", theme: themes.common, curSessionKey }, "");
     const sections = Lib.get.div("sections");
@@ -71,12 +74,14 @@ async function initMainPage() {
         }
         sections.appendChild(section);
     }
-    await Lib.wait(100);
+    if (!isAnimDisabled())
+        await Lib.wait(100);
     Lib.get.div("p-start").classList.remove("vanished");
     const beforeload = document.getElementById("beforeload");
     if (beforeload) {
         beforeload.style.opacity = "0";
-        await Lib.wait(500);
+        if (!isAnimDisabled())
+            await Lib.wait(500);
         document.body.removeChild(beforeload);
     }
 }

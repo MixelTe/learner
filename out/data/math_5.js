@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { FB, createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_5 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("sin, cos, tg, ctg в прямоугольном треугольнике"), DBc().svg("math_5-0.svg").formula(createFormulas("@{sin}'<A = {a}/{c}", "@{cos}'<A = {b}/{c}", "@{tg}'<A = {a}/{b}", "@{ctg}'<A = {b}/{a}"))),
     new TestItemSelfCheck(1, DBc("sin, cos, tg, ctg на единичной окружности"), DBc().svg("math_5-1.svg")),
     new TestItemSelfCheck(2, DBc("Решение уравнения").br().formula(createFormulas("@{sinx = a, |a| 'le 1}")), DBc()

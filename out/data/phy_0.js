@@ -1,7 +1,7 @@
 import { DBF, DBc } from "../docBuilder.js";
 import { FB, createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const phy_0 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Перемещение через радиус-вектор"), createFormulas("'d&r = &r_2 - &r_1")),
     new TestItemSelfCheck(1, DBc("Скорость имея ур-е перемещения"), createFormulas("'v(t) = S''(t)")),
     new TestItemSelfCheck(2, DBc("Ускорение имея ур-е перемещения или скорости"), createFormulas("a(t) = 'v ''(t) = S''''(t)")),

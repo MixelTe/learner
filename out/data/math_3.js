@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_3 = [
+export const data = [
     new TestItemSelfCheck(0, createFormulas("a^2 - b^2 = ?"), createFormulas("a^2 - b^2 = (a - b)(a + b)")),
     new TestItemSelfCheck(1, createFormulas("(a + b)^2 = ?"), createFormulas("(a + b)^2 = a^2 + b^2 + 2ab")),
     new TestItemSelfCheck(2, createFormulas("(a - b)^2 = ?"), createFormulas("(a - b)^2 = a^2 + b^2 - 2ab")),

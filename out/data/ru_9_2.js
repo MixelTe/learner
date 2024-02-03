@@ -1,5 +1,5 @@
 import { TestItemWordChoice } from "../testerItems.js";
-export const ru_9_2 = [
+export const data = [
     new TestItemWordChoice(0, "Ав[+а|о]нгард"),
     new TestItemWordChoice(1, "Ав[+а|о]нтюра"),
     new TestItemWordChoice(2, "Адв[а|+о]кат"),

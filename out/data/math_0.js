@@ -1,7 +1,7 @@
 import { DBc } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItemSelfCheck } from "../testerItems.js";
-export const math_0 = [
+export const data = [
     new TestItemSelfCheck(0, DBc("Площадь квадрата"), createFormulas("S = a^2")),
     new TestItemSelfCheck(1, DBc("Площадь прямоугольника"), createFormulas("S = a*b")),
     new TestItemSelfCheck(2, DBc("Площадь треугольника"), createFormulas("S = {a*h}/{2}")),
