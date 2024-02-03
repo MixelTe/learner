@@ -1,0 +1,46 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 225 159" width="225" height="159">
+	<title>phy_0-120</title>
+	<style>
+		tspan { white-space:pre }
+		.t0 { font-size: 20px;fill: var(--c-text); }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: var(--c-text) }
+		.s3 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 1.5 }
+		.s4 { fill: none;stroke: var(--c-title);stroke-miterlimit:100;stroke-width: 1.5 }
+		.s5 { fill: none;stroke: var(--c-title);stroke-linejoin: round;stroke-width: 1.5;stroke-dasharray: 6,3 }
+	</style>
+	<text id="H" style="transform: matrix(1,0,0,1,9,61)" >
+		<tspan x="0" y="0" class="t0">H
+</tspan>
+	</text>
+	<text id="h" style="transform: matrix(1,0,0,1,52,73)" >
+		<tspan x="0" y="0" class="t0">h
+</tspan>
+	</text>
+	<text id="F" style="transform: matrix(1,0,0,1,134,102)" >
+		<tspan x="0" y="0" class="t0">F
+</tspan>
+	</text>
+	<text id="F copy" style="transform: matrix(1,0,0,1,79,102)" >
+		<tspan x="0" y="0" class="t0">F
+</tspan>
+	</text>
+	<text id="d" style="transform: matrix(1,0,0,1,69,22)" >
+		<tspan x="0" y="0" class="t0">d
+</tspan>
+	</text>
+	<path id="Shape 1" class="s1" d="m3 80h217"/>
+	<path id="Shape 2" class="s1" d="m112 153v-147"/>
+	<path id="Shape 3" class="s1" d="m117 2l-5 5-5-5"/>
+	<path id="Shape 4" class="s1" d="m118 156l-5.5-5.5-5.5 5.5"/>
+	<path id="Shape 5" class="s2" d="m30.1 79.8h-2v-43.4h-4l5-12 5 12h-4z"/>
+	<path id="Shape 5 copy" class="s2" d="m72.2 80h-1.4v-15h-4.3l5-12 5 12h-4.3z"/>
+	<path id="Shape 6" class="s3" d="m139 74v11"/>
+	<path id="Shape 6" class="s3" d="m139 74v11"/>
+	<path id="Shape 8" class="s4" d="m30 25l123 82"/>
+	<path id="Shape 7" class="s5" d="m112 25l-75.9 53.2"/>
+	<path id="Shape 9" class="s5" d="m105-19h1v3h-1z"/>
+	<path id="Shape 7 copy 2" class="s4" d="m30 25h82"/>
+	<path id="Shape 7 copy" class="s4" d="m146 1.6l-34 23.5"/>
+	<path id="Shape 6 copy" class="s3" d="m84 74v11"/>
+</svg>
