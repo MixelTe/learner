@@ -1,6 +1,6 @@
 import { Keys } from "../keys.js";
 import * as Lib from "../littleLib.js";
-import { metrika_setParams } from "../metrika.js";
+import { metrika_event, metrika_setParams } from "../metrika.js";
 import { Popup } from "../popup.js";
 import { setThemeScheme, themes } from "../themes.js";
 import { switchPage } from "./switchPage.js";
@@ -41,6 +41,7 @@ anim.addEventListener("change", () =>
 	localStorage.setItem(Keys.animDisable, v);
 	document.body.setAttribute("disableanim", v);
 	animDisabled = v == "1";
+	metrika_setParams();
 });
 
 let animDisabled = localStorage.getItem(Keys.animDisable) == "1";
@@ -57,6 +58,7 @@ customTheme.addEventListener("change", () =>
 	theme.classList.toggle("settings-theme_dim", customTheme.checked);
 	customTheme_inputs.classList.toggle("settings-customTheme-inputs_open", customTheme.checked);
 	updateThemeColors(customTheme.checked);
+	metrika_setParams();
 });
 
 
@@ -105,6 +107,7 @@ Lib.addButtonListener("settings-export", () =>
 		data[key] = localStorage.getItem((Keys as any)[key]);
 	}
 	Lib.downloadFile("learner-" + Lib.dateNow("_") + ".laro.json", JSON.stringify(data));
+	metrika_event("data_export");
 });
 Lib.addButtonListener("settings-import", async () =>
 {
@@ -135,6 +138,7 @@ Lib.addButtonListener("settings-import", async () =>
 		popup.cancelBtn = false;
 		popup.content = Lib.Div([], "Данные импортированы");
 		popup.open();
+		metrika_event("data_import");
 		window.location.reload();
 	}
 	catch (e)
@@ -197,10 +201,12 @@ Lib.addButtonListener("settings-reset", async () =>
 	{
 		for (const key of Object.keys(Keys))
 			localStorage.setItem((Keys as any)[key], "");
+		metrika_event("data_reset_full");
 	}
 	else
 	{
 		localStorage.setItem(Keys.statistics, "");
+		metrika_event("data_reset_progress");
 	}
 	popup = new Popup();
 	popup.title = "Сброс данных";

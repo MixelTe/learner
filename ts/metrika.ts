@@ -13,6 +13,8 @@ declare global
 	function ym(code: number, event: "userParams", params: {
 		darkTheme: boolean,
 		defaultTheme: boolean,
+		customTheme: boolean,
+		disableAnim: boolean,
 		longestDays: number,
 	}): void
 }
@@ -31,7 +33,7 @@ export function metrika_pageSwitch(prevPage: string, page: string, title: string
 	);
 }
 
-type MetrikaEvents = "tester_done" | "tester_start";
+type MetrikaEvents = "tester_done" | "tester_start" | "data_export" | "data_import" | "data_reset_progress" | "data_reset_full";
 
 export function metrika_event(event: MetrikaEvents)
 {
@@ -49,6 +51,8 @@ export function metrika_setParams()
 		ym(code, "userParams", {
 			darkTheme: dark,
 			defaultTheme: theme == "auto",
+			customTheme: localStorage.getItem(Keys.customTheme) == "1",
+			disableAnim: localStorage.getItem(Keys.animDisable) == "1",
 			longestDays: DayStatistics.getLongest(),
 		})
 	);
