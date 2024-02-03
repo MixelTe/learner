@@ -207,7 +207,7 @@ export function FB(text) {
 /**
  * ### Special characters:
  * symbol | desc
- * -------------------|--
+ * -------|--------
  * \|    | if first char - center cell
  * \\    | if first char - wrap line
  * {...} | block
@@ -216,8 +216,8 @@ export function FB(text) {
  * &     | vector
  * \#    | overline
  * \\    | square root
- * \@     | no italic
- * '     | greek char
+ * \@    | no italic
+ * '     | control next
  * u{}   | arc
  *
  * ### Greek chars:
@@ -291,15 +291,15 @@ const replaceLetters = {
 /**
  * ### Special characters:
  * symbol | desc
- * -------------------|--
+ * -------|--------
  * {...} | block
  * _     | subscript
  * ^     | superscript
  * &     | vector
  * \#    | overline
  * \\    | square root
- * \@     | no italic
- * '     | greek char
+ * \@    | no italic
+ * '     | control next
  * u{}   | arc
  *
  * ### Greek chars:
@@ -374,6 +374,8 @@ export function createFormula(formula, italic = false) {
                 }
             }
         }
+        if (bracketsOpen > 0 && ch == "'")
+            i++;
         if (bracketsOpen > 0 || ch == "{" || ch == "}" || ch == "\\")
             continue;
         if (ch == "_") {
@@ -411,9 +413,8 @@ export function createFormula(formula, italic = false) {
                 else
                     fb.l(formulaLetters[formula[++i]]);
             else {
-                if (formula[i + 1] == "'")
-                    i += 1;
-                fb.t(ch);
+                i += 1;
+                fb.t(formula[i]);
             }
         }
         else if (ch == "\n") {

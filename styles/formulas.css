@@ -102,6 +102,12 @@
 	transform-origin: right;
 	transform: translateX(0.1em) rotate(45deg);
 }
+.formula-noItalic .formula-vec::before {
+	transform: translateX(0em);
+}
+.formula-noItalic .formula-vec::after {
+	transform: translateX(0em) rotate(45deg);
+}
 .formula-hat {
 	position: relative;
 }

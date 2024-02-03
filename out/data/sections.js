@@ -5,6 +5,8 @@ import { math_2 } from "./math_2.js";
 import { math_3 } from "./math_3.js";
 import { math_4 } from "./math_4.js";
 import { math_5 } from "./math_5.js";
+import { math_6 } from "./math_6.js";
+import { math_7 } from "./math_7.js";
 import { phy_0 } from "./phy_0.js";
 import { ru_10 } from "./ru_10.js";
 import { ru_11 } from "./ru_11.js";
@@ -53,6 +55,8 @@ export const Sections = [
             { id: "math_3", name: "Алгебра", color: themes.green, items: math_3 },
             { id: "math_4", name: "Производная", color: themes.green, items: math_4 },
             { id: "math_5", name: "Тригонометрия", color: themes.green, items: math_5 },
+            { id: "math_6", name: "Векторы", color: themes.green, items: math_6 },
+            { id: "math_7", name: "Параметр", color: themes.green, items: math_7 },
         ],
     },
     {

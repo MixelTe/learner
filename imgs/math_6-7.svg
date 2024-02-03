@@ -1,0 +1,32 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 159" width="240" height="159">
+	<title>math_6-7</title>
+	<style>
+		tspan { white-space:pre }
+		.s0 { opacity: .2;fill: var(--c-text) }
+		.s1 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2 }
+		.s2 { fill: none;stroke: var(--c-text);stroke-miterlimit:100;stroke-width: 2;stroke-dasharray: 8,4 }
+		.s3 { fill: var(--c-title) }
+		.t4 { font-size: 20px;fill: var(--c-text); }
+		.s5 { fill: var(--c-text) }
+	</style>
+	<path id="Shape 1" class="s0" d="m51 68c4.6-5.5 13.9-10 20.7-10h149c6.9 0 8.7 4.5 4.1 10l-29.8 36c-4.6 5.5-13.9 10-20.7 10h-149c-6.9 0-8.7-4.5-4.1-10z"/>
+	<path id="Shape 1 copy" class="s1" d="m51 68c4.6-5.5 13.9-10 20.7-10h149c6.9 0 8.7 4.5 4.1 10l-29.8 36c-4.6 5.5-13.9 10-20.7 10h-149c-6.9 0-8.7-4.5-4.1-10z"/>
+	<path id="Shape 3" class="s2" d="m110 114l30.1-30.1"/>
+	<path id="Shape 2" class="s1" d="m84 140l26.6-26.6"/>
+	<path id="Shape 7 copy" class="s3" d="m141.2 84.2l-1.4-1.4 46-46.1-2.8-2.8 14.1-7.1-7 14.2-2.9-2.9z"/>
+	<path id="Shape 7 copy 2" class="s3" d="m123.1 86.3h-2v-51.3h-4l5-15 5 15h-4z"/>
+	<text id="a" style="transform: matrix(1,0,0,1,168,38)" >
+		<tspan x="0" y="0" class="t4">a</tspan><tspan  y="0" class="t4">
+</tspan>
+	</text>
+	<path id="Shape 9 copy 2" class="s5" d="m168.8 21.4v-1h9.7v-2.5l3 3-3 3v-2.5z"/>
+	<text id="n" style="transform: matrix(1,0,0,1,97,39)" >
+		<tspan x="0" y="0" class="t4">n
+</tspan>
+	</text>
+	<text id="l" style="transform: matrix(1,0,0,1,103,141)" >
+		<tspan x="0" y="0" class="t4">l
+</tspan>
+	</text>
+	<path id="Shape 9 copy 3" class="s5" d="m97.8 22.4v-1h9.7v-2.5l3 3-3 3v-2.5z"/>
+</svg>
