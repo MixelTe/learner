@@ -54,7 +54,7 @@
     grid-template-rows: 1fr 1fr;
     align-items: baseline;
 }
-.formula-upper-lower :first-child {
+.formula-upper-lower > :first-child {
 	align-self: flex-end;
 }
 .formula-sqrt {

@@ -56,11 +56,11 @@ Lib.addButtonListener("btn-settings", () => showSettings(closeMenu));
 initMainPage();
 // showStats();
 // showQlist();
-// showItemQs("", Sections[0].themes[15]);
+// showItemQs("", Sections[0].themes[0]);
 // showDayStats();
 // showAbout();
 // showSettings();
-// new Tester(Sections[0].themes[15]).start();
+// new Tester(Sections[0].themes[0]).start();
 
 
 async function initMainPage()

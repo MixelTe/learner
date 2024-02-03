@@ -259,8 +259,8 @@ export function FB(text?: string)
  * < | ∠
  * u | ∪
  * i | ∩
- * + | ±
- * - | ∓
+ * \+ | ±
+ * \- | ∓
  * ~ | ≈
  * = | ≠
  * ge | ≥
@@ -358,8 +358,8 @@ const replaceLetters: CustomLetters = {
  * < | ∠
  * u | ∪
  * i | ∩
- * + | ±
- * - | ∓
+ * \+ | ±
+ * \- | ∓
  * ~ | ≈
  * = | ≠
  * ge | ≥

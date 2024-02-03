@@ -3,49 +3,30 @@ import { Themes, themes } from "../themes.js"
 
 export const Sections: Section[] = [
 	{
-		name: "Русский",
+		name: "Виды блоков",
 		themes: [
-			{ id: "ru_3", count: 42, name: "№3 Стили речи", color: themes.blue, items: getItemLoader("ru_3") },
-			{ id: "ru_4", count: 265, name: "№4 Ударения", color: themes.blue, items: getItemLoader("ru_4"), onlyAnswerInQList: true },
-			{ id: "ru_5", count: 144, name: "№5 Паронимы", color: themes.blue, items: getItemLoader("ru_5"), onlyAnswerInQList: true },
-			{ id: "ru_6", count: 69, name: "№6 Лексические нормы", color: themes.blue, items: getItemLoader("ru_6") },
-			{ id: "ru_7", count: 395, name: "№7 Формы слова", color: themes.blue, items: getItemLoader("ru_7"), onlyAnswerInQList: true },
-			{ id: "ru_8", count: 10, name: "№8 Грамматические нормы", color: themes.blue, items: getItemLoader("ru_8") },
-			{ id: "ru_9_1", count: 21, name: "№9 Чередующиеся корни", color: themes.blue, items: getItemLoader("ru_9_1") },
-			{ id: "ru_9_2", count: 620, name: "№9 Словарные слова", color: themes.blue, items: getItemLoader("ru_9_2"), onlyAnswerInQList: true },
-			{ id: "ru_10", count: 16, name: "№10 Правописание приставок", color: themes.blue, items: getItemLoader("ru_10") },
-			// { id: "ru_10p", count: 0, name: "№10 Практика", color: themes.blue, items: getItemLoader("ru_10p"), onlyAnswerInQList: true },
-			{ id: "ru_11", count: 19, name: "№11 Правописание суффиксов", color: themes.blue, items: getItemLoader("ru_11") },
-			// { id: "ru_11p", count: 0, name: "№11 Практика", color: themes.blue, items: getItemLoader("ru_11p"), onlyAnswerInQList: true },
-			{ id: "ru_12", count: 7, name: "№12 Пра­во­пи­са­ние глаголов", color: themes.blue, items: getItemLoader("ru_12") },
-			// { id: "ru_12p", count: 0, name: "№12 Практика", color: themes.blue, items: getItemLoader("ru_12p"), onlyAnswerInQList: true },
-			{ id: "ru_13", count: 10, name: "№13 Правописание НЕ", color: themes.blue, items: getItemLoader("ru_13") },
-			// { id: "ru_13p", count: 0, name: "№13 Практика", color: themes.blue, items: getItemLoader("ru_13p"), onlyAnswerInQList: true },
-			{ id: "ru_14", count: 86, name: "№14 Слитно, дефис или раздельно", color: themes.blue, items: getItemLoader("ru_14") },
-			{ id: "ru_15", count: 3, name: "№15 Н и НН в суффиксах", color: themes.blue, items: getItemLoader("ru_15") },
-			// { id: "ru_15p", count: 0, name: "№15 Практика", color: themes.blue, items: getItemLoader("ru_15p"), onlyAnswerInQList: true },
-			{ id: "ru_16", count: 4, name: "№16-20 Пунктуация", color: themes.blue, items: getItemLoader("ru_16") },
-			// { id: "ru_16p", count: 0, name: "№17-20 Практика", color: themes.blue, items: getItemLoader("ru_16p") },
-			{ id: "ru_26", count: 41, name: "№26 Cредства выразительности", color: themes.blue, items: getItemLoader("ru_26") },
+			{ id: "b_0", count: 2, name: "Самопроверка", color: themes.common, items: getItemLoader("b_0") },
+			{ id: "b_1", count: 1, name: "Выбор варианта", color: themes.common, items: getItemLoader("b_1") },
+			{ id: "b_2", count: 2, name: "Выбор буквы", color: themes.common, items: getItemLoader("b_2"), onlyAnswerInQList: true },
+			{ id: "b_3", count: 1, name: "Группы слов", color: themes.common, items: getItemLoader("b_3"), onlyAnswerInQList: true },
+			{ id: "b_4", count: 1, name: "Выбор слова", color: themes.common, items: getItemLoader("b_4"), onlyAnswerInQList: true },
+			{ id: "b_5", count: 2, name: "Исключение слова", color: themes.common, items: getItemLoader("b_5") },
+			{ id: "b_6", count: 1, name: "Выбор нескольких слова", color: themes.common, items: getItemLoader("b_6") },
 		],
 	},
 	{
-		name: "Математика",
+		name: "Темы",
 		themes: [
-			{ id: "math_0", count: 27, name: "Площади и объёмы", color: themes.green, items: getItemLoader("math_0") },
-			{ id: "math_1", count: 40, name: "Свойства фигур", color: themes.green, items: getItemLoader("math_1") },
-			{ id: "math_2", count: 10, name: "Стереометрия", color: themes.green, items: getItemLoader("math_2") },
-			{ id: "math_3", count: 29, name: "Алгебра", color: themes.green, items: getItemLoader("math_3") },
-			{ id: "math_4", count: 18, name: "Производная", color: themes.green, items: getItemLoader("math_4") },
-			{ id: "math_5", count: 17, name: "Тригонометрия", color: themes.green, items: getItemLoader("math_5") },
-			{ id: "math_6", count: 13, name: "Векторы", color: themes.green, items: getItemLoader("math_6") },
-			{ id: "math_7", count: 7, name: "Параметр", color: themes.green, items: getItemLoader("math_7") },
+			{ id: "t_0", count: 1, name: "Обычная", color: themes.common, items: getItemLoader("t_0") },
+			{ id: "t_1", count: 1, name: "Голубая", color: themes.blue, items: getItemLoader("t_0") },
+			{ id: "t_2", count: 1, name: "Зелёная", color: themes.green, items: getItemLoader("t_0") },
+			{ id: "t_3", count: 1, name: "Оранжевая", color: themes.orange, items: getItemLoader("t_0") },
 		],
 	},
 	{
-		name: "Физика",
+		name: "Пустой раздел",
 		themes: [
-			{ id: "phy_0", count: 124, name: "Формулы", color: themes.orange, items: getItemLoader("phy_0") },
+
 		],
 	},
 ]
@@ -80,7 +61,7 @@ function getItemLoader(name: string)
 }
 
 
-// checkItems()
+checkItems()
 async function checkItems()
 {
 	console.warn("checkItems enabled");
