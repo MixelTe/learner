@@ -28,6 +28,8 @@ export const random = {
 	choose: chooseRandom,
 }
 export const other = {
+	openTextFile,
+	dateNow,
 	wait
 }
 
@@ -396,4 +398,46 @@ export async function wait(t: number)
 export function lerp(v1: number, v2: number, t: number)
 {
 	return (v2 - v1) * t + v1;
+}
+
+export function dateNow(split = ".")
+{
+	const date = new Date();
+	return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join(split);
+}
+
+export function openTextFile(accept = "*")
+{
+	return new Promise<string>((resolve, reject) =>
+	{
+		const input = document.createElement("input");
+		input.type = "file";
+		input.accept = accept;
+
+		input.onchange = () =>
+		{
+			if (!input.files)
+			{
+				reject()
+				return;
+			}
+			const file = input.files[0];
+
+			const reader = new FileReader();
+			reader.readAsText(file, "UTF-8");
+			reader.onload = readerEvent =>
+			{
+				if (!readerEvent.target)
+				{
+					reject()
+					return;
+				}
+				const content = readerEvent.target.result;
+				resolve(content as string);
+			}
+			reader.onerror = reject;
+		}
+
+		input.click();
+	})
 }

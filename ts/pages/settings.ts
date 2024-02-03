@@ -1,6 +1,7 @@
 import { Keys } from "../keys.js";
 import * as Lib from "../littleLib.js";
 import { metrika_setParams } from "../metrika.js";
+import { Popup } from "../popup.js";
 import { setThemeScheme, themes } from "../themes.js";
 import { switchPage } from "./switchPage.js";
 
@@ -18,6 +19,8 @@ const color_back1 = Lib.getInput("settings-color-back1");
 const color_back2 = Lib.getInput("settings-color-back2");
 const color_text = Lib.getInput("settings-color-text");
 const color_title = Lib.getInput("settings-color-title");
+
+const data_collapse = Lib.getInput("settings-data-collapse");
 
 theme_light.addEventListener("change", () => setThemeScheme("light"));
 theme_dark.addEventListener("change", () => setThemeScheme("dark"));
@@ -92,6 +95,121 @@ function updateThemeColors(useCustom = true)
 	document.body.style.setProperty("--c-title", useCustom ? color_title.value : "");
 }
 
+Lib.addButtonListener("settings-export", () =>
+{
+	const data: any = {
+		version: 1,
+	};
+	for (const key of Object.keys(Keys))
+	{
+		data[key] = localStorage.getItem((Keys as any)[key]);
+	}
+	Lib.downloadFile("learner-" + Lib.dateNow("_") + ".laro.json", JSON.stringify(data));
+});
+Lib.addButtonListener("settings-import", async () =>
+{
+	let popup = new Popup();
+	popup.focusOn = "cancel";
+	popup.title = "Импорт данных";
+	popup.content = Lib.Div([], "Текущие данные будут утеряны, продолжить?");
+	const r = await popup.openAsync();
+	if (!r) return;
+	try
+	{
+		const file = await Lib.openTextFile(".laro.json");
+		const data = JSON.parse(file);
+		if (data.version != 1)
+			throw new Error(`version != 1`);
+
+		for (const key of Object.keys(Keys))
+		{
+			if (!(key in data))
+				throw new Error(`${key} not in data`);
+		}
+		for (const key of Object.keys(Keys))
+		{
+			localStorage.setItem((Keys as any)[key], data[key]);
+		}
+		popup = new Popup();
+		popup.title = "Импорт данных";
+		popup.cancelBtn = false;
+		popup.content = Lib.Div([], "Данные импортированы");
+		popup.open();
+		window.location.reload();
+	}
+	catch (e)
+	{
+		const popup = new Popup();
+		popup.title = "Импорт данных";
+		popup.cancelBtn = false;
+		popup.content = Lib.Div([], "Некоретный файл данных");
+		popup.open();
+	}
+});
+Lib.addButtonListener("settings-reset", async () =>
+{
+	let popup = new Popup();
+	popup.focusOn = "cancel";
+	popup.title = "Сброс данных";
+	popup.okText = "Сбросить"
+	const inp_stats = Lib.Input([], "radio");
+	const inp_all = Lib.Input([], "radio");
+	inp_stats.name = "settings-reset";
+	inp_all.name = "settings-reset";
+	inp_stats.checked = true;
+	popup.content = Lib.Div([], [
+		Lib.initEl("h3", [], "Что сбросить?"),
+		Lib.initEl("label", "checkbox", [
+			inp_stats,
+			Lib.Span("checkbox-mark"),
+			Lib.Span([], "Только прогресс"),
+		]),
+		Lib.initEl("label", "checkbox", [
+			inp_all,
+			Lib.Span("checkbox-mark"),
+			Lib.Span([], "Всё"),
+		]),
+	]);
+
+	let r = await popup.openAsync();
+	if (!r) return;
+
+	popup = new Popup();
+	popup.focusOn = "cancel";
+	popup.title = "Сброс данных";
+	popup.okText = "Да"
+	const text = (inp_all.checked ? "все данные?" : "весь прогресс?");
+	popup.content = Lib.Div([], "Вы уверены, что хотите удалить " + text);
+
+	r = await popup.openAsync();
+	if (!r) return;
+
+	popup = new Popup();
+	popup.focusOn = "cancel";
+	popup.title = "Сброс данных";
+	popup.okText = "Да"
+	popup.content = Lib.Div([], "Вы точно уверены, что хотите удалить " + text);
+	popup.reverse = true;
+	r = await popup.openAsync();
+	if (!r) return;
+
+	if (inp_all.checked)
+	{
+		for (const key of Object.keys(Keys))
+			localStorage.setItem((Keys as any)[key], "");
+	}
+	else
+	{
+		localStorage.setItem(Keys.statistics, "");
+	}
+	popup = new Popup();
+	popup.title = "Сброс данных";
+	popup.cancelBtn = false;
+	popup.content = Lib.Div([], "Данные сброшены");
+	popup.open();
+	window.location.reload();
+});
+
 export function isAnimDisabled()
 {
 	return animDisabled;
@@ -100,6 +218,7 @@ export function isAnimDisabled()
 export function showSettings(onSwitch: () => void = () => { })
 {
 	switchPage("settings", "Настройки", themes.common, onSwitch);
+	data_collapse.checked = false;
 }
 
 export function setThemeInputValue(theme: string)
