@@ -13,6 +13,13 @@
 .formula-noItalic {
 	font-style: normal;
 }
+.formula-alignRight {
+	text-align: right;
+}
+.formula-alignRight > * {
+	justify-content: right;
+	justify-items: right;
+}
 .formula-wrap {
 	flex-wrap: wrap;
 	white-space: pre-wrap;
@@ -36,7 +43,7 @@
 	display: inline-flex;
 	height: 1lh;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 }
 .formula-letter svg {
 	width: 0.9em;
@@ -50,9 +57,9 @@
 	transform: translateY(0.3em);
 }
 .formula-upper-lower {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    align-items: baseline;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	align-items: baseline;
 }
 .formula-upper-lower > :first-child {
 	align-self: flex-end;

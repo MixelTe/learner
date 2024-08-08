@@ -1,5 +1,5 @@
 #p-dayStats {
-	gap: 2rem;
+	gap: 1.5rem;
 }
 
 .dayStats-days {
@@ -92,4 +92,17 @@
 #dayStats-days {
 	max-width: min(100%, 500px);
 	overflow: auto;
+	margin-bottom: 1.5rem;
+}
+
+.dayStats-last {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0.2rem 1rem;
+	align-items: center;
+}
+.dayStats-last span {
+	padding: 0.1em 0.2em;
+	text-align: center;
+	border-radius: 0.2rem;
 }

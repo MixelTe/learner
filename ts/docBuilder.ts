@@ -120,7 +120,14 @@ export class DocBuilder
 				{
 					svgContainer.innerHTML = v;
 					svgContainer.classList.remove("loading");
-				}));
+				})
+				.catch(() =>
+				{
+					svgContainer.classList.remove("loading");
+					svgContainer.classList.add("loading-error");
+					svgContainer.innerText = "Ошибка загрузки :(";
+				})
+		);
 		return this;
 	}
 

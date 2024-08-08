@@ -1,7 +1,7 @@
 import * as Lib from "../littleLib.js";
-import { metrika_pageSwitch } from "../metrika.js";
+import { enableBottomAdv, metrika_pageSwitch } from "../metrika.js";
 import { ThemeColors, Themes, currentTheme, setTheme, setThemeColors, themes } from "../themes.js";
-import { isAnimDisabled } from "./settings.js";
+import { checkCustomTheme, isAnimDisabled } from "./settings.js";
 
 export type Page = "main" | "tester" | "stats" | "qlists" | "qlist" | "dayStats" | "about" | "settings";
 const pages = {
@@ -26,23 +26,36 @@ const subtitleEl = Lib.getEl("subtitle", HTMLHeadingElement);
 let curPage: Page = "main";
 let prevPage: string = "main";
 let mouse = { x: 0, y: 0 };
+let disableAnimForRegPage = false;
 window.addEventListener("mousedown", e => mouse = { x: e.clientX, y: e.clientY });
 const instant = false;
 if (instant) console.warn("DEV: instant is enabled");
 
-export async function switchPage(page: Page | { page: Page, title: string }, title: string | { display: string, title: string } = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "", dontPushState = false)
+let updateMainPage = () => { };
+export function setUpdateMainPage(f: () => void)
 {
-	const pageTitle = typeof page == "string" ? page : page.title;
+	updateMainPage = f;
+}
+
+export async function switchPage(page: Page | { page: Page, subpath: string }, title: string | { display: string, title: string } = "", theme: Themes = themes.common, onSwitch: () => void = () => { }, subtitle = "", dontPushState = false)
+{
+	const pagePath = typeof page == "string" ? page : page.page + "/" + page.subpath;
 	page = typeof page == "string" ? page : page.page;
 	if (curPage == page) return;
 
 	const documentTitle = typeof title == "string" ? (title == "" ? "ЛЯРО" : "ЛЯРО | " + title) : "ЛЯРО" + title.title;
 	title = typeof title == "string" ? title : title.display;
 
-	metrika_pageSwitch(prevPage, pageTitle, documentTitle)
-	prevPage = pageTitle;
+	metrika_pageSwitch(prevPage, pagePath, documentTitle)
+	prevPage = pagePath;
 
-	if (instant || isAnimDisabled())
+	if (page == "main")
+		updateMainPage();
+
+	const url = new URL(location.href);
+	url.hash = pagePath == "main" ? "" : pagePath;
+
+	if (instant || isAnimDisabled() || disableAnimForRegPage)
 	{
 		pages[curPage].classList.remove("open");
 		curPage = page;
@@ -51,11 +64,13 @@ export async function switchPage(page: Page | { page: Page, title: string }, tit
 		setThemeColors(themeColors[theme]);
 		pages[curPage].classList.add("open");
 		onSwitch();
+		enableBottomAdv();
+		checkCustomTheme();
 		if (!dontPushState)
 			if (history.state?.back)
-				history.replaceState({ page, title, theme, curSessionKey }, "");
+				history.replaceState({ page, title, theme, curSessionKey }, "", url);
 			else
-				history.pushState({ page, title, theme, curSessionKey }, "");
+				history.pushState({ page, title, theme, curSessionKey }, "", url);
 		document.title = documentTitle;
 		if (currentTheme() != theme)
 			setTheme(theme);
@@ -78,11 +93,13 @@ export async function switchPage(page: Page | { page: Page, title: string }, tit
 	subtitleEl.innerText = subtitle;
 	pages[curPage].classList.add("open");
 	onSwitch();
+	enableBottomAdv();
+	checkCustomTheme();
 	if (!dontPushState)
 		if (history.state?.back)
-			history.replaceState({ page, title, theme, curSessionKey }, "");
+			history.replaceState({ page, title, theme, curSessionKey }, "", url);
 		else
-			history.pushState({ page, title, theme, curSessionKey }, "");
+			history.pushState({ page, title, theme, curSessionKey }, "", url);
 	document.title = documentTitle;
 	if (currentTheme() != theme)
 	{
@@ -116,3 +133,22 @@ window.addEventListener("popstate", e =>
 		}
 	}
 });
+
+export function regPage(path: Page, openFn: () => void): void
+export function regPage(path: Page, n: null, openFn: (path: string) => void): void
+export function regPage(path: Page, basicOpenFn: (() => void) | null, openFn?: (path: string) => void): void
+{
+	setTimeout(() =>
+	{
+		const hash = new URL(location.href).hash.slice(1);
+		if (hash.startsWith(path))
+		{
+			disableAnimForRegPage = true;
+			if (basicOpenFn) basicOpenFn();
+			else
+				if (hash.startsWith(path + "/"))
+					openFn?.(hash.slice((path + "/").length));
+			disableAnimForRegPage = false;
+		}
+	});
+}

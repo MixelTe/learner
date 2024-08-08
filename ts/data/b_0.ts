@@ -1,4 +1,4 @@
-import { DBc } from "../docBuilder.js";
+import { DBc, DBF } from "../docBuilder.js";
 import { createFormulas } from "../formulasBuilder.js";
 import { TestItem } from "../tester.js";
 import { TestItemSelfCheck } from "../testerItems.js";
@@ -16,6 +16,9 @@ export const data: TestItem[] = [
 		.ol("Нумерованный", "список")
 		.text("Формула", "")
 		.formula(createFormulas("y = {x}/{2} + 10"))
+		.text("Svg картинка", "")
+		.svg("data/turtle.svg")
+		.text("Имеет цвета темы", "")
 		,
 		DBc("Это ответ карточки").br()
 			.formula(createFormulas("&M'{{a_x + b_x}/{2}; {a_y + b_y}/{2}'}", "#{AB}^{x + {1}/{2}}_2; u{CB} = @{sin}'f '+ kx", "'<'a 'le 45'0")).br()

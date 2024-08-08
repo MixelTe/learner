@@ -155,6 +155,14 @@ export class FormulaBuilder
 		this.text += fb.text;
 		return this;
 	}
+	public alignRight(fb: FormulaBuilder)
+	{
+		fb.body.classList.add("formula-alignRight");
+		this.prevEl = fb.body;
+		this.body.appendChild(this.prevEl);
+		this.text += fb.text;
+		return this;
+	}
 	public arc(fb: FormulaBuilder)
 	{
 		this.prevEl = Span("formula-arc", [fb.body]);
@@ -244,6 +252,7 @@ export function FB(text?: string)
  * \#    | overline
  * \\    | square root
  * \@    | no italic
+ * >     | align right
  * '     | control next
  * u{}   | arc
  *
@@ -253,6 +262,7 @@ export function FB(text?: string)
  * ch| s
  * --|--
  * Z | ℤ
+ * N | ℕ
  * 0 | °
  * / | ⟂
  * \| | ∥
@@ -311,6 +321,7 @@ const formulaLetters: CustomLetters = {
 	"O": { ch: "Ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"T": { ch: "η", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"Z": { ch: "ℤ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+	"N": { ch: "ℕ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"/": { ch: "⟂", cha: 0, chw: 0, dy: 0, vb: null, d: null },
 	"|": { ch: "∥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
@@ -343,6 +354,7 @@ const replaceLetters: CustomLetters = {
  * \#    | overline
  * \\    | square root
  * \@    | no italic
+ * >     | align right
  * '     | control next
  * u{}   | arc
  *
@@ -352,6 +364,7 @@ const replaceLetters: CustomLetters = {
  * ch| s
  * --|--
  * Z | ℤ
+ * N | ℕ
  * 0 | °
  * / | ⟂
  * \| | ∥
@@ -410,6 +423,7 @@ export function createFormula(formula: string, italic = false)
 						else if (formula[bracketsStart - 1] == "#") fb.hat(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "@") fb.noItalic(createFormula(inBrackets));
 						else if (formula[bracketsStart - 1] == "u") fb.arc(createFormula(inBrackets));
+						else if (formula[bracketsStart - 1] == ">") fb.alignRight(createFormula(inBrackets));
 						else fb.a(createFormula(inBrackets));
 					}
 					else
@@ -444,6 +458,10 @@ export function createFormula(formula: string, italic = false)
 		else if (ch == "u" && formula[i + 1] == "{")
 		{
 			// use u as marker
+		}
+		else if (ch == ">" && formula[i + 1] == "{")
+		{
+			// use > as marker
 		}
 		else if (ch == "'")
 		{

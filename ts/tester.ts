@@ -3,8 +3,9 @@ import { Theme } from "./data/sections.js";
 import { switchPage } from "./pages/switchPage.js";
 import { Trainer } from "./trainer.js";
 import { confetti } from "./confetti.js";
-import { metrika_event } from "./metrika.js";
+import { metrika_event, showAdvFullscreen } from "./metrika.js";
 import { isAnimDisabled } from "./pages/settings.js";
+import { Keys } from "./keys.js";
 
 const pageEl = Lib.get.div("t-page");
 const idEl = Lib.get.div("t-id");
@@ -21,9 +22,15 @@ export class Tester
 
 	public async start()
 	{
-		switchPage({ page: "tester", title: "tester/" + this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
+		switchPage({ page: "tester", subpath: this.theme.id }, { display: this.theme.name, title: " |> " + this.theme.name }, this.theme.color);
 		this.loading();
-		this.items = await Trainer.selectTasks(this.theme);
+		const items = await Trainer.selectTasks(this.theme);
+		if (!items)
+		{
+			this.loadingError();
+			return;
+		}
+		this.items = items;
 		this.next();
 		metrika_event("tester_start");
 	}
@@ -34,6 +41,10 @@ export class Tester
 		idEl.innerText = "";
 		inputEl.innerHTML = "";
 		Lib.SetContent(taskEl, Lib.Div("loading", "Загрузка заданий"));
+	}
+	private loadingError()
+	{
+		Lib.SetContent(taskEl, Lib.Div("loading-error", "Ошибка загрузки :("));
 	}
 
 	private next()
@@ -58,18 +69,23 @@ export class Tester
 
 	private async showEnd()
 	{
+		runAdv(this.cor == this.items.length);
 		pageEl.innerText = "";
 		idEl.innerText = "";
 		const text = `Результат: ${this.cor}/${this.items.length} (${Math.floor(this.cor / this.items.length * 100)}%)`;
 		Lib.SetContent(taskEl, Lib.initEl("h2", [], text));
 		Lib.SetContent(inputEl, Lib.Div("tester-input-two", [
-			Lib.Button([], "Вернуться", () => switchPage("main")),
+			Lib.Button([], "Вернуться", btn =>
+			{
+				btn.classList.add("active");
+				switchPage("main");
+			}),
 			Lib.Button([], "Ещё раз", async btn =>
 			{
 				btn.classList.add("active");
 				if (!isAnimDisabled())
 					await Lib.wait(200);
-				new Tester(this.theme).start();
+				new Tester(this.theme).start()
 			}),
 		]));
 		if (this.cor == this.items.length)
@@ -87,6 +103,25 @@ export class Tester
 		}
 		metrika_event("tester_done");
 	}
+}
+
+function runAdv(long: boolean)
+{
+	let completeCount = parseInt(localStorage.getItem(Keys.completeCount) || "0", 10);
+	if (isNaN(completeCount)) completeCount = 0;
+	const lessAdv = localStorage.getItem(Keys.lessAdv) == "1";
+	const reqCount = lessAdv ? 4 : 2;
+
+	completeCount++;
+	let show = false;
+	if (completeCount >= reqCount)
+	{
+		completeCount = 0;
+		show = true;
+	}
+	localStorage.setItem(Keys.completeCount, `${completeCount}`);
+
+	if (show) setTimeout(showAdvFullscreen, long ? 1250 : 750);
 }
 
 export abstract class TestItem

@@ -287,8 +287,7 @@ export class TestItemWordChoice extends TestItem
 {
 	private beforeTask = "";
 	private afterTask = "";
-	private choices: string[] = [];
-	private rightChoiceI = -1;
+	private choices: { s: string, r: boolean }[] = [];
 	/**
 	 * @param task "Sky are [red|+blue|green], roses are red."
 	 *
@@ -305,61 +304,70 @@ export class TestItemWordChoice extends TestItem
 			return;
 		}
 		this.beforeTask = task.slice(0, start);
-		this.choices = task.slice(start + 1, end).split("|");
-		Lib.random.shuffle(this.choices);
 		this.afterTask = task.slice(end + 1);
-		for (let i = 0; i < this.choices.length; i++)
+		this.choices = [];
+		let rightExist = false;
+		for (let choice of task.slice(start + 1, end).split("|"))
 		{
-			const choice0 = this.choices[i][0]
-			if (choice0 == "+")
+			let r = false;
+			if (choice[0] == "+")
 			{
-				this.rightChoiceI = i;
-				this.choices[i] = this.choices[i].slice(1);
+				r = true;
+				rightExist = true;
+				choice = choice.slice(1);
 			}
-			this.choices[i] = this.choices[i].trim();
+			choice = choice.trim();
+			this.choices.push({ s: choice, r });
 		}
-		if (this.rightChoiceI < 0)
+		if (!rightExist)
 			console.error(`TestItemWordChoice[${id}] task dont have right choice: ${task}`);
 	}
 
 	public getQuestion(): string | Node
 	{
-		return this.beforeTask + "[" + this.choices.join(" | ") + "]" + this.afterTask;
+		return this.beforeTask + "[" + this.choices.map(v => v.s).join(" | ") + "]" + this.afterTask;
 	}
 
 	public getAnswer(): string | Node
 	{
-		return this.beforeTask + this.choices[this.rightChoiceI] + this.afterTask;
+		return this.beforeTask + this.choices.find(v => v.r)?.s + this.afterTask;
 	}
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
+		Lib.random.shuffle(this.choices);
 		const inputBtn = Lib.Button([], "Далее");
 		inputBtn.disabled = true;
 		const inputDiv = Lib.Div(["tester-input-one", "tester-input-one_hidden"], [inputBtn]);
 		Lib.SetContent(inputEl, inputDiv);
 
-		const btns = this.choices.map((v, i) => Lib.Button([], v, () => showAns(i)));
+		const btns = this.choices.map((v, i) => Lib.Button([], v.s, () => showAns(i)));
 		const choicesEl = Lib.Div("tester-wordChoice-choices", btns);
+		const beforeTask = this.beforeTask.split(" ");
 		const el = Lib.Div("tester-wordChoice", [
-			Lib.Div("tester-wordChoice-text", this.beforeTask),
+			...beforeTask.map((v, i) => Lib.Div("tester-wordChoice-text", v + (i < beforeTask.length - 1 ? " " : ""))),
+			// Lib.Div("tester-wordChoice-text", this.beforeTask),
 			choicesEl,
-			Lib.Div("tester-wordChoice-text", this.afterTask),
+			...this.afterTask.split(" ").map(v => Lib.Div("tester-wordChoice-text", v + " ")),
+			// Lib.Div("tester-wordChoice-text", this.afterTask),
 		])
 		Lib.SetContent(taskEl, el);
 
 		const showAns = (I: number) =>
 		{
-			if (I < this.rightChoiceI)
+			const rightChoiceI = this.choices.findIndex(v => v.r);
+			if (I < rightChoiceI)
 				el.classList.add("tester-wordChoice-bottom")
-			if (I > this.rightChoiceI)
+			if (I > rightChoiceI)
 				el.classList.add("tester-wordChoice-top")
+			if (I == rightChoiceI)
+				choicesEl.classList.add("tester-wordChoice-choices-correct");
 
 			for (let i = 0; i < btns.length; i++)
 			{
 				const btn = btns[i];
 				btn.disabled = true;
-				if (i == this.rightChoiceI)
+				if (i == rightChoiceI)
 				{
 					btn.classList.add("tester-wordChoice-correct")
 					if (btn.innerText == "")
@@ -380,7 +388,7 @@ export class TestItemWordChoice extends TestItem
 			inputBtn.addEventListener("click", async () =>
 			{
 				inputBtn.classList.add("active");
-				onAnswer(I == this.rightChoiceI);
+				onAnswer(I == rightChoiceI);
 			});
 		}
 	}
@@ -456,7 +464,7 @@ export class TestItemChooseWord extends TestItem
 export class TestItemMultipleWordChoice extends TestItem
 {
 	private parts: { s: string, a: string, q: boolean, r: boolean, selected?: boolean }[] = [];
-	constructor(id: number, task: string, private title: string)
+	constructor(id: number, task: string, private title: string, private hideWrong = false)
 	{
 		super(id);
 		let w = "";
@@ -499,6 +507,8 @@ export class TestItemMultipleWordChoice extends TestItem
 			}
 		}
 		this.parts.push({ s: w, a: w, q, r });
+		if (this.parts.length == 1)
+			console.error(`TestItemMultipleWordChoice[${id}] task dont have choices: ${task}`);
 	}
 
 	public getQuestion(): string | Node
@@ -506,9 +516,11 @@ export class TestItemMultipleWordChoice extends TestItem
 		return this.parts.map(v => v.s).join("");
 	}
 
-	public getAnswer(): string | Node
+	public getAnswer(onlyAnswer = false): string | Node
 	{
-		return this.parts.filter(v => v.r).map(v => v.s).join("");
+		if (onlyAnswer)
+			return this.parts.filter(v => v.r).map(v => v.s).join("");
+		return this.parts.map(v => v.a).join("");
 	}
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
@@ -526,7 +538,8 @@ export class TestItemMultipleWordChoice extends TestItem
 				Lib.SetContent(selectedEl, this.parts.filter(v => v.selected).map(v => Lib.Span([], v.s)))
 			}));
 
-		const answ = Lib.Div(["tester-collapsible", "tester-collapsible_noMargin", "tester-collapsible_collapsed"], Lib.Span([], "Ответ: " + this.getAnswer()));
+		const answEl = Lib.Span("tester-multipleWordChoice-answer", "Ответ: " + this.getAnswer(true));
+		const answ = Lib.Div(["tester-collapsible", "tester-collapsible_noMargin", "tester-collapsible_collapsed"], answEl);
 
 		const task = Lib.Div("tester-multipleWordChoice", els);
 		const selectedEl = Lib.Span("tester-multipleWordChoice-selected");
@@ -543,6 +556,12 @@ export class TestItemMultipleWordChoice extends TestItem
 		Lib.SetContent(inputEl, Lib.Div("tester-input-one", Lib.Button([], "Ответить", btn =>
 		{
 			answ.classList.remove("tester-collapsible_collapsed");
+			Lib.SetContent(answEl, [
+				Lib.Span([], "Ответ: "),
+				...this.parts.filter(v => v.r).map(v =>
+					Lib.Span(v.selected ? [] : "tester-multipleWordChoice-notSelected", v.s)
+				),
+			])
 			this.parts.filter(v => v.selected).forEach((v, i) => selectedEl.children[i].classList.add("tester-multipleWordChoice-selected_" + (v.r ? "correct" : "wrong")));
 			done = true;
 			let correct = true;
@@ -558,7 +577,10 @@ export class TestItemMultipleWordChoice extends TestItem
 					if (part.selected)
 						el.classList.add("tester-multipleWordChoice-btn_wrong")
 					else
-						el.classList.add("tester-multipleWordChoice-btn_hidden")
+						if (this.hideWrong)
+							el.classList.add("tester-multipleWordChoice-btn_hidden")
+						else
+							el.classList.add("tester-multipleWordChoice-btn_disabled")
 
 				correct = correct && (part.r && !!part.selected || !part.r && !part.selected);
 			}

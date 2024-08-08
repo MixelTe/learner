@@ -44,24 +44,35 @@ export interface Theme
 	name: string,
 	color: Themes,
 	count: number,
-	items: () => Promise<TestItem[]>,
+	items: () => Promise<LoadedItems>,
 	onlyAnswerInQList?: true,
+	disableRepeat?: true,
+}
+
+export interface LoadedItems
+{
+	items: TestItem[],
+	success: boolean,
 }
 
 function getItemLoader(name: string)
 {
-	let dataCache: TestItem[] = [];
+	let dataCache: LoadedItems = { items: [], success: false };
 	return async function ()
 	{
-		if (dataCache.length > 0) return dataCache;
-		const { data } = await import("./" + name + ".js");
-		dataCache = data;
+		if (dataCache.success) return dataCache;
+		try
+		{
+			const { data } = await import("./" + name + ".js");
+			dataCache.items = data;
+			dataCache.success = true;
+		} catch { }
 		return dataCache;
 	}
 }
 
 
-checkItems()
+// checkItems()
 async function checkItems()
 {
 	console.warn("checkItems enabled");
@@ -71,7 +82,7 @@ async function checkItems()
 		{
 			let r = true;
 			let id = 0;
-			const items = await theme.items()
+			const { items } = await theme.items();
 			for (const item of items)
 			{
 				const c = items.filter(v => v.id == item.id).length == 1;

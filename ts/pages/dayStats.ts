@@ -1,11 +1,13 @@
 import { DayStatistics } from "../dayStatistics.js";
 import { getMonthEndDate } from "../functions.js";
 import * as Lib from "../littleLib.js";
-import { switchPage } from "./switchPage.js";
+import { regPage, switchPage } from "./switchPage.js";
 import { themes } from "../themes.js";
 
 const scale = Lib.get.el("dayStats-scale", HTMLSpanElement);
 const scale_min = Lib.get.el("dayStats-scale_min", HTMLSpanElement);
+const yesterday = Lib.get.el("dayStats-last_yesterday", HTMLSpanElement);
+const today = Lib.get.el("dayStats-last_today", HTMLSpanElement);
 const days = Lib.get.div("dayStats-days");
 const current = Lib.get.div("dayStats-current");
 const longest = Lib.get.div("dayStats-longest");
@@ -16,6 +18,7 @@ const size = 12;
 const tsize = 15;
 const r = 3;
 
+regPage("dayStats", showDayStats);
 export function showDayStats(onSwitch: () => void = () => { })
 {
 	switchPage("dayStats", "Статистика", themes.common, onSwitch);
@@ -24,6 +27,16 @@ export function showDayStats(onSwitch: () => void = () => { })
 	scale.innerText = `${stats.max}`;
 	current.innerText = `${stats.current}`;
 	longest.innerText = `${DayStatistics.getLongest()}`;
+	yesterday.innerText = `${stats.yesterday}`;
+	today.innerText = `${stats.today}`;
+
+	const { color: yesterdayColor, colorText: yesterdayColorText } = getDayColor(stats.yesterday, stats.min, stats.max);
+	yesterday.style.backgroundColor = yesterdayColor;
+	yesterday.style.color = yesterdayColorText;
+	const { color: todayColor, colorText: todayColorText } = getDayColor(stats.today, stats.min, stats.max);
+	today.style.backgroundColor = todayColor;
+	today.style.color = todayColorText;
+
 	drawDays(stats);
 }
 
@@ -72,11 +85,18 @@ function getStats(): StatsData
 			week.push(-1);
 	}
 
+	const today_count = needed.find(v => v.i == todayMonth)?.days.find(v => v.i == todayDate)?.c || 0;
+	const yesterday = new Date();
+	yesterday.setDate(yesterday.getDate() - 1)
+	const yesterday_count = needed.find(v => v.i == yesterday.getMonth())?.days.find(v => v.i == yesterday.getDate())?.c || 0;
+
 	return {
 		months: monthFull.reverse(),
 		current: DayStatistics.getCurrent(months),
 		max,
 		min,
+		today: today_count,
+		yesterday: yesterday_count,
 	}
 }
 interface StatsData
@@ -85,6 +105,8 @@ interface StatsData
 	current: number,
 	max: number,
 	min: number,
+	today: number,
+	yesterday: number,
 }
 interface StatsMonth
 {
@@ -101,13 +123,15 @@ function drawDays(stats: StatsData)
 	const dy = (size + dgap) * 6 + tsize;
 	const columns = window.innerWidth < dx * 3 + mgap + 8 ? 2 : 3;
 	svg.style.width = `${dx * columns + mgap / 2}px`;
-	svg.style.height = `${dy * (12 / columns) + tsize}px`;
+	svg.style.height = `${dy * (12 / columns)}px`;
 
 	for (let i = 0; i < stats.months.length; i++)
 	{
 		const month = drawMonth(stats.months[i], stats.min, stats.max, dx * (i % columns) + mgap, dy * Math.floor(i / columns) + tsize);
 		svg.appendChild(month);
 	}
+
+	days.scroll(0, 1000);
 }
 
 function drawMonth(month: StatsMonth, min: number, max: number, dx: number, dy: number)
@@ -131,8 +155,7 @@ function drawMonth(month: StatsMonth, min: number, max: number, dx: number, dy: 
 		{
 			const v = week[x];
 			if (v < 0) continue;
-			const cv = (v - min) / max;
-			const color = v == 0 ? "#8080804d" : `rgb(${Lib.lerp(50, 0, cv)}, ${Lib.lerp(100, 255, cv)}, ${Lib.lerp(255, 50, cv)})`;
+			const { color } = getDayColor(v, min, max);
 
 			const rect = Lib.createSvgEl("rect", g);
 			rect.setAttribute("x", `${(size + dgap) * x + dx}px`);
@@ -147,3 +170,10 @@ function drawMonth(month: StatsMonth, min: number, max: number, dx: number, dy: 
 	return g;
 }
 
+function getDayColor(v: number, min: number, max: number)
+{
+	const cv = (v - min) / max;
+	const color = v == 0 ? "#8080804d" : `rgb(${Lib.lerp(50, 0, cv)}, ${Lib.lerp(100, 255, cv)}, ${Lib.lerp(255, 50, cv)})`;
+	const colorText = v == 0 ? "#000" : cv > 0.5 ? "#000" : "#fff";
+	return { color, colorText };
+}
