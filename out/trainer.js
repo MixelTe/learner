@@ -9,7 +9,9 @@ if (devSelectId >= -2)
     console.warn("DEV: devSelectId is enabled");
 export class Trainer {
     static async selectTasks(theme) {
-        const items = await theme.items();
+        const { items, success } = await theme.items();
+        if (!success)
+            return null;
         if (devSelectId == -1) {
             const item = items.at(-1);
             return item ? [item] : [];
@@ -26,13 +28,12 @@ export class Trainer {
             this.turn = 0;
         }
         this.turn += 1;
-        if (this.turn > 2) {
+        if (this.turn > 2)
             this.turn = 0;
-            this.seed = Lib.random.int(100000);
-        }
         const stats = this.getStatistics();
         const statsItems = stats.themes.find(v => v.id == theme.id)?.items || [];
-        if (this.turn == 0) {
+        if (this.turn == 0 || theme.disableRepeat) {
+            this.seed = Lib.random.int(100000);
             statsItems.forEach(v => v.hist_old = v.hist);
             this.setStatistics(stats);
         }
@@ -68,7 +69,7 @@ export class Trainer {
         let score = 0;
         for (const item of theme.items) {
             if (item.hist.length != 0)
-                score += sumStr(item.hist) / item.hist.length;
+                score += sumStr(item.hist) / Math.max(item.hist.length, 2);
         }
         return score / itemCount;
     }

@@ -139,6 +139,13 @@ export class FormulaBuilder {
         this.text += fb.text;
         return this;
     }
+    alignRight(fb) {
+        fb.body.classList.add("formula-alignRight");
+        this.prevEl = fb.body;
+        this.body.appendChild(this.prevEl);
+        this.text += fb.text;
+        return this;
+    }
     arc(fb) {
         this.prevEl = Span("formula-arc", [fb.body]);
         this.body.appendChild(this.prevEl);
@@ -217,6 +224,7 @@ export function FB(text) {
  * \#    | overline
  * \\    | square root
  * \@    | no italic
+ * >     | align right
  * '     | control next
  * u{}   | arc
  *
@@ -226,6 +234,7 @@ export function FB(text) {
  * ch| s
  * --|--
  * Z | ℤ
+ * N | ℕ
  * 0 | °
  * / | ⟂
  * \| | ∥
@@ -268,6 +277,7 @@ const formulaLetters = {
     "O": { ch: "Ω", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "T": { ch: "η", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "Z": { ch: "ℤ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
+    "N": { ch: "ℕ", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "0": { ch: "°", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "/": { ch: "⟂", cha: 0, chw: 0, dy: 0, vb: null, d: null },
     "|": { ch: "∥", cha: 0, chw: 0, dy: 0, vb: null, d: null },
@@ -299,6 +309,7 @@ const replaceLetters = {
  * \#    | overline
  * \\    | square root
  * \@    | no italic
+ * >     | align right
  * '     | control next
  * u{}   | arc
  *
@@ -308,6 +319,7 @@ const replaceLetters = {
  * ch| s
  * --|--
  * Z | ℤ
+ * N | ℕ
  * 0 | °
  * / | ⟂
  * \| | ∥
@@ -365,6 +377,8 @@ export function createFormula(formula, italic = false) {
                             fb.noItalic(createFormula(inBrackets));
                         else if (formula[bracketsStart - 1] == "u")
                             fb.arc(createFormula(inBrackets));
+                        else if (formula[bracketsStart - 1] == ">")
+                            fb.alignRight(createFormula(inBrackets));
                         else
                             fb.a(createFormula(inBrackets));
                     }
@@ -400,6 +414,9 @@ export function createFormula(formula, italic = false) {
         }
         else if (ch == "u" && formula[i + 1] == "{") {
             // use u as marker
+        }
+        else if (ch == ">" && formula[i + 1] == "{") {
+            // use > as marker
         }
         else if (ch == "'") {
             const next2 = formula[i + 1] + formula[i + 2];

@@ -93,6 +93,10 @@
 	gap: 0.4rem;
 }
 
+.settings-customTheme .checkbox {
+	justify-content: center;
+}
+
 .settings-customTheme-inputs {
 	display: grid;
 	grid-template-rows: 0fr;
@@ -101,13 +105,30 @@
 .settings-customTheme-inputs_open {
 	grid-template-rows: 1fr;
 }
-.settings-customTheme-inputs > * {
+.settings-customTheme-inputs > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.8rem;
+	overflow: hidden;
+}
+.settings-customTheme-inputs > div > div {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	overflow: hidden;
 	gap: 0.4rem;
 }
+.settings-customTheme-inputs button {
+	font-size: 1rem;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	border-radius: 0.2rem;
+	cursor: pointer;
+}
 
+.settings-small {
+	font-size: 0.8rem;
+}
 
 .settings-data {
 	max-width: 300px;

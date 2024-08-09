@@ -1,11 +1,35 @@
+@property --c-back1 {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: white;
+}
+@property --c-back2 {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: white;
+}
+@property --c-text {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: black;
+}
+@property --c-title {
+	syntax: "<color>";
+	inherits: true;
+	initial-value: brown;
+}
+
 :root {
 	--c-back1: white;
 	--c-back2: white;
 	--c-text: black;
 	--c-title: brown;
 }
-*, ::before, ::after {
+*,
+::before,
+::after {
 	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -17,18 +41,26 @@ body {
 	height: 100dvh;
 	min-width: 320px;
 	margin: 0;
-	background: linear-gradient(45deg, var(--c-back1), var(--c-back2));
+	background-image: linear-gradient(45deg, var(--c-back1), var(--c-back2));
 	color: var(--c-text);
 	display: grid;
-	grid-template-rows: 2.5rem 1fr;
+	grid-template-rows: 2.5rem 1fr auto;
+
+	transition-property: --c-back1, --c-back2, --c-text, --c-title, color;
+	transition-duration: 250ms;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
 	margin: 0;
 	color: var(--c-title);
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
 }
 
+[disableanim="1"],
 [disableanim="1"] *::before,
 [disableanim="1"] *::after,
 [disableanim="1"] * {
@@ -66,8 +98,8 @@ header {
 }
 #subtitle {
 	position: absolute;
-    top: 0;
-    font-size: 0.7rem;
+	top: 0;
+	font-size: 0.7rem;
 }
 
 .menuBtn {
@@ -137,6 +169,9 @@ header {
 	z-index: 10;
 	opacity: 1;
 	pointer-events: all;
+}
+.menu.instant {
+	transition: none;
 }
 
 .menu > * {
@@ -220,26 +255,29 @@ header {
 :has(#p-about.open) #btn-about {
 	opacity: 0;
 }
+:has(#p-settings.open) #btn-settings {
+	opacity: 0;
+}
 
-footer {
+.menu footer {
 	display: flex;
 	justify-content: space-between;
 }
 
-footer button {
+.menu footer button {
 	background: transparent;
 	border-radius: 0.2rem;
-    border: none;
-    color: var(--c-title);
+	border: none;
+	color: var(--c-title);
 	padding: 0;
 	width: 3rem;
 	cursor: pointer;
 	outline: none;
 }
-footer button > * {
+.menu footer button > * {
 	font-size: 2rem;
 }
-footer button:focus-visible {
+.menu footer button:focus-visible {
 	outline: 2px solid var(--c-title);
 }
 
@@ -286,4 +324,8 @@ body:not(.dark) .hideOnLight {
 		left: 90%;
 		width: 10%;
 	}
+}
+
+.loading-error {
+	color: tomato;
 }

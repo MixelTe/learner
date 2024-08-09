@@ -1,12 +1,13 @@
 import { Sections } from "../data/sections.js";
 import * as Lib from "../littleLib.js";
-import { switchPage } from "./switchPage.js";
+import { regPage, switchPage } from "./switchPage.js";
 import { themes } from "../themes.js";
 import { Trainer } from "../trainer.js";
 const itemTemplate = Lib.getEl("template-stats-item", HTMLTemplateElement);
 const markerTemplate = Lib.getEl("template-stats-marker", HTMLTemplateElement);
 const subitemTemplate = Lib.getEl("template-stats-subitem", HTMLTemplateElement);
 const statsEl = Lib.get.div("stats");
+regPage("stats", showStats);
 export function showStats(onSwitch = () => { }) {
     switchPage("stats", "Прогресс", themes.common, onSwitch);
     statsEl.innerHTML = "";

@@ -3,6 +3,8 @@
 	transition: opacity 250ms;
 	z-index: 100;
 	border-radius: 2px;
+	pointer-events: none;
+	user-select: none;
 }
 
 .confetti-end {

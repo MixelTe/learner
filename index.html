@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>ЛЯРО</title>
+	<meta name="description" content="Приложение для повторения теории"/>
 	<meta name="theme-color" content="#a52a2a" />
 	<meta property="og:title" content="ЛЯРО" />
 	<meta property="og:description" content="Приложение для повторения теории" />
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://mixelte.github.io/learner/">
-	<meta property="og:image" content="https://raw.githubusercontent.com/MixelTe/learner/master/wwwroot/imgs/logo.png" />
+	<meta property="og:image" content="https://mixelte.github.io/learner/imgs/logo.png" />
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="800">
@@ -18,9 +19,10 @@
 	<meta name="twitter:title" content="ЛЯРО">
 	<meta name="twitter:description" content="Приложение для повторения теории">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image:src" content="https://raw.githubusercontent.com/MixelTe/learner/master/wwwroot/imgs/logo.png">
+	<meta name="twitter:image:src" content="https://mixelte.github.io/learner/imgs/logo.png">
 	<link rel="apple-touch-icon" href="logo192.png" />
 	<link rel="manifest" href="manifest.json" />
+	<link rel="canonical" href="https://mixelte.github.io/learner/"/>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="styles/popup.css">
 	<link rel="stylesheet" type="text/css" href="styles/themes.css">
@@ -39,6 +41,9 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans|Comfortaa|Arimo">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 	<script src="out/main.js" type="module"></script>
+	<!-- Yandex.RTB -->
+	<!-- <script>window.yaContextCb = window.yaContextCb || []</script> -->
+	<!-- <script src="https://yandex.ru/ads/system/context.js" async></script> -->
 </head>
 
 <body>
@@ -47,14 +52,15 @@
 			position: fixed;
 			inset: 0;
 			z-index: 1000;
-			transition: opacity 500ms;
+			transition: opacity 400ms 100ms !important;
 		}
 	</style>
 	<div id="beforeload"></div>
 	<script>
+		let dark = false;
 		{
-			const theme = localStorage.getItem("learner-theme") || "auto";
-			const dark = theme == "dark" || (theme == "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+			const theme = localStorage.getItem("learner_ege-theme") || "auto";
+			dark = theme == "dark" || (theme == "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
 			document.getElementById("beforeload").style.backgroundColor = dark ? "#100c05" : "#f1e6d1";
 		}
 	</script>
@@ -63,7 +69,7 @@
 			<h2>Меню</h2>
 			<div class="menuBtns">
 				<button id="btn-index">На главную</button>
-				<button id="btn-stats">Прогресс</button>
+				<!-- <button id="btn-stats">Прогресс</button> -->
 				<button id="btn-qlist">Вопросы</button>
 				<button id="btn-dayStats">Статистика</button>
 			</div>
@@ -121,7 +127,7 @@
 				</template>
 			</div>
 		</div>
-		<div class="version">v1.0</div>
+		<div class="version">v1.1</div>
 	</div>
 	<div class="page" id="p-tester">
 		<div class="tester">
@@ -161,10 +167,8 @@
 			<template id="template-stats-marker">
 				<div class="stats-marker">
 					<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="10" cy="10" r="8.5" stroke-width="0.8" fill="transparent" opacity="0.5"
-							stroke="var(--c-text)" />
-						<circle id="marker-circle-value" cx="10" cy="10" r="8.5" stroke-width="1.8" fill="transparent"
-							transform="rotate(-90 10 10)" stroke-dasharray="54 100" stroke="var(--c-title)" />
+						<circle cx="10" cy="10" r="8.5" stroke-width="0.8" fill="transparent" opacity="0.5" stroke="var(--c-text)" />
+						<circle id="marker-circle-value" cx="10" cy="10" r="8.5" stroke-width="1.8" fill="transparent" transform="rotate(-90 10 10)" stroke-dasharray="54 100" stroke="var(--c-title)" />
 						<text x="10" y="14" font-size="10" fill="var(--c-text)" text-anchor="middle">✔</text>
 					</svg>
 				</div>
@@ -217,11 +221,20 @@
 			<div></div>
 			<span id="dayStats-scale">0</span>
 		</div>
+		<div class="dayStats-last">
+			<h4>Вчера</h4>
+			<span id="dayStats-last_yesterday">56</span>
+			<h4>Сегодня</h4>
+			<span id="dayStats-last_today">253</span>
+		</div>
 		<div id="dayStats-days"></div>
 	</div>
 	<div class="page" id="p-about">
 		<h2>ЛЯРО</h2>
-		<h3>Приложение для повторения теории</h3>
+		<div>
+			<h3>Приложение для повторения теории</h3>
+			<small>Автор не гарантирует корректность предоставляемого материала</small>
+		</div>
 		<div class="aboutAuthor">
 			<h4>Автор:</h4>
 			<div class="aboutAuthor-corners">
@@ -280,6 +293,11 @@
 			<span class="checkbox-mark"></span>
 			<span>Анимации</span>
 		</label>
+		<!-- <label class="checkbox">
+			<input type="checkbox" id="settings-adv">
+			<span class="checkbox-mark"></span>
+			<span>Меньше рекламы</span>
+		</label> -->
 		<div class="settings-customTheme">
 			<label class="checkbox">
 				<input type="checkbox" id="settings-customTheme">
@@ -288,14 +306,20 @@
 			</label>
 			<div class="settings-customTheme-inputs" id="settings-customTheme-inputs">
 				<div>
-					<span>Фон 1</span>
-					<input type="color" id="settings-color-back1">
-					<span>Фон 2</span>
-					<input type="color" id="settings-color-back2">
-					<span>Текст 1</span>
-					<input type="color" id="settings-color-text">
-					<span>Текст 2</span>
-					<input type="color" id="settings-color-title">
+					<div>
+
+						<span>Фон 1</span>
+						<input type="color" id="settings-color-back1">
+						<span>Фон 2</span>
+						<input type="color" id="settings-color-back2">
+						<span>Текст 1</span>
+						<input type="color" id="settings-color-text">
+						<span>Текст 2</span>
+						<input type="color" id="settings-color-title">
+					</div>
+					<!-- <button id="settings-customTheme-set">
+						Установить за рекламу
+					</button> -->
 				</div>
 			</div>
 		</div>
@@ -320,9 +344,12 @@
 			</div>
 		</div>
 	</div>
+	<footer style="max-width: 100dvw;" id="footer">
+		<!-- Yandex.RTB R-A-6760567-1 -->
+		<div id="yandex_rtb_R-A-6760567-1"></div>
+	</footer>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript">
-		// return;
 		(function (m, e, t, r, i, k, a)
 		{
 			m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };

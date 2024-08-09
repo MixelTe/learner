@@ -126,12 +126,12 @@ screen and (max-height: 550px) {
 
 .tester-backBtn {
 	position: absolute;
-    top: 0rem;
+	top: 0rem;
 	left: 50%;
-    width: 4rem;
-    height: 3rem;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
+	width: 4rem;
+	height: 3rem;
+	transform: translateX(-50%);
+	font-size: 1.5rem;
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -190,22 +190,29 @@ screen and (max-height: 550px) {
 .tester-wordChoice {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+    padding-block: 0.5em;
 }
 
 .tester-wordChoice-text {
 	transition: transform 150ms;
+	white-space: break-spaces;
 }
 .tester-wordChoice-top > .tester-wordChoice-text {
-	transform: translateY(-0.7em);
+	transform: translateY(-0.75em);
 }
 .tester-wordChoice-bottom > .tester-wordChoice-text {
-	transform: translateY(0.7em);
+	transform: translateY(0.75em);
 }
 
 .tester-wordChoice-choices {
 	display: flex;
 	flex-direction: column;
-	margin-inline: 0.1em;
+}
+
+.tester-wordChoice-choices-correct {
+    margin-inline: -0.1em;
 }
 
 .tester-wordChoice-choices button {
@@ -217,6 +224,7 @@ screen and (max-height: 550px) {
 	height: 1.4em;
 	max-height: 2em;
 	max-width: 20em;
+	text-wrap: nowrap;
 	cursor: pointer;
 	transition-property: padding, margin, border, max-height, max-width;
 	transition-duration: 150ms;
@@ -385,7 +393,7 @@ screen and (max-height: 550px) {
 	transition-property: grid-template-rows, margin;
 	transition-duration: 150ms;
 }
-.tester-collapsible_collapsed  {
+.tester-collapsible_collapsed {
 	margin-top: 0;
 	grid-template-rows: 0fr;
 }
@@ -398,6 +406,7 @@ screen and (max-height: 550px) {
 
 .tester-multipleWordChoice {
 	margin-block: 0.5rem;
+	white-space: break-spaces;
 }
 .tester-multipleWordChoice button {
 	position: relative;
@@ -422,6 +431,7 @@ screen and (max-height: 550px) {
 }
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_wrong,
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_hidden,
+.tester-multipleWordChoice .tester-multipleWordChoice-btn_disabled,
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_correct {
 	padding: 0px;
 	border: 0px solid transparent;
@@ -434,10 +444,10 @@ screen and (max-height: 550px) {
 }
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_selected.tester-multipleWordChoice-btn_correct {
 	border: none;
-	box-shadow: inset 0 0 5px #02a102;
+	box-shadow: inset 0 0 5px 2px #02a102;
 }
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_wrong {
-	box-shadow: inset 0 0 5px tomato;
+	box-shadow: inset 0 0 5px 2px tomato;
 }
 .tester-multipleWordChoice .tester-multipleWordChoice-btn_hidden {
 	max-width: 0px;
@@ -451,4 +461,21 @@ screen and (max-height: 550px) {
 }
 .tester-multipleWordChoice-selected_wrong {
 	color: tomato;
+}
+.tester-multipleWordChoice-answer {
+	margin-left: 1.7rem;
+}
+.tester-multipleWordChoice-notSelected {
+	position: relative;
+}
+.tester-multipleWordChoice-notSelected::before {
+    content: "";
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    width: 100%;
+    height: 0.25em;
+    background-color: tomato;
+    filter: blur(2px);
+    z-index: -1;
 }

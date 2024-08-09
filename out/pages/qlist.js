@@ -1,12 +1,13 @@
 import { Sections } from "../data/sections.js";
 import * as Lib from "../littleLib.js";
-import { switchPage } from "./switchPage.js";
+import { regPage, switchPage } from "./switchPage.js";
 import { themes } from "../themes.js";
 import { Trainer } from "../trainer.js";
 const qlistsTemplate = Lib.getEl("template-qlists", HTMLTemplateElement);
 const qlistsEl = Lib.get.div("qlists");
 const qlistEl = Lib.get.div("qlist");
 const qlistPage = Lib.get.div("p-qlist");
+regPage("qlists", showQlist);
 export function showQlist(onSwitch = () => { }) {
     switchPage("qlists", "Вопросы", themes.common, onSwitch);
     qlistsEl.innerHTML = "";
@@ -37,12 +38,22 @@ export function showQlist(onSwitch = () => { }) {
         qlistsEl.appendChild(item);
     }
 }
+regPage("qlist", null, themeId => {
+    for (const section of Sections)
+        for (const theme of section.themes)
+            if (theme.id == themeId)
+                showItemQs(section.name, theme);
+});
 export async function showItemQs(sectionName, theme) {
-    switchPage("qlist", theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
+    switchPage({ page: "qlist", subpath: theme.id }, theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
     Lib.SetContent(qlistEl, Lib.Div("loading", "Загрузка заданий"));
     qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
     const stats = Trainer.getStatistics().themes.find(v => v.id == theme.id);
-    const items = await theme.items();
+    const { items, success } = await theme.items();
+    if (!success) {
+        Lib.SetContent(qlistEl, Lib.Div("loading-error", "Ошибка загрузки :("));
+        return;
+    }
     qlistEl.innerHTML = "";
     for (const item of items) {
         const stat = stats?.items?.find?.(v => v.id == item.id)?.hist || "";
