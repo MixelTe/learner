@@ -355,7 +355,7 @@ export class TestItemWordChoice extends TestItem
 
 		const showAns = (I: number) =>
 		{
-			const rightChoiceI = this.choices.findIndex(v => v.r);
+			const rightChoiceI = this.choices[I].r ? I : this.choices.findIndex(v => v.r);
 			if (I < rightChoiceI)
 				el.classList.add("tester-wordChoice-bottom")
 			if (I > rightChoiceI)
