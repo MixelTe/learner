@@ -230,31 +230,31 @@ export class TestItemStress extends TestItem
 }
 
 
-export class TestItemParonyms extends TestItem
+export class TestItemWordGroup extends TestItem
 {
-	constructor(id: number, private paronyms: string[], private desc: string[] = [])
+	constructor(id: number, private group: string[], private desc: string[] = [])
 	{
 		super(id);
-		this.paronyms = paronyms.map(v => Lib.capitalize(v.toLocaleLowerCase()))
+		this.group = group.map(v => Lib.capitalize(v.toLocaleLowerCase()))
 	}
 
 	public getQuestion(): string | Node
 	{
-		return this.paronyms.join(" - ");
+		return this.group.join(" - ");
 	}
 
 	public getAnswer(): string | Node
 	{
-		return Lib.Div("tester-paronyms", [
-			Lib.Div([], this.paronyms.join(" - ")),
+		return Lib.Div("tester-group", [
+			Lib.Div([], this.group.join(" - ")),
 			this.desc.length > 0 ? Lib.Div() : "",
-			...this.desc.map((v, i) => Lib.Div([], this.paronyms[i] + " - " + v))
+			...this.desc.map((v, i) => Lib.Div([], this.group[i] + " - " + v))
 		]);
 	}
 
 	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
 	{
-		Lib.SetContent(taskEl, Lib.random.choose(this.paronyms));
+		Lib.SetContent(taskEl, Lib.random.choose(this.group));
 
 		Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
 			Lib.Button([], "Ответ", async btn =>
