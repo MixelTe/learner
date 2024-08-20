@@ -9,8 +9,8 @@ A user-friendly and beautiful web platform for learning theory and solving tests
 1. View [example](https://mixelte.github.io/learner)
 1. [Fork repo](https://github.com/MixelTe/learner/fork)
 2. [Add data](#adding-data)
-3. Config titles
-4. (opt) Config metrika
+3. [Configure titles](#config-titles)
+4. [Configure or disable metrika](#config-metrika)
 
 ## Adding data
 
@@ -280,3 +280,162 @@ export const data: TestItem[] = [
 ```
 
 ### FormulaBuilder
+`ts/formulasBuilder.ts` has the following exports:
+* class FormulaBuilder - formula builder
+* function FB(text?: string) - short for `new FormulaBuilder().t(text)`
+* function createFormula(formula: string, italic = false) - parses the string and generates a FormulaBuilder
+* function createFormulas(...rows: string[]) - generates (with `createFormula(row, true)`) a table with one formula per row
+
+#### FormulaBuilder methods:
+ method                                        | description
+-----------------------------------------------|-------------
+a(fb: FormulaBuilder)                          | append another FormulaBuilder content
+t(text: string, replace = true)                | append text, replaces some letters to svg
+f(top: FormulaBuilder, bottom: FormulaBuilder) | append fraction
+l(letter: CustomLetter)                        | append letter from CustomLetters collection (svg or utf8 char)
+up(fb: FormulaBuilder)                         | append superscript
+lw(fb: FormulaBuilder)                         | append sublinear text
+sq(fb: FormulaBuilder)                         | append formula under the root sign
+vec(fb: FormulaBuilder)                        | append formula under the vector sign
+hat(fb: FormulaBuilder)                        | append formula under the hat sign
+arc(fb: FormulaBuilder)                        | append formula under the arc sign
+sum(fb: FormulaBuilder)                        | append sum sign with the formula below
+union(fb: FormulaBuilder)                      | append formula with union symbol before it
+system(fb: FormulaBuilder)                     | append formula with system symbol before it
+noItalic(fb: FormulaBuilder)                   | append formula with disabled italic style
+alignRight(fb: FormulaBuilder)                 | append formula with right align
+table(...rows: FormulaBuilder[])               | append table of formulas
+centerInCell()                                 | center current formula in table cell
+bigger()                                       | make current formula bigger font size
+smaller()                                      | make current formula smaller font size
+wrap()                                         | allow text wrap for current formula
+italic()                                       | make current formula italic
+
+
+Example:
+```ts
+import { FB, formulaLetters } from "../formulasBuilder.js";
+// y = (x)/(2) + 10
+FB("y = ").f(FB("x"), FB("2")).t(" + 10");
+
+// S_(x_1) = x_0 + V_x * t + (a_x * t^2)/(2)
+FB("S").lw(FB("x").lw(FB("1"))).t(" = x").lw(FB("0")).t(" + V").lw(FB("x")).t("t + ").f(FB("a").lw(FB("x")).t("t").up(FB("2")), FB("2"));
+
+// x ≥ 10 and x < 20
+FB().system(FB().table(FB("x ").l(formulaLetters["ge"]).t(" 10"), FB("x < 20")))
+```
+
+#### createFormula:
+Significantly simplifies the writing of formulas
+
+Example:
+```ts
+import { createFormulas } from "../formulasBuilder.js";
+// y = (x)/(2) + 10
+createFormulas("y = {x}/{2} + 10")
+
+// S_(x_1) = x_0 + V_x * t + (a_x * t^2)/(2)
+createFormulas("S_{x_1} = x_0 + V_xt + {a_xt^2}/{2}")
+
+// x ≥ 10 and x < 20
+createFormulas("").system(createFormulas("x 'ge 10", "x < 20"))
+```
+
+The special character is applied to the following letter or block
+
+Special characters in `createFormulas()`:
+
+symbol | desc
+-------|--------
+\|     | if first char - center cell
+\\     | if first char - wrap line
+{...}  | block
+_      | subscript
+^      | superscript
+&      | vector
+\#     | overline
+\\     | square root
+\@     | no italic
+\>     | align right
+u{}    | arc (only for block)
+'      | transform next character
+
+Character transformations:
+
+ch | result
+---|--------
+v  | ν
+r  | ρ
+m  | μ
+n  | 𝜈
+a  | α
+d  | Δ
+P  | π
+l  | λ
+w  | ω
+b  | β
+t  | τ
+s  | ϭ
+e  | ϵ
+E  | ε
+f  | φ
+O  | Ω
+T  | η
+Z  | ℤ
+N  | ℕ
+0  | °
+/  | ⟂
+\| | ∥
+<  | ∠
+u  | ∪
+i  | ∩
+\+ | ±
+\- | ∓
+~  | ≈
+=  | ≠
+ge | ≥
+le | ≤
+in | ∈
+ar | ⇒
+ab | ⇔
+
+## Config titles
+
+1. Edit app name on main page: `index.html: #p-start > h4`
+2. Set app version on main page: `index.html: #p-start > .version`
+3. Edit about page: `index.html: #p-about`, css: `styles/p-about.css`
+4. If you change the page title, be sure to sync it with the app name in `manifest.json`.
+
+
+## Config metrika
+
+App is using Yandex metrika
+
+### Disable metrika
+Remove all code inside these tags in the `index.html` file.
+```html
+<!-- Yandex.Metrika counter -->
+	...
+<!-- /Yandex.Metrika counter -->
+```
+If you want to get rid of the "metrika is undefined" messages in the console, remove the logging call in the `ts/metrika.ts: saveCall()` function.
+
+### Configure metrika
+
+1. Do not delete the code mentioned in the previous section, but replace the metrika id with your own in two places.
+2. Replace the metrika id in variable `ts/metrika.ts: const code`
+3. Set the following goals in the metrika console:
+	* tester_done
+	* tester_start
+	* data_export
+	* data_import
+	* data_reset_progress
+	* data_reset_full
+
+### Adv
+You can add yandex adv
+
+1. Uncomment Yandex.RTB code in `index.html` head
+2. Edit block id in `index.html` footer
+3. Comment `return` and edit block id in `ts/metrika.ts: function enableBottomAdv()`
+4. Comment `return` and edit block ids in `ts/metrika.ts: function showAdvFullscreen()`
