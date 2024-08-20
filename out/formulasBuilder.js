@@ -11,6 +11,14 @@ export class FormulaBuilder {
         return this;
     }
     t(text, replace = true) {
+        if (replace)
+            for (let i = 0; i < text.length; i++)
+                this._t(text[i], true);
+        else
+            this._t(text, false);
+        return this;
+    }
+    _t(text, replace = true) {
         if (replace && replaceLetters.hasOwnProperty(text)) {
             this.l(replaceLetters[text]);
             return this;
@@ -125,12 +133,37 @@ export class FormulaBuilder {
             this.text += "‾(" + fb.text + ")";
         return this;
     }
+    arc(fb) {
+        this.prevEl = Span("formula-arc", [fb.body]);
+        this.body.appendChild(this.prevEl);
+        if (fb.text.length == 1)
+            this.text += "◡" + fb.text;
+        else
+            this.text += "◡(" + fb.text + ")";
+        return this;
+    }
     sum(fb) {
         const bottom = Span("formula-sum-bottom", [fb.body]);
         this.prevEl = Span("formula-sum", [Span([], "Σ"), bottom]);
         this.body.appendChild(this.prevEl);
         this.text += "Σ(" + fb.text + ")";
         return this;
+    }
+    union(fb) {
+        this.prevEl = Span("formula-union", [fb.body]);
+        this.body.appendChild(this.prevEl);
+        this.text += "[" + fb.text + "]";
+        return this;
+    }
+    system(fb) {
+        this.prevEl = Span("formula-system", [fb.body]);
+        this.body.appendChild(this.prevEl);
+        this.text += "{" + fb.text + "}";
+        return this;
+    }
+    br() {
+        this.prevEl = document.createElement("br");
+        this.body.appendChild(this.prevEl);
     }
     noItalic(fb) {
         fb.body.classList.add("formula-noItalic");
@@ -146,19 +179,6 @@ export class FormulaBuilder {
         this.text += fb.text;
         return this;
     }
-    arc(fb) {
-        this.prevEl = Span("formula-arc", [fb.body]);
-        this.body.appendChild(this.prevEl);
-        if (fb.text.length == 1)
-            this.text += "◡" + fb.text;
-        else
-            this.text += "◡(" + fb.text + ")";
-        return this;
-    }
-    br() {
-        this.prevEl = document.createElement("br");
-        this.body.appendChild(this.prevEl);
-    }
     table(...rows) {
         const f = Table("formula-table");
         this.prevEl = f;
@@ -171,18 +191,6 @@ export class FormulaBuilder {
     }
     centerInCell() {
         this.centerCell = true;
-        return this;
-    }
-    union(fb) {
-        this.prevEl = Span("formula-union", [fb.body]);
-        this.body.appendChild(this.prevEl);
-        this.text += "[" + fb.text + "]";
-        return this;
-    }
-    system(fb) {
-        this.prevEl = Span("formula-system", [fb.body]);
-        this.body.appendChild(this.prevEl);
-        this.text += "{" + fb.text + "}";
         return this;
     }
     bigger() {
@@ -225,8 +233,8 @@ export function FB(text) {
  * \\    | square root
  * \@    | no italic
  * >     | align right
- * '     | control next
- * u{}   | arc
+ * '     | transform next character
+ * u{}   | arc (only for block)
  *
  * ### Greek chars:
  * v r m n a d P l w b t s e E f O T
@@ -258,7 +266,7 @@ export function createFormulas(...rows) {
         v[0] == "\\" ? createFormula(v.slice(1), true).wrap() :
             createFormula(v, true)));
 }
-const formulaLetters = {
+export const formulaLetters = {
     "v": { ch: "ν", cha: 1, chw: 0.5, dy: -0.1, vb: "-2.4 -5.2 4.4 5", d: "M -1.6 -3.7 C -0.9 -5.1 -0.7 -4.6 -0.6 -0.4 C 0.5 -4.6 1.1 -4.8 1.5 -3.5" },
     "r": { ch: "ρ", cha: 1, chw: 0.6, dy: 0, vb: "0 -5 4.5 5", d: "M 0.3 -1.4 C 0.4 -0.4 1.3 -0.1 1.6 -1.3 L 2.2 -4 A 1 1 0 1 1 2.3 -3.3" },
     "m": { ch: "μ", cha: 0, chw: 0.55, dy: 0.22, vb: "0 -4.5 5 5", d: "M 0.51 -0.96 C 0.27 -0.09 0.81 0.38 1.38 -1.22 L 2.32 -3.77 C 2.38 -3.92 2.43 -3.91 2.42 -3.83 L 2.22 -1.86 Q 2.16 -1.08 2.65 -1.78 L 3.92 -3.85 C 4.03 -4.04 4.04 -3.9 4.03 -3.86 L 3.52 -1.83 Q 3.31 -1.05 4.14 -1.8" },
@@ -310,8 +318,8 @@ const replaceLetters = {
  * \\    | square root
  * \@    | no italic
  * >     | align right
- * '     | control next
- * u{}   | arc
+ * '     | transform next character
+ * u{}   | arc (only for block)
  *
  * ### Greek chars:
  * v r m n a d P l w b t s e E f O T

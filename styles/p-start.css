@@ -6,7 +6,6 @@
 .logo {
 	font-family: "Comfortaa", "PT Sans", Arial, Helvetica, sans-serif;
 	font-size: 2rem;
-	margin-bottom: 1em;
 }
 
 .logo > div {
@@ -183,10 +182,14 @@
 .logo > :nth-child(4) {
 	transition-delay: 850ms;
 }
-#p-start > :nth-child(2) {
+#p-start > :nth-child(2),
+#p-start > :nth-child(3) {
 	transition-property: transform, opacity;
 	transition-duration: 750ms;
 	transition-delay: 1000ms;
+}
+#p-start > :nth-child(3) {
+	transition-delay: 1100ms;
 }
 
 .vanished .logo > * {
@@ -204,7 +207,8 @@
 .vanished .logo > :nth-child(4) {
 	transform: translateX(2em);
 }
-.vanished > :nth-child(2) {
+.vanished > :nth-child(2),
+.vanished > :nth-child(3) {
 	opacity: 0;
 	transform: translateY(-1em);
 }

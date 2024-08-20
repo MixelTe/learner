@@ -118,7 +118,7 @@ export class TestItemChoice extends TestItem {
 export class TestItemStress extends TestItem {
     task;
     desc;
-    static Vowels = "аяуюоеёэиы";
+    static Vowels = "аяуюоеёэиыaeiou";
     /**
      * @param task слово с выделенной ударной гласной
      */
@@ -126,7 +126,7 @@ export class TestItemStress extends TestItem {
         super(id);
         this.task = task;
         this.desc = desc;
-        if (!task.match(/[АЯУЮОЕЁЭИЫ]/))
+        if (!task.match(/[АЯУЮОЕЁЭИЫAEIOU]/))
             console.error(`TestItemStress[${id}] word dont have stress: ${task}`);
     }
     getQuestion() {
@@ -181,27 +181,27 @@ export class TestItemStress extends TestItem {
         };
     }
 }
-export class TestItemParonyms extends TestItem {
-    paronyms;
+export class TestItemWordGroup extends TestItem {
+    group;
     desc;
-    constructor(id, paronyms, desc = []) {
+    constructor(id, group, desc = []) {
         super(id);
-        this.paronyms = paronyms;
+        this.group = group;
         this.desc = desc;
-        this.paronyms = paronyms.map(v => Lib.capitalize(v.toLocaleLowerCase()));
+        this.group = group.map(v => Lib.capitalize(v.toLocaleLowerCase()));
     }
     getQuestion() {
-        return this.paronyms.join(" - ");
+        return this.group.join(" - ");
     }
     getAnswer() {
-        return Lib.Div("tester-paronyms", [
-            Lib.Div([], this.paronyms.join(" - ")),
+        return Lib.Div("tester-group", [
+            Lib.Div([], this.group.join(" - ")),
             this.desc.length > 0 ? Lib.Div() : "",
-            ...this.desc.map((v, i) => Lib.Div([], this.paronyms[i] + " - " + v))
+            ...this.desc.map((v, i) => Lib.Div([], this.group[i] + " - " + v))
         ]);
     }
     async show(taskEl, inputEl, onAnswer) {
-        Lib.SetContent(taskEl, Lib.random.choose(this.paronyms));
+        Lib.SetContent(taskEl, Lib.random.choose(this.group));
         Lib.SetContent(inputEl, Lib.Div("tester-input-one", [
             Lib.Button([], "Ответ", async (btn) => {
                 btn.classList.add("active");
@@ -282,7 +282,7 @@ export class TestItemWordChoice extends TestItem {
         ]);
         Lib.SetContent(taskEl, el);
         const showAns = (I) => {
-            const rightChoiceI = this.choices.findIndex(v => v.r);
+            const rightChoiceI = this.choices[I].r ? I : this.choices.findIndex(v => v.r);
             if (I < rightChoiceI)
                 el.classList.add("tester-wordChoice-bottom");
             if (I > rightChoiceI)
@@ -323,7 +323,7 @@ export class TestItemChooseWord extends TestItem {
         super(id);
         this.title = title;
         this.parts = task.split(" ");
-        this.words = this.parts.map(part => part.replace(/[^а-яА-Я ёЁ]/g, '').trim().toLowerCase());
+        this.words = this.parts.map(part => part.replace(/[^a-zA-Zа-яА-Я ёЁ]/g, '').trim().toLowerCase());
         this.answerI = ans.split("|").map(word => {
             const i = this.words.indexOf(word.trim().toLowerCase());
             if (i < 0)

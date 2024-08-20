@@ -171,14 +171,14 @@ screen and (max-height: 550px) {
 	color: tomato;
 }
 
-.tester-paronyms > * {
+.tester-group > * {
 	margin-top: 0.5rem;
 }
-.tester-paronyms > :nth-child(1) {
+.tester-group > :nth-child(1) {
 	text-align: center;
 	margin-top: 0;
 }
-.tester-paronyms > :nth-child(2) {
+.tester-group > :nth-child(2) {
 	display: block;
 	margin-inline: auto;
 	height: 1px;

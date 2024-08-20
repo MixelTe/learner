@@ -124,9 +124,9 @@ function unpackFlags(flags) {
     const center = (flags & DBF.center) == DBF.center;
     return { w100, wm100, center };
 }
-export function DB(text = "", center = false) {
-    return new DocBuilder().text(text);
+export function DB(...text) {
+    return new DocBuilder().text(...text);
 }
 export function DBc(...text) {
-    return DB("", true).center().text(...text);
+    return DB(...text).center();
 }
