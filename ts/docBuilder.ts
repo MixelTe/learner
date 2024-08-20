@@ -182,12 +182,12 @@ function unpackFlags(flags: DBF)
 }
 
 
-export function DB(text = "", center = false)
+export function DB(...text: string[])
 {
-	return new DocBuilder().text(text);
+	return new DocBuilder().text(...text);
 }
 
 export function DBc(...text: string[])
 {
-	return DB("", true).center().text(...text);
+	return DB(...text).center();
 }

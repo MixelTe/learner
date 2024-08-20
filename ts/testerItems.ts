@@ -148,14 +148,14 @@ export class TestItemChoice extends TestItem
 
 export class TestItemStress extends TestItem
 {
-	private static Vowels = "аяуюоеёэиы";
+	private static Vowels = "аяуюоеёэиыaeiou";
 	/**
 	 * @param task слово с выделенной ударной гласной
 	 */
 	constructor(id: number, private task: string, private desc = "")
 	{
 		super(id);
-		if (!task.match(/[АЯУЮОЕЁЭИЫ]/))
+		if (!task.match(/[АЯУЮОЕЁЭИЫAEIOU]/))
 			console.error(`TestItemStress[${id}] word dont have stress: ${task}`);
 	}
 
@@ -403,7 +403,7 @@ export class TestItemChooseWord extends TestItem
 	{
 		super(id);
 		this.parts = task.split(" ");
-		this.words = this.parts.map(part => part.replace(/[^а-яА-Я ёЁ]/g, '').trim().toLowerCase());
+		this.words = this.parts.map(part => part.replace(/[^a-zA-Zа-яА-Я ёЁ]/g, '').trim().toLowerCase());
 		this.answerI = ans.split("|").map(word =>
 		{
 			const i = this.words.indexOf(word.trim().toLowerCase())
