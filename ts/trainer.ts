@@ -95,7 +95,7 @@ export class Trainer
 		return score / itemCount;
 	}
 
-	private static calcItemScore(hist: string)
+	public static calcItemScore(hist: string)
 	{
 		hist = hist.padStart(5, "0");
 		hist = hist.slice(hist.length - 5, hist.length);

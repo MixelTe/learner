@@ -9,6 +9,10 @@ const qlistsTemplate = Lib.getEl("template-qlists", HTMLTemplateElement);
 const qlistsEl = Lib.get.div("qlists");
 const qlistEl = Lib.get.div("qlist");
 const qlistPage = Lib.get.div("p-qlist");
+const qlistSortBtn = Lib.get.button("p-qlist-sortBtn");
+
+let onSortClick = () => { };
+qlistSortBtn.addEventListener("click", () => onSortClick());
 
 regPage("qlists", showQlist);
 export function showQlist(onSwitch: () => void = () => { })
@@ -60,6 +64,9 @@ regPage("qlist", null, themeId =>
 });
 export async function showItemQs(sectionName: string, theme: Theme)
 {
+	onSortClick = () => { };
+	qlistSortBtn.classList.remove("p-qlist-sortBtn_sorted");
+	qlistSortBtn.classList.remove("p-qlist-sortBtn_reverse");
 	switchPage({ page: "qlist", subpath: theme.id }, theme.name, theme.color, () => qlistPage.scroll(0, 0), sectionName);
 	Lib.SetContent(qlistEl, Lib.Div("loading", "Загрузка заданий"));
 	qlistEl.classList.toggle("qlist_single", !!theme.onlyAnswerInQList);
@@ -71,19 +78,34 @@ export async function showItemQs(sectionName: string, theme: Theme)
 		return;
 	}
 	qlistEl.innerHTML = "";
+	const els: { els: HTMLDivElement[], score: number }[] = [];
 	for (const item of items)
 	{
 		const stat = stats?.items?.find?.(v => v.id == item.id)?.hist || "";
 		const marker = createMarker(stat);
-		Lib.AppendContent(qlistEl, [
+		const _els = [
 			Lib.Div([], [
 				Lib.Div("qlist-id", `${theme.id}-${item.id}`),
 				Lib.Div("qlist-cell", item.getQuestion()),
 				marker,
 			]),
 			Lib.Div([], Lib.Div("qlist-cell", item.getAnswer())),
-		]);
+		];
+		els.push({ els: _els, score: Trainer.calcItemScore(stat) });
+		Lib.AppendContent(qlistEl, _els);
 	}
+	let sortBestFirst = true;
+	onSortClick = () =>
+	{
+		qlistEl.innerHTML = "";
+		sortBestFirst = !sortBestFirst;
+		qlistSortBtn.classList.toggle("p-qlist-sortBtn_sorted", sortBestFirst);
+		qlistSortBtn.classList.toggle("p-qlist-sortBtn_reverse", !sortBestFirst);
+		const k = sortBestFirst ? -1 : 1;
+		els.sort((a, b) => (a.score - b.score) * k);
+		for (const el of els)
+			Lib.AppendContent(qlistEl, el.els);
+	};
 }
 
 function createMarker(hist: string)
