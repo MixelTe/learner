@@ -1,4 +1,5 @@
-import { Div, Span, Table, TR, TD } from "./littleLib.js";
+import { Div, Span, Table, TR, TD, copyText } from "./littleLib.js";
+import { Toast } from "./popup.js";
 export class FormulaBuilder {
     body = Div("formula");
     text = "";
@@ -211,6 +212,10 @@ export class FormulaBuilder {
     }
     html() {
         this.body.title = this.text;
+        this.body.addEventListener("click", () => {
+            copyText(this.text);
+            Toast.show("Формула скопирована");
+        });
         return this.body;
     }
 }

@@ -199,3 +199,14 @@ function contextMenu_item(item, popup, resolve) {
     }
     return { el, line };
 }
+export class Toast {
+    static SHORT = 1300;
+    static LONG = 2500;
+    static show(text, duration = Toast.SHORT) {
+        const toast = Div("popup-toast", undefined, text);
+        document.body.appendChild(toast);
+        setTimeout(() => toast.classList.add("popup-toast_show"));
+        setTimeout(() => toast.classList.add("popup-toast_hide"), duration - 300);
+        setTimeout(() => document.body.removeChild(toast), duration);
+    }
+}
