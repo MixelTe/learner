@@ -2,7 +2,6 @@ import { Sections } from "./data/sections.js";
 import { showDayStats } from "./pages/dayStats.js";
 import * as Lib from "./littleLib.js";
 import { showItemQs, showQlist } from "./pages/qlist.js";
-import { showStats } from "./pages/stats.js";
 import { curSessionKey, regPage, setUpdateMainPage, switchPage } from "./pages/switchPage.js";
 import { Tester } from "./tester.js";
 import { initThemes, themes } from "./themes.js";
@@ -56,7 +55,6 @@ function closeMenu(instant = true)
 	menu.classList.remove("open");
 }
 Lib.addButtonListener("btn-index", () => switchPage("main", "", themes.common, closeMenu));
-// Lib.addButtonListener("btn-stats", () => showStats(closeMenu));
 Lib.addButtonListener("btn-qlist", () => showQlist(closeMenu));
 Lib.addButtonListener("btn-dayStats", () => showDayStats(closeMenu));
 Lib.addButtonListener("btn-about", () => showAbout(closeMenu));
