@@ -181,6 +181,40 @@
 	min-width: 300px;
 }
 
+#p-qlist-sortBtn {
+	position: fixed;
+	top: 0.6rem;
+	right: 0.4rem;
+	width: 1.2rem;
+	height: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+	border: 1px solid var(--c-title);
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+#p-qlist-sortBtn span {
+	display: block;
+	width: 0.5rem;
+	height: 0.5rem;
+	border: 2px solid var(--c-title);
+	border-top: transparent;
+	border-left: transparent;
+	border-bottom-right-radius: 0.2rem;
+	transform: translateX(15%) rotate(-225deg);
+	transition: transform 250ms;
+}
+#p-qlist-sortBtn.p-qlist-sortBtn_sorted span {
+	transform: translateY(-15%) rotate(45deg);
+}
+#p-qlist-sortBtn.p-qlist-sortBtn_reverse span {
+	transform: translateY(15%) rotate(-135deg);
+}
+
 #qlist > div {
 	position: relative;
 	display: flex;

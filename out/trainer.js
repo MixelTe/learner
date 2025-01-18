@@ -1,5 +1,5 @@
 import { DayStatistics } from "./dayStatistics.js";
-import { getOrAdd, shuffledWithSeedAndWeights, sumStr } from "./functions.js";
+import { getOrAdd, shuffledWithSeedAndWeights } from "./functions.js";
 import { Keys } from "./keys.js";
 import * as Lib from "./littleLib.js";
 const Len = 15;
@@ -41,7 +41,7 @@ export class Trainer {
             const hist = statsItems.find(el => el.id == v.id)?.hist_old || "";
             if (hist.length == 0)
                 return 1;
-            return (1 - sumStr(hist) / hist.length) + 0.1;
+            return 1 - this.calcItemScore(hist) + 0.1;
         }));
         const selected_items = shuffled.slice(0, Len * 2);
         Lib.random.shuffle(selected_items);
@@ -69,9 +69,20 @@ export class Trainer {
         let score = 0;
         for (const item of theme.items) {
             if (item.hist.length != 0)
-                score += sumStr(item.hist) / Math.max(item.hist.length, 2);
+                score += this.calcItemScore(item.hist);
         }
         return score / itemCount;
+    }
+    static calcItemScore(hist) {
+        hist = hist.padStart(5, "0");
+        hist = hist.slice(hist.length - 5, hist.length);
+        const g = (i) => hist[i] == "1" ? 1 : 0;
+        const s = g(0) * 0.1 +
+            g(1) * 0.1 +
+            g(2) * 0.2 +
+            g(3) * 0.3 +
+            g(4) * 0.3;
+        return s;
     }
     static setStatistics(stats) {
         localStorage.setItem(Keys.statistics, JSON.stringify(stats));
