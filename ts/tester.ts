@@ -44,7 +44,10 @@ export class Tester
 	}
 	private loadingError()
 	{
-		Lib.SetContent(taskEl, Lib.Div("loading-error", "Ошибка загрузки :("));
+		Lib.SetContent(taskEl, Lib.Div("loading-error", [
+			Lib.Div([], "Ошибка загрузки :("),
+			Lib.Div([], "Оффлайн доступ доступен после первого открытия темы"),
+		]));
 	}
 
 	private next()
