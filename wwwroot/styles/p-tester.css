@@ -408,6 +408,9 @@ screen and (max-height: 550px) {
 	margin-block: 0.5rem;
 	white-space: break-spaces;
 }
+.tester-multipleWordChoice-btnSpan {
+	white-space: nowrap;
+}
 .tester-multipleWordChoice button {
 	position: relative;
 	flex-grow: 1;
