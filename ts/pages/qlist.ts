@@ -32,17 +32,17 @@ export function showQlist(onSwitch: () => void = () => { })
 		for (const theme of section.themes)
 		{
 			c += theme.count;
-			themes.appendChild(Lib.Button([], [
+			themes.appendChild(Lib.A([], [
 				Lib.Span([], theme.name),
 				Lib.Span([], `${theme.count}`),
-			], () =>
+			], `#qlist/${theme.id}`, () =>
 			{
 				showItemQs(section.name, theme);
 			}));
 		}
 		if (section.themes.length == 0)
 		{
-			themes.appendChild(Lib.Button([], "В разработке"));
+			themes.appendChild(Lib.A([], "В разработке"));
 		}
 
 		(item.querySelector(".qlist-count") as HTMLSpanElement).innerText = `${c}`;

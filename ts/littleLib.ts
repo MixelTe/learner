@@ -303,10 +303,19 @@ export function loadScript(scriptPath: string)
 	el.src = scriptPath;
 	document.head.appendChild(el);
 }
-export function addButtonListener(id: string, f: (e: MouseEvent) => void)
+export function addButtonListener(id: string, f: (e: MouseEvent, btn: HTMLButtonElement) => void)
 {
 	const button = getButton(id);
-	button.addEventListener("click", f);
+	button.addEventListener("click", e => f(e, button));
+}
+export function addLinkListener(id: string, f: (e: MouseEvent, a: HTMLAnchorElement) => void)
+{
+	const a = getEl(id, HTMLAnchorElement);
+	a.addEventListener("click", e =>
+	{
+		e.preventDefault();
+		f(e, a);
+	});
 }
 export function capitalize(text: string)
 {
@@ -497,6 +506,21 @@ export function Button(classes?: ElClasses, children?: ElChildren, clickListener
 	const button = initEl("button", classes, children);
 	if (clickListener) button.addEventListener("click", clickListener.bind(button, button));
 	return button;
+}
+export function A(classes?: ElClasses, children?: ElChildren, href?: string, clickListener?: (a: HTMLAnchorElement) => void)
+{
+	const a = initEl("a", classes, children);
+	if (href)
+	{
+		a.href = href || "";
+		a.target = "_blank";
+	}
+	if (clickListener) a.addEventListener("click", e =>
+	{
+		e.preventDefault();
+		clickListener.bind(a, a)();
+	});
+	return a;
 }
 
 type ElClass = string | undefined | null | false;

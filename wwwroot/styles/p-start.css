@@ -110,7 +110,7 @@
 	height: calc(100% - 0.8em);
 }
 
-.sectionSelection-list button {
+.sectionSelection-list a {
 	position: relative;
 	background-color: transparent;
 	border: none;
@@ -121,8 +121,8 @@
 	padding-left: 1.3em;
 	outline: none;
 }
-.sectionSelection-list button::before,
-.sectionSelection-list button::after {
+.sectionSelection-list a::before,
+.sectionSelection-list a::after {
 	position: absolute;
 	top: 0.32em;
 	left: 0.33em;
@@ -130,27 +130,27 @@
 	transition-duration: 100ms;
 	color: var(--c-title);
 }
-.sectionSelection-list button::before {
+.sectionSelection-list a::before {
 	content: "§";
 	opacity: 1;
 }
-.sectionSelection-list button::after {
+.sectionSelection-list a::after {
 	content: "";
 	border: 0.4em solid transparent;
 	border-left-color: var(--c-title);
 	opacity: 0;
 	transform: translate(0.1em, 0.25em) scaleY(0.7);
 }
-.sectionSelection-list button:focus-visible::before,
-.sectionSelection-list button:hover::before {
+.sectionSelection-list a:focus-visible::before,
+.sectionSelection-list a:hover::before {
 	opacity: 0;
 }
-.sectionSelection-list button:focus-visible::after,
-.sectionSelection-list button:hover::after {
+.sectionSelection-list a:focus-visible::after,
+.sectionSelection-list a:hover::after {
 	opacity: 1;
 }
 
-.sectionSelection-list button svg {
+.sectionSelection-list a svg {
 	position: absolute;
 	top: 0.4em;
 	left: 0em;
