@@ -24,15 +24,15 @@ export function showQlist(onSwitch = () => { }) {
         let c = 0;
         for (const theme of section.themes) {
             c += theme.count;
-            themes.appendChild(Lib.Button([], [
+            themes.appendChild(Lib.A([], [
                 Lib.Span([], theme.name),
                 Lib.Span([], `${theme.count}`),
-            ], () => {
+            ], `#qlist/${theme.id}`, () => {
                 showItemQs(section.name, theme);
             }));
         }
         if (section.themes.length == 0) {
-            themes.appendChild(Lib.Button([], "В разработке"));
+            themes.appendChild(Lib.A([], "В разработке"));
         }
         item.querySelector(".qlist-count").innerText = `${c}`;
         qlistsEl.appendChild(item);

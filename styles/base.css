@@ -67,9 +67,10 @@ h5 {
 	transition: none !important;
 }
 
-button {
+button, a {
 	color: inherit;
 	font: inherit;
+	text-decoration: none;
 }
 
 .page {
@@ -197,26 +198,27 @@ header {
 	margin-bottom: 1rem;
 }
 
-.menuBtns button {
+.menuBtns a {
 	position: relative;
 	background-color: transparent;
 	padding: 0.5em 1em;
 	font-size: 1.2rem;
+	text-align: center;
 	border: transparent;
 	outline: none;
 	cursor: pointer;
 	--d: 0;
 	--s: 0.6em;
 }
-.menuBtns button:hover,
-.menuBtns button:focus-visible {
+.menuBtns a:hover,
+.menuBtns a:focus-visible {
 	--s: 1em;
 }
-.menuBtns button:active {
+.menuBtns a:active {
 	--d: 0.15em;
 }
-.menuBtns button::before,
-.menuBtns button::after {
+.menuBtns a::before,
+.menuBtns a::after {
 	content: "";
 	position: absolute;
 	width: var(--s);
@@ -225,14 +227,14 @@ header {
 	transition-property: top, left, right, bottom, width, height;
 	transition-duration: 150ms;
 }
-.menuBtns button::before {
+.menuBtns a::before {
 	bottom: var(--d);
 	left: var(--d);
 	border-top-width: 0;
 	border-right-width: 0;
 	border-bottom-left-radius: 0.2em;
 }
-.menuBtns button::after {
+.menuBtns a::after {
 	top: var(--d);
 	right: var(--d);
 	border-bottom-width: 0;
@@ -264,7 +266,7 @@ header {
 	justify-content: space-between;
 }
 
-.menu footer button {
+.menu footer a {
 	background: transparent;
 	border-radius: 0.2rem;
 	border: none;
@@ -274,10 +276,10 @@ header {
 	cursor: pointer;
 	outline: none;
 }
-.menu footer button > * {
+.menu footer a > * {
 	font-size: 2rem;
 }
-.menu footer button:focus-visible {
+.menu footer a:focus-visible {
 	outline: 2px solid var(--c-title);
 }
 

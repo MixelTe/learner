@@ -245,7 +245,14 @@ export function loadScript(scriptPath) {
 }
 export function addButtonListener(id, f) {
     const button = getButton(id);
-    button.addEventListener("click", f);
+    button.addEventListener("click", e => f(e, button));
+}
+export function addLinkListener(id, f) {
+    const a = getEl(id, HTMLAnchorElement);
+    a.addEventListener("click", e => {
+        e.preventDefault();
+        f(e, a);
+    });
 }
 export function capitalize(text) {
     return text.slice(0, 1).toUpperCase() + text.slice(1);
@@ -384,6 +391,19 @@ export function Button(classes, children, clickListener) {
     if (clickListener)
         button.addEventListener("click", clickListener.bind(button, button));
     return button;
+}
+export function A(classes, children, href, clickListener) {
+    const a = initEl("a", classes, children);
+    if (href) {
+        a.href = href || "";
+        a.target = "_blank";
+    }
+    if (clickListener)
+        a.addEventListener("click", e => {
+            e.preventDefault();
+            clickListener.bind(a, a)();
+        });
+    return a;
 }
 export function initEl(tagName, classes, children) {
     const el = document.createElement(tagName);

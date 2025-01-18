@@ -383,7 +383,7 @@ export class TestItemMultipleWordChoice extends TestItem {
         for (let i = 0; i < task.length; i++) {
             const ch = task[i];
             if (ch == "[") {
-                this.parts.push({ s: w, a: w, q, r });
+                this.parts.push({ s: w, a: w, q, r, p: "", n: "" });
                 w = "";
                 s = "";
                 q = true;
@@ -400,7 +400,7 @@ export class TestItemMultipleWordChoice extends TestItem {
             else if (ch == "]") {
                 if (s == "")
                     s = w;
-                this.parts.push({ s, a: w, q, r });
+                this.parts.push({ s, a: w, q, r, p: "", n: "" });
                 w = "";
                 s = "";
                 q = false;
@@ -410,12 +410,29 @@ export class TestItemMultipleWordChoice extends TestItem {
                 w += ch;
             }
         }
-        this.parts.push({ s: w, a: w, q, r });
-        if (this.parts.length == 1)
+        this.parts.push({ s: w, a: w, q, r, p: "", n: "" });
+        for (let i = 0; i < this.parts.length; i++) {
+            const part = this.parts[i];
+            if (!part.q)
+                continue;
+            const prev = this.parts[i - 1];
+            if (prev && !prev.q) {
+                const parts = prev.s.split(" ");
+                part.p = parts[parts.length - 1];
+                prev.s = parts.slice(0, -1).join(" ") + " ";
+            }
+            const next = this.parts[i + 1];
+            if (next && !next.q) {
+                const parts = next.s.split(" ");
+                part.n = parts[0];
+                next.s = " " + parts.slice(1).join(" ");
+            }
+        }
+        if (this.parts.filter(v => v.q).length == 0)
             console.error(`TestItemMultipleWordChoice[${id}] task dont have choices: ${task}`);
     }
     getQuestion() {
-        return this.parts.map(v => v.s).join("");
+        return this.parts.map(v => v.p + v.s + v.n).join("");
     }
     getAnswer(onlyAnswer = false) {
         if (onlyAnswer)
@@ -427,14 +444,18 @@ export class TestItemMultipleWordChoice extends TestItem {
         let done = false;
         const els = this.parts.map((part, I) => !part.q ?
             Lib.Span([], part.s) :
-            Lib.Button([], part.s, btn => {
-                if (done)
-                    return;
-                const selected = !this.parts[I].selected;
-                this.parts[I].selected = selected;
-                btn.classList.toggle("tester-multipleWordChoice-btn_selected", selected);
-                Lib.SetContent(selectedEl, this.parts.filter(v => v.selected).map(v => Lib.Span([], v.s)));
-            }));
+            Lib.Span("tester-multipleWordChoice-btnSpan", [
+                Lib.Span([], part.p),
+                Lib.Button([], part.s, btn => {
+                    if (done)
+                        return;
+                    const selected = !this.parts[I].selected;
+                    this.parts[I].selected = selected;
+                    btn.classList.toggle("tester-multipleWordChoice-btn_selected", selected);
+                    Lib.SetContent(selectedEl, this.parts.filter(v => v.selected).map(v => Lib.Span([], v.s)));
+                }),
+                Lib.Span([], part.n),
+            ]));
         const answEl = Lib.Span("tester-multipleWordChoice-answer", "Ответ: " + this.getAnswer(true));
         const answ = Lib.Div(["tester-collapsible", "tester-collapsible_noMargin", "tester-collapsible_collapsed"], answEl);
         const task = Lib.Div("tester-multipleWordChoice", els);
@@ -458,9 +479,9 @@ export class TestItemMultipleWordChoice extends TestItem {
             done = true;
             let correct = true;
             for (let i = 0; i < els.length; i++) {
-                const el = els[i];
+                const el = els[i].querySelector("button");
                 const part = this.parts[i];
-                if (!part.q)
+                if (!part.q || !el)
                     continue;
                 el.innerText = part.a;
                 if (part.r)

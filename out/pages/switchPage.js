@@ -5,7 +5,6 @@ import { checkCustomTheme, isAnimDisabled } from "./settings.js";
 const pages = {
     main: Lib.get.div("p-start"),
     tester: Lib.get.div("p-tester"),
-    stats: Lib.get.div("p-stats"),
     qlists: Lib.get.div("p-qlists"),
     qlist: Lib.get.div("p-qlist"),
     dayStats: Lib.get.div("p-dayStats"),

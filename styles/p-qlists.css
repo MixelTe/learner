@@ -73,7 +73,7 @@
 	font-size: 0.9rem;
 	margin-right: 0.6rem;
 }
-.qlists-list button :nth-child(2)::before,
+.qlists-list a :nth-child(2)::before,
 .qlist-count::before {
 	content: "";
 	position: absolute;
@@ -101,7 +101,7 @@
 	overflow: hidden;
 }
 
-.qlists-list button {
+.qlists-list a {
 	position: relative;
 	display: flex;
 	justify-content: space-between;
@@ -115,19 +115,19 @@
 	padding-left: 1.2em;
 	outline: none;
 }
-.qlists-list button::before,
-.qlists-list button::after {
+.qlists-list a::before,
+.qlists-list a::after {
 	position: absolute;
 	left: 0.2em;
 	transition-property: opacity;
 	transition-duration: 100ms;
 	color: var(--c-title);
 }
-.qlists-list button::before {
+.qlists-list a::before {
 	content: "§";
 	opacity: 1;
 }
-.qlists-list button::after {
+.qlists-list a::after {
 	content: "";
 	border: 0.4em solid transparent;
 	border-top-color: var(--c-title);
@@ -135,16 +135,16 @@
 	opacity: 0;
 	transform: translate(-0.15em, 0.25em) scaleX(0.6);
 }
-.qlists-list button:focus-visible::before,
-.qlists-list button:hover::before {
+.qlists-list a:focus-visible::before,
+.qlists-list a:hover::before {
 	opacity: 0;
 }
-.qlists-list button:focus-visible::after,
-.qlists-list button:hover::after {
+.qlists-list a:focus-visible::after,
+.qlists-list a:hover::after {
 	opacity: 1;
 }
 
-.qlists-list button :nth-child(2) {
+.qlists-list a :nth-child(2) {
 	position: relative;
 	font-size: 0.9rem;
 }
