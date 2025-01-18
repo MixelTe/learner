@@ -224,8 +224,9 @@
 	position: fixed;
 	left: 50%;
 	bottom: 1rem;
+	--dy: 0;
 	transform: translateX(-50%) translateY(calc(100% + 1rem));
-	background-color: #000000aa;
+	background-color: #000000cc;
 	color: white;
 	font-size: 1.1rem;
 	padding: 0.4em 0.6em;
@@ -234,7 +235,7 @@
 	transition: transform 250ms, opacity 250ms;
 }
 .popup-toast_show {
-	transform: translateX(-50%) translateY(0px);
+	transform: translateX(-50%) translateY(calc((-0.5rem - 100%) * var(--dy)));
 }
 .popup-toast_hide {
 	opacity: 0;

@@ -65,7 +65,7 @@ export class Popup {
     fireEvent(type, confirmed = false) {
         switch (type) {
             case "close":
-                this.onClose.forEach(f => f(this, confirmed));
+                this.onClose.forEach(f => f(confirmed, this));
                 break;
             case "ok":
                 this.onOk.forEach(f => f(this));
@@ -202,11 +202,23 @@ function contextMenu_item(item, popup, resolve) {
 export class Toast {
     static SHORT = 1300;
     static LONG = 2500;
+    static opened = [];
     static show(text, duration = Toast.SHORT) {
         const toast = Div("popup-toast", undefined, text);
+        const dy = Toast.getNextDy();
+        toast.style.setProperty("--dy", `${dy}`);
         document.body.appendChild(toast);
+        console.log(Toast.opened, dy);
+        Toast.opened.push(dy);
         setTimeout(() => toast.classList.add("popup-toast_show"));
-        setTimeout(() => toast.classList.add("popup-toast_hide"), duration - 300);
-        setTimeout(() => document.body.removeChild(toast), duration);
+        setTimeout(() => { toast.classList.add("popup-toast_hide"); }, duration - 300);
+        setTimeout(() => { document.body.removeChild(toast); Toast.opened.splice(Toast.opened.indexOf(dy), 1); }, duration);
+    }
+    static getNextDy() {
+        let r = 0;
+        Toast.opened.sort((a, b) => a - b);
+        while (Toast.opened[r] == r)
+            r++;
+        return r;
     }
 }

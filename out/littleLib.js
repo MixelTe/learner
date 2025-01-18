@@ -7,12 +7,10 @@ export const get = {
 };
 export const canvas = {
     getContext2d: getCanvasContext,
-    fitToParent: {
-        BCR: CanvasFitToParentBCR,
-        ClientWH: CanvasFitToParentClientWH,
-    },
+    fitToParent: CanvasFitToParentClientWH,
     drawGrid: drawGridOnCanvas,
     drawCoords: drawMouseCoordsOnCanvas,
+    saveAsPng: saveCanvasAsPng,
 };
 export const intersection = {
     rectPoint: rectPointIntersect,
@@ -21,49 +19,51 @@ export const intersection = {
     circles: circlesIntersect,
 };
 export const random = {
+    withSeed: randomWithSeed,
     int: randomInt,
     boolean: random_boolean,
     asbOrNot: random_asbOrNot,
-    shuffle: shuffle,
     choose: chooseRandom,
+    shuffle: shuffle,
+    shuffledWithWeights: shuffledWithWeights,
+    color: randomColor,
+};
+export const fetches = {
+    get: fetchGet,
+    post: fetchPost,
+    delete: fetchDelete,
+    jsonGet: fetchJsonGet,
+    jsonPost: fetchJsonPost,
+    jsonDelete: fetchJsonDelete,
 };
 export const other = {
+    square: sq,
+    loadScript,
+    addButtonListener,
+    capitalize,
+    copyText,
+    downloadFile,
     openTextFile,
+    wait,
+    hslColor,
+    rgbColor,
+    lerp,
+    minmax,
     dateNow,
-    wait
+    numNoun,
 };
 //get
 export function getButton(id) {
-    const el = document.getElementById(id);
-    if (el == null)
-        throw new Error(`${id} not found`);
-    if (el instanceof HTMLButtonElement)
-        return el;
-    throw new Error(`${id} element not Button`);
+    return getEl(id, HTMLButtonElement);
 }
 export function getDiv(id) {
-    const el = document.getElementById(id);
-    if (el == null)
-        throw new Error(`${id} not found`);
-    if (el instanceof HTMLDivElement)
-        return el;
-    throw new Error(`${id} element not Div`);
+    return getEl(id, HTMLDivElement);
 }
 export function getCanvas(id) {
-    const el = document.getElementById(id);
-    if (el == null)
-        throw new Error(`${id} not found`);
-    if (el instanceof HTMLCanvasElement)
-        return el;
-    throw new Error(`${id} element not Canvas`);
+    return getEl(id, HTMLCanvasElement);
 }
 export function getInput(id) {
-    const el = document.getElementById(id);
-    if (el == null)
-        throw new Error(`${id} not found`);
-    if (el instanceof HTMLInputElement)
-        return el;
-    throw new Error(`${id} element not Input`);
+    return getEl(id, HTMLInputElement);
 }
 export function getEl(id, type) {
     const el = document.getElementById(id);
@@ -71,7 +71,7 @@ export function getEl(id, type) {
         throw new Error(`${id} not found`);
     if (el instanceof type)
         return el;
-    throw new Error(`${id} element not Input`);
+    throw new Error(`${id} element not ${type.name}`);
 }
 //canvas
 export function getCanvasContext(canvas) {
@@ -143,9 +143,24 @@ export function drawMouseCoordsOnCanvas(ctx, x, y) {
     ctx.fillText(text, width - ctx.measureText(text).width - 2, height - 3);
     ctx.restore();
 }
+/**
+ * @param fname *.png
+ */
+export function saveCanvasAsPng(canvas, fname) {
+    const a = document.createElement("a");
+    a.setAttribute("download", fname);
+    canvas.toBlob(blob => {
+        if (!blob)
+            return;
+        const url = URL.createObjectURL(blob);
+        a.setAttribute("href", url);
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+}
 //intersection
 export function circlePointIntersect(circle, point) {
-    return circle.r * circle.r >= (circle.x - point.x) * (circle.x - point.x) + (circle.y - point.y) * (circle.y - point.y);
+    return sq(circle.r) >= sq(circle.x - point.x) + sq(circle.y - point.y);
 }
 export function rectPointIntersect(rect, point) {
     normalizeRect(rect);
@@ -157,7 +172,7 @@ export function rectPointIntersect(rect, point) {
 export function circlesIntersect(circle1, circle2) {
     const dx = circle1.x - circle2.x;
     const dy = circle1.y - circle2.y;
-    return square(dx) + square(dy) < square(circle1.r + circle2.r);
+    return sq(dx) + sq(dy) < sq(circle1.r + circle2.r);
 }
 export function rectIntersect(rect1, rect2) {
     normalizeRect(rect1);
@@ -178,27 +193,51 @@ export function normalizeRect(rect) {
     }
 }
 //random
-export function random_asbOrNot(num) {
-    return Math.random() < 0.5 ? num : -num;
+export function random_asbOrNot(num, rnd = Math.random) {
+    return rnd() < 0.5 ? num : -num;
 }
-export function random_boolean() {
-    return Math.random() < 0.5;
+export function random_boolean(rnd = Math.random) {
+    return rnd() < 0.5;
 }
-export function randomInt(maxmin, max) {
+export function randomInt(maxmin, max, rnd = Math.random) {
     if (max != undefined)
-        return Math.floor(Math.random() * (maxmin - max)) + max;
-    return Math.floor(Math.random() * maxmin);
+        return Math.floor(rnd() * (maxmin - max)) + max;
+    return Math.floor(rnd() * maxmin);
 }
-export function shuffle(array) {
-    return array.sort(() => 0.5 - Math.random());
+export function chooseRandom(array, rnd = Math.random) {
+    return array[randomInt(0, array.length, rnd)];
 }
-export function chooseRandom(array) {
-    return array[randomInt(array.length)];
+/**
+ * Shuffles inplace
+ */
+export function shuffle(array, rnd = Math.random) {
+    return array.sort(() => 0.5 - rnd());
+}
+/**
+ * Keep array untouched
+ * @returns new shuffled array
+ */
+export function shuffledWithWeights(array, weights, rnd = Math.random) {
+    if (array.length != weights.length)
+        console.error("LittleLib.shuffledWithWeights: array.length != weights.length");
+    return array.map((v, i) => ({ v, w: rnd() * 0.5 + weights[i] * rnd() })).sort((a, b) => b.w - a.w).map(v => v.v);
+}
+export function randomColor(rnd = Math.random) {
+    return hslColor(randomInt(0, 360, rnd), randomInt(80, 100, rnd), randomInt(40, 80, rnd));
+}
+export function randomWithSeed(seed) {
+    return function () {
+        var t = seed += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
 }
 //other
-export function square(num) {
+export function sq(num) {
     return num * num;
 }
+export const square = sq;
 export function loadScript(scriptPath) {
     const el = document.createElement("script");
     el.src = scriptPath;
@@ -211,6 +250,7 @@ export function addButtonListener(id, f) {
 export function capitalize(text) {
     return text.slice(0, 1).toUpperCase() + text.slice(1);
 }
+export const toCapitalCase = capitalize;
 export function copyText(text) {
     const el = document.createElement('textarea');
     el.value = text;
@@ -231,6 +271,77 @@ export function downloadFile(filename, text) {
     document.body.appendChild(el);
     el.click();
     document.body.removeChild(el);
+}
+export function openTextFile(accept = "*") {
+    return new Promise((resolve, reject) => {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = accept;
+        input.onchange = () => {
+            if (!input.files) {
+                reject();
+                return;
+            }
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = readerEvent => {
+                if (!readerEvent.target) {
+                    reject();
+                    return;
+                }
+                const content = readerEvent.target.result;
+                resolve(content);
+            };
+            reader.onerror = reject;
+        };
+        input.click();
+    });
+}
+export async function wait(t) {
+    return new Promise(res => setTimeout(res, t));
+}
+/**
+ *
+ * @param h in range [0; 360]
+ * @param s in range [0; 100]
+ * @param l in range [0; 100]
+ * @returns `hsl(${h}, ${s}%, ${l}%)`
+ */
+export function hslColor(h, s, l) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+}
+/**
+ *
+ * @param r in range [0; 255]
+ * @param g in range [0; 255]
+ * @param b in range [0; 255]
+ * @returns `hsl(${h}, ${s}%, ${l}%)`
+ */
+export function rgbColor(r, g, b) {
+    return `hsl(${r}, ${g}%, ${b}%)`;
+}
+export function lerp(v1, v2, t) {
+    return (v2 - v1) * t + v1;
+}
+export function minmax(v, min, max) {
+    return Math.min(Math.max(v, min), max);
+}
+export function dateNow(split = ".") {
+    const date = new Date();
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join(split);
+}
+export function numNoun(num, one, two, five) {
+    num = Math.abs(num);
+    num %= 100;
+    if (num >= 5 && num <= 20)
+        return five;
+    num %= 10;
+    if (num == 1)
+        return one;
+    if (num >= 2 && num <= 4)
+        return two;
+    return five;
 }
 export function SetContent(parent, children) {
     parent.innerHTML = "";
@@ -296,39 +407,40 @@ export function createSvgEl(qualifiedName, parent) {
         parent.appendChild(el);
     return el;
 }
-export async function wait(t) {
-    return new Promise(res => setTimeout(res, t));
+export class FetchError extends Error {
 }
-export function lerp(v1, v2, t) {
-    return (v2 - v1) * t + v1;
-}
-export function dateNow(split = ".") {
-    const date = new Date();
-    return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join(split);
-}
-export function openTextFile(accept = "*") {
-    return new Promise((resolve, reject) => {
-        const input = document.createElement("input");
-        input.type = "file";
-        input.accept = accept;
-        input.onchange = () => {
-            if (!input.files) {
-                reject();
-                return;
-            }
-            const file = input.files[0];
-            const reader = new FileReader();
-            reader.readAsText(file, "UTF-8");
-            reader.onload = readerEvent => {
-                if (!readerEvent.target) {
-                    reject();
-                    return;
-                }
-                const content = readerEvent.target.result;
-                resolve(content);
-            };
-            reader.onerror = reject;
-        };
-        input.click();
+async function fetchWithJson(method, input, body) {
+    const res = await fetch(input, {
+        method,
+        headers: body === undefined ? {} : {
+            "Content-Type": "application/json"
+        },
+        body: body === undefined ? null : JSON.stringify(body),
     });
+    if (!res.ok)
+        throw new FetchError((await res.json()).msg);
+    return res;
+}
+export function fetchGet(input) {
+    return fetchWithJson("GET", input);
+}
+export function fetchPost(input, body) {
+    return fetchWithJson("POST", input, body);
+}
+export function fetchDelete(input, body) {
+    return fetchWithJson("DELETE", input, body);
+}
+async function fetchJson(method, input, body) {
+    const res = await fetchWithJson(method, input, body);
+    const data = await res.json();
+    return data;
+}
+export function fetchJsonGet(input) {
+    return fetchJson("GET", input);
+}
+export function fetchJsonPost(input, body) {
+    return fetchJson("POST", input, body);
+}
+export function fetchJsonDelete(input, body) {
+    return fetchJson("DELETE", input, body);
 }
