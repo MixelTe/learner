@@ -1,5 +1,5 @@
 interface PopupEvenListener {
-	"close": (popup: Popup, confirmed: boolean) => void;
+	"close": (confirmed: boolean, popup: Popup) => void;
 	"ok": (popup: Popup) => void;
 	"cancel": (popup: Popup) => void;
 }
@@ -72,7 +72,7 @@ export class Popup
 	private fireEvent(type: keyof PopupEvenListener, confirmed = false)
 	{
 		switch (type) {
-			case "close": this.onClose.forEach(f => f(this, confirmed)); break;
+			case "close": this.onClose.forEach(f => f(confirmed, this)); break;
 			case "ok": this.onOk.forEach(f => f(this)); break;
 			case "cancel": this.onCancel.forEach(f => f(this)); break;
 			default: throw new Error(`Listener can be: "close", "ok" or "cancel". Input: ${type}`);
@@ -218,12 +218,28 @@ export class Toast
 {
 	public static SHORT = 1300;
 	public static LONG = 2500;
+
+	private static opened: number[] = [];
+
 	public static show(text: string, duration = Toast.SHORT)
 	{
 		const toast = Div("popup-toast", undefined, text);
+		const dy = Toast.getNextDy();
+		toast.style.setProperty("--dy", `${dy}`);
 		document.body.appendChild(toast);
+		console.log(Toast.opened, dy);
+		Toast.opened.push(dy);
 		setTimeout(() => toast.classList.add("popup-toast_show"));
-		setTimeout(() => toast.classList.add("popup-toast_hide"), duration - 300);
-		setTimeout(() => document.body.removeChild(toast), duration);
+		setTimeout(() => { toast.classList.add("popup-toast_hide"); }, duration - 300);
+		setTimeout(() => { document.body.removeChild(toast); Toast.opened.splice(Toast.opened.indexOf(dy), 1); }, duration);
+	}
+
+	private static getNextDy()
+	{
+		let r = 0;
+		Toast.opened.sort((a, b) => a - b);
+		while (Toast.opened[r] == r)
+			r++;
+		return r;
 	}
 }
