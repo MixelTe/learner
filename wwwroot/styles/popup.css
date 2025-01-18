@@ -219,3 +219,23 @@
 	transition: transform 0ms ease-in-out;
 	transform: scale(1.2) translateY(-30%);
 }
+
+.popup-toast {
+	position: fixed;
+	left: 50%;
+	bottom: 1rem;
+	transform: translateX(-50%) translateY(calc(100% + 1rem));
+	background-color: #000000aa;
+	color: white;
+	font-size: 1.1rem;
+	padding: 0.4em 0.6em;
+	border-radius: 0.5em;
+	opacity: 1;
+	transition: transform 250ms, opacity 250ms;
+}
+.popup-toast_show {
+	transform: translateX(-50%) translateY(0px);
+}
+.popup-toast_hide {
+	opacity: 0;
+}

@@ -212,3 +212,18 @@ function contextMenu_item(item: contextMenuItem, popup: Popup, resolve: (value: 
 	}
 	return { el, line };
 }
+
+
+export class Toast
+{
+	public static SHORT = 1300;
+	public static LONG = 2500;
+	public static show(text: string, duration = Toast.SHORT)
+	{
+		const toast = Div("popup-toast", undefined, text);
+		document.body.appendChild(toast);
+		setTimeout(() => toast.classList.add("popup-toast_show"));
+		setTimeout(() => toast.classList.add("popup-toast_hide"), duration - 300);
+		setTimeout(() => document.body.removeChild(toast), duration);
+	}
+}
