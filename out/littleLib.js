@@ -378,12 +378,13 @@ export function TR(classes, children) {
 export function TD(classes, children) {
     return initEl("td", classes, children);
 }
-export function Input(classes, type, placeholder) {
+export function Input(classes, type, placeholder, onCreate) {
     const input = initEl("input", classes, undefined);
     if (type)
         input.type = type;
     if (placeholder)
         input.placeholder = placeholder;
+    onCreate?.(input);
     return input;
 }
 export function Button(classes, children, clickListener) {
@@ -405,7 +406,7 @@ export function A(classes, children, href, clickListener) {
         });
     return a;
 }
-export function initEl(tagName, classes, children) {
+export function initEl(tagName, classes, children, onCreate) {
     const el = document.createElement(tagName);
     if (classes) {
         if (typeof classes == "string")
@@ -419,6 +420,7 @@ export function initEl(tagName, classes, children) {
         else
             el.append(children);
     }
+    onCreate?.(el);
     return el;
 }
 export function createSvgEl(qualifiedName, parent) {

@@ -116,9 +116,12 @@ header {
 	z-index: 20;
 }
 
-.menuBtn:hover > div,
-.menuBtn:focus-visible > div {
-	--d: 30%;
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+	.menuBtn:hover > div,
+	.menuBtn:focus-visible > div {
+		--d: 30%;
+	}
 }
 
 .menuBtn > div {
@@ -210,9 +213,11 @@ header {
 	--d: 0;
 	--s: 0.6em;
 }
-.menuBtns a:hover,
-.menuBtns a:focus-visible {
-	--s: 1em;
+@media (hover: hover) and (pointer: fine) {
+	.menuBtns a:hover,
+	.menuBtns a:focus-visible {
+		--s: 1em;
+	}
 }
 .menuBtns a:active {
 	--d: 0.15em;
