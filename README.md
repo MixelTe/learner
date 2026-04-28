@@ -85,6 +85,7 @@ Some TestItems can display any html inside themselves, you can use [DocBuilder](
 [TestItemMultipleWordChoice](#testitemmultiplewordchoice) | user chooses several words of the text
 [TestItemStress](#testitemstress)                         | user chooses one vowel letter of the word
 [TestItemWordGroup](#testitemwordgroup)                   | displayed one word of the group, user have to recall full group
+[TestItemInput](#testiteminput)                           | user inputs answer
 
 #### TestItemSelfCheck
 User chooses for himself whether he knows the answer
@@ -215,6 +216,21 @@ new TestItemWordGroup(
 Example:
 ```ts
 new TestItemWordGroup(0, ["Word 1", "Word 2", "Word 3"], ["description", "", "description for the third"]),
+```
+
+#### TestItemInput
+User inputs answer
+```ts
+new TestItemInput(
+		id: number,
+		task: string | HtmlBuilder,
+		answers: string | string[]
+);
+```
+
+Example:
+```ts
+new TestItemInput(0, "Достигать, добиваться, выполнять", ["to achieve", "achieve"]),
 ```
 
 ### DocBuilder

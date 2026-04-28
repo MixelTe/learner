@@ -114,6 +114,36 @@
 	box-shadow: 0 0 3px 6px var(--c-title);
 }
 
+.tester-input-text {
+	display: flex;
+	align-items: center;
+}
+.tester-input-text input,
+.tester-input-text button {
+	height: 1.6em;
+	font-size: 1rem;
+	background-color: transparent;
+	border: 1px solid var(--c-title);
+	border-radius: 0.2rem;
+	padding: 0.1rem 0.4rem;
+	margin: 0 0.2rem;
+	box-shadow: 0 0 0 transparent, inset 0 0 0 transparent;
+	transition-property: box-shadow;
+	transition-duration: 150ms;
+}
+.tester-input-text button {
+	cursor: pointer;
+}
+.tester-input-text_correct input {
+	box-shadow: 0 0 5px #02a102, inset 0 0 5px #02a102;
+}
+.tester-input-text_uncorrect input {
+	box-shadow: 0 0 5px tomato, inset 0 0 5px tomato;
+}
+.tester-input-text input:disabled {
+	color: inherit;
+}
+
 @media screen and (max-width: 550px),
 screen and (max-height: 550px) {
 	.tester {

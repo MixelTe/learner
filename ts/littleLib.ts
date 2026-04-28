@@ -494,11 +494,12 @@ export function TD(classes?: ElClasses, children?: ElChildren)
 {
 	return initEl("td", classes, children);
 }
-export function Input(classes?: ElClasses, type?: string, placeholder?: string)
+export function Input(classes?: ElClasses, type?: string, placeholder?: string, onCreate?: (el: HTMLInputElement) => void)
 {
 	const input = initEl("input", classes, undefined);
 	if (type) input.type = type;
 	if (placeholder) input.placeholder = placeholder;
+	onCreate?.(input);
 	return input;
 }
 export function Button(classes?: ElClasses, children?: ElChildren, clickListener?: (btn: HTMLButtonElement) => void)
@@ -526,7 +527,7 @@ export function A(classes?: ElClasses, children?: ElChildren, href?: string, cli
 type ElClass = string | undefined | null | false;
 export type ElClasses = ElClass[] | ElClass;
 export type ElChildren = Node | string | (Node | string)[];
-export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classes?: ElClasses, children?: ElChildren)
+export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classes?: ElClasses, children?: ElChildren, onCreate?: (el: HTMLElementTagNameMap[K]) => void)
 {
 	const el = document.createElement(tagName);
 	if (classes)
@@ -541,6 +542,7 @@ export function initEl<K extends keyof HTMLElementTagNameMap>(tagName: K, classe
 		else
 			el.append(children);
 	}
+	onCreate?.(el);
 
 	return el;
 }

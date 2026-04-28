@@ -12,6 +12,7 @@ export const Sections: Section[] = [
 			{ id: "b_4", count: 1, name: "Выбор слова", color: themes.common, items: getItemLoader("b_4"), onlyAnswerInQList: true },
 			{ id: "b_5", count: 2, name: "Исключение слова", color: themes.common, items: getItemLoader("b_5") },
 			{ id: "b_6", count: 1, name: "Выбор нескольких слова", color: themes.common, items: getItemLoader("b_6") },
+			{ id: "b_7", count: 1, name: "Ввод слова", color: themes.common, items: getItemLoader("b_7") },
 		],
 	},
 	{

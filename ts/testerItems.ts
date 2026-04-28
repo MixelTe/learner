@@ -624,3 +624,80 @@ export class TestItemMultipleWordChoice extends TestItem
 		})));
 	}
 }
+
+export class TestItemInput extends TestItem
+{
+	private answers: string[];
+
+	constructor(id: number, private question: string | HtmlBuilder, answers: string | string[])
+	{
+		super(id);
+		if (typeof answers == "string") this.answers = [answers];
+		else this.answers = answers;
+		for (let i = 0; i < this.answers.length; i++)
+		{
+			const w = this.answers[i];
+			this.answers[i] = w.toLowerCase().replace(/  +/g, ' ').trim();
+		}
+	}
+
+	public getQuestion(): string | Node
+	{
+		if (typeof this.question == "string")
+			return this.question;
+		return this.question.html(true);
+	}
+
+	public getAnswer(): string
+	{
+		return this.answers[0];
+	}
+
+	private checkAnswer(answer: string)
+	{
+		for (const ans of this.answers)
+			if (answer == ans)
+				return true;
+		return false;
+	}
+
+	public async show(taskEl: HTMLDivElement, inputEl: HTMLDivElement, onAnswer: (r: boolean) => void)
+	{
+		const answer = () =>
+		{
+			taskEl.innerText = this.getAnswer();
+			const answer = inp.value.toLowerCase().replace(/  +/g, ' ').trim();
+			inp.disabled = true;
+			inp.value = answer;
+			const result = this.checkAnswer(answer);
+
+			if (result) form.classList.add("tester-input-text_correct");
+			else form.classList.add("tester-input-text_uncorrect");
+
+			btn.onclick = () =>
+			{
+				btn.classList.add("active");
+				// if (!isAnimDisabled())
+				// 	await Lib.wait(200);
+				onAnswer(true);
+			}
+		}
+
+		let form: HTMLFormElement;
+		const inp = Lib.Input([], "text");
+		const btn = Lib.Button(["material-symbols-rounded"], "arrow_forward", answer)
+
+		if (typeof this.question == "string")
+			taskEl.innerText = this.question;
+		else
+			Lib.SetContent(taskEl, this.question.html());
+		Lib.SetContent(inputEl, Lib.initEl("form", "tester-input-text", [
+			inp,
+			btn,
+		], frm =>
+		{
+			form = frm;
+			form.onsubmit = e => { e.preventDefault(); answer(); };
+		}));
+	}
+}
